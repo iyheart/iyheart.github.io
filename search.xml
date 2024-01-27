@@ -4,56 +4,6 @@
   
     
     <entry>
-      <title>第一章计算机网络和因特网</title>
-      <link href="/2024/01/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%AC%AC1%E7%AB%A0%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/"/>
-      <url>/2024/01/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%AC%AC1%E7%AB%A0%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%92%8C%E5%9B%A0%E7%89%B9%E7%BD%91/</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      <categories>
-          
-          <category> 计算机网络 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 网络 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>第2章应用层</title>
-      <link href="/2024/01/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%AC%AC2%E7%AB%A0%E5%BA%94%E7%94%A8%E5%B1%82/"/>
-      <url>/2024/01/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%AC%AC2%E7%AB%A0%E5%BA%94%E7%94%A8%E5%B1%82/</url>
-      
-        <content type="html"><![CDATA[<h1 id="FTP协议——文件传输协议"><a href="#FTP协议——文件传输协议" class="headerlink" title="FTP协议——文件传输协议"></a>FTP协议——文件传输协议</h1><p>RFC：</p><h1 id="DNS因特网的目录服务"><a href="#DNS因特网的目录服务" class="headerlink" title="DNS因特网的目录服务"></a>DNS因特网的目录服务</h1><h2 id="简单介绍IP地址"><a href="#简单介绍IP地址" class="headerlink" title="简单介绍IP地址"></a>简单介绍IP地址</h2><h3 id="什么是IP地址"><a href="#什么是IP地址" class="headerlink" title="什么是IP地址"></a>什么是IP地址</h3><ul><li><p>I（Internet） P（protocol）合起来就是Internet Protocol（互联网地址）</p></li><li><p>如何查看本机IP地址</p></li><li><p>IP地址的构成</p><ul><li>格式（由4个0-255范围的数字构成）：x.x.x.x</li></ul></li><li><p>子网掩码</p><ul><li>作用：划分网段</li><li></li></ul></li></ul>]]></content>
-      
-      
-      <categories>
-          
-          <category> 计算机网络 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 网络 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>博客优化--butterfly主题</title>
       <link href="/2024/01/24/%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96/"/>
       <url>/2024/01/24/%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96/</url>
