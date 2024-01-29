@@ -1,0 +1,12 @@
+/*底部栏自定义*/
+    /*底部栏背景自定义*/
+#footer {
+    /*颜色定义*/
+    /*background: rebeccapurple;*/
+    /*透明色*/
+    background: transparent;
+}
+    /*底部栏字体颜色自定义*/
+#footer-wrap {
+    color: black;
+}
