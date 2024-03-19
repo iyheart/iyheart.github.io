@@ -183,10 +183,10 @@
 <ul>
 <li>Docker的思想来自于集装箱</li>
 </ul>
-<p>JRE–多个应用（端口冲突）–原来都是交叉的！</p>
+<p>JRE—多个应用（端口冲突）—原来都是交叉的！</p>
 <p>隔离：Docker核心思想就是打包装箱</p>
 <h2 id="Docker的基本组成"><a href="#Docker的基本组成" class="headerlink" title="Docker的基本组成"></a>Docker的基本组成</h2><p><strong>镜像（image）：</strong></p>
-<p>Docker镜像就好比一个模版，可以通过这个模版来创建容器服务，tomcat镜像&#x3D;&#x3D;&#x3D;》run&#x3D;&#x3D;&#x3D;》tomcat01容器（提供服务器），通过这个镜像可以创建多个容器（最终服务运行或者项目运行就是在容器中的）。<font color="red">(镜像就像一个压缩包)</font></p>
+<p>Docker镜像就好比一个模版，可以通过这个模版来创建容器服务，tomcat镜像===》run===》tomcat01容器（提供服务器），通过这个镜像可以创建多个容器（最终服务运行或者项目运行就是在容器中的）。<font color="red">(镜像就像一个压缩包)</font></p>
 <p><strong>容器（container）：</strong></p>
 <p>Docker利用容器技术，独立运行一个或者一个组应用，通过镜像来创建的。</p>
 <p>启动，停止，删除，基本命令。</p>
@@ -205,11 +205,10 @@
 </li>
 </ul>
 <figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.docker.com/</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>Docker帮助文档的位置</li>
 </ul>
-<p><img src="/2023/11/27/Docker%E7%B3%BB%E5%88%97blog/Docker%E5%AE%89%E8%A3%85/Docker%E5%AE%89%E8%A3%85%E5%9B%BE%E7%89%877.png" alt="Docker安装图片7"></p>
+<p><img src="/2023/11/27/Docker%E7%B3%BB%E5%88%97blog/Docker%E5%AE%89%E8%A3%85/Docker安装图片7.png" alt="Docker安装图片7"></p>
 <ul>
 <li>Docker仓库的地址：</li>
 </ul>
@@ -229,7 +228,7 @@
 <li>下划到Windows规格那一个框里面</li>
 <li>查看Windows版本</li>
 </ol>
-<p><img src="/2023/11/27/Docker%E7%B3%BB%E5%88%97blog/Docker%E5%AE%89%E8%A3%85/Docker%E5%AE%89%E8%A3%85%E5%9B%BE%E7%89%871-1701085559746-5.png" alt="Docker安装图片1"></p>
+<p><img src="/2023/11/27/Docker%E7%B3%BB%E5%88%97blog/Docker%E5%AE%89%E8%A3%85/Docker安装图片1-1701085559746-5.png" alt="Docker安装图片1"></p>
 <ul>
 <li>由于博主的Windows规格不是专业版，所以不能在该系统上安装Docker，除非去花钱激活专业版。</li>
 <li>不是Windows专业版，在其上面安装Docker，server跑不起来。</li>
@@ -238,21 +237,19 @@
 <li>先下载VMware，在官网中下载</li>
 </ul>
 <figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.vmware.com/cn/products/workstation-pro/workstation-pro-evaluation.html</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>下载完成后进行安装，安装过程中需要秘钥，秘钥去网上搜索</li>
 <li>再去清华大学开源软件镜像网站去下载Ubuntu（虚拟机系统）</li>
 </ul>
 <figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://mirrors.tuna.tsinghua.edu.cn/</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2023/11/27/Docker%E7%B3%BB%E5%88%97blog/Docker%E5%AE%89%E8%A3%85/Docker%E5%AE%89%E8%A3%85%E5%9B%BE%E7%89%872.png" alt="Docker安装图片2"></p>
-<p><img src="/2023/11/27/Docker%E7%B3%BB%E5%88%97blog/Docker%E5%AE%89%E8%A3%85/Docker%E5%AE%89%E8%A3%85%E5%9B%BE%E7%89%873.png" alt="Docker安装图片3"></p>
+<p><img src="/2023/11/27/Docker%E7%B3%BB%E5%88%97blog/Docker%E5%AE%89%E8%A3%85/Docker安装图片2.png" alt="Docker安装图片2"></p>
+<p><img src="/2023/11/27/Docker%E7%B3%BB%E5%88%97blog/Docker%E5%AE%89%E8%A3%85/Docker安装图片3.png" alt="Docker安装图片3"></p>
 <ul>
 <li>安装完成Ubuntu和VMware后点击启动VMware并且在界面中点击创建新的虚拟机</li>
 </ul>
 <p><img src="/2023/11/27/Docker%E7%B3%BB%E5%88%97blog/Docker%E5%AE%89%E8%A3%85/633a0ecba4d25210623226a69229f0e426598626.png" alt="Docker安装图片4"></p>
-<p><img src="/2023/11/27/Docker%E7%B3%BB%E5%88%97blog/Docker%E5%AE%89%E8%A3%85/Docker%E5%AE%89%E8%A3%85%E5%9B%BE%E7%89%875.png" alt="Docker安装图片5"></p>
-<p><img src="/2023/11/27/Docker%E7%B3%BB%E5%88%97blog/Docker%E5%AE%89%E8%A3%85/Docker%E5%AE%89%E8%A3%85%E5%9B%BE%E7%89%876.png" alt="Docker安装图片6"></p>
+<p><img src="/2023/11/27/Docker%E7%B3%BB%E5%88%97blog/Docker%E5%AE%89%E8%A3%85/Docker安装图片5.png" alt="Docker安装图片5"></p>
+<p><img src="/2023/11/27/Docker%E7%B3%BB%E5%88%97blog/Docker%E5%AE%89%E8%A3%85/Docker安装图片6.png" alt="Docker安装图片6"></p>
 <ul>
 <li>选择在清华大学镜像源里面下载的Ubuntu.iso文件，点击下一步进行安装</li>
 </ul>
@@ -263,32 +260,28 @@
 <li>查看系统的内核</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入指令：uname -r</span><br><span class="line">6.2.0-37-generic</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>查看系统版本</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">输入指令： cat /etc/os-release</span><br><span class="line"></span><br><span class="line">PRETTY_NAME=&quot;Ubuntu 22.04.3 LTS&quot;</span><br><span class="line">NAME=&quot;Ubuntu&quot;</span><br><span class="line">VERSION_ID=&quot;22.04&quot;</span><br><span class="line">VERSION=&quot;22.04.3 LTS (Jammy Jellyfish)&quot;</span><br><span class="line">VERSION_CODENAME=jammy</span><br><span class="line">ID=ubuntu</span><br><span class="line">ID_LIKE=debian</span><br><span class="line">HOME_URL=&quot;https://www.ubuntu.com/&quot;</span><br><span class="line">SUPPORT_URL=&quot;https://help.ubuntu.com/&quot;</span><br><span class="line">BUG_REPORT_URL=&quot;https://bugs.launchpad.net/ubuntu/&quot;</span><br><span class="line">PRIVACY_POLICY_URL=&quot;https://www.ubuntu.com/legal/terms-and-policies/privacy-policy&quot;</span><br><span class="line">UBUNTU_CODENAME=jammy</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>在安装的过程中，查看帮助文档</li>
 </ul>
-<p><img src="/2023/11/27/Docker%E7%B3%BB%E5%88%97blog/Docker%E5%AE%89%E8%A3%85/Docker%E5%AE%89%E8%A3%85%E5%9B%BE%E7%89%878.png" alt="Docker安装图片8"></p>
-<p><img src="/2023/11/27/Docker%E7%B3%BB%E5%88%97blog/Docker%E5%AE%89%E8%A3%85/Docker%E5%AE%89%E8%A3%85%E5%9B%BE%E7%89%879.png" alt="Docker安装图片9"></p>
+<p><img src="/2023/11/27/Docker%E7%B3%BB%E5%88%97blog/Docker%E5%AE%89%E8%A3%85/Docker安装图片8.png" alt="Docker安装图片8"></p>
+<p><img src="/2023/11/27/Docker%E7%B3%BB%E5%88%97blog/Docker%E5%AE%89%E8%A3%85/Docker安装图片9.png" alt="Docker安装图片9"></p>
 <ul>
 <li><p>如果是在Mac系统上安装Docker就点击苹果，在Windows pro 版本就点击中间的，在Linux安装就点击第三个</p>
 </li>
 <li><p>注意：博主是在Windows虚拟机Ubuntu中安装的Docker，Ubuntu是属于Linux内核开发的操作系统，故点击第三个</p>
 </li>
 </ul>
-<p><img src="/2023/11/27/Docker%E7%B3%BB%E5%88%97blog/Docker%E5%AE%89%E8%A3%85/Docker%E5%AE%89%E8%A3%85%E5%9B%BE%E7%89%8710.png" alt="Docker安装图片10"></p>
+<p><img src="/2023/11/27/Docker%E7%B3%BB%E5%88%97blog/Docker%E5%AE%89%E8%A3%85/Docker安装图片10.png" alt="Docker安装图片10"></p>
 <p>点击之后就会出现在Ubuntu中安装Docker的一系列指令。</p>
-<p><img src="/2023/11/27/Docker%E7%B3%BB%E5%88%97blog/Docker%E5%AE%89%E8%A3%85/Docker%E5%AE%89%E8%A3%85%E5%9B%BE%E7%89%8711.jpg" alt="Docker安装图片11"></p>
+<p><img src="/2023/11/27/Docker%E7%B3%BB%E5%88%97blog/Docker%E5%AE%89%E8%A3%85/Docker安装图片11.jpg" alt="Docker安装图片11"></p>
 <p>该红色方框的内容告知安装Docker，电脑的需求配置。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">要求拥有64位版本的最新LTS版本（Ubuntu jammy jellyfish 22.04）</span><br><span class="line">或当前的非LTS版本（Ubuntu Mantic Minotaur 23.10）</span><br><span class="line">Docker Desktop支持x86_64(或amd64)架构</span><br></pre></td></tr></table></figure>
-
 <p>对于该条件博主在查看虚拟机版本时已经确认</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">第六行 VERSION=<span class="string">&quot;22.04.3 LTS (Jammy Jellyfish)&quot;</span></span></span><br></pre></td></tr></table></figure>
-
 <h2 id="查看帮助文档"><a href="#查看帮助文档" class="headerlink" title="查看帮助文档"></a>查看帮助文档</h2><ul>
 <li>查看Docker的Doc帮助文档</li>
 <li>Docker 的版本<ul>
@@ -297,28 +290,23 @@
 </li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">1、查看Ubuntu的桌面系统类型是否是gnome</span></span><br><span class="line">echo $XDG_CURRENT_DESKTOP</span><br><span class="line">ubuntu:GNOME</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">如果不是gnome系统需要安装gnome终端</span></span><br><span class="line">sudo apt install gnome-terminal</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">2、卸载Ubuntu自带的旧版的Docker Desktop</span></span><br><span class="line">sudo apt remove docker-desktop</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">3、完全清理旧版配置和数据文件</span></span><br><span class="line">rm -r $HOME/.docker/desktop</span><br><span class="line">sudo rm /usr/local/bin/com.docker.cli</span><br><span class="line">sudo apt purge docker-desktop</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">4、使用apt安装包</span></span><br><span class="line">sudo apt-get update</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">安装最新版本的Docker如下：</span></span><br><span class="line">sudo apt-get install </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">安装指定版本的Docker如下：</span></span><br><span class="line">docker-desktop-&lt;version&gt;-&lt;arch&gt;.deb</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">安装完之后出现如下提示错误信息忽略即可</span></span><br><span class="line">N: Download is performed unsandboxed as root, as file &#x27;/home/user/Downloads/docker-desktop.deb&#x27; couldn&#x27;t be accessed by user &#x27;_apt&#x27;. - pkgAcquire::Run (13: Permission denied)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">5、设置镜像的仓库（网上搜索）</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">6、启动Docker</span></span><br><span class="line">systemctl start docker</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">7、检查Docker是否成功启动</span></span><br><span class="line">docker version  #查看docker版本</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2023/11/27/Docker%E7%B3%BB%E5%88%97blog/Docker%E5%AE%89%E8%A3%85/Docker%E5%AE%89%E8%A3%85%E5%9B%BE%E7%89%8712.png" alt="Docker安装图片12"></p>
+<p><img src="/2023/11/27/Docker%E7%B3%BB%E5%88%97blog/Docker%E5%AE%89%E8%A3%85/Docker安装图片12.png" alt="Docker安装图片12"></p>
 <h2 id="测试Docker能否运行"><a href="#测试Docker能否运行" class="headerlink" title="测试Docker能否运行"></a>测试Docker能否运行</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run hello-world</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2023/11/27/Docker%E7%B3%BB%E5%88%97blog/Docker%E5%AE%89%E8%A3%85/Docker%E5%AE%89%E8%A3%85%E5%9B%BE%E7%89%8713.png" alt="Docker安装图片13"></p>
+<p><img src="/2023/11/27/Docker%E7%B3%BB%E5%88%97blog/Docker%E5%AE%89%E8%A3%85/Docker安装图片13.png" alt="Docker安装图片13"></p>
 <p>查看hello-world这个镜像</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
-
 <p>了解：卸载Docker</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">1. 卸载依赖</span></span><br><span class="line">remove docker-re docker-re-cli containerd.io</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">2. 删除资源</span></span><br><span class="line">rm -rf/var/lib/docker</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">/var/lib/docker   docker的默认工作路径</span></span><br></pre></td></tr></table></figure>
-
 <h2 id="阿里云镜像加速"><a href="#阿里云镜像加速" class="headerlink" title="阿里云镜像加速"></a>阿里云镜像加速</h2><ul>
 <li>进入阿里云的官方网站，并注册</li>
 <li>先点击左上角的产品，再点击容器，最后再点击，容器镜像产品ACR</li>
 <li>找到镜像加速地址</li>
 <li>根据官方给出的配置教程进行镜像加速的配置</li>
 </ul>
-<p><img src="/2023/11/27/Docker%E7%B3%BB%E5%88%97blog/Docker%E5%AE%89%E8%A3%85/Docker%E5%AE%89%E8%A3%85%E5%9B%BE%E7%89%8714.png" alt="Docker安装图片14"></p>
-<p><img src="/2023/11/27/Docker%E7%B3%BB%E5%88%97blog/Docker%E5%AE%89%E8%A3%85/Docker%E5%AE%89%E8%A3%85%E5%9B%BE%E7%89%8715.png" alt="Docker安装图片15"></p>
+<p><img src="/2023/11/27/Docker%E7%B3%BB%E5%88%97blog/Docker%E5%AE%89%E8%A3%85/Docker安装图片14.png" alt="Docker安装图片14"></p>
+<p><img src="/2023/11/27/Docker%E7%B3%BB%E5%88%97blog/Docker%E5%AE%89%E8%A3%85/Docker安装图片15.png" alt="Docker安装图片15"></p>
 <h2 id="回顾hello-world流程"><a href="#回顾hello-world流程" class="headerlink" title="回顾hello-world流程"></a>回顾hello-world流程</h2><p><img src="/2023/11/27/Docker%E7%B3%BB%E5%88%97blog/Docker%E5%AE%89%E8%A3%85/ecf41bf867139b1b2bc0eccba9911bf7e24550a5.png" alt="Docker安装图片13"></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">1. Docker会在本机寻找镜像。判断本机是否存在该镜像，如果有该镜像直接运行即可.</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">2. 如果本机不存在该镜像，就会显示输入指令后第一行信息,</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">并会在Docker Hub上下载</span></span><br><span class="line">Unable to find image &#x27;hello-world:latest&#x27; locally</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">3. 如果Docker Hub上有，那么就从下载到本地，并在本地运行</span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>这里要注意，博主的电脑在Windows系统上是打开不了Docker Hub</li>
 <li>这是因为Docker Hub配置不在Windows上而在虚拟机Ubuntu上</li>
