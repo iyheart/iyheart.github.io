@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>离散数学—第一、二章</title>
+      <link href="/2024/03/31/%E6%95%B0%E5%AD%A6blog/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E2%80%94%E7%AC%AC%E4%B8%80%E7%AB%A0/"/>
+      <url>/2024/03/31/%E6%95%B0%E5%AD%A6blog/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E2%80%94%E7%AC%AC%E4%B8%80%E7%AB%A0/</url>
+      
+        <content type="html"><![CDATA[<h1 id="第一章——命题逻辑的基本概念"><a href="#第一章——命题逻辑的基本概念" class="headerlink" title="第一章——命题逻辑的基本概念"></a>第一章——命题逻辑的基本概念</h1><h2 id="命题与联结词"><a href="#命题与联结词" class="headerlink" title="命题与联结词"></a>命题与联结词</h2><h3 id="命题"><a href="#命题" class="headerlink" title="命题"></a>命题</h3><ul><li><p>概念：<strong>非真即假</strong>的<strong>陈述句</strong>称作<strong>命题</strong>。</p></li><li><p><strong>真值</strong>：命题的陈述句所表达的判断结果称作命题的真值，真值有<strong>真</strong>或<strong>假</strong>俩个值</p><ul><li><strong>真命题</strong>：真值为真的命题</li><li><strong>假命题</strong>：真值为假的命题</li></ul></li><li><p><strong>简单命题</strong>和<strong>原子命题</strong>：不能被分解成更简单的命题，被称作简单命题或原子命题</p></li><li><p><strong>复合命题</strong>：由简单命题通过<strong>联结词</strong>联结而成的命题</p></li><li><p><strong>悖论</strong>：由真能推出假，又由假能推出真，从而既不能为真，也不能为假的陈述句称作悖论，<strong>悖论不是命题</strong></p></li></ul><h3 id="联结词"><a href="#联结词" class="headerlink" title="联结词"></a>联结词</h3><ul><li><strong>否定联结词</strong>：设p为命题，复合命题“非p”（或“p的否定”）称作p的<strong>否定式</strong>，记作p，符号称作<strong>否定联结词</strong></li><li><strong>合取联结词</strong>：设p，q为两个命题，复合命题“p并且q”（或“p与q”）称为p与q的<strong>合取式</strong>，符号被称作<strong>合取联结词</strong>，记作pq.规定当pq为真，当且仅当p与q同时为真</li><li><strong>析取联结词</strong>：设p，q为两个命题，复合命题“p或q”称为p与q的<strong>析取式</strong>，记作pq，符号被称作<strong>析取联结词</strong>，规定当pq为假，当且仅当p与q同时为假<ul><li><strong>相容或</strong>和<strong>排斥或</strong>：或具有二义性，有时或有<strong>相容性</strong>（即它联结的两个命题可以同时为真），有时或有<strong>拍拆性</strong>（即只有当一个为真、另一个为假时，才为真）</li></ul></li><li><strong>蕴涵联结词</strong>：设p，q为两个命题，复合命题“如果p，则q”称为p与q的<strong>蕴含式</strong>，记作p→q，并称p是蕴含式的<strong>前件</strong>，q是蕴含式的<strong>后件</strong>，→称作<strong>蕴含联结词</strong>.并规定p→q为假当且仅当p为真q为假.<ul><li>“只要p，就q”    p→q</li><li>“因为p，所以q“   p→q</li><li>“ p仅当q”   p→q</li><li>“只有q才p”  p→q</li><li>“除非q才p”  p→q</li><li>“除非q，否则p”   p→q</li></ul></li><li><strong>等价联结词</strong>：设p，q为两个命题，复合命题“p当且仅当q”称作p与q的<strong>等价式</strong>，记作p←→q，←→称作<strong>等价联结词</strong>.规定p←→q为真当且仅当p与q<strong>同时为真</strong>或<strong>同时为假</strong></li></ul><h2 id="命题公式及其赋值"><a href="#命题公式及其赋值" class="headerlink" title="命题公式及其赋值"></a>命题公式及其赋值</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> 大学数学 </category>
+          
+          <category> 离散数学 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 离散数学 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>高数下第九章</title>
       <link href="/2024/03/28/%E6%95%B0%E5%AD%A6blog/%E9%AB%98%E6%95%B0%E4%B8%8B%E7%AC%AC%E4%B9%9D%E7%AB%A0/"/>
       <url>/2024/03/28/%E6%95%B0%E5%AD%A6blog/%E9%AB%98%E6%95%B0%E4%B8%8B%E7%AC%AC%E4%B9%9D%E7%AB%A0/</url>
