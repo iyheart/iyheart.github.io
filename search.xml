@@ -25,19 +25,6 @@
     
     
     <entry>
-      <title>网络安全赛事awd</title>
-      <link href="/2024/04/15/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E8%B5%9B%E4%BA%8Bawd/"/>
-      <url>/2024/04/15/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E8%B5%9B%E4%BA%8Bawd/</url>
-      
-        <content type="html"><![CDATA[<h1 id="1"><a href="#1" class="headerlink" title="1"></a>1</h1><ul><li><p>先做备份</p></li><li><p>改密码</p></li><li><p>关端口，445端口，关不了就加防火墙</p></li><li><p>代码审计</p></li></ul><h1 id="2"><a href="#2" class="headerlink" title="2"></a>2</h1><p><strong>AoiAWD</strong>，尝试部署AoiAWD（学习）</p><p>数据库口令，改完口令一定要改配置文件</p><h1 id="3"><a href="#3" class="headerlink" title="3"></a>3</h1><p>Linux</p><p>备份</p><p>改密码</p><p>看端口</p><p>scp命令（学习）</p><p>Linux的执行权限（学习）</p>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>计算机组成原理</title>
       <link href="/2024/04/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/"/>
       <url>/2024/04/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/</url>
