@@ -80,19 +80,6 @@
     
     
     <entry>
-      <title>moeCTF--wp</title>
-      <link href="/2024/09/04/CTFblog/write%20up%E7%B3%BB%E5%88%97blog/moeCTF-wp/"/>
-      <url>/2024/09/04/CTFblog/write%20up%E7%B3%BB%E5%88%97blog/moeCTF-wp/</url>
-      
-        <content type="html"><![CDATA[<h1 id="misc"><a href="#MISC" class="headerlink" title="MISC"></a>MISC</h1><h1 id="web"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h1><h1 id="crypto"><a href="#CRYPTO" class="headerlink" title="CRYPTO"></a>CRYPTO</h1><h1 id="re"><a href="#RE" class="headerlink" title="RE"></a>RE</h1><h1 id="pwn"><a href="#PWN" class="headerlink" title="PWN"></a>PWN</h1><h2 id="二进制漏洞审计入门指北"><a href="#二进制漏洞审计入门指北" class="headerlink" title="二进制漏洞审计入门指北"></a>二进制漏洞审计入门指北</h2><ul><li>题目给了个入门指北，最好还是看一下</li></ul><p><img src="/2024/09/04/CTFblog/write%20up%E7%B3%BB%E5%88%97blog/moeCTF-wp/image-20240904113011026.png" alt="image-20240904113011026"></p><ul><li>签到题，学会<code>nc</code>直接就送flag</li></ul><p><img src="/2024/09/04/CTFblog/write%20up%E7%B3%BB%E5%88%97blog/moeCTF-wp/image-20240904112505198.png" alt="image-20240904112505198"></p><p>flag：<code>moectf&#123;Welcome_to_the_journey_of_Pwn&#125;</code></p><h2 id="notenoughtime"><a href="#NotEnoughTime" class="headerlink" title="NotEnoughTime"></a>NotEnoughTime</h2><ul><li>题目：说是检测数学能力，其实是练习接收与发送，与靶机交互。</li></ul><p><img src="/2024/09/04/CTFblog/write%20up%E7%B3%BB%E5%88%97blog/moeCTF-wp/image-20240904114303972.png" alt="image-20240904114303972"></p><ul><li>这题会发送一些数学四则运算的题目，算式均为 C 语言表达式，整数除法。还有时间限制</li></ul><p><img src="/2024/09/04/CTFblog/write%20up%E7%B3%BB%E5%88%97blog/moeCTF-wp/image-20240904114553199.png" alt="image-20240904114553199"></p><ul><li>这种情况就需要使用Python脚本实现交互<ul><li>先将第一个和第二个固定的算式单独做一个接收和发送</li><li>然后再接收一行字符串</li><li>接下来使用Python的<code>eval()</code>函数，<code>eval()</code>函数执行其传递的参数内容，并返回结果</li><li>对接收的算式先进行处理，比如将<code>换行符</code>去掉，将最后接收到的<code>=</code>号去掉</li><li>最后使用<code>eval()</code>函数进行计算</li><li>再将计算结果发送出去，进而实现自动化计算脚本</li></ul></li><li>exp如下：</li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">context(log_level = <span class="string">&#x27;debug&#x27;</span>)</span><br><span class="line">p = remote(<span class="string">&quot;172.25.144.1&quot;</span>,<span class="number">50357</span>)</span><br><span class="line">p.sendlineafter(<span class="string">b&#x27;1 + 1 = &#x27;</span>,<span class="built_in">str</span>(<span class="number">2</span>).encode(<span class="string">&quot;utf-8&quot;</span>))</span><br><span class="line">p.sendlineafter(<span class="string">b&#x27;4 / 3 - 1 = &#x27;</span>,<span class="built_in">str</span>(<span class="number">0</span>).encode(<span class="string">&quot;utf-8&quot;</span>))</span><br><span class="line">p.recvuntil(<span class="string">b&#x27;OK, then some tough ones. Be WELL PREPARED!&#x27;</span>)</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    a = p.recvuntil(<span class="string">b&#x27;=&#x27;</span>)</span><br><span class="line">    a = a.decode(<span class="string">&quot;utf-8&quot;</span>)</span><br><span class="line">    b = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> a:</span><br><span class="line">        <span class="keyword">if</span> i == <span class="string">&#x27;\n&#x27;</span>:</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        <span class="keyword">if</span> i == <span class="string">&#x27;=&#x27;</span>:</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        <span class="keyword">if</span> i == <span class="string">&#x27;/&#x27;</span>:</span><br><span class="line">            b += <span class="string">&#x27;//&#x27;</span></span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        b += i</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;b = &#x27;</span>,b)</span><br><span class="line">    c = <span class="built_in">eval</span>(b)</span><br><span class="line">    <span class="built_in">print</span>(c)</span><br><span class="line">    p.send(<span class="built_in">str</span>(<span class="built_in">int</span>(c)).encode(<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line">    p.sendline(<span class="string">b&#x27;&#x27;</span>)</span><br><span class="line"><span class="comment"># 最后得到flag</span></span><br><span class="line"><span class="comment"># moectf&#123;ar1tHMETiC-IS_NOT_M@th3mATIcs1d259bb&#125;</span></span><br></pre></td></tr></table></figure><h2 id="no_more_gets"><a href="#no-more-gets" class="headerlink" title="no_more_gets"></a>no_more_gets</h2><ul><li>题目：</li></ul><p><img src="/2024/09/04/CTFblog/write%20up%E7%B3%BB%E5%88%97blog/moeCTF-wp/image-20240904120653431.png" alt="image-20240904120653431"></p>]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>shellcode编写</title>
       <link href="/2024/09/03/CTFblog/PWN%E7%B3%BB%E5%88%97blog/%E6%9D%82%E7%B1%BB/shellcode%E7%BC%96%E5%86%99/"/>
       <url>/2024/09/03/CTFblog/PWN%E7%B3%BB%E5%88%97blog/%E6%9D%82%E7%B1%BB/shellcode%E7%BC%96%E5%86%99/</url>
@@ -189,19 +176,6 @@
           <category> 网络 </category>
           
       </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>BaseCTF-week2-wp</title>
-      <link href="/2024/08/28/CTFblog/write%20up%E7%B3%BB%E5%88%97blog/BaseCTFwp2/"/>
-      <url>/2024/08/28/CTFblog/write%20up%E7%B3%BB%E5%88%97blog/BaseCTFwp2/</url>
-      
-        <content type="html"><![CDATA[<h1 id="misc"><a href="#MISC" class="headerlink" title="MISC"></a>MISC</h1><h2 id="aura-酱的旅行日记-i-lt图寻擂台gt"><a href="#Aura-酱的旅行日记-I" class="headerlink" title="Aura 酱的旅行日记 I &lt;图寻擂台&gt;"></a>Aura 酱的旅行日记 I &lt;图寻擂台&gt;</h2><ul><li>题目描述：</li></ul><p><img src="/2024/08/28/CTFblog/write%20up%E7%B3%BB%E5%88%97blog/BaseCTFwp2/image-20240828021717529.png" alt="image-20240828021717529"></p><ul><li>某个人的b站，发现是<code>成都自然博物馆</code>，直接<code>成都市成华区成华大道十里店路88号</code></li><li>所以flag为<code>BaseCTF&#123;四川省成都市成华区成华大道十里店路88号&#125;</code></li></ul>]]></content>
-      
       
       
     </entry>
