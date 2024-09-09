@@ -1,0 +1,461 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>UIUCTF-wp | iyheart的博客</title><meta name="author" content="iyheart"><meta name="copyright" content="iyheart"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言：打打国外的CTF比赛">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UIUCTF-wp">
+<meta property="og:url" content="http://iyheart.github.io/2024/06/29/CTFblog/write%20up%E7%B3%BB%E5%88%97blog/UIUCTF-wp/index.html">
+<meta property="og:site_name" content="iyheart的博客">
+<meta property="og:description" content="前言：打打国外的CTF比赛">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/article/296da5370e6f915d1826ff20916e7aec16f21482.jpg">
+<meta property="article:published_time" content="2024-06-29T14:00:47.000Z">
+<meta property="article:modified_time" content="2024-06-29T15:38:33.935Z">
+<meta property="article:author" content="iyheart">
+<meta property="article:tag" content="博客, 笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i0.hdslb.com/bfs/article/296da5370e6f915d1826ff20916e7aec16f21482.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://iyheart.github.io/2024/06/29/CTFblog/write%20up%E7%B3%BB%E5%88%97blog/UIUCTF-wp/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'UIUCTF-wp',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-06-29 23:38:33'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/style.css"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="http://pic.5tu.cn/uploads/allimg/1910/pic_5tu_big_2019010211653346247.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">88</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">32</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 历史</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i0.hdslb.com/bfs/article/296da5370e6f915d1826ff20916e7aec16f21482.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="iyheart的博客"><img class="site-icon" src="http://img95.699pic.com/photo/40151/9175.gif_wh860.gif"/><span class="site-name">iyheart的博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 历史</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">UIUCTF-wp</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-06-29T14:00:47.000Z" title="发表于 2024-06-29 22:00:47">2024-06-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-06-29T15:38:33.935Z" title="更新于 2024-06-29 23:38:33">2024-06-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/CTF/">CTF</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/CTF/write-up/">write-up</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="UIUCTF-wp"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="misc"><a href="#MISC" class="headerlink" title="MISC"></a>MISC</h1><h2 id="sanity-check"><a href="#Sanity-Check" class="headerlink" title="Sanity Check"></a>Sanity Check</h2><ul>
+<li>题目描述如下：加入Discord，在Discord上找flag</li>
+</ul>
+<p><img src="/2024/06/29/CTFblog/write%20up%E7%B3%BB%E5%88%97blog/UIUCTF-wp/image-20240629220216927.png" alt="image-20240629220216927"></p>
+<ul>
+<li>加入后在此处找到flag：<code> uiuctf&#123;plz_n0_ch4tGPT&#125;</code></li>
+</ul>
+<p><img src="/2024/06/29/CTFblog/write%20up%E7%B3%BB%E5%88%97blog/UIUCTF-wp/image-20240629220309274.png" alt="image-20240629220309274"></p>
+<h1 id="crypto"><a href="#CRYPTO" class="headerlink" title="CRYPTO"></a>CRYPTO</h1><h2 id="x-marked-the-spot"><a href="#X-Marked-the-Spot" class="headerlink" title="X Marked the Spot"></a>X Marked the Spot</h2><ul>
+<li>题目：给了个python代码和异或生成的密文(二进制文件)</li>
+</ul>
+<p><img src="/2024/06/29/CTFblog/write%20up%E7%B3%BB%E5%88%97blog/UIUCTF-wp/image-20240629220438454.png" alt="image-20240629220438454"></p>
+<ul>
+<li>python代码如下：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> cycle</span><br><span class="line"></span><br><span class="line">flag = <span class="string">b&quot;uiuctf&#123;????????????????????????????????????????&#125;&quot;</span></span><br><span class="line"><span class="comment"># len(flag) = 48</span></span><br><span class="line">key  = <span class="string">b&quot;????????&quot;</span></span><br><span class="line"><span class="comment"># len(key) = 8</span></span><br><span class="line">ct = <span class="built_in">bytes</span>(x ^ y <span class="keyword">for</span> x, y <span class="keyword">in</span> <span class="built_in">zip</span>(flag, cycle(key)))</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;ct&quot;</span>, <span class="string">&quot;wb&quot;</span>) <span class="keyword">as</span> ct_file:</span><br><span class="line">    ct_file.write(ct)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>思路：由flag的格式可以知道flag的前7位字符串<code> uiuctf&#123;</code>这时可以将密文的前7个字节提取出来，按顺序与<code>uiuctf&#123;</code>异或操作，然后后之间可以得到key的前7为，然后最后一位采取爆破。在爆破的密文找到最后一位是<code>&#125;</code>的字符串即可得到flag</p>
+</li>
+<li><p>exp:</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 以二进制读取模式打开文件ct</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;D:\\CTF附件\\UIUCTF\\密码\\XMarkedtheSpot&quot;</span>, <span class="string">&quot;rb&quot;</span>) <span class="keyword">as</span> ct_file:</span><br><span class="line">    <span class="comment"># 读取文件内容</span></span><br><span class="line">    ct_data = ct_file.read()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将二进制数据解码为字符串</span></span><br><span class="line">binary_data1 = ct_data</span><br><span class="line">binary_data = [<span class="built_in">bin</span>(byte) <span class="keyword">for</span> byte <span class="keyword">in</span> ct_data]</span><br><span class="line"><span class="built_in">print</span>(binary_data1)</span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line"><span class="keyword">for</span> byte, binary <span class="keyword">in</span> <span class="built_in">zip</span>(ct_data, binary_data):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;byte&#125;</span>&quot;</span>,end=<span class="string">&#x27;,&#x27;</span>)</span><br><span class="line">list1 = [<span class="number">117</span>,<span class="number">105</span>,<span class="number">117</span>,<span class="number">99</span>,<span class="number">116</span>,<span class="number">102</span>,<span class="number">123</span>]</span><br><span class="line">list2 = [<span class="number">29</span>,<span class="number">13</span>,<span class="number">28</span>,<span class="number">18</span>,<span class="number">22</span>,<span class="number">0</span>,<span class="number">17</span>,<span class="number">31</span>,<span class="number">88</span>,<span class="number">16</span>,<span class="number">54</span>,<span class="number">27</span>,<span class="number">23</span>,<span class="number">83</span>,<span class="number">30</span>,<span class="number">46</span>,<span class="number">28</span>,<span class="number">12</span>,<span class="number">90</span>,<span class="number">46</span>,<span class="number">17</span>,<span class="number">18</span>,<span class="number">94</span>,<span class="number">3</span>,<span class="number">28</span>,<span class="number">59</span>,<span class="number">11</span>,<span class="number">4</span>,<span class="number">22</span>,<span class="number">57</span>,<span class="number">94</span>,<span class="number">29</span>,<span class="number">93</span>,<span class="number">84</span>,<span class="number">54</span>,<span class="number">5</span>,<span class="number">10</span>,<span class="number">85</span>,<span class="number">53</span>,<span class="number">66</span>,<span class="number">6</span>,<span class="number">0</span>,<span class="number">72</span>,<span class="number">80</span>,<span class="number">67</span>,<span class="number">71</span>,<span class="number">75</span>,<span class="number">12</span>]</span><br><span class="line">key = []</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">7</span>):</span><br><span class="line">    key = list1[i]^list2[i]</span><br><span class="line">    <span class="built_in">print</span>(key,end=<span class="string">&#x27;,&#x27;</span>)</span><br><span class="line">key = [<span class="number">104</span>,<span class="number">100</span>,<span class="number">105</span>,<span class="number">113</span>,<span class="number">98</span>,<span class="number">102</span>,<span class="number">106</span>]</span><br><span class="line"><span class="keyword">for</span> a <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">255</span>):</span><br><span class="line">    b =key + [a]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">48</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">chr</span>(b[i%<span class="number">8</span>]^list2[i]),end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"><span class="comment"># uiuctf&#123;n0t_ju5t_th3_st4rt_but_4l50_th3_3nd!!!!!&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="without-a-trace"><a href="#Without-a-Trace" class="headerlink" title="Without a Trace"></a>Without a Trace</h2><ul>
+<li><p>题目是关于一个矩阵的，而且是靶机题，需要nacat到靶机上</p>
+</li>
+<li><p>题目附件给了关于矩阵的一些运算，让用户输入一个对角矩阵。flag被分成5份，第n份被放在第n行第n列，也构成一个对角矩阵</p>
+</li>
+<li><p>将这两个对角矩阵相乘，然后最后将输出相乘后对角矩阵的迹（矩阵对角元素的和）</p>
+</li>
+<li><p>原理后就是简单的解方程题目了，直接就系数<code>1 1 1 1 1 </code>和<code>2 1 1 1 1</code>和<code>1 2 1 1 1</code>和<code> 1 1 2 1 1</code> 和<code> 1 1 1 2 1</code>和<code> 1 1 1 1 2</code>解出每块flag的数值即可</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> bytes_to_long</span><br><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> permutations</span><br><span class="line"><span class="keyword">from</span> SECRET <span class="keyword">import</span> FLAG</span><br><span class="line"></span><br><span class="line"><span class="comment"># 提示输入对角矩阵，如果输入不正确就返回None，输入正确就返回用户所输入的对角矩阵</span></span><br><span class="line"><span class="comment">#################################################################</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">inputs</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;[WAT] Define diag(u1, u2, u3. u4, u5)&quot;</span>)</span><br><span class="line">    M = [</span><br><span class="line">        [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">        [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">        [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">        [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">        [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    ]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            M[i][i] = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">f&quot;[WAT] u<span class="subst">&#123;i + <span class="number">1</span>&#125;</span> = &quot;</span>))</span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    <span class="keyword">return</span> M</span><br><span class="line"><span class="comment">###############################################################</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义一个信号检查函数，如果出现该信号,则抛出异常</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">handler</span>(<span class="params">signum, frame</span>):</span><br><span class="line">    <span class="keyword">raise</span> Exception(<span class="string">&quot;[WAT] You&#x27;re trying too hard, try something simpler&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查对角矩阵M，</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">check</span>(<span class="params">M</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">sign</span>(<span class="params">sigma</span>):</span><br><span class="line">        l = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i + <span class="number">1</span>, <span class="number">5</span>):</span><br><span class="line">                <span class="keyword">if</span> sigma[i] &gt; sigma[j]:</span><br><span class="line">                    l += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> (-<span class="number">1</span>)**l <span class="comment"># 判断逆序数，并返回τ</span></span><br><span class="line"></span><br><span class="line">    res = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> sigma <span class="keyword">in</span> permutations([<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]):</span><br><span class="line">        curr = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">            curr *= M[sigma[i]][i]</span><br><span class="line">        res += sign(sigma) * curr</span><br><span class="line">    <span class="keyword">return</span> res <span class="comment"># res为行列式M的值</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fun</span>(<span class="params">M</span>):</span><br><span class="line">    f = [bytes_to_long(<span class="built_in">bytes</span>(FLAG[<span class="number">5</span>*i:<span class="number">5</span>*(i+<span class="number">1</span>)], <span class="string">&#x27;utf-8&#x27;</span>)) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>)]</span><br><span class="line">    F = [</span><br><span class="line">        [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">        [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">        [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">        [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">        [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    ]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">        F[i][i] = f[i]</span><br><span class="line"><span class="comment"># 将flag分成5分，第n份保存在第n行第n列的对角矩阵中</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        R = np.matmul(F, M) <span class="comment"># 计算矩阵F和矩阵M的乘积，返回矩阵乘法的结果，相乘后的矩阵乘法还是对角矩阵</span></span><br><span class="line">        <span class="keyword">return</span> np.trace(R)  <span class="comment"># 返回R的迹，对角线元素之和</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;[WAT] You&#x27;re trying too hard, try something simpler&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;[WAT] Welcome&quot;</span>)</span><br><span class="line">    M = inputs()</span><br><span class="line">    <span class="keyword">if</span> M <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;[WAT] You tried something weird...&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">elif</span> check(M) == <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;[WAT] It&#x27;s not going to be that easy...&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    res = fun(M)</span><br><span class="line">    <span class="keyword">if</span> res == <span class="literal">None</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;[WAT] You tried something weird...&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;[WAT] Have fun: <span class="subst">&#123;res&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>下面是nc输入的过程</li>
+</ul>
+<p><img src="/2024/06/29/CTFblog/write%20up%E7%B3%BB%E5%88%97blog/UIUCTF-wp/image-20240629225531198.png" alt="image-20240629225531198"></p>
+<p><img src="/2024/06/29/CTFblog/write%20up%E7%B3%BB%E5%88%97blog/UIUCTF-wp/image-20240629225600015.png" alt="image-20240629225600015"></p>
+<p><img src="/2024/06/29/CTFblog/write%20up%E7%B3%BB%E5%88%97blog/UIUCTF-wp/image-20240629225610931.png" alt="image-20240629225610931"></p>
+<p><img src="/2024/06/29/CTFblog/write%20up%E7%B3%BB%E5%88%97blog/UIUCTF-wp/image-20240629225618752.png" alt="image-20240629225618752"></p>
+<p><img src="/2024/06/29/CTFblog/write%20up%E7%B3%BB%E5%88%97blog/UIUCTF-wp/image-20240629225626949.png" alt="image-20240629225626949"></p>
+<p><img src="/2024/06/29/CTFblog/write%20up%E7%B3%BB%E5%88%97blog/UIUCTF-wp/image-20240629225639292.png" alt="image-20240629225639292"></p>
+<ul>
+<li>得到这些值后，直接写python解出flag</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line">f1 = <span class="number">2504408575853</span> - <span class="number">2000128101369</span></span><br><span class="line">f2 = <span class="number">2440285994541</span> - <span class="number">2000128101369</span></span><br><span class="line">f3 = <span class="number">2426159182680</span> - <span class="number">2000128101369</span></span><br><span class="line">f4 = <span class="number">2163980646766</span> - <span class="number">2000128101369</span></span><br><span class="line">f5 = <span class="number">2465934208374</span> - <span class="number">2000128101369</span></span><br><span class="line"><span class="built_in">print</span>(f5)</span><br><span class="line"><span class="built_in">list</span> = [<span class="number">504280474484</span>,<span class="number">440157893172</span>,<span class="number">426031081311</span>,<span class="number">163852545397</span>,<span class="number">465806107005</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">    <span class="built_in">print</span>(libnum.n2s(<span class="built_in">list</span>[i]))</span><br><span class="line"><span class="comment"># b&#x27;uiuct&#x27;</span></span><br><span class="line"><span class="comment"># b&#x27;f&#123;tr4&#x27;</span></span><br><span class="line"><span class="comment"># b&#x27;c1ng_&#x27;</span></span><br><span class="line"><span class="comment"># b&#x27;&amp;&amp;_mu&#x27;</span></span><br><span class="line"><span class="comment"># b&#x27;lt5!&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="determined"><a href="#Determined" class="headerlink" title="Determined"></a>Determined</h2><ul>
+<li>还是一个靶机题目，nc过去获取数据，本质考点还是具有公共素数，求两数的最大公因数。</li>
+<li>题目描述</li>
+</ul>
+<p><img src="/2024/06/29/CTFblog/write%20up%E7%B3%BB%E5%88%97blog/UIUCTF-wp/image-20240629233006449.png" alt="image-20240629233006449"></p>
+<ul>
+<li>题目给了三个附件</li>
+<li>server附件：将rsa加密的p、q还有另外的一个r放在矩阵里面，然后让用户输入矩阵中某些地方的值，计算出5阶方阵的行列式</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> bytes_to_long, long_to_bytes</span><br><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> permutations</span><br><span class="line"><span class="keyword">from</span> SECRET <span class="keyword">import</span> FLAG, p, q, r</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">inputs</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;[DET] First things first, gimme some numbers:&quot;</span>)</span><br><span class="line">    M = [</span><br><span class="line">        [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">        [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">        [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">        [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">        [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    ]</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        M[<span class="number">0</span>][<span class="number">0</span>] = p</span><br><span class="line">        M[<span class="number">0</span>][<span class="number">2</span>] = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;[DET] M[0][2] = &quot;</span>))</span><br><span class="line">        M[<span class="number">0</span>][<span class="number">4</span>] = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;[DET] M[0][4] = &quot;</span>))</span><br><span class="line"></span><br><span class="line">        M[<span class="number">1</span>][<span class="number">1</span>] = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;[DET] M[1][1] = &quot;</span>))</span><br><span class="line">        M[<span class="number">1</span>][<span class="number">3</span>] = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;[DET] M[1][3] = &quot;</span>))</span><br><span class="line"></span><br><span class="line">        M[<span class="number">2</span>][<span class="number">0</span>] = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;[DET] M[2][0] = &quot;</span>))</span><br><span class="line">        M[<span class="number">2</span>][<span class="number">2</span>] = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;[DET] M[2][2] = &quot;</span>))</span><br><span class="line">        M[<span class="number">2</span>][<span class="number">4</span>] = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;[DET] M[2][4] = &quot;</span>))</span><br><span class="line"></span><br><span class="line">        M[<span class="number">3</span>][<span class="number">1</span>] = q</span><br><span class="line">        M[<span class="number">3</span>][<span class="number">3</span>] = r</span><br><span class="line"></span><br><span class="line">        M[<span class="number">4</span>][<span class="number">0</span>] = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;[DET] M[4][0] = &quot;</span>))</span><br><span class="line">        M[<span class="number">4</span>][<span class="number">2</span>] = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;[DET] M[4][2] = &quot;</span>))</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    <span class="keyword">return</span> M</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">handler</span>(<span class="params">signum, frame</span>):</span><br><span class="line">    <span class="keyword">raise</span> Exception(<span class="string">&quot;[DET] You&#x27;re trying too hard, try something simpler&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fun</span>(<span class="params">M</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">sign</span>(<span class="params">sigma</span>):</span><br><span class="line">        l = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i + <span class="number">1</span>, <span class="number">5</span>):</span><br><span class="line">                <span class="keyword">if</span> sigma[i] &gt; sigma[j]:</span><br><span class="line">                    l += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> (-<span class="number">1</span>)**l</span><br><span class="line"></span><br><span class="line">    res = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> sigma <span class="keyword">in</span> permutations([<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]):</span><br><span class="line">        curr = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">            curr *= M[sigma[i]][i]</span><br><span class="line">        res += sign(sigma) * curr</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;[DET] Welcome&quot;</span>)</span><br><span class="line">    M = inputs()</span><br><span class="line">    <span class="keyword">if</span> M <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;[DET] You tried something weird...&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    res = fun(M)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;[DET] Have fun: <span class="subst">&#123;res&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>gen附件：一眼rsa加密</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">n = 158794636700752922781275926476194117856757725604680390949164778150869764326023702391967976086363365534718230514141547968577753309521188288428236024251993839560087229636799779157903650823700424848036276986652311165197569877428810358366358203174595667453056843209344115949077094799081260298678936223331932826351</span><br><span class="line">e = 65535</span><br><span class="line">c = 72186625991702159773441286864850566837138114624570350089877959520356759693054091827950124758916323653021925443200239303328819702117245200182521971965172749321771266746783797202515535351816124885833031875091162736190721470393029924557370228547165074694258453101355875242872797209141366404264775972151904835111</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>gen.py附件</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> SECRET <span class="keyword">import</span> FLAG, p, q, r</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> bytes_to_long</span><br><span class="line">n = p * q</span><br><span class="line">e = <span class="number">65535</span></span><br><span class="line">m = bytes_to_long(FLAG)</span><br><span class="line">c = <span class="built_in">pow</span>(m, e, n)</span><br><span class="line"><span class="comment"># printed to gen.txt</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;n = &#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;e = &#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;c = &#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>根据提示用户输入的地方可以输入0和1构造行列式的值为<code>p*r(或-p*r)</code>和<code>p*q(或-p*q)</code>‘</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>p</th>
+<th>0</th>
+<th>0</th>
+<th>0</th>
+<th>0</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>q</td>
+<td>0</td>
+<td>r</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<p>（泄露pr或-pr）</p>
+<table>
+<thead>
+<tr>
+<th>p</th>
+<th>0</th>
+<th>0</th>
+<th>0</th>
+<th>0</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>q</td>
+<td>0</td>
+<td>r</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<ul>
+<li>然后得到下图结果</li>
+</ul>
+<p><img src="/2024/06/29/CTFblog/write%20up%E7%B3%BB%E5%88%97blog/UIUCTF-wp/image-20240629233746344.png" alt="image-20240629233746344"></p>
+<ul>
+<li>之后之间正常rsa解密即可</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line">a = <span class="number">89650932835934569650904059412290773134844226367466628096799329748763412779644167490959554682308225788447301887591344484909099249454270292467079075688237075940004535625835151778597652605934044472146068875065970359555553547536636518184486497958414801304532202276337011187961205104209096129018950458239166991017</span></span><br><span class="line">b = <span class="number">158794636700752922781275926476194117856757725604680390949164778150869764326023702391967976086363365534718230514141547968577753309521188288428236024251993839560087229636799779157903650823700424848036276986652311165197569877428810358366358203174595667453056843209344115949077094799081260298678936223331932826351</span></span><br><span class="line">p = gmpy2.gcd(a,b)</span><br><span class="line"><span class="comment"># p = 12664210650260034332394963174199526364356188908394557935639380180146845030597260557316300143360207302285226422265688727606524707066404145712652679087174119</span></span><br><span class="line">n = <span class="number">158794636700752922781275926476194117856757725604680390949164778150869764326023702391967976086363365534718230514141547968577753309521188288428236024251993839560087229636799779157903650823700424848036276986652311165197569877428810358366358203174595667453056843209344115949077094799081260298678936223331932826351</span></span><br><span class="line">e = <span class="number">65535</span></span><br><span class="line">c = <span class="number">72186625991702159773441286864850566837138114624570350089877959520356759693054091827950124758916323653021925443200239303328819702117245200182521971965172749321771266746783797202515535351816124885833031875091162736190721470393029924557370228547165074694258453101355875242872797209141366404264775972151904835111</span></span><br><span class="line">q = n//p</span><br><span class="line">phi_n = (p-<span class="number">1</span>)*(q-<span class="number">1</span>)</span><br><span class="line">d = gmpy2.invert(e,phi_n)</span><br><span class="line">m = <span class="built_in">pow</span>(c,d,n)</span><br><span class="line"><span class="built_in">print</span>(libnum.n2s(<span class="built_in">int</span>(m)))</span><br><span class="line"><span class="comment"># uiuctf&#123;h4rd_w0rk_&amp;&amp;_d3t3rm1n4t10n&#125;</span></span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://iyheart.github.io">iyheart</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://iyheart.github.io/2024/06/29/CTFblog/write%20up%E7%B3%BB%E5%88%97blog/UIUCTF-wp/">http://iyheart.github.io/2024/06/29/CTFblog/write up系列blog/UIUCTF-wp/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://iyheart.github.io" target="_blank">iyheart的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i0.hdslb.com/bfs/article/296da5370e6f915d1826ff20916e7aec16f21482.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/ea2e5fb6fbb4c236fbabd387ef83339.jpg" target="_blank"><img class="post-qr-code-img" src="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/ea2e5fb6fbb4c236fbabd387ef83339.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/07/02/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/1.%E6%A0%88%E7%B3%BB%E5%88%97/4PWN-ret%E7%B3%BB%E5%88%972/" title="PWN-基础-ret系列"><img class="cover" src="https://i0.hdslb.com/bfs/article/296da5370e6f915d1826ff20916e7aec16f21482.jpg" onerror="onerror=null;src='https://raw.githubusercontent.com/iyheart/tuchuang/main/img/f3c2605738aabdeedbc687356fa0e4e5.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">PWN-基础-ret系列</div></div></a></div><div class="next-post pull-right"><a href="/2024/06/24/CTFblog/write%20up%E7%B3%BB%E5%88%97blog/%E9%BB%91%E7%9B%BE-wp/" title="黑盾-wp"><img class="cover" src="https://i0.hdslb.com/bfs/article/296da5370e6f915d1826ff20916e7aec16f21482.jpg" onerror="onerror=null;src='https://raw.githubusercontent.com/iyheart/tuchuang/main/img/f3c2605738aabdeedbc687356fa0e4e5.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">黑盾-wp</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="lv-container" data-id="city" data-uid="MTAyMC81OTQ1Mi8zNTkxNA=="></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="http://pic.5tu.cn/uploads/allimg/1910/pic_5tu_big_2019010211653346247.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">iyheart</div><div class="author-info__description">悟已往之不谏，知来者之可追</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">88</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">18</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">32</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#misc"><span class="toc-number">1.</span> <span class="toc-text">MISC</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#sanity-check"><span class="toc-number">1.1.</span> <span class="toc-text">Sanity Check</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#crypto"><span class="toc-number">2.</span> <span class="toc-text">CRYPTO</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#x-marked-the-spot"><span class="toc-number">2.1.</span> <span class="toc-text">X Marked the Spot</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#without-a-trace"><span class="toc-number">2.2.</span> <span class="toc-text">Without a Trace</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#determined"><span class="toc-number">2.3.</span> <span class="toc-text">Determined</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/08/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/3.%E5%86%85%E6%A0%B8%E7%B3%BB%E5%88%97/%E5%86%85%E6%A0%B8pwn%E5%85%A5%E9%97%A8/" title="内核pwn入门">内核pwn入门</a><time datetime="2024-09-08T08:09:01.000Z" title="发表于 2024-09-08 16:09:01">2024-09-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/06/%E8%99%9A%E6%8B%9F%E5%8C%96/WSL2%E5%B5%8C%E5%A5%97%E8%99%9A%E6%8B%9F%E5%8C%96/" title="WSL2嵌套虚拟化">WSL2嵌套虚拟化</a><time datetime="2024-09-06T08:00:50.000Z" title="发表于 2024-09-06 16:00:50">2024-09-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/06/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/2.%E5%A0%86%E7%B3%BB%E5%88%97/PWN%E5%A0%86off-by%E7%B3%BB%E5%88%97/" title="off-by系列">off-by系列</a><time datetime="2024-09-06T01:57:34.000Z" title="发表于 2024-09-06 09:57:34">2024-09-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/04/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/2.%E5%A0%86%E7%B3%BB%E5%88%97/PWN%E5%A0%86UAF/" title="PWN堆UAF">PWN堆UAF</a><time datetime="2024-09-04T12:41:33.000Z" title="发表于 2024-09-04 20:41:33">2024-09-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/09/04/CTFblog/write%20up%E7%B3%BB%E5%88%97blog/moeCTF-wp/" title="moeCTF--wp">moeCTF--wp</a><time datetime="2024-09-03T21:59:08.000Z" title="发表于 2024-09-04 05:59:08">2024-09-04</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By iyheart</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat-btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script><script>(()=>{
+  const loadLivere = () => {
+    if (typeof LivereTower === 'object') window.LivereTower.init()
+    else {
+      (function(d, s) {
+          var j, e = d.getElementsByTagName(s)[0];
+          if (typeof LivereTower === 'function') { return; }
+          j = d.createElement(s);
+          j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+          j.async = true;
+          e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    }
+  }
+
+  if ('Livere' === 'Livere' || !false) {
+    if (false) btf.loadComment(document.getElementById('lv-container'), loadLivere)
+    else loadLivere()
+  } else {
+    window.loadOtherComment = loadLivere
+  }
+})()</script></div><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
