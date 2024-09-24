@@ -158,7 +158,10 @@
 <!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="http://pic.5tu.cn/uploads/allimg/1910/pic_5tu_big_2019010211653346247.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">91</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">31</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 历史</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-music"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://raw.githubusercontent.com/iyheart/tuchuang/main/img/下载.png')"><nav id="nav"><span id="blog-info"><a href="/" title="iyheart的博客"><img class="site-icon" src="http://img95.699pic.com/photo/40151/9175.gif_wh860.gif"/><span class="site-name">iyheart的博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 历史</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-music"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">关于PWN中的疑问</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-06-17T17:17:57.000Z" title="发表于 2024-06-18 01:17:57">2024-06-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-08-04T15:07:01.743Z" title="更新于 2024-08-04 23:07:01">2024-08-04</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/CTF/">CTF</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/CTF/PWN/">PWN</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="关于PWN中的疑问"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><ul>
 <li>这里感谢一位学长的答疑</li>
 </ul>
-<h1 id="栈溢出相关疑问"><a href="#栈溢出相关疑问" class="headerlink" title="栈溢出相关疑问"></a>栈溢出相关疑问</h1><h2 id="关于栈迁移"><a href="#关于栈迁移" class="headerlink" title="关于栈迁移"></a>关于栈迁移</h2><h3 id="疑问1ret到之前使用过的程序代码"><a href="#疑问1：ret到之前使用过的程序代码" class="headerlink" title="疑问1：ret到之前使用过的程序代码"></a>疑问1：ret到之前使用过的程序代码</h3><ul>
+<h1 id="栈溢出相关疑问">栈溢出相关疑问</h1>
+<h2 id="关于栈迁移">关于栈迁移</h2>
+<h3 id="疑问1ret到之前使用过的程序代码">疑问1：ret到之前使用过的程序代码</h3>
+<ul>
 <li>在栈溢出ret2libc的时候通常要先构造ROP链，泄露libc地址后才能ret2libc，但是当程序栈溢出ret之后，没有了栈溢出点，这时就要返回到程序开头重新执行一遍程序。在做这类pwn题的时候，之前我会ret到子程序半中间，然后会出现段错误</li>
 <li>例如下图：我会返回到call_puts这个指令的地址这边，然后就栈溢出的时候就出现了段错误</li>
 </ul>
@@ -168,25 +171,31 @@
 <li>注意到在程序执行的末尾，出现了<code> leave retn</code>这一串指令</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">leave的指令进行的隐含操作是</span><br><span class="line">mov esp,ebp</span><br><span class="line">pop ebp</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>这个指令的隐含操作，导致了如果栈溢出不输入合适的ebp的地址就会出现ebp乱跑的结果，导致再返回到之前程序执行过的指令，再次进行栈溢出就会发生栈迁移，从而出现段错误</li>
 <li>还有就是如果栈溢出时不输入合适的栈地址使得ebp乱跑，这时需要返回到程序的开头，因为在程序的开头中有出现push ebp，mov esp，ebp这套指令，会使得已经乱指的ebp指针，回到栈上</li>
 </ul>
-<h3 id="疑问2面向返回编程不需要执行权限"><a href="#疑问2：面向返回编程不需要执行权限" class="headerlink" title="疑问2：面向返回编程不需要执行权限"></a>疑问2：面向返回编程不需要执行权限</h3><ul>
+<h3 id="疑问2面向返回编程不需要执行权限">疑问2：面向返回编程不需要执行权限</h3>
+<ul>
 <li>之前在做pwn题的时候会出现构造ROP链需要执行权限的段，但是有一次在做栈迁移的时候，迁移到.bss段上，但是.bss段上没有执行权限，这就出现了此问题</li>
 <li>对于ROP链，这个面向返回编程只需要的是地址，而不是ret2shellcode那样要先把shellcode写入可写可执行的段中，然后再ret到shellcode</li>
 </ul>
-<h3 id="疑问3在栈迁移到bss段"><a href="#疑问3：在栈迁移到-bss段" class="headerlink" title="疑问3：在栈迁移到.bss段"></a>疑问3：在栈迁移到.bss段</h3><ul>
+<h3 id="疑问3在栈迁移到bss段">疑问3：在栈迁移到.bss段</h3>
+<ul>
 <li>在写栈题，有时候栈迁移到.bss段，在.bss段上写入ROP链，在调用system函数时，会出现段错误，原因是栈迁移所迁移的地址距离代码段或者不可写段太近了，在子函数调用降低栈地址的时候，栈跑不可读或不可写的段去了</li>
 <li>这时用vmmap指令查看哪一寻找合适的可写段去写就行了</li>
 </ul>
-<h2 id="关于栈对齐"><a href="#关于栈对齐" class="headerlink" title="关于栈对齐"></a>关于栈对齐</h2><h3 id="疑问1栈对齐需要对齐几次"><a href="#疑问1：栈对齐需要对齐几次" class="headerlink" title="疑问1：栈对齐需要对齐几次"></a>疑问1：栈对齐需要对齐几次</h3><ul>
-<li><p>对齐问题，只会在调用system的时候遇到。因为libc 2.27以后的system指令里，有一个涉及xmm寄存器的操作，xmm寄存器的数据类型要符合SSE指令集标准，也就是要满足0x10对齐（64位）。</p>
+<h2 id="关于栈对齐">关于栈对齐</h2>
+<h3 id="疑问1栈对齐需要对齐几次">疑问1：栈对齐需要对齐几次</h3>
+<ul>
+<li>
+<p>对齐问题，只会在调用system的时候遇到。因为libc 2.27以后的system指令里，有一个涉及xmm寄存器的操作，xmm寄存器的数据类型要符合SSE指令集标准，也就是要满足0x10对齐（64位）。</p>
 </li>
-<li><p>对于栈对齐，在之前没怎么接触过，前面也只有在格式化字符串漏洞那块接触过栈对齐</p>
+<li>
+<p>对于栈对齐，在之前没怎么接触过，前面也只有在格式化字符串漏洞那块接触过栈对齐</p>
 </li>
-<li><p>在写这道题的时候：[<a target="_blank" rel="noopener" href="https://www.nssctf.cn/problem/95">CISCN 2019东北]PWN2 | NSSCTF</a>，出现了一个疑问，在栈对齐的时候需要对齐几次。当我在发送payload1时不需要栈对齐，而发送payload2的时候却需要栈对齐，为什么不是两个payload都需要栈对齐呢</p>
+<li>
+<p>在写这道题的时候：[<a target="_blank" rel="noopener" href="https://www.nssctf.cn/problem/95">CISCN 2019东北]PWN2 | NSSCTF</a>，出现了一个疑问，在栈对齐的时候需要对齐几次。当我在发送payload1时不需要栈对齐，而发送payload2的时候却需要栈对齐，为什么不是两个payload都需要栈对齐呢</p>
 </li>
 </ul>
 <p><img src="/2024/06/18/CTFblog/PWN%E7%B3%BB%E5%88%97blog/%E5%85%B3%E4%BA%8EPWN%E4%B8%AD%E7%9A%84%E7%96%91%E9%97%AE/image-20240618111733495.png" alt="image-20240618111733495"></p>
