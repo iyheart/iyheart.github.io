@@ -171,14 +171,10 @@
 </li>
 </ul>
 <h1 id="虚拟化的关系"><a href="#虚拟化的关系" class="headerlink" title="虚拟化的关系"></a>虚拟化的关系</h1><ul>
-<li><p>这个主要是出现了问题一，对问题一的有一些疑问，对其作出解释</p>
-</li>
-<li><p><strong>Intel VT-x</strong> 和 <strong>AMD-V</strong> 是两大主要处理器厂商（Intel 和 AMD）提供的硬件虚拟化技术。</p>
-</li>
-<li><p><strong>Intel VT-d</strong> 和 <strong>AMD-Vi</strong> 是对应的设备虚拟化技术，允许虚拟机直接访问物理I&#x2F;O设备，从而进一步提高虚拟机的性能和可管理性。</p>
-</li>
-<li><p><strong>Hyper-V</strong> 是微软开发的虚拟化平台，内置于Windows操作系统中，用于创建和管理虚拟机。Hyper-V 本质上是一个 <strong>Type 1 Hypervisor</strong>，这意味着它直接运行在硬件之上，并且具有更直接的硬件访问能力和更高的性能。</p>
-</li>
+<li>这个主要是出现了问题一，对问题一的有一些疑问，对其作出解释</li>
+<li><strong>Intel VT-x</strong> 和 <strong>AMD-V</strong> 是两大主要处理器厂商（Intel 和 AMD）提供的硬件虚拟化技术。</li>
+<li><strong>Intel VT-d</strong> 和 <strong>AMD-Vi</strong> 是对应的设备虚拟化技术，允许虚拟机直接访问物理I/O设备，从而进一步提高虚拟机的性能和可管理性。</li>
+<li><strong>Hyper-V</strong> 是微软开发的虚拟化平台，内置于Windows操作系统中，用于创建和管理虚拟机。Hyper-V 本质上是一个 <strong>Type 1 Hypervisor</strong>，这意味着它直接运行在硬件之上，并且具有更直接的硬件访问能力和更高的性能。</li>
 <li><p>Hyper-V 依赖于 Intel VT-x 或 AMD-V 这类硬件虚拟化技术来运行。没有这些硬件虚拟化扩展，Hyper-V 无法有效工作，因为它需要这些技术来提供底层的CPU虚拟化支持。</p>
 </li>
 <li><p>对于使用了<strong>VMware</strong>的嵌套虚拟化在Windows上的WSL就使用不了</p>
@@ -196,18 +192,17 @@
 <li>如果要编译WSL2的内核，参考一下博客：<a target="_blank" rel="noopener" href="https://www.ddupan.top/posts/wsl2-kvm/">在 WSL2 上获得近乎完整的 Linux 体验 - Pan Xiao’s Blog (ddupan.top)</a></li>
 </ul>
 <h1 id="安装qemu"><a href="#安装qemu" class="headerlink" title="安装qemu"></a>安装qemu</h1><h2 id="检查虚拟化"><a href="#检查虚拟化" class="headerlink" title="检查虚拟化"></a>检查虚拟化</h2><ul>
-<li><p>安装qemu是在ubuntu虚拟机上安装的，如果没有ubuntu虚拟机请先安装ubuntu虚拟机。安装教程：<a href="https://iyheart.github.io/2024/03/02/Linux%E4%BD%BF%E7%94%A8blog/Ubuntu%E5%AE%89%E8%A3%85/">Ubuntu安装 | iyheart的博客</a></p>
+<li><p>安装qemu是在ubuntu虚拟机上安装的，如果没有ubuntu虚拟机请先安装ubuntu虚拟机。安装教程：<a href="https://iyheart.github.io/2024/03/02/Linux使用blog/Ubuntu安装/">Ubuntu安装 | iyheart的博客</a></p>
 </li>
 <li><p>由于qemu是虚拟化技术，但是并不是所有硬件都支持虚拟化技术的，所以在安装qemu的时候我们应当先检查我们的硬件是否支持虚拟化技术</p>
 <ul>
-<li>这里的<strong>LC_ALL&#x3D;C</strong>：这个部分是设置环境变量，指定将所有区域设置为”C”（即不使用任何特定的语言环境），从而确保输出是英文的。</li>
+<li>这里的<strong>LC_ALL=C</strong>：这个部分是设置环境变量，指定将所有区域设置为”C”（即不使用任何特定的语言环境），从而确保输出是英文的。</li>
 <li><strong>lscpu</strong>：这是一个Linux命令，用于显示有关CPU架构的信息。</li>
 <li><strong>grep Virtualization</strong>：这个部分是从<code>lscpu</code>命令的输出中筛选出包含”Virtualization”字样的行。</li>
 </ul>
 </li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LC_ALL=C lscpu | grep Virtualization</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>输出结果如下：这边可能会有几个输出结果<ul>
 <li>full：CPU支持全虚拟化</li>
@@ -236,7 +231,6 @@
 </li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">egrep -c &#x27;(vmx|svm)&#x27; /proc/cpuinfo</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><p>输出结果应该要大于零，我这边输出结果会为0。意味着虚拟机无法检测到虚拟化扩展。具体解决问题查看下方<code>问题一</code></p>
 </li>
@@ -248,17 +242,14 @@
 <li>检查没问题后就可以进行安装<code>Qemu</code>和<code>KVM</code>，安装完成后重新启动系统</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install qemu qemu-kvm virt-manager bridge-utils</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>启动过后需要配置环境：为了使 Qemu 工作，你必须 <a target="_blank" rel="noopener" href="https://learnubuntu.com/add-user-group/?ref=itsfoss.com">将你的用户加入两个组</a>：<code>libvirt-kvm</code> 和 <code>libvirt</code>。</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo useradd -g $USER libvirt</span><br><span class="line">sudo useradd -g $USER libvirt-kvm</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>接下来启用并启动<code>libvirt</code>服务：</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl enable libvirtd.service &amp;&amp; sudo systemctl start libvirtd.service</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>这样就没有问题了</li>
 </ul>
@@ -268,7 +259,7 @@
 </ul>
 <p><img src="/2024/08/26/%E8%99%9A%E6%8B%9F%E5%8C%96/qemu%E4%BD%BF%E7%94%A8/image-20240826153203490.png" alt="image-20240826153203490"></p>
 <ul>
-<li>点击文件—-&gt;新建虚拟机</li>
+<li>点击文件——&gt;新建虚拟机</li>
 </ul>
 <p><img src="/2024/08/26/%E8%99%9A%E6%8B%9F%E5%8C%96/qemu%E4%BD%BF%E7%94%A8/image-20240826153310158.png" alt="image-20240826153310158"></p>
 <ul>
@@ -364,7 +355,6 @@
 </li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">qemu-img create -f qcow2 learn_linux2.qcow2 8G</span><br><span class="line">如果要指定位置</span><br><span class="line">qemu-img create -f qcow2 /path/to/directory/learn_linux2.qcow2 8G</span><br></pre></td></tr></table></figure>
-
 <h3 id="启动虚拟机"><a href="#启动虚拟机" class="headerlink" title="启动虚拟机"></a>启动虚拟机</h3><ul>
 <li><strong><code>qemu-system-x86_64</code></strong>:这是 QEMU 的一个可执行程序，用于创建和管理 x86_64（64-bit x86）架构的虚拟机。您可以用它来启动虚拟机和执行各种操作。</li>
 <li><strong><code>-name learn_linux2</code></strong>:设置虚拟机的名称为 <code>learn_linux2</code>。这在管理和识别虚拟机时非常有用，但在虚拟机运行时不会影响其性能。</li>
@@ -375,13 +365,11 @@
 <li><strong><code>-enable-kvm</code></strong>:启用 KVM（Kernel-based Virtual Machine）加速。<code>-enable-kvm</code> 选项会启用硬件虚拟化支持（如果宿主机支持），以提高虚拟机的性能。</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">qemu-system-x86_64 \</span><br><span class="line">    -name learn_linux2 \</span><br><span class="line">    -m 1024 \</span><br><span class="line">    -smp 2 \</span><br><span class="line">    -drive file=learn_linux2.qcow2,format=qcow2 \</span><br><span class="line">    -drive file=/path/to/archlinux.iso,media=cdrom \</span><br><span class="line">    -boot d \</span><br><span class="line">    -enable-kvm</span><br><span class="line">我这边的命令为</span><br><span class="line">qemu-system-x86_64 \</span><br><span class="line">    -name learn_linux2 \</span><br><span class="line">    -m 1024 \</span><br><span class="line">    -smp 2 \</span><br><span class="line">    -drive file=learn_linux2.qcow2,format=qcow2 \</span><br><span class="line">    -drive file=/home/iyheart/all_os/archlinux.iso,media=cdrom \</span><br><span class="line">    -boot d \</span><br><span class="line">    -enable-kvm</span><br></pre></td></tr></table></figure>
-
 <p><img src="/2024/08/26/%E8%99%9A%E6%8B%9F%E5%8C%96/qemu%E4%BD%BF%E7%94%A8/image-20240826163950733.png" alt="image-20240826163950733"></p>
 <ul>
 <li>等下次再启动虚拟机就不用加入iso文件了,下面的命令换了一个版本的Linux</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">qemu-system-x86_64 \</span><br><span class="line">  -m 512 \</span><br><span class="line">  -smp 1 \</span><br><span class="line">  -drive file=/path/to/slitaz-vm.img,format=qcow2 \</span><br><span class="line">  -net nic \</span><br><span class="line">  -net user \</span><br><span class="line">  -vga std \</span><br><span class="line">  -accel kvm</span><br></pre></td></tr></table></figure>
-
 <h1 id="qemu-user"><a href="#qemu-user" class="headerlink" title="qemu-user"></a>qemu-user</h1><ul>
 <li>前面的内容都是qemu-System的模式，现在来介绍一下qemu的user模式</li>
 <li>以在amd64的Linux环境下，运行一个riscv架构的程序</li>
