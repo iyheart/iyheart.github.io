@@ -156,20 +156,23 @@
     })(window)</script><link rel="stylesheet" href="/css/style.css"><!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 <!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="http://pic.5tu.cn/uploads/allimg/1910/pic_5tu_big_2019010211653346247.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">98</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">32</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 历史</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-music"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover98.png')"><nav id="nav"><span id="blog-info"><a href="/" title="iyheart的博客"><img class="site-icon" src="http://img95.699pic.com/photo/40151/9175.gif_wh860.gif"/><span class="site-name">iyheart的博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 历史</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-music"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">WSL2嵌套虚拟化</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-09-06T08:00:50.000Z" title="发表于 2024-09-06 16:00:50">2024-09-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-09-25T11:05:30.666Z" title="更新于 2024-09-25 19:05:30">2024-09-25</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%99%9A%E6%8B%9F%E5%8C%96/">虚拟化</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="WSL2嵌套虚拟化"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><ul>
-<li><p>VMware里面运行ubuntu虚拟机感觉用的有点难受，还是WSL用的舒服，但是WSL不能嵌套虚拟化用不了qemu和kvm，之前看到一篇博客重新编译内核，现在试一下能不能启用开启嵌套虚拟化</p>
+<li>
+<p>VMware里面运行ubuntu虚拟机感觉用的有点难受，还是WSL用的舒服，但是WSL不能嵌套虚拟化用不了qemu和kvm，之前看到一篇博客重新编译内核，现在试一下能不能启用开启嵌套虚拟化</p>
 </li>
-<li><p>参考博客：<a target="_blank" rel="noopener" href="https://www.ddupan.top/posts/wsl2-kvm/">在 WSL2 上获得近乎完整的 Linux 体验 - Pan Xiao’s Blog (ddupan.top)</a></p>
+<li>
+<p>参考博客：<a target="_blank" rel="noopener" href="https://www.ddupan.top/posts/wsl2-kvm/">在 WSL2 上获得近乎完整的 Linux 体验 - Pan Xiao’s Blog (ddupan.top)</a></p>
 </li>
 </ul>
-<h1 id="安装基本工具"><a href="#安装基本工具" class="headerlink" title="安装基本工具"></a>安装基本工具</h1><ul>
+<h1 id="安装基本工具"><a class="markdownIt-Anchor" href="#安装基本工具"></a> 安装基本工具</h1>
+<ul>
 <li>使用如下命令安装</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt -y upgrade</span><br><span class="line">sudo apt -y install build-essential libncurses-dev bison flex libssl-dev libelf-dev cpu-checker qemu-kvm libvirtd virt-manager git</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>在这里出现一个报错，请看问题一</li>
 </ul>
-<h1 id="编译内核"><a href="#编译内核" class="headerlink" title="编译内核"></a>编译内核</h1><ul>
+<h1 id="编译内核"><a class="markdownIt-Anchor" href="#编译内核"></a> 编译内核</h1>
+<ul>
 <li>先查看正在使用的wsl2是的内核版本是哪个版本</li>
 <li>使用<code>win + R</code>，然后输入<code>wsl</code>，进入<code>wsl</code>后输入<code>uname -r</code>，就会出现相应的内核版本，比如我的版本就是<code>5.15.146.1</code>的内核版本，即<code>5.15</code>版本</li>
 </ul>
@@ -178,29 +181,26 @@
 <li>然后使用git命令拉取微软官方修改的wsl2内核的仓库<strong>这里建议直接去官网下载压缩包，github拉取太大的文件老是会出现一些状况</strong></li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/microsoft/WSL2-Linux-Kernel.git</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>由于拉取的仓库太大，所以我选择拉取相应内核的分支，可以省下不少时间和存储空间，拉取时间较长，干点别的事情，拉取的时候还出现了一个问题，详细请看问题2</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> --branch linux-msft-wsl-5.15.y --single-branch https://github.com/microsoft/WSL2-Linux-Kernel.git</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>进入相应版本的内核，我这边是下载zip压缩包后解压，这边直接cd进入即可</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd WSL2-Linux-Kernel-linux-msft-wsl-5.15.y/</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>然后使用如下命令将当前内核配置复制一份到所在目录文件下</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zcat /proc/config.gz &gt; .config</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>使用<code>make menuconfig</code>，查看和修改 <code>.config</code> 文件中的配置选项。这边使用该命令出现一个问题，详细请看<strong>问题3</strong></li>
 <li>进入如下界面，选择<code>Virtualization</code>回车键进去</li>
 </ul>
 <p><img src="/2024/09/06/%E8%99%9A%E6%8B%9F%E5%8C%96/WSL2%E5%B5%8C%E5%A5%97%E8%99%9A%E6%8B%9F%E5%8C%96/image-20240906190035785.png" alt="image-20240906190035785"></p>
 <ul>
-<li>进入后按照如下设置<code>virtio-net</code> 也被选中 ( 如果有 )<ul>
+<li>进入后按照如下设置<code>virtio-net</code> 也被选中 ( 如果有 )
+<ul>
 <li>可以编译成模块再加载，但我选择直接编译进内核，同时可以编译 Multipath 依赖的支持，以便后续 systemd 可以少一个报错</li>
 </ul>
 </li>
@@ -220,16 +220,16 @@
 <li>开始编译</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make -j 8</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>编译时出现脚本没有执行权限，直接一键给执行权限，然后再编译</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> +x scripts/*.sh</span><br><span class="line"><span class="built_in">chmod</span> +x scripts/remove-stale-files</span><br></pre></td></tr></table></figure>
-
 <ul>
-<li><p>编译要一步一步找错误了，编译时出错找错就不详细说明了，编译需要点时间，直接干别的事情</p>
+<li>
+<p>编译要一步一步找错误了，编译时出错找错就不详细说明了，编译需要点时间，直接干别的事情</p>
 </li>
-<li><p>出现这个就算是编译好了</p>
+<li>
+<p>出现这个就算是编译好了</p>
 </li>
 </ul>
 <p><img src="/2024/09/06/%E8%99%9A%E6%8B%9F%E5%8C%96/WSL2%E5%B5%8C%E5%A5%97%E8%99%9A%E6%8B%9F%E5%8C%96/image-20240906201314300.png" alt="image-20240906201314300"></p>
@@ -239,116 +239,105 @@
 <li>由于我c盘的用户名是中文，所以后来我放在了D盘</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp arch/x86/boot/bzImage /mnt/d/bzImage</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>然后修改配置，配置文件在C盘这个目录下，配置才会起作用</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /mnt/c/Users/&lt;username&gt;/.wslconfig</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>然后写入</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[wsl2]</span><br><span class="line">nestedVirtualization=<span class="literal">true</span></span><br><span class="line">kernel=D:\\bzImage</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>然后重启wsl2，打开Powershell，输入命令</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl --shutdown Ubuntu</span><br></pre></td></tr></table></figure>
-
 <ul>
-<li><p>然后再打开新的wsl窗口即可</p>
+<li>
+<p>然后再打开新的wsl窗口即可</p>
 </li>
-<li><p>验证：打开wsl后输入，这个时间会出现你编译内核的时间</p>
+<li>
+<p>验证：打开wsl后输入，这个时间会出现你编译内核的时间</p>
 </li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname -ar</span><br></pre></td></tr></table></figure>
-
 <p><img src="/2024/09/06/%E8%99%9A%E6%8B%9F%E5%8C%96/WSL2%E5%B5%8C%E5%A5%97%E8%99%9A%E6%8B%9F%E5%8C%96/image-20240906204439531.png" alt="image-20240906204439531"></p>
 <ul>
 <li>验证支不支持虚拟化<code>kvm-ok</code></li>
 </ul>
 <p><img src="/2024/09/06/%E8%99%9A%E6%8B%9F%E5%8C%96/WSL2%E5%B5%8C%E5%A5%97%E8%99%9A%E6%8B%9F%E5%8C%96/image-20240906204509637.png" alt="image-20240906204509637"></p>
-<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><h2 id="问题1"><a href="#问题1" class="headerlink" title="问题1"></a>问题1</h2><ul>
+<h1 id="问题"><a class="markdownIt-Anchor" href="#问题"></a> 问题</h1>
+<h2 id="问题1"><a class="markdownIt-Anchor" href="#问题1"></a> 问题1</h2>
+<ul>
 <li>安装基本工具的时候出现了如下问题</li>
 <li>一个是关于 <code>ldconfig.real</code> 的警告，另一个是关于 <code>libvirt</code> 包无法定位的问题。</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Reading package lists... Done</span><br><span class="line">Building dependency tree... Done</span><br><span class="line">Reading state information... Done</span><br><span class="line">Note, selecting <span class="string">&#x27;qemu-system-x86&#x27;</span> instead of <span class="string">&#x27;qemu-kvm&#x27;</span></span><br><span class="line">E: Unable to locate package libvirtd</span><br></pre></td></tr></table></figure>
-
 <ul>
-<li>解决如下：关于 <code>libvirt</code> 包无法定位的问题<ul>
+<li>解决如下：关于 <code>libvirt</code> 包无法定位的问题
+<ul>
 <li>安装以下包来替代 <code>libvirtd</code></li>
 </ul>
 </li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install libvirt-daemon-system libvirt-clients</span><br><span class="line">sudo apt install libvirt-clients</span><br><span class="line">sudo apt install virt-manager</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>这样就可以在wsl上使用qemu了，比在VMware上使用流畅很多，而且打pwn的动调也可以使用wsl了，不用两边切换了</li>
 <li>用qemu开虚拟机已经非常流畅不会卡了</li>
 </ul>
-<h2 id="问题2"><a href="#问题2" class="headerlink" title="问题2"></a>问题2</h2><ul>
+<h2 id="问题2"><a class="markdownIt-Anchor" href="#问题2"></a> 问题2</h2>
+<ul>
 <li>在拉取仓库的时候遇到如下问题:通常是由于网络问题、服务器响应超时或者存储空间不足等问题导致的。</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RPC failed; curl 56 GnuTLS recv error (-54): Error <span class="keyword">in</span> the pull <span class="keyword">function</span> 和 fetch-pack: unexpected disconnect <span class="keyword">while</span> reading sideband packet</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>增加缓存容量</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.postBuffer 3000000000</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>最后还是出错，直接上github官网上下载对应内核版本的zip压缩包</li>
 </ul>
-<h2 id="问题3"><a href="#问题3" class="headerlink" title="问题3"></a>问题3</h2><ul>
+<h2 id="问题3"><a class="markdownIt-Anchor" href="#问题3"></a> 问题3</h2>
+<ul>
 <li>使用<code>make menuconfig</code>命令出现报错。</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">*</span><br><span class="line">* Unable to find the ncurses package.</span><br><span class="line">* Install ncurses (ncurses-devel or libncurses-dev</span><br><span class="line">* depending on your distribution).</span><br><span class="line">*</span><br><span class="line">* You may also need to install pkg-config to find the</span><br><span class="line">* ncurses installed <span class="keyword">in</span> a non-default location.</span><br><span class="line">*</span><br><span class="line">make[1]: *** [scripts/kconfig/Makefile:211: scripts/kconfig/mconf-cfg] Error 1</span><br><span class="line">make: *** [Makefile:627: menuconfig] Error 2</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>问题是缺少 <code>ncurses</code> 包，使用如下命令解决</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install libncurses-dev pkg-config</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>安装完包后再运行，仍出现错误</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">  UPD     scripts/kconfig/mconf-cfg</span><br><span class="line">  HOSTCC  scripts/kconfig/mconf.o</span><br><span class="line">  HOSTCC  scripts/kconfig/lxdialog/checklist.o</span><br><span class="line">  HOSTCC  scripts/kconfig/lxdialog/inputbox.o</span><br><span class="line">  HOSTCC  scripts/kconfig/lxdialog/menubox.o</span><br><span class="line">  HOSTCC  scripts/kconfig/lxdialog/textbox.o</span><br><span class="line">  HOSTCC  scripts/kconfig/lxdialog/util.o</span><br><span class="line">  HOSTCC  scripts/kconfig/lxdialog/yesno.o</span><br><span class="line">  HOSTCC  scripts/kconfig/confdata.o</span><br><span class="line">  HOSTCC  scripts/kconfig/expr.o</span><br><span class="line">  LEX     scripts/kconfig/lexer.lex.c</span><br><span class="line">/bin/sh: 1: flex: not found</span><br><span class="line">make[1]: *** [scripts/Makefile.host:9: scripts/kconfig/lexer.lex.c] Error 127</span><br><span class="line">make: *** [Makefile:627: menuconfig] Error 2</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>问题是：<code>flex</code> 工具没有安装，使用如下命令安装</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install flex</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>再次运行还是错误<code>bison</code> 工具没有安装</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install bison</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>仍然出现报错</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">  YACC    scripts/kconfig/parser.tab.[ch]</span><br><span class="line">  HOSTCC  scripts/kconfig/lexer.lex.o</span><br><span class="line">  HOSTCC  scripts/kconfig/menu.o</span><br><span class="line">  HOSTCC  scripts/kconfig/parser.tab.o</span><br><span class="line">  HOSTCC  scripts/kconfig/preprocess.o</span><br><span class="line">  HOSTCC  scripts/kconfig/symbol.o</span><br><span class="line">  HOSTCC  scripts/kconfig/util.o</span><br><span class="line">  HOSTLD  scripts/kconfig/mconf</span><br><span class="line">sh: 1: ./scripts/cc-version.sh: Permission denied</span><br><span class="line">scripts/Kconfig.include:44: Sorry, this compiler is not supported.</span><br><span class="line">make[1]: *** [scripts/kconfig/Makefile:48: menuconfig] Error 1</span><br><span class="line">make: *** [Makefile:627: menuconfig] Error 2</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><code>./scripts/cc-version.sh: Permission denied</code>表示 <code>./scripts/cc-version.sh</code> 脚本没有执行权限。修改权限即可</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> +x ./scripts/cc-version.sh</span><br><span class="line"><span class="built_in">chmod</span> +x ./scripts/min-tool-version.sh</span><br><span class="line"><span class="built_in">chmod</span> +x ./scripts/as-version.sh</span><br><span class="line"><span class="built_in">chmod</span> +x ./scripts/ld-version.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 不想一个一个加执行权限直接如下命令</span></span><br><span class="line">find . -<span class="built_in">type</span> f -name <span class="string">&quot;*.sh&quot;</span> -<span class="built_in">exec</span> <span class="built_in">chmod</span> +x &#123;&#125; +</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <ul>
-<li>**<code>Sorry, this compiler is not supported</code>**：这个错误表示当前的编译器版本不被支持。对于内核编译，推荐使用较新的 GCC 版本，通常是 GCC 7 或更高版本。你可以通过以下命令安装</li>
+<li><strong><code>Sorry, this compiler is not supported</code></strong>：这个错误表示当前的编译器版本不被支持。对于内核编译，推荐使用较新的 GCC 版本，通常是 GCC 7 或更高版本。你可以通过以下命令安装</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install gcc g++ <span class="comment"># 安装 GCC 和 G++</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置编译器环境变量</span></span><br><span class="line"><span class="built_in">export</span> CC=gcc-7</span><br><span class="line"><span class="built_in">export</span> CXX=g++-7</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>确认你的系统上安装了适合的汇编器版本。对于内核编译，推荐使用较新的汇编器版本。通常，<code>binutils</code> 包含了所需的汇编器工具。你可以通过以下命令安装或更新 <code>binutils</code>：</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install binutils</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>问题解决：</li>
 </ul>
 <p><img src="/2024/09/06/%E8%99%9A%E6%8B%9F%E5%8C%96/WSL2%E5%B5%8C%E5%A5%97%E8%99%9A%E6%8B%9F%E5%8C%96/image-20240906182120686.png" alt="image-20240906182120686"></p>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://iyheart.github.io">iyheart</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://iyheart.github.io/2024/09/06/%E8%99%9A%E6%8B%9F%E5%8C%96/WSL2%E5%B5%8C%E5%A5%97%E8%99%9A%E6%8B%9F%E5%8C%96/">http://iyheart.github.io/2024/09/06/虚拟化/WSL2嵌套虚拟化/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://iyheart.github.io" target="_blank">iyheart的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover98.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/ea2e5fb6fbb4c236fbabd387ef83339.jpg" target="_blank"><img class="post-qr-code-img" src="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/ea2e5fb6fbb4c236fbabd387ef83339.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/09/08/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/3.%E5%86%85%E6%A0%B8%E7%B3%BB%E5%88%97/%E5%86%85%E6%A0%B8pwn%E5%85%A5%E9%97%A8/" title="内核pwn入门"><img class="cover" src="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover89.png" onerror="onerror=null;src='https://raw.githubusercontent.com/iyheart/tuchuang/main/img/f3c2605738aabdeedbc687356fa0e4e5.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">内核pwn入门</div></div></a></div><div class="next-post pull-right"><a href="/2024/09/06/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/2.%E5%A0%86%E7%B3%BB%E5%88%97/PWN%E5%A0%86off-by%E7%B3%BB%E5%88%97/" title="off-by系列"><img class="cover" src="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover88.png" onerror="onerror=null;src='https://raw.githubusercontent.com/iyheart/tuchuang/main/img/f3c2605738aabdeedbc687356fa0e4e5.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">off-by系列</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="lv-container" data-id="city" data-uid="MTAyMC81OTQ1Mi8zNTkxNA=="></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="http://pic.5tu.cn/uploads/allimg/1910/pic_5tu_big_2019010211653346247.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">iyheart</div><div class="author-info__description">悟已往之不谏，知来者之可追</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">98</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">32</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%9F%BA%E6%9C%AC%E5%B7%A5%E5%85%B7"><span class="toc-number">1.</span> <span class="toc-text">安装基本工具</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E5%86%85%E6%A0%B8"><span class="toc-number">2.</span> <span class="toc-text">编译内核</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%AE%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text">问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%981"><span class="toc-number">3.1.</span> <span class="toc-text">问题1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%982"><span class="toc-number">3.2.</span> <span class="toc-text">问题2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%983"><span class="toc-number">3.3.</span> <span class="toc-text">问题3</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/11/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/2.%E5%A0%86%E7%B3%BB%E5%88%97/PWN%E5%A0%86unlink/" title="PWN堆unlink">PWN堆unlink</a><time datetime="2024-10-11T13:01:34.000Z" title="发表于 2024-10-11 21:01:34">2024-10-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/11/pwn-mips-ret/" title="pwn-mips-ret">pwn-mips-ret</a><time datetime="2024-10-11T02:31:02.000Z" title="发表于 2024-10-11 10:31:02">2024-10-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/09/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E7%B3%BB%E5%88%97blog/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80blog/MIPS%E6%B1%87%E7%BC%96/" title="MIPS汇编">MIPS汇编</a><time datetime="2024-10-09T05:16:14.000Z" title="发表于 2024-10-09 13:16:14">2024-10-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82blog/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" title="计算机组成原理">计算机组成原理</a><time datetime="2024-10-08T17:05:05.000Z" title="发表于 2024-10-09 01:05:05">2024-10-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/03/CTFblog/write%20up%E7%B3%BB%E5%88%97blog/moeCTF-wp/" title="moeCTF--wp">moeCTF--wp</a><time datetime="2024-10-03T00:30:08.000Z" title="发表于 2024-10-03 08:30:08">2024-10-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By iyheart</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat-btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script>function panguFn () {
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://iyheart.github.io">iyheart</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://iyheart.github.io/2024/09/06/%E8%99%9A%E6%8B%9F%E5%8C%96/WSL2%E5%B5%8C%E5%A5%97%E8%99%9A%E6%8B%9F%E5%8C%96/">http://iyheart.github.io/2024/09/06/虚拟化/WSL2嵌套虚拟化/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://iyheart.github.io" target="_blank">iyheart的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover98.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/ea2e5fb6fbb4c236fbabd387ef83339.jpg" target="_blank"><img class="post-qr-code-img" src="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/ea2e5fb6fbb4c236fbabd387ef83339.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/09/08/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/3.%E5%86%85%E6%A0%B8%E7%B3%BB%E5%88%97/%E5%86%85%E6%A0%B8pwn%E5%85%A5%E9%97%A8/" title="内核pwn入门"><img class="cover" src="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover89.png" onerror="onerror=null;src='https://raw.githubusercontent.com/iyheart/tuchuang/main/img/f3c2605738aabdeedbc687356fa0e4e5.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">内核pwn入门</div></div></a></div><div class="next-post pull-right"><a href="/2024/09/06/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/2.%E5%A0%86%E7%B3%BB%E5%88%97/PWN%E5%A0%86off-by%E7%B3%BB%E5%88%97/" title="off-by系列"><img class="cover" src="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover88.png" onerror="onerror=null;src='https://raw.githubusercontent.com/iyheart/tuchuang/main/img/f3c2605738aabdeedbc687356fa0e4e5.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">off-by系列</div></div></a></div></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="lv-container" data-id="city" data-uid="MTAyMC81OTQ1Mi8zNTkxNA=="></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="http://pic.5tu.cn/uploads/allimg/1910/pic_5tu_big_2019010211653346247.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">iyheart</div><div class="author-info__description">悟已往之不谏，知来者之可追</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">98</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">32</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%9F%BA%E6%9C%AC%E5%B7%A5%E5%85%B7"><span class="toc-number">1.</span> <span class="toc-text"> 安装基本工具</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E5%86%85%E6%A0%B8"><span class="toc-number">2.</span> <span class="toc-text"> 编译内核</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%97%AE%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text"> 问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%981"><span class="toc-number">3.1.</span> <span class="toc-text"> 问题1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%982"><span class="toc-number">3.2.</span> <span class="toc-text"> 问题2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%983"><span class="toc-number">3.3.</span> <span class="toc-text"> 问题3</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/11/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/2.%E5%A0%86%E7%B3%BB%E5%88%97/PWN%E5%A0%86unlink/" title="PWN堆unlink">PWN堆unlink</a><time datetime="2024-10-11T13:01:34.000Z" title="发表于 2024-10-11 21:01:34">2024-10-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/11/pwn-mips-ret/" title="pwn-mips-ret">pwn-mips-ret</a><time datetime="2024-10-11T02:31:02.000Z" title="发表于 2024-10-11 10:31:02">2024-10-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/09/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E7%B3%BB%E5%88%97blog/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80blog/MIPS%E6%B1%87%E7%BC%96/" title="MIPS汇编">MIPS汇编</a><time datetime="2024-10-09T05:16:14.000Z" title="发表于 2024-10-09 13:16:14">2024-10-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/09/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82blog/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" title="计算机组成原理">计算机组成原理</a><time datetime="2024-10-08T17:05:05.000Z" title="发表于 2024-10-09 01:05:05">2024-10-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/10/03/CTFblog/write%20up%E7%B3%BB%E5%88%97blog/moeCTF-wp/" title="moeCTF--wp">moeCTF--wp</a><time datetime="2024-10-03T00:30:08.000Z" title="发表于 2024-10-03 08:30:08">2024-10-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By iyheart</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat-btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script>function panguFn () {
   if (typeof pangu === 'object') pangu.autoSpacingPage()
   else {
     getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
