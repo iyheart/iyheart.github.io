@@ -190,32 +190,32 @@
 </tr>
 <tr>
 <td>2-3</td>
-<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi><mn>0</mn><mo>−</mo></mrow><annotation encoding="application/x-tex">v0-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mord">0</span><span class="mord">−</span></span></span></span>v1（value）</td>
+<td>$v0-$v1（value）</td>
 <td>存储表达式或者函数的返回值</td>
 </tr>
 <tr>
 <td>4-7</td>
-<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mn>0</mn><mo>−</mo></mrow><annotation encoding="application/x-tex">a0-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">a</span><span class="mord">0</span><span class="mord">−</span></span></span></span>a3</td>
+<td>$a0-$a3</td>
 <td>存储子程序的前4个参数，在子程序调用过程中释放</td>
 </tr>
 <tr>
 <td>8-15</td>
-<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mn>0</mn><mo>−</mo></mrow><annotation encoding="application/x-tex">t0-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">t</span><span class="mord">0</span><span class="mord">−</span></span></span></span>t7</td>
+<td>$t0-$t7</td>
 <td>临时变量，调用时不保存</td>
 </tr>
 <tr>
 <td>16-23</td>
-<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mn>0</mn><mo>−</mo></mrow><annotation encoding="application/x-tex">s0-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">s</span><span class="mord">0</span><span class="mord">−</span></span></span></span>s7</td>
+<td>$s0-$s7</td>
 <td>静态变量，调用时保存</td>
 </tr>
 <tr>
 <td>24-25</td>
-<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mn>8</mn><mo>−</mo></mrow><annotation encoding="application/x-tex">t8-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">t</span><span class="mord">8</span><span class="mord">−</span></span></span></span>t9</td>
-<td>临时变量，同<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mn>0</mn><mo>−</mo></mrow><annotation encoding="application/x-tex">t0-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">t</span><span class="mord">0</span><span class="mord">−</span></span></span></span>t7的延续</td>
+<td>$t8-$t9</td>
+<td>临时变量，同$t0-$t7的延续</td>
 </tr>
 <tr>
 <td>26-27</td>
-<td><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi><mn>0</mn><mo>−</mo></mrow><annotation encoding="application/x-tex">k0-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord">0</span><span class="mord">−</span></span></span></span>k1</td>
+<td>$k0-$k1</td>
 <td>中断函数返回值，不可做其他用途</td>
 </tr>
 <tr>
@@ -385,9 +385,9 @@
 <li>这里先做个简单描述：
 <ul>
 <li>在调用之前，如果调用之后还要用到<code>$t0~$t9</code>主调函数就会先将其压栈，做备份</li>
-<li>调用时首先会使用<code>li</code>指令将参数传递给寄存器<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mn>0</mn><mo>−</mo></mrow><annotation encoding="application/x-tex">a0-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">a</span><span class="mord">0</span><span class="mord">−</span></span></span></span>a3中，如果超出4个参数，超出的参数会压入栈中</li>
+<li>调用时首先会使用<code>li</code>指令将参数传递给寄存器$a0-$a3中，如果超出4个参数，超出的参数会压入栈中</li>
 <li>然后再使用<code>jal</code>调用子函数，$ra存放着返回地址</li>
-<li>被调用的子函数开头会先改变栈帧，使栈帧指向更低的地址，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mi>p</mi><mtext>和</mtext></mrow><annotation encoding="application/x-tex">sp和</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">s</span><span class="mord mathdefault">p</span><span class="mord cjk_fallback">和</span></span></span></span>fp指针都会改变</li>
+<li>被调用的子函数开头会先改变栈帧，使栈帧指向更低的地址，$sp和$fp指针都会改变</li>
 <li>改变栈帧后，先对<code>$s0~$s7</code>压栈做副本（必要时），再对<code>$a0~$a3</code>压栈做副本(必要时)</li>
 <li>中间过程实现函数的功能</li>
 <li>实现完函数功能后就会先将返回值给<code>$v0~$v1</code>，然后再使用<code>jr $ra</code>指令返回</li>
