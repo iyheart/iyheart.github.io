@@ -10,3 +10,13 @@
 #footer-wrap {
     color: black;
 }
+
+#page-header.post-bg {
+    height: 80vh; /* 使用视口高度，显示更多顶部图像 */
+    background-size: cover; /* 保持比例并覆盖容器 */
+    background-position: center top; /* 让顶部内容更多地展示 */
+    background-repeat: no-repeat; /* 禁止重复 */
+    margin: 0 auto; /* 居中对齐 */
+    border-radius: 100px; /* 可选：添加圆角效果 */
+    transition: all 0.3s ease-in-out; /* 添加过渡效果 */
+  }
