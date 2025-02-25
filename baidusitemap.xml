@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://iyheart.github.io/2025/02/25/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Chrome_v8_pwn/Chrome-v8-%E5%85%A5%E9%97%A8/</loc>
+    <lastmod>2025-02-25</lastmod>
+  </url>
+  <url>
     <loc>http://iyheart.github.io/2025/02/12/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/2.%E5%A0%86%E7%B3%BB%E5%88%97/PWN%E5%A0%86IO-FILE%E5%9F%BA%E7%A1%80/</loc>
     <lastmod>2025-02-25</lastmod>
   </url>
