@@ -158,7 +158,7 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
 <!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="iyheart的博客" type="application/atom+xml">
-<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="http://pic.5tu.cn/uploads/allimg/1910/pic_5tu_big_2019010211653346247.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">160</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">46</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 历史</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-music"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-tasks"></i><span> 知识库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/docs/"><i class="fa-fw fas fa-book"></i><span> 编程语言知识库</span></a></li><li><a class="site-page child" href="/practice/"><i class="fa-fw fas fa-book"></i><span> PWN刷题记录</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/update/"><i class="fa-fw fas fa-bell"></i><span> 更新</span></a></div><div class="menus_item"><a class="site-page" href="javascript:toRandomPost()"><i class="fa-fw fas fa-bus"></i><span> 随机文章</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover83.png')"><nav id="nav"><span id="blog-info"><a href="/" title="iyheart的博客"><img class="site-icon" src="http://img95.699pic.com/photo/40151/9175.gif_wh860.gif"/><span class="site-name">iyheart的博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 历史</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-music"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-tasks"></i><span> 知识库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/docs/"><i class="fa-fw fas fa-book"></i><span> 编程语言知识库</span></a></li><li><a class="site-page child" href="/practice/"><i class="fa-fw fas fa-book"></i><span> PWN刷题记录</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/update/"><i class="fa-fw fas fa-bell"></i><span> 更新</span></a></div><div class="menus_item"><a class="site-page" href="javascript:toRandomPost()"><i class="fa-fw fas fa-bus"></i><span> 随机文章</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">计算机组成原理1</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-08-13T17:30:37.000Z" title="发表于 2024-08-14 01:30:37">2024-08-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-10-15T11:33:55.895Z" title="更新于 2024-10-15 19:33:55">2024-10-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82/">计算机底层</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">7.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>21分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="计算机组成原理1"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h1>
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="http://pic.5tu.cn/uploads/allimg/1910/pic_5tu_big_2019010211653346247.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">161</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">48</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 历史</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-music"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-tasks"></i><span> 知识库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/docs/"><i class="fa-fw fas fa-book"></i><span> 编程语言知识库</span></a></li><li><a class="site-page child" href="/practice/"><i class="fa-fw fas fa-book"></i><span> PWN刷题记录</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/update/"><i class="fa-fw fas fa-bell"></i><span> 更新</span></a></div><div class="menus_item"><a class="site-page" href="javascript:toRandomPost()"><i class="fa-fw fas fa-bus"></i><span> 随机文章</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover83.png')"><nav id="nav"><span id="blog-info"><a href="/" title="iyheart的博客"><img class="site-icon" src="http://img95.699pic.com/photo/40151/9175.gif_wh860.gif"/><span class="site-name">iyheart的博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 历史</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-music"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-tasks"></i><span> 知识库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/docs/"><i class="fa-fw fas fa-book"></i><span> 编程语言知识库</span></a></li><li><a class="site-page child" href="/practice/"><i class="fa-fw fas fa-book"></i><span> PWN刷题记录</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/update/"><i class="fa-fw fas fa-bell"></i><span> 更新</span></a></div><div class="menus_item"><a class="site-page" href="javascript:toRandomPost()"><i class="fa-fw fas fa-bus"></i><span> 随机文章</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">计算机组成原理1</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-08-13T17:30:37.000Z" title="发表于 2024-08-14 01:30:37">2024-08-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-10-15T11:33:55.895Z" title="更新于 2024-10-15 19:33:55">2024-10-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82/">计算机底层</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">7.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>21分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="计算机组成原理1"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="前言">前言</h1>
 <ul>
 <li>在认真学习计算机组成原理之前，先看了期末速通的课程，大致了解了一下计算机组成原理上的内容。简单来说就是介绍计算机硬件、硬件的运行机制、硬件的一些组装思想以及指令集的内容，更简单的概括就是计算机的存储与外设以及指令集。</li>
 <li>硬件有介绍：CPU、内存、磁盘、总线</li>
@@ -178,13 +178,13 @@
 <img src="/2024/08/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82blog/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%861/image-20240814014240084.png" style="zoom: 100%;">
 </figure>
 + 认真看的视频是哈工大刘宏伟老师的计算机组成原理课程，对应教程是唐老师的教材
-<h1 id="概论"><a class="markdownIt-Anchor" href="#概论"></a> 概论</h1>
-<h2 id="计算机的硬件总览"><a class="markdownIt-Anchor" href="#计算机的硬件总览"></a> 计算机的硬件总览</h2>
+<h1 id="概论">概论</h1>
+<h2 id="计算机的硬件总览">计算机的硬件总览</h2>
 <ul>
 <li>现在的计算机硬件一般都有：主板、CPU、内存、显卡、硬盘</li>
 </ul>
-<h2 id="计算机历史与应用"><a class="markdownIt-Anchor" href="#计算机历史与应用"></a> 计算机历史与应用</h2>
-<h3 id="计算机的发展史"><a class="markdownIt-Anchor" href="#计算机的发展史"></a> 计算机的发展史</h3>
+<h2 id="计算机历史与应用">计算机历史与应用</h2>
+<h3 id="计算机的发展史">计算机的发展史</h3>
 <ul>
 <li>计算机的发展史是以硬件的发展作为阶段性划分</li>
 </ul>
@@ -212,7 +212,7 @@
 </li>
 <li>之后的就是大规模集成电路和超大规模集成电路了</li>
 </ul>
-<h3 id="计算机硬件的发展史"><a class="markdownIt-Anchor" href="#计算机硬件的发展史"></a> 计算机硬件的发展史</h3>
+<h3 id="计算机硬件的发展史">计算机硬件的发展史</h3>
 <ul>
 <li>
 <p>摩尔定律：是由英特尔公司的创始人之一戈登·摩尔（Gordon Moore）于1965年提出的一个重要观察和预测。摩尔定律描述了集成电路（IC）技术的发展趋势</p>
@@ -315,7 +315,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="计算机软件的发展史"><a class="markdownIt-Anchor" href="#计算机软件的发展史"></a> 计算机软件的发展史</h3>
+<h3 id="计算机软件的发展史">计算机软件的发展史</h3>
 <ul>
 <li>计算机软件技术的兴起和发展，包括三个内容，编程语言、系统软件、软件发展</li>
 <li>软件发展的特点：开发周期长，制作的成本非常昂贵，检查软件产品质量的特殊性</li>
@@ -360,7 +360,7 @@
 <li>系统软件帮助计算机管理软硬件的资源，使程序员编程和完成一些功能更方便</li>
 <li>这些软件包括语言处理程序（汇编程序、编译程序、解释器），操作系统（DOS、UNIX、Windows、Linux、Kylin Linux），服务性程序（装配、调试、诊断、排错），数据库管理系统（数据库和数据库管理软件），网络软件</li>
 </ul>
-<h3 id="计算机的应用"><a class="markdownIt-Anchor" href="#计算机的应用"></a> 计算机的应用</h3>
+<h3 id="计算机的应用">计算机的应用</h3>
 <ul>
 <li>科学计算和数据处理
 <ul>
@@ -393,7 +393,7 @@
 <li>多媒体技术</li>
 <li>人工智能：在现如今已经展现其厉害</li>
 </ul>
-<h3 id="计算机的展望"><a class="markdownIt-Anchor" href="#计算机的展望"></a> 计算机的展望</h3>
+<h3 id="计算机的展望">计算机的展望</h3>
 <ul>
 <li>
 <p>计算机具有类似人脑的一些超级智能功能：要求计算机的速度要足够快</p>
@@ -415,8 +415,8 @@
 </ul>
 </li>
 </ul>
-<h2 id="计算机的性能指标"><a class="markdownIt-Anchor" href="#计算机的性能指标"></a> 计算机的性能指标</h2>
-<h3 id="存储器的性能指标"><a class="markdownIt-Anchor" href="#存储器的性能指标"></a> 存储器的性能指标</h3>
+<h2 id="计算机的性能指标">计算机的性能指标</h2>
+<h3 id="存储器的性能指标">存储器的性能指标</h3>
 <ul>
 <li>MAR：<strong>反映存储单元的个数，其表示存储地址</strong></li>
 <li>MDR：<strong>每个存储单元的大小，也就是一个存储单元可以存放多少二进制比特位</strong></li>
@@ -428,12 +428,12 @@
 <li>2的n次方数建议记住前10次方</li>
 </ul>
 <p><img src="/2024/08/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82blog/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%861/image-20240826083611560.png" alt="image-20240826083611560"></p>
-<h3 id="cpu的性能指标"><a class="markdownIt-Anchor" href="#cpu的性能指标"></a> CPU的性能指标</h3>
+<h3 id="cpu的性能指标">CPU的性能指标</h3>
 <ul>
 <li>下图为一下网店售卖CPU，CPU中的一些信息，除了标明CPU的型号如：<code>i9-9900KF</code>，还会标明<code>2.9GHz</code>和CPU的核数与线程数，这些都是衡量CPU性能的一些指标</li>
 </ul>
 <p><img src="/2024/08/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82blog/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%861/image-20240826083835155.png" alt="image-20240826083835155"></p>
-<h4 id="cpu主频cpu内数字脉冲信号震荡的频率"><a class="markdownIt-Anchor" href="#cpu主频cpu内数字脉冲信号震荡的频率"></a> <strong>CPU主频：CPU内数字脉冲信号震荡的频率</strong></h4>
+<h4 id="cpu主频cpu内数字脉冲信号震荡的频率"><strong>CPU主频：CPU内数字脉冲信号震荡的频率</strong></h4>
 <ul>
 <li>
 <p>单位为赫兹（Hz）,主频越高，CPU执行指令的速度越快</p>
@@ -446,7 +446,7 @@
 </li>
 </ul>
 <p><img src="/2024/08/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82blog/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%861/image-20240826084354295.png" alt="image-20240826084354295"></p>
-<h4 id="cpi执行一条指令所需的时钟周期数"><a class="markdownIt-Anchor" href="#cpi执行一条指令所需的时钟周期数"></a> <strong>CPI：执行一条指令所需的时钟周期数</strong></h4>
+<h4 id="cpi执行一条指令所需的时钟周期数"><strong>CPI：执行一条指令所需的时钟周期数</strong></h4>
 <ul>
 <li>同一个CPU执行不同的指令，CPI可能相同也可能不同</li>
 <li>同一个CPU执行相同的指令，CPI也有可能不同</li>
@@ -463,7 +463,7 @@
 </ul>
 <p><img src="/2024/08/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82blog/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%861/image-20240826084817595.png" alt="image-20240826084817595"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">频率f = 1000Hz</span><br><span class="line">那么周期T = 0.001s</span><br><span class="line">所以执行一条指令需要花费3×0.001s=0.003s</span><br><span class="line">所以该程序要在CPU上执行100×0.003=0.3s</span><br></pre></td></tr></table></figure>
-<h4 id="ips每秒执行多少条指令"><a class="markdownIt-Anchor" href="#ips每秒执行多少条指令"></a> IPS：每秒执行多少条指令</h4>
+<h4 id="ips每秒执行多少条指令">IPS：每秒执行多少条指令</h4>
 <ul>
 <li>如果知道CPI，即执行一条指令所需要的时间，那么就可以计算出IPS，即每秒可以执行多少条指令</li>
 </ul>
@@ -472,7 +472,7 @@
 <li>KIPS：每千秒执行多少条指令</li>
 <li>MIPS：每百万秒执行多少指令</li>
 </ul>
-<h4 id="flops每秒执行多少次浮点运算"><a class="markdownIt-Anchor" href="#flops每秒执行多少次浮点运算"></a> FLOPS：每秒执行多少次浮点运算</h4>
+<h4 id="flops每秒执行多少次浮点运算">FLOPS：每秒执行多少次浮点运算</h4>
 <ul>
 <li>
 <p>计算机处理浮点数(即具有小数点的数值)的能力和速度</p>
@@ -484,7 +484,7 @@
 <p>浮点数表示：计算机内部使用二进制来表示浮点数。最常见的浮点数表示方法是IEEE 754标准，它定义了单精度浮点数(32位)和双精度浮点数(64位)的表示方法</p>
 </li>
 </ul>
-<h3 id="系统整体的性能指标"><a class="markdownIt-Anchor" href="#系统整体的性能指标"></a> 系统整体的性能指标</h3>
+<h3 id="系统整体的性能指标">系统整体的性能指标</h3>
 <ul>
 <li>数据通路带宽：数据总线一次所能并行传送信息的位数（各硬件部件通过数据总线传输数据）</li>
 <li>吞吐量：指系统在单位时间内处理请求的数量
@@ -498,7 +498,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="动态测试"><a class="markdownIt-Anchor" href="#动态测试"></a> 动态测试</h3>
+<h3 id="动态测试">动态测试</h3>
 <ul>
 <li>基准程序：是用来测量计算机处理速度的一种实用程序，以便被测量的计算机性能可以与运行相同程序的其他计算机性能进行比较。
 <ul>
@@ -512,8 +512,8 @@
 <li>基准程序的运行结果不能完全说明问题</li>
 <li>片内逻辑电路完全相同，则对应CPI相同</li>
 </ul>
-<h1 id="系统总线"><a class="markdownIt-Anchor" href="#系统总线"></a> 系统总线</h1>
-<h2 id="总线的基本概念"><a class="markdownIt-Anchor" href="#总线的基本概念"></a> 总线的基本概念</h2>
+<h1 id="系统总线">系统总线</h1>
+<h2 id="总线的基本概念">总线的基本概念</h2>
 <ul>
 <li>
 <p>总线的引入：</p>
@@ -536,7 +536,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="总线的结构"><a class="markdownIt-Anchor" href="#总线的结构"></a> 总线的结构</h2>
+<h2 id="总线的结构">总线的结构</h2>
 <ul>
 <li>总线的结构有：
 <ul>
@@ -545,7 +545,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="单总线结构"><a class="markdownIt-Anchor" href="#单总线结构"></a> 单总线结构</h3>
+<h3 id="单总线结构">单总线结构</h3>
 <ul>
 <li>总线是信号的公共传输线，在任何一个时刻只能有一对部件在使用，那么总线就可能成为一个瓶颈
 <ul>
@@ -554,7 +554,7 @@
 </li>
 </ul>
 <p><img src="/2024/08/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82blog/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%861/image-20240826092808906.png" alt="image-20240826092808906"></p>
-<h3 id="双总线结构"><a class="markdownIt-Anchor" href="#双总线结构"></a> 双总线结构</h3>
+<h3 id="双总线结构">双总线结构</h3>
 <ul>
 <li><strong>面向CPU的双总线结构</strong>：CPU运行的时候，指令来自于主存，数据也来自于主存，这样主存与CPU的总线利用的很频繁，就单独使用一个总线专门用来将CPU和主存互联</li>
 <li>存在问题：如果IO设备要向主存存储数据或者指令，但是主存和IO设备没有直接连接，需要利用CPU中转才能进行信息传输，这样CPU执行的指令还是会被打断</li>
@@ -564,9 +564,9 @@
 <li><strong>以存储器为中心的双总线结构</strong>：CPU、主存有专用总线，CPU、主存与外部设备可以直接传输数据</li>
 </ul>
 <p><img src="/2024/08/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82blog/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%861/image-20240826094231175.png" alt="image-20240826094231175"></p>
-<h2 id="总线的分类"><a class="markdownIt-Anchor" href="#总线的分类"></a> 总线的分类</h2>
+<h2 id="总线的分类">总线的分类</h2>
 <p><img src="/2024/08/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82blog/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%861/image-20240826095335995.png" alt="image-20240826095335995"></p>
-<h2 id="总线特性及性能指标"><a class="markdownIt-Anchor" href="#总线特性及性能指标"></a> 总线特性及性能指标</h2>
+<h2 id="总线特性及性能指标">总线特性及性能指标</h2>
 <ul>
 <li>总线的物理实现
 <ul>
@@ -579,7 +579,7 @@
 <li>主板实物</li>
 </ul>
 <p><img src="/2024/08/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82blog/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%861/image-20240826105259403.png" alt="image-20240826105259403"></p>
-<h3 id="总线的特性"><a class="markdownIt-Anchor" href="#总线的特性"></a> 总线的特性</h3>
+<h3 id="总线的特性">总线的特性</h3>
 <ul>
 <li>总线的特性包括机械特性、电气特性、功能特性、时间特性</li>
 </ul>
@@ -604,20 +604,20 @@
 <ul>
 <li>时间特性：信号的时序关系</li>
 </ul>
-<h3 id="总线的性能指标"><a class="markdownIt-Anchor" href="#总线的性能指标"></a> 总线的性能指标</h3>
+<h3 id="总线的性能指标">总线的性能指标</h3>
 <ul>
 <li>总线宽度：数据线的根数，数据进行传输同时可以传输多少位。</li>
 <li>标准传输率：每秒传输的最大字节数（MBps）</li>
 </ul>
-<h3 id="总线标准"><a class="markdownIt-Anchor" href="#总线标准"></a> 总线标准</h3>
+<h3 id="总线标准">总线标准</h3>
 <ul>
 <li>现在制造计算机是分厂商分别制造相关硬件，再组合起来的。所以应该有一套标准，总线也是有这样的一个标准。</li>
 <li>总线的一些标准ISA(工业标准体系结构)、EISA（ISA一个扩展，兼容ISA）、VESA（视频电子标准协会）、PCI（外设部件互联标准）、AGP（Intel在1996年推出的接口，点对点的局部总线）、RS-232、USB（通用串行总线）</li>
 <li>这些总线详细的可以课后看资料</li>
 </ul>
 <p><img src="/2024/08/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82blog/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%861/image-20240828133939575.png" alt="image-20240828133939575"></p>
-<h2 id="总线的结构"><a class="markdownIt-Anchor" href="#总线的结构-2"></a> 总线的结构</h2>
-<h3 id="五种总线结构"><a class="markdownIt-Anchor" href="#五种总线结构"></a> 五种总线结构</h3>
+<h2 id="总线的结构">总线的结构</h2>
+<h3 id="五种总线结构">五种总线结构</h3>
 <ul>
 <li>
 <p>总线结构包括单总线结构、双总线结构、三总线结构、四总线结构</p>
@@ -656,7 +656,7 @@
 <li>四总线结构：</li>
 </ul>
 <p><img src="/2024/08/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82blog/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%861/image-20240828135556676.png" alt="image-20240828135556676"></p>
-<h3 id="总线结构举例"><a class="markdownIt-Anchor" href="#总线结构举例"></a> 总线结构举例</h3>
+<h3 id="总线结构举例">总线结构举例</h3>
 <ul>
 <li><strong>传统微型机</strong>总线结构</li>
 </ul>
@@ -673,7 +673,7 @@
 <li>多层PCI总线结构</li>
 </ul>
 <p><img src="/2024/08/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82blog/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%861/image-20240828140134358.png" alt="image-20240828140134358"></p>
-<h2 id="总线控制重难点"><a class="markdownIt-Anchor" href="#总线控制重难点"></a> 总线控制（重难点）</h2>
+<h2 id="总线控制重难点">总线控制（重难点）</h2>
 <ul>
 <li>总线上连接了多个设备，设备之间需要进行通讯这就需要解决两个问题：
 <ul>
@@ -682,7 +682,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="总线的判优控制"><a class="markdownIt-Anchor" href="#总线的判优控制"></a> 总线的判优控制</h3>
+<h3 id="总线的判优控制">总线的判优控制</h3>
 <ul>
 <li>基本概念：
 <ul>
@@ -702,7 +702,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="链式查询方式"><a class="markdownIt-Anchor" href="#链式查询方式"></a> 链式查询方式</h4>
+<h4 id="链式查询方式">链式查询方式</h4>
 <ul>
 <li>总线控制部件是集中在一起的
 <ul>
@@ -736,7 +736,7 @@
 <li>获得总线使用权后，接口1就会将总线忙的信号传给总线控制部件</li>
 </ul>
 <p><img src="/2024/08/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82blog/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%861/image-20240828152854034.png" alt="image-20240828152854034"></p>
-<h4 id="计数器定时查询方式"><a class="markdownIt-Anchor" href="#计数器定时查询方式"></a> 计数器定时查询方式</h4>
+<h4 id="计数器定时查询方式">计数器定时查询方式</h4>
 <ul>
 <li>该方式同样有数据线和地址线</li>
 <li>不同的是，该方式没有BG线，但是有设备地址线并且在总线控制部件里面有计数器，这根线也表明了该方式名称的来源。</li>
@@ -770,7 +770,7 @@
 <li>当IO接口0没有请求，计数器就会进行加1操作，然后对IO接口1进行查询，查询IO接口1是否有请求。如果IO接口1有请求，IO接口1就会通过BS这根线进行响应</li>
 </ul>
 <p><img src="/2024/08/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82blog/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%861/image-20240828155240877.png" alt="image-20240828155240877"></p>
-<h4 id="独立请求方式"><a class="markdownIt-Anchor" href="#独立请求方式"></a> 独立请求方式</h4>
+<h4 id="独立请求方式">独立请求方式</h4>
 <ul>
 <li>每个设备都有独立的BR和BG线，优先级是由排队器进行设定。优先级的设定就非常灵活</li>
 <li>这种方式独立线需要的非常多</li>
@@ -781,7 +781,7 @@
 <li>IO接口线进行总线请求，将请求送入控制总线当中，总线控制部件通过排队器进行优先级排队后，他会对某一个IO设备进行应答</li>
 </ul>
 <p><img src="/2024/08/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82blog/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%861/image-20240828160025455.png" alt="image-20240828160025455"></p>
-<h3 id="总线的通信控制"><a class="markdownIt-Anchor" href="#总线的通信控制"></a> 总线的通信控制</h3>
+<h3 id="总线的通信控制">总线的通信控制</h3>
 <ul>
 <li>
 <p>目的：解决主从设备通信协调配合的问题</p>
@@ -814,7 +814,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="同步式数据输入输出"><a class="markdownIt-Anchor" href="#同步式数据输入输出"></a> 同步式数据输入输出</h4>
+<h4 id="同步式数据输入输出">同步式数据输入输出</h4>
 <ul>
 <li>同步输入的特征需要有一个定宽，定距的图标来控制整个数据的传输过程，并且在固定的时间点上要给出固定的操作</li>
 <li>要完成数据输入的话还需要地址信号、读信号、数据输入</li>
@@ -840,7 +840,7 @@
 <li>在第四个时钟周期结束时，地址信号也撤销了</li>
 </ul>
 <p><img src="/2024/08/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82blog/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%861/image-20240828163558469.png" alt="image-20240828163558469"></p>
-<h4 id="异步通信"><a class="markdownIt-Anchor" href="#异步通信"></a> 异步通信</h4>
+<h4 id="异步通信">异步通信</h4>
 <ul>
 <li>主设备发起通信，从设备受主设备控制。</li>
 <li>与同步相比：
@@ -869,7 +869,7 @@
 <li>全互锁方式：</li>
 </ul>
 <p><img src="/2024/08/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82blog/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%861/image-20240828183236489.png" alt="image-20240828183236489"></p>
-<h4 id="半同步通信"><a class="markdownIt-Anchor" href="#半同步通信"></a> 半同步通信</h4>
+<h4 id="半同步通信">半同步通信</h4>
 <ul>
 <li>
 <p>半同步通信是同步和异步相结合</p>
@@ -921,7 +921,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="分离式通信"><a class="markdownIt-Anchor" href="#分离式通信"></a> 分离式通信</h4>
+<h4 id="分离式通信">分离式通信</h4>
 <ul>
 <li>将一个总线的传输周期分为俩个子周期
 <ul>
@@ -939,7 +939,7 @@
 </ul>
 </li>
 </ul>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://iyheart.github.io">iyheart</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://iyheart.github.io/2024/08/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82blog/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%861/">http://iyheart.github.io/2024/08/14/计算机底层blog/计算机组成原理1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://iyheart.github.io" target="_blank">iyheart的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover83.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/ea2e5fb6fbb4c236fbabd387ef83339.jpg" target="_blank"><img class="post-qr-code-img" src="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/ea2e5fb6fbb4c236fbabd387ef83339.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/08/23/AI/AI%E5%9F%BA%E7%A1%80/" title="AI基础"><img class="cover" src="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover68.png" onerror="onerror=null;src='https://raw.githubusercontent.com/iyheart/tuchuang/main/img/f3c2605738aabdeedbc687356fa0e4e5.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">AI基础</div></div></a></div><div class="next-post pull-right"><a href="/2024/07/22/CTFblog/mobile/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%913/" title="安卓逆向3"><img class="cover" src="https://i0.hdslb.com/bfs/article/296da5370e6f915d1826ff20916e7aec16f21482.jpg" onerror="onerror=null;src='https://raw.githubusercontent.com/iyheart/tuchuang/main/img/f3c2605738aabdeedbc687356fa0e4e5.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">安卓逆向3</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="http://pic.5tu.cn/uploads/allimg/1910/pic_5tu_big_2019010211653346247.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">iyheart</div><div class="author-info__description">悟已往之不谏，知来者之可追</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">160</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">46</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text"> 前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A6%82%E8%AE%BA"><span class="toc-number">2.</span> <span class="toc-text"> 概论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E7%A1%AC%E4%BB%B6%E6%80%BB%E8%A7%88"><span class="toc-number">2.1.</span> <span class="toc-text"> 计算机的硬件总览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8E%86%E5%8F%B2%E4%B8%8E%E5%BA%94%E7%94%A8"><span class="toc-number">2.2.</span> <span class="toc-text"> 计算机历史与应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E5%8F%91%E5%B1%95%E5%8F%B2"><span class="toc-number">2.2.1.</span> <span class="toc-text"> 计算机的发展史</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6%E7%9A%84%E5%8F%91%E5%B1%95%E5%8F%B2"><span class="toc-number">2.2.2.</span> <span class="toc-text"> 计算机硬件的发展史</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E5%B1%95%E5%8F%B2"><span class="toc-number">2.2.3.</span> <span class="toc-text"> 计算机软件的发展史</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">2.2.4.</span> <span class="toc-text"> 计算机的应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E5%B1%95%E6%9C%9B"><span class="toc-number">2.2.5.</span> <span class="toc-text"> 计算机的展望</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="toc-number">2.3.</span> <span class="toc-text"> 计算机的性能指标</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="toc-number">2.3.1.</span> <span class="toc-text"> 存储器的性能指标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cpu%E7%9A%84%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="toc-number">2.3.2.</span> <span class="toc-text"> CPU的性能指标</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#cpu%E4%B8%BB%E9%A2%91cpu%E5%86%85%E6%95%B0%E5%AD%97%E8%84%89%E5%86%B2%E4%BF%A1%E5%8F%B7%E9%9C%87%E8%8D%A1%E7%9A%84%E9%A2%91%E7%8E%87"><span class="toc-number">2.3.2.1.</span> <span class="toc-text"> CPU主频：CPU内数字脉冲信号震荡的频率</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cpi%E6%89%A7%E8%A1%8C%E4%B8%80%E6%9D%A1%E6%8C%87%E4%BB%A4%E6%89%80%E9%9C%80%E7%9A%84%E6%97%B6%E9%92%9F%E5%91%A8%E6%9C%9F%E6%95%B0"><span class="toc-number">2.3.2.2.</span> <span class="toc-text"> CPI：执行一条指令所需的时钟周期数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ips%E6%AF%8F%E7%A7%92%E6%89%A7%E8%A1%8C%E5%A4%9A%E5%B0%91%E6%9D%A1%E6%8C%87%E4%BB%A4"><span class="toc-number">2.3.2.3.</span> <span class="toc-text"> IPS：每秒执行多少条指令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#flops%E6%AF%8F%E7%A7%92%E6%89%A7%E8%A1%8C%E5%A4%9A%E5%B0%91%E6%AC%A1%E6%B5%AE%E7%82%B9%E8%BF%90%E7%AE%97"><span class="toc-number">2.3.2.4.</span> <span class="toc-text"> FLOPS：每秒执行多少次浮点运算</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E6%95%B4%E4%BD%93%E7%9A%84%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="toc-number">2.3.3.</span> <span class="toc-text"> 系统整体的性能指标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E6%B5%8B%E8%AF%95"><span class="toc-number">2.3.4.</span> <span class="toc-text"> 动态测试</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF"><span class="toc-number">3.</span> <span class="toc-text"> 系统总线</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BA%BF%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">3.1.</span> <span class="toc-text"> 总线的基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BA%BF%E7%9A%84%E7%BB%93%E6%9E%84"><span class="toc-number">3.2.</span> <span class="toc-text"> 总线的结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84"><span class="toc-number">3.2.1.</span> <span class="toc-text"> 单总线结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8C%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84"><span class="toc-number">3.2.2.</span> <span class="toc-text"> 双总线结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BA%BF%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">3.3.</span> <span class="toc-text"> 总线的分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BA%BF%E7%89%B9%E6%80%A7%E5%8F%8A%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="toc-number">3.4.</span> <span class="toc-text"> 总线特性及性能指标</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BA%BF%E7%9A%84%E7%89%B9%E6%80%A7"><span class="toc-number">3.4.1.</span> <span class="toc-text"> 总线的特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BA%BF%E7%9A%84%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="toc-number">3.4.2.</span> <span class="toc-text"> 总线的性能指标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BA%BF%E6%A0%87%E5%87%86"><span class="toc-number">3.4.3.</span> <span class="toc-text"> 总线标准</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BA%BF%E7%9A%84%E7%BB%93%E6%9E%84"><span class="toc-number">3.5.</span> <span class="toc-text"> 总线的结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E7%A7%8D%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84"><span class="toc-number">3.5.1.</span> <span class="toc-text"> 五种总线结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84%E4%B8%BE%E4%BE%8B"><span class="toc-number">3.5.2.</span> <span class="toc-text"> 总线结构举例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BA%BF%E6%8E%A7%E5%88%B6%E9%87%8D%E9%9A%BE%E7%82%B9"><span class="toc-number">3.6.</span> <span class="toc-text"> 总线控制（重难点）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BA%BF%E7%9A%84%E5%88%A4%E4%BC%98%E6%8E%A7%E5%88%B6"><span class="toc-number">3.6.1.</span> <span class="toc-text"> 总线的判优控制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%93%BE%E5%BC%8F%E6%9F%A5%E8%AF%A2%E6%96%B9%E5%BC%8F"><span class="toc-number">3.6.1.1.</span> <span class="toc-text"> 链式查询方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A1%E6%95%B0%E5%99%A8%E5%AE%9A%E6%97%B6%E6%9F%A5%E8%AF%A2%E6%96%B9%E5%BC%8F"><span class="toc-number">3.6.1.2.</span> <span class="toc-text"> 计数器定时查询方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%8B%AC%E7%AB%8B%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F"><span class="toc-number">3.6.1.3.</span> <span class="toc-text"> 独立请求方式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BA%BF%E7%9A%84%E9%80%9A%E4%BF%A1%E6%8E%A7%E5%88%B6"><span class="toc-number">3.6.2.</span> <span class="toc-text"> 总线的通信控制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5%E5%BC%8F%E6%95%B0%E6%8D%AE%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA"><span class="toc-number">3.6.2.1.</span> <span class="toc-text"> 同步式数据输入输出</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E9%80%9A%E4%BF%A1"><span class="toc-number">3.6.2.2.</span> <span class="toc-text"> 异步通信</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%8A%E5%90%8C%E6%AD%A5%E9%80%9A%E4%BF%A1"><span class="toc-number">3.6.2.3.</span> <span class="toc-text"> 半同步通信</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E7%A6%BB%E5%BC%8F%E9%80%9A%E4%BF%A1"><span class="toc-number">3.6.2.4.</span> <span class="toc-text"> 分离式通信</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/13/CTFblog/CRYPTO%E7%B3%BB%E5%88%97blog/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/Elliptic_Curve/ECDSA-Attack/" title="椭圆曲线数字签名相关攻击">椭圆曲线数字签名相关攻击</a><time datetime="2025-08-12T16:37:23.000Z" title="发表于 2025-08-13 00:37:23">2025-08-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/10/CTFblog/REVERSE%E7%B3%BB%E5%88%97blog/Windows%E9%80%86%E5%90%91/PE%E9%80%86%E5%90%91%E5%AE%9A%E4%BD%8Dmain%E5%87%BD%E6%95%B0/" title="PE逆向定位main函数">PE逆向定位main函数</a><time datetime="2025-08-10T15:37:33.000Z" title="发表于 2025-08-10 23:37:33">2025-08-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/08/CTFblog/CRYPTO%E7%B3%BB%E5%88%97blog/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/RSA/RSA%E5%8A%A0%E5%AF%86%E4%B9%8Be%E5%92%8Cphi%E4%B8%8D%E4%BA%92%E7%B4%A0/" title="RSA加密之e和phi不互素">RSA加密之e和phi不互素</a><time datetime="2025-08-08T15:44:47.000Z" title="发表于 2025-08-08 23:44:47">2025-08-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/08/CTFblog/REVERSE%E7%B3%BB%E5%88%97blog/Windows%E9%80%86%E5%90%91/PE%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" title="PE文件结构">PE文件结构</a><time datetime="2025-08-08T04:10:50.000Z" title="发表于 2025-08-08 12:10:50">2025-08-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/05/%E6%95%B0%E5%AD%A6blog/%E5%88%9D%E7%AD%89%E6%95%B0%E8%AE%BA/%E6%95%B0%E8%AE%BA%E5%9F%BA%E7%A1%80-%E5%8E%9F%E6%A0%B9%E4%B8%8E%E6%8C%87%E6%A0%87/" title="数论基础-原根与指标">数论基础-原根与指标</a><time datetime="2025-08-05T15:54:31.000Z" title="发表于 2025-08-05 23:54:31">2025-08-05</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By iyheart</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat-btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script>function panguFn () {
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://iyheart.github.io">iyheart</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://iyheart.github.io/2024/08/14/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82blog/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%861/">http://iyheart.github.io/2024/08/14/计算机底层blog/计算机组成原理1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://iyheart.github.io" target="_blank">iyheart的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover83.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/ea2e5fb6fbb4c236fbabd387ef83339.jpg" target="_blank"><img class="post-qr-code-img" src="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/ea2e5fb6fbb4c236fbabd387ef83339.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/08/23/AI/AI%E5%9F%BA%E7%A1%80/" title="AI基础"><img class="cover" src="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover68.png" onerror="onerror=null;src='https://raw.githubusercontent.com/iyheart/tuchuang/main/img/f3c2605738aabdeedbc687356fa0e4e5.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">AI基础</div></div></a></div><div class="next-post pull-right"><a href="/2024/07/22/CTFblog/mobile/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%913/" title="安卓逆向3"><img class="cover" src="https://i0.hdslb.com/bfs/article/296da5370e6f915d1826ff20916e7aec16f21482.jpg" onerror="onerror=null;src='https://raw.githubusercontent.com/iyheart/tuchuang/main/img/f3c2605738aabdeedbc687356fa0e4e5.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">安卓逆向3</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="http://pic.5tu.cn/uploads/allimg/1910/pic_5tu_big_2019010211653346247.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">iyheart</div><div class="author-info__description">悟已往之不谏，知来者之可追</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">161</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">48</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A6%82%E8%AE%BA"><span class="toc-number">2.</span> <span class="toc-text">概论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E7%A1%AC%E4%BB%B6%E6%80%BB%E8%A7%88"><span class="toc-number">2.1.</span> <span class="toc-text">计算机的硬件总览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8E%86%E5%8F%B2%E4%B8%8E%E5%BA%94%E7%94%A8"><span class="toc-number">2.2.</span> <span class="toc-text">计算机历史与应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E5%8F%91%E5%B1%95%E5%8F%B2"><span class="toc-number">2.2.1.</span> <span class="toc-text">计算机的发展史</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6%E7%9A%84%E5%8F%91%E5%B1%95%E5%8F%B2"><span class="toc-number">2.2.2.</span> <span class="toc-text">计算机硬件的发展史</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%8F%91%E5%B1%95%E5%8F%B2"><span class="toc-number">2.2.3.</span> <span class="toc-text">计算机软件的发展史</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">2.2.4.</span> <span class="toc-text">计算机的应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E5%B1%95%E6%9C%9B"><span class="toc-number">2.2.5.</span> <span class="toc-text">计算机的展望</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="toc-number">2.3.</span> <span class="toc-text">计算机的性能指标</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="toc-number">2.3.1.</span> <span class="toc-text">存储器的性能指标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cpu%E7%9A%84%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="toc-number">2.3.2.</span> <span class="toc-text">CPU的性能指标</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#cpu%E4%B8%BB%E9%A2%91cpu%E5%86%85%E6%95%B0%E5%AD%97%E8%84%89%E5%86%B2%E4%BF%A1%E5%8F%B7%E9%9C%87%E8%8D%A1%E7%9A%84%E9%A2%91%E7%8E%87"><span class="toc-number">2.3.2.1.</span> <span class="toc-text">CPU主频：CPU内数字脉冲信号震荡的频率</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cpi%E6%89%A7%E8%A1%8C%E4%B8%80%E6%9D%A1%E6%8C%87%E4%BB%A4%E6%89%80%E9%9C%80%E7%9A%84%E6%97%B6%E9%92%9F%E5%91%A8%E6%9C%9F%E6%95%B0"><span class="toc-number">2.3.2.2.</span> <span class="toc-text">CPI：执行一条指令所需的时钟周期数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ips%E6%AF%8F%E7%A7%92%E6%89%A7%E8%A1%8C%E5%A4%9A%E5%B0%91%E6%9D%A1%E6%8C%87%E4%BB%A4"><span class="toc-number">2.3.2.3.</span> <span class="toc-text">IPS：每秒执行多少条指令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#flops%E6%AF%8F%E7%A7%92%E6%89%A7%E8%A1%8C%E5%A4%9A%E5%B0%91%E6%AC%A1%E6%B5%AE%E7%82%B9%E8%BF%90%E7%AE%97"><span class="toc-number">2.3.2.4.</span> <span class="toc-text">FLOPS：每秒执行多少次浮点运算</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E6%95%B4%E4%BD%93%E7%9A%84%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="toc-number">2.3.3.</span> <span class="toc-text">系统整体的性能指标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E6%B5%8B%E8%AF%95"><span class="toc-number">2.3.4.</span> <span class="toc-text">动态测试</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF"><span class="toc-number">3.</span> <span class="toc-text">系统总线</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BA%BF%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">3.1.</span> <span class="toc-text">总线的基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BA%BF%E7%9A%84%E7%BB%93%E6%9E%84"><span class="toc-number">3.2.</span> <span class="toc-text">总线的结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84"><span class="toc-number">3.2.1.</span> <span class="toc-text">单总线结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8C%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84"><span class="toc-number">3.2.2.</span> <span class="toc-text">双总线结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BA%BF%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">3.3.</span> <span class="toc-text">总线的分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BA%BF%E7%89%B9%E6%80%A7%E5%8F%8A%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="toc-number">3.4.</span> <span class="toc-text">总线特性及性能指标</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BA%BF%E7%9A%84%E7%89%B9%E6%80%A7"><span class="toc-number">3.4.1.</span> <span class="toc-text">总线的特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BA%BF%E7%9A%84%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="toc-number">3.4.2.</span> <span class="toc-text">总线的性能指标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BA%BF%E6%A0%87%E5%87%86"><span class="toc-number">3.4.3.</span> <span class="toc-text">总线标准</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BA%BF%E7%9A%84%E7%BB%93%E6%9E%84"><span class="toc-number">3.5.</span> <span class="toc-text">总线的结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E7%A7%8D%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84"><span class="toc-number">3.5.1.</span> <span class="toc-text">五种总线结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84%E4%B8%BE%E4%BE%8B"><span class="toc-number">3.5.2.</span> <span class="toc-text">总线结构举例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BA%BF%E6%8E%A7%E5%88%B6%E9%87%8D%E9%9A%BE%E7%82%B9"><span class="toc-number">3.6.</span> <span class="toc-text">总线控制（重难点）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BA%BF%E7%9A%84%E5%88%A4%E4%BC%98%E6%8E%A7%E5%88%B6"><span class="toc-number">3.6.1.</span> <span class="toc-text">总线的判优控制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%93%BE%E5%BC%8F%E6%9F%A5%E8%AF%A2%E6%96%B9%E5%BC%8F"><span class="toc-number">3.6.1.1.</span> <span class="toc-text">链式查询方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%A1%E6%95%B0%E5%99%A8%E5%AE%9A%E6%97%B6%E6%9F%A5%E8%AF%A2%E6%96%B9%E5%BC%8F"><span class="toc-number">3.6.1.2.</span> <span class="toc-text">计数器定时查询方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%8B%AC%E7%AB%8B%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F"><span class="toc-number">3.6.1.3.</span> <span class="toc-text">独立请求方式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BA%BF%E7%9A%84%E9%80%9A%E4%BF%A1%E6%8E%A7%E5%88%B6"><span class="toc-number">3.6.2.</span> <span class="toc-text">总线的通信控制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5%E5%BC%8F%E6%95%B0%E6%8D%AE%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA"><span class="toc-number">3.6.2.1.</span> <span class="toc-text">同步式数据输入输出</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E9%80%9A%E4%BF%A1"><span class="toc-number">3.6.2.2.</span> <span class="toc-text">异步通信</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%8A%E5%90%8C%E6%AD%A5%E9%80%9A%E4%BF%A1"><span class="toc-number">3.6.2.3.</span> <span class="toc-text">半同步通信</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E7%A6%BB%E5%BC%8F%E9%80%9A%E4%BF%A1"><span class="toc-number">3.6.2.4.</span> <span class="toc-text">分离式通信</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/21/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E6%95%B0%E8%AE%BA/%E7%AE%97%E6%B3%95%E6%95%B0%E8%AE%BA-%E7%B4%A0%E6%80%A7%E6%A3%80%E9%AA%8C%E7%AE%97%E6%B3%95/" title="算法数论-素性检验算法">算法数论-素性检验算法</a><time datetime="2025-08-21T12:23:16.000Z" title="发表于 2025-08-21 20:23:16">2025-08-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/13/CTFblog/CRYPTO%E7%B3%BB%E5%88%97blog/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/Elliptic_Curve/ECDSA-Attack/" title="椭圆曲线数字签名相关攻击">椭圆曲线数字签名相关攻击</a><time datetime="2025-08-12T16:37:23.000Z" title="发表于 2025-08-13 00:37:23">2025-08-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/10/CTFblog/REVERSE%E7%B3%BB%E5%88%97blog/Windows%E9%80%86%E5%90%91/PE%E9%80%86%E5%90%91%E5%AE%9A%E4%BD%8Dmain%E5%87%BD%E6%95%B0/" title="PE逆向定位main函数">PE逆向定位main函数</a><time datetime="2025-08-10T15:37:33.000Z" title="发表于 2025-08-10 23:37:33">2025-08-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/08/CTFblog/CRYPTO%E7%B3%BB%E5%88%97blog/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/RSA/RSA%E5%8A%A0%E5%AF%86%E4%B9%8Be%E5%92%8Cphi%E4%B8%8D%E4%BA%92%E7%B4%A0/" title="RSA加密之e和phi不互素">RSA加密之e和phi不互素</a><time datetime="2025-08-08T15:44:47.000Z" title="发表于 2025-08-08 23:44:47">2025-08-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/08/08/CTFblog/REVERSE%E7%B3%BB%E5%88%97blog/Windows%E9%80%86%E5%90%91/PE%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/" title="PE文件结构">PE文件结构</a><time datetime="2025-08-08T04:10:50.000Z" title="发表于 2025-08-08 12:10:50">2025-08-08</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By iyheart</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat-btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script>function panguFn () {
   if (typeof pangu === 'object') pangu.autoSpacingPage()
   else {
     getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
