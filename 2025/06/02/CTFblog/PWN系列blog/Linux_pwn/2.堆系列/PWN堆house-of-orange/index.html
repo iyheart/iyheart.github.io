@@ -226,7 +226,7 @@
 <li>最终, 会遍历链表**_IO_list_all<strong>并且调用链表中的</strong>_IO_OVERFLOW**.</li>
 <li>该方法是修改**_IO_list_all<strong>使其</strong>指向我们伪造的文件结构体**</li>
 <li>在这个结构体中**_IO_OVERLOW**指向system函数并且这个结构体的前八字节要被设置为’/bin/sh’</li>
-<li>以便于调用 <strong>_IO_OVERFLOW(fp, EOF)<strong>这个函数的时候会执行</strong>system(‘/bin/sh’)</strong></li>
+<li>以便于调用 <strong>_IO_OVERFLOW(fp, EOF)<strong>这个函数的时候会执行</strong>system(’/bin/sh’)</strong></li>
 </ul>
 </li>
 <li><strong>几点明确</strong>：</li>
