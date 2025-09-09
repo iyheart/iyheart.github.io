@@ -160,44 +160,34 @@
 <!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="iyheart的博客" type="application/atom+xml">
 <link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="http://pic.5tu.cn/uploads/allimg/1910/pic_5tu_big_2019010211653346247.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">168</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">50</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 历史</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-music"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-tasks"></i><span> 知识库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/docs/"><i class="fa-fw fas fa-book"></i><span> 编程语言知识库</span></a></li><li><a class="site-page child" href="/practice/"><i class="fa-fw fas fa-book"></i><span> PWN刷题记录</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/update/"><i class="fa-fw fas fa-bell"></i><span> 更新</span></a></div><div class="menus_item"><a class="site-page" href="javascript:toRandomPost()"><i class="fa-fw fas fa-bus"></i><span> 随机文章</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover21.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="iyheart的博客"><img class="site-icon" src="http://img95.699pic.com/photo/40151/9175.gif_wh860.gif"/><span class="site-name">iyheart的博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 历史</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-music"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-tasks"></i><span> 知识库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/docs/"><i class="fa-fw fas fa-book"></i><span> 编程语言知识库</span></a></li><li><a class="site-page child" href="/practice/"><i class="fa-fw fas fa-book"></i><span> PWN刷题记录</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/update/"><i class="fa-fw fas fa-bell"></i><span> 更新</span></a></div><div class="menus_item"><a class="site-page" href="javascript:toRandomPost()"><i class="fa-fw fas fa-bus"></i><span> 随机文章</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">PWN异架构环境搭建</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-06T00:34:06.000Z" title="发表于 2024-04-06 08:34:06">2024-04-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-10-09T09:10:49.711Z" title="更新于 2024-10-09 17:10:49">2024-10-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/CTF/">CTF</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/CTF/PWN/">PWN</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">553</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>2分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="PWN异架构环境搭建"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">1.qemu</span><br><span class="line">2.交叉编译环境（GUN）</span><br><span class="line">	apt seach &quot;gcc-&quot;| grep &quot;arm&quot;</span><br><span class="line">	apt seach &quot;libc6&quot; | grep &quot;arm&quot;</span><br><span class="line">3.musl-libc</span><br><span class="line">	apt install musl-tools</span><br><span class="line">4.架构</span><br><span class="line">	arm,aarch64(arm64)</span><br><span class="line">	mips,mips64,mipsel,mips64el</span><br><span class="line">	powerpc,powerpc64,powerpc64le</span><br><span class="line">5.seccomp--沙箱的工具</span><br><span class="line">	apt install libseccomp-dev libseccomp2 seccomp</span><br></pre></td></tr></table></figure>
 <ul>
-<li>
-<p>交叉编译：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/77116555">嵌入式开发 | 什么是交叉编译(CROSS_COMPILE) - 知乎 (zhihu.com)</a></p>
+<li><p>交叉编译：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/77116555">嵌入式开发 | 什么是交叉编译(CROSS_COMPILE) - 知乎 (zhihu.com)</a></p>
 </li>
-<li>
-<p>四月份写的博客，当时知识储备比较低，就用qemu用户模式运行个riscv架构的程序都还去搞个交叉编译环境，然后重新编译已经编译好的二进制文件（太呆了）</p>
+<li><p>四月份写的博客，当时知识储备比较低，就用qemu用户模式运行个riscv架构的程序都还去搞个交叉编译环境，然后重新编译已经编译好的二进制文件（太呆了）</p>
 </li>
-<li>
-<p>时隔半年，再来搭建一下异架构的环境，重新写一下博客</p>
+<li><p>时隔半年，再来搭建一下异架构的环境，重新写一下博客</p>
 </li>
-<li>
-<p>先安装个<code>qemu</code>，具体安装过程放另一个虚拟化的博客上了，这里我这里我楼安装了一个qemu的功能</p>
+<li><p>先安装个<code>qemu</code>，具体安装过程放另一个虚拟化的博客上了，这里我这里我楼安装了一个qemu的功能</p>
 </li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install qemu-user-static binfmt-support</span><br></pre></td></tr></table></figure>
-<h1 id="mips交叉编译环境">MIPS交叉编译环境</h1>
-<h2 id="前置安装">前置安装</h2>
-<ul>
-<li>
-<p>安装mips的依赖库，用于<code>gcc</code>编译器进行交叉汇编使用</p>
+<h1 id="mips交叉编译环境"><a href="#MIPS交叉编译环境" class="headerlink" title="MIPS交叉编译环境"></a>MIPS交叉编译环境</h1><h2 id="前置安装"><a href="#前置安装" class="headerlink" title="前置安装"></a>前置安装</h2><ul>
+<li><p>安装mips的依赖库，用于<code>gcc</code>编译器进行交叉汇编使用</p>
 </li>
-<li>
-<p>不过这里我先创建一个文件夹，用来专门管理异架构程序和交叉编译工具的</p>
+<li><p>不过这里我先创建一个文件夹，用来专门管理异架构程序和交叉编译工具的</p>
 </li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir all_arch</span><br><span class="line">cd all_arch</span><br><span class="line">mkdir mips</span><br></pre></td></tr></table></figure>
 <ul>
-<li>然后安装依赖库
-<ul>
+<li>然后安装依赖库<ul>
 <li><code>gcc-mips-linux-gnu</code>是mips交叉编译器</li>
 <li><code>gcc-mipsel-linux-gnu</code> MIPS 小端架构的交叉编译器,专门用于生成适用于小端 MIPS 系统的二进制文件</li>
 <li><code>gcc-mips64-linux-gnuabi64</code>用于 MIPS 64 位架构的交叉编译器,允许你在其他架构上编译运行于 MIPS 64 位系统的程序</li>
-<li><code>gcc-mips64el-linux-gnuabi64 </code>用于编译 MIPS 64 位架构大端序的gcc编译器</li>
+<li><code>gcc-mips64el-linux-gnuabi64</code>用于编译 MIPS 64 位架构大端序的gcc编译器</li>
 </ul>
 </li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install gcc-mips-linux-gnu</span><br><span class="line">sudo apt-get install gcc-mipsel-linux-gnu</span><br><span class="line">sudo apt-get install gcc-mips64-linux-gnuabi64   </span><br><span class="line">sudo apt-get install gcc-mips64el-linux-gnuabi64 </span><br></pre></td></tr></table></figure>
-<h2 id="测试">测试</h2>
-<ul>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><ul>
 <li>先来测试一下是不是完成了编译的环境，这里需要介绍几个关于qemu和gcc的命令</li>
 <li>关于gcc</li>
 </ul>
