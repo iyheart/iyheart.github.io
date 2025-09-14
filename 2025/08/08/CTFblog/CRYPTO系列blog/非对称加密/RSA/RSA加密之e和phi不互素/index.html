@@ -159,50 +159,36 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
 <!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="iyheart的博客" type="application/atom+xml">
 <link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="http://pic.5tu.cn/uploads/allimg/1910/pic_5tu_big_2019010211653346247.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">169</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">51</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 历史</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-music"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-tasks"></i><span> 知识库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/docs/"><i class="fa-fw fas fa-book"></i><span> 编程语言知识库</span></a></li><li><a class="site-page child" href="/practice/"><i class="fa-fw fas fa-book"></i><span> PWN刷题记录</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/update/"><i class="fa-fw fas fa-bell"></i><span> 更新</span></a></div><div class="menus_item"><a class="site-page" href="javascript:toRandomPost()"><i class="fa-fw fas fa-bus"></i><span> 随机文章</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover202.png')"><nav id="nav"><span id="blog-info"><a href="/" title="iyheart的博客"><img class="site-icon" src="http://img95.699pic.com/photo/40151/9175.gif_wh860.gif"/><span class="site-name">iyheart的博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 历史</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-music"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-tasks"></i><span> 知识库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/docs/"><i class="fa-fw fas fa-book"></i><span> 编程语言知识库</span></a></li><li><a class="site-page child" href="/practice/"><i class="fa-fw fas fa-book"></i><span> PWN刷题记录</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/update/"><i class="fa-fw fas fa-bell"></i><span> 更新</span></a></div><div class="menus_item"><a class="site-page" href="javascript:toRandomPost()"><i class="fa-fw fas fa-bus"></i><span> 随机文章</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">RSA加密之e和phi不互素</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-08-08T15:44:47.000Z" title="发表于 2025-08-08 23:44:47">2025-08-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-12T14:11:32.401Z" title="更新于 2025-08-12 22:11:32">2025-08-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/CTF/">CTF</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/CTF/CRYPTO/">CRYPTO</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/CTF/CRYPTO/RSA/">RSA</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">8.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>36分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="RSA加密之e和phi不互素"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><ul>
-<li>
-<p>参考博客：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/SevensNight/p/18764988">e与(p-1)或(q-1)均不互素 - sevensnight - 博客园</a></p>
+<li>参考博客：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/SevensNight/p/18764988">e与(p-1)或(q-1)均不互素 - sevensnight - 博客园</a></li>
+<li>参考视频：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV11B421k7Jh?vd_source=bbdaef564df94fc8991902ba22c6761b">b站视频DoraHacks_e_phi不互素</a></li>
+<li><p>由于该题型涉及到<code>AMM</code>算法所以还是比较迟才整理的。虽然网上有现成的代码，但是为了做题而抄代码这学不到东西（赛后也会因为缺少数论基础而不会去理解算法原理）。</p>
 </li>
-<li>
-<p>参考视频：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV11B421k7Jh?vd_source=bbdaef564df94fc8991902ba22c6761b">b站视频DoraHacks_e_phi不互素</a></p>
-</li>
-<li>
-<p>由于该题型涉及到<code>AMM</code>算法所以还是比较迟才整理的。虽然网上有现成的代码，但是为了做题而抄代码这学不到东西（赛后也会因为缺少数论基础而不会去理解算法原理）。</p>
-</li>
-<li>
-<p>这样下面这一张图是本篇文章的主要脉络：</p>
+<li><p>这样下面这一张图是本篇文章的主要脉络：</p>
 </li>
 </ul>
 <p><img src="/2025/08/08/CTFblog/CRYPTO%E7%B3%BB%E5%88%97blog/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/RSA/RSA%E5%8A%A0%E5%AF%86%E4%B9%8Be%E5%92%8Cphi%E4%B8%8D%E4%BA%92%E7%B4%A0/image-20250809124458151.png" alt="image-20250809124458151"></p>
-<h1 id="前言">前言</h1>
-<ul>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><ul>
 <li>对于之前做过的一些<code>RSA</code>加密，求出$\phi(N)$后就离解出密文非常近了，最关键一步其实就是求私钥$d$也就是$d \equiv e^{-1}~mod~(\phi(n))$，也就是求e在模$\phi(n)$下的逆元。但是回顾一下数论知识就会发现在求e的逆元时首先逆元需要存在才能求得密文，而密文存在的条件是$gcd(\phi(n),e)=1$，即二者互素。</li>
 <li>当$gcd(\phi(n),e)≠1$，也就是二者不互素的情况下，就不能使用求逆元的方法求得私钥$d$，这就导致没办法正常的解密，此时就需要使用其他的方法进行处理，核心的方法是<code>AMM</code>算法。当然有些时候$gcd(\phi(n),e)$比较小的时候会有更好的解决方法。</li>
 </ul>
-<h1 id="情况1gcdephi比较小">情况1—gcd(e,phi)比较小</h1>
-<h2 id="推导">推导</h2>
-<ul>
-<li>
-<p>对于$gcd(e,\phi(n))$比较小的情况，这里有个疑问，到底怎么样才算是比较小呢？总需要有一个界限吧。这个先不急着知道，看完该情况处理方式的推导过程之后，其实就会明白了（当然到文章后面我也会说明）。</p>
+<h1 id="情况1gcdephi比较小"><a href="#情况1—gcd-e-phi-比较小" class="headerlink" title="情况1—gcd(e,phi)比较小"></a>情况1—gcd(e,phi)比较小</h1><h2 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h2><ul>
+<li><p>对于$gcd(e,\phi(n))$比较小的情况，这里有个疑问，到底怎么样才算是比较小呢？总需要有一个界限吧。这个先不急着知道，看完该情况处理方式的推导过程之后，其实就会明白了（当然到文章后面我也会说明）。</p>
 </li>
-<li>
-<p>对于$gcd(e,\phi(n))$比较小的情况，不妨设$gcd(e,\phi(n))=t$，则有$e’=e//t$。那么就有如下推导：</p>
+<li><p>对于$gcd(e,\phi(n))$比较小的情况，不妨设$gcd(e,\phi(n))=t$，则有$e’=e//t$。那么就有如下推导：</p>
 </li>
 </ul>
-<p>$$<br>
-\begin{array}{l}<br>
-c \equiv m^e \equiv m^{e’t}~mod(~n)\<br>
-d’ = e’^{-1}~mod(~\phi(n))\<br>
-\Rightarrow c^{d’} \equiv m^{te’d’}~mod(~\phi(n))\<br>
-\Rightarrow	c^{d’} \equiv m^{t*1}~mod(~\phi(n))\<br>
-\Rightarrow c^{d’} \equiv m^t ~mod(~\phi(n))<br>
-\end{array}<br>
-$$</p>
-<ul>
-<li>通过如上推导其实就相当于对$m^e$进行了一个降幂的操作，将$m^e$降成了$m^t$。虽然这样求的并不是明文的原始数据，但是当$m^t &lt; n$的时候，这其实就有$c^{d’}~mod(~n) = 	m^t$，因为$m^t$的实际值是小于n的，这样就可以得到真正的$m^t$的值，这样直接开根号就可以求得$m$即明文</li>
+<script type="math/tex; mode=display">
+\begin{array}{l}
+c \equiv m^e \equiv m^{e't}~mod(~n)\\
+d' = e'^{-1}~mod(~\phi(n))\\
+\Rightarrow c^{d'} \equiv m^{te'd'}~mod(~\phi(n))\\
+\Rightarrow    c^{d'} \equiv m^{t*1}~mod(~\phi(n))\\
+\Rightarrow c^{d'} \equiv m^t ~mod(~\phi(n))
+\end{array}</script><ul>
+<li>通过如上推导其实就相当于对$m^e$进行了一个降幂的操作，将$m^e$降成了$m^t$。虽然这样求的并不是明文的原始数据，但是当$m^t &lt; n$的时候，这其实就有$c^{d’}~mod(~n) =     m^t$，因为$m^t$的实际值是小于n的，这样就可以得到真正的$m^t$的值，这样直接开根号就可以求得$m$即明文</li>
 <li>所以上面所说的<strong>比较小</strong>的这个界限，其实就是根据$m^t$与<strong>n</strong>的大小相比较的情况。</li>
 </ul>
-<h2 id="例题">例题</h2>
-<ul>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><ul>
 <li>题目来源：NSSCTF忘记具体哪题了</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"> </span><br><span class="line">flag = <span class="string">b&#x27;NSSCTF&#123;******&#125;&#x27;</span></span><br><span class="line"> </span><br><span class="line">p = getPrime(<span class="number">512</span>)</span><br><span class="line">q = getPrime(<span class="number">512</span>)</span><br><span class="line"> </span><br><span class="line">e = <span class="number">65537</span>*<span class="number">2</span></span><br><span class="line">n = p*q </span><br><span class="line">m = bytes_to_long(flag)</span><br><span class="line">c = <span class="built_in">pow</span>(m, e, n)</span><br><span class="line"> </span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;p = <span class="subst">&#123;p&#125;</span>&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;q = <span class="subst">&#123;q&#125;</span>&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;e = <span class="subst">&#123;e&#125;</span>&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;c = <span class="subst">&#123;c&#125;</span>&#x27;</span>)</span><br><span class="line"> </span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">p = 9927950299160071928293508814174740578824022211226572614475267385787727188317224760986347883270504573953862618573051241506246884352854313099453586586022059</span></span><br><span class="line"><span class="string">q = 9606476151905841036013578452822151891782938033700390347379468858357928877640534612459734825681004415976431665670102068256547092636766287603818164456689343</span></span><br><span class="line"><span class="string">e = 131074</span></span><br><span class="line"><span class="string">c = 68145285629092005589126591120307889109483909395989426479108244531402455690717006058397784318664114589567149811644664654952286387794458474073250495807456996723468838094551501146672038892183058042546944692051403972876692350946611736455784779361761930869993818138259781995078436790236277196516800834433299672560</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
@@ -219,53 +205,37 @@ $$</p>
 <li>这时已经知道了<code>gcd(e,phi)=2</code>，那我们就尝试一下直接开方是否能解出<code>flag</code>。通过推导的过程得到$m^2$后直接开方，发现可以直接求得<code>flag</code>，那这题就算是完成了。exp如下：</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line">p = </span><br><span class="line">q = </span><br><span class="line">e = <span class="number">131074</span></span><br><span class="line">c = </span><br><span class="line">n = p*q</span><br><span class="line">phi = (p-<span class="number">1</span>)*(q-<span class="number">1</span>)</span><br><span class="line">t = gmpy2.gcd(e,phi)</span><br><span class="line">e_ = e//t</span><br><span class="line">d_ = gmpy2.invert(e_,phi)</span><br><span class="line">m_ = <span class="built_in">pow</span>(c,d_,n)</span><br><span class="line">m,x = gmpy2.iroot(m_,t)</span><br><span class="line"><span class="built_in">print</span>(libnum.n2s(<span class="built_in">int</span>(m)))</span><br><span class="line"><span class="comment"># b&#x27;NSSCTF&#123;inverse_and_root&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
-<h1 id="情况2e和p-1或q-1互素">情况2—e和(p-1)或(q-1)互素</h1>
-<h2 id="推导">推导</h2>
-<ul>
-<li>
-<p>这种情况是<code>e</code>和$phi(n)$并不互素，但是<code>e</code>和<code>p-1或q-1</code>其中一个互素，这种情况也不需要使用<code>AMM</code>算法来求解。这里我们可以根据数论同余定理：若$m=p_1*p_2$，且$a\equiv b(~mod~m)$，则有$a\equiv b~(mod ~p_1)$和$a\equiv b~(mod~p_2)$</p>
+<h1 id="情况2e和p-1或q-1互素"><a href="#情况2—e和-p-1-或-q-1-互素" class="headerlink" title="情况2—e和(p-1)或(q-1)互素"></a>情况2—e和(p-1)或(q-1)互素</h1><h2 id="推导"><a href="#推导-1" class="headerlink" title="推导"></a>推导</h2><ul>
+<li>这种情况是<code>e</code>和$phi(n)$并不互素，但是<code>e</code>和<code>p-1或q-1</code>其中一个互素，这种情况也不需要使用<code>AMM</code>算法来求解。这里我们可以根据数论同余定理：若$m=p_1*p_2$，且$a\equiv b(~mod~m)$，则有$a\equiv b~(mod ~p_1)$和$a\equiv b~(mod~p_2)$</li>
+<li><p>由于情况2是<code>e和(p-1)、(q-1)其一互素</code>，那就不妨设$gcd(e,p-1)=1$，也就是$e^{-1}~mod~(\phi(p))$存在</p>
 </li>
-<li>
-<p>由于情况2是<code>e和(p-1)、(q-1)其一互素</code>，那就不妨设$gcd(e,p-1)=1$，也就是$e^{-1}~mod~(\phi(p))$存在</p>
-</li>
-<li>
-<p>这时对于情况2，就有如下推导：</p>
+<li><p>这时对于情况2，就有如下推导：</p>
 </li>
 </ul>
-<p>$$<br>
-\begin{array}{l}<br>
-n=p<em>q,c\equiv m^e~(mod~n)\<br>
-\Rightarrow c\equiv m^e~(mod~p)\<br>
-gcd(e,p-1)=1 \<br>
-\Rightarrow d’\equiv e~mod(~\phi(p))\<br>
-\Rightarrow m \equiv m^{e</em>d’}~mod(~p)<br>
-\end{array}<br>
-$$</p>
-<ul>
-<li>
-<p>通过以上推导其实可以比较轻松的求出明文<code>m</code>。注意：这种条件下也有一个限制条件就是明文<code>m</code>必须小于<code>p</code>，或者不能远大于<code>p</code>，否则在计算$m \equiv m^{e*d’}~mod(~p)$时，没有办法还原出真正的<code>m</code>。</p>
+<script type="math/tex; mode=display">
+\begin{array}{l}
+n=p*q,c\equiv m^e~(mod~n)\\
+\Rightarrow c\equiv m^e~(mod~p)\\
+gcd(e,p-1)=1 \\
+\Rightarrow d'\equiv e~mod(~\phi(p))\\
+\Rightarrow m \equiv m^{e*d'}~mod(~p)
+\end{array}</script><ul>
+<li><p>通过以上推导其实可以比较轻松的求出明文<code>m</code>。注意：这种条件下也有一个限制条件就是明文<code>m</code>必须小于<code>p</code>，或者不能远大于<code>p</code>，否则在计算$m \equiv m^{e*d’}~mod(~p)$时，没有办法还原出真正的<code>m</code>。</p>
 </li>
-<li>
-<p>所以情况2本质上是转换为这种形式的<code>RSA</code>加密从而去解密：</p>
+<li><p>所以情况2本质上是转换为这种形式的<code>RSA</code>加密从而去解密：</p>
 </li>
 </ul>
-<p>$$<br>
-m^e \equiv c(~mod~p)\<br>
-m^e \equiv c(~mod~q)<br>
-$$</p>
-<h2 id="例题">例题</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="keyword">import</span> uuid</span><br><span class="line">p = getPrime(<span class="number">1024</span>)</span><br><span class="line">q = getPrime(<span class="number">1024</span>)</span><br><span class="line">e = <span class="number">65537</span> * <span class="number">3</span> * <span class="number">5</span> * <span class="number">7</span> * <span class="number">9</span></span><br><span class="line">flag = <span class="string">b&#x27;flag&#123;&#x27;</span> + <span class="built_in">str</span>(uuid.uuid4()).encode() + <span class="string">b&#x27;&#125;&#x27;</span></span><br><span class="line">m = bytes_to_long(flag)</span><br><span class="line">n = p*q</span><br><span class="line">c = <span class="built_in">pow</span>(m,e,n)</span><br><span class="line">t = gmpy2.gcd(e,(p-<span class="number">1</span>)*(q-<span class="number">1</span>))</span><br><span class="line"><span class="keyword">assert</span> m**t &gt; n</span><br><span class="line"><span class="keyword">assert</span> gmpy2.gcd(e,p-<span class="number">1</span>) == <span class="number">1</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;c =&quot;</span>,c)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;p =&quot;</span>,p)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;q =&quot;</span>,q)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;e =&quot;</span>,e)</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">c = 3337182590619332891367579450095260017621948297658608474765927585747734506999354328509683568925377515619204064576076990658487700251069936667303178625246768854069321364684053609635568733663779323983023955186264359508474160621887429553760676977134496070475993741436565049779300934693925938183415460792275981347122871322148183170843853299782459185390522709695133592628923912979653573313450679119054746286193009565269774894288416510194737513999402051586939745106744803143145962870026162701796980802087523932796322787192289532828027946970149619523331107916885023397981791618926415589540736035561888254541222060699696856314</span></span><br><span class="line"><span class="string">p = 159938356510922739007311592848401509267166900696359028060364191269434588150823128062554654793663223011556473183265872894887579647809204570681388595087731937155662030332723972658713288321275408537705376086753101569069606146533249314025914677902624686308192979454352019032737737659516168971489486159303628756323</span></span><br><span class="line"><span class="string">q = 96430824217229072069182669895140083481416631653486517954264036040832169030441397642841245167011632195729479683858486548460196751092827654037479770105468583618722386613888439003723062136646644840030371564874711263303175809941599945731077671059902934814813625011920226998576747817059406799637645523370079620639</span></span><br><span class="line"><span class="string">e = 61932465</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+m^e \equiv c(~mod~p)\\
+m^e \equiv c(~mod~q)</script><h2 id="例题"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="keyword">import</span> uuid</span><br><span class="line">p = getPrime(<span class="number">1024</span>)</span><br><span class="line">q = getPrime(<span class="number">1024</span>)</span><br><span class="line">e = <span class="number">65537</span> * <span class="number">3</span> * <span class="number">5</span> * <span class="number">7</span> * <span class="number">9</span></span><br><span class="line">flag = <span class="string">b&#x27;flag&#123;&#x27;</span> + <span class="built_in">str</span>(uuid.uuid4()).encode() + <span class="string">b&#x27;&#125;&#x27;</span></span><br><span class="line">m = bytes_to_long(flag)</span><br><span class="line">n = p*q</span><br><span class="line">c = <span class="built_in">pow</span>(m,e,n)</span><br><span class="line">t = gmpy2.gcd(e,(p-<span class="number">1</span>)*(q-<span class="number">1</span>))</span><br><span class="line"><span class="keyword">assert</span> m**t &gt; n</span><br><span class="line"><span class="keyword">assert</span> gmpy2.gcd(e,p-<span class="number">1</span>) == <span class="number">1</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;c =&quot;</span>,c)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;p =&quot;</span>,p)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;q =&quot;</span>,q)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;e =&quot;</span>,e)</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">c = 3337182590619332891367579450095260017621948297658608474765927585747734506999354328509683568925377515619204064576076990658487700251069936667303178625246768854069321364684053609635568733663779323983023955186264359508474160621887429553760676977134496070475993741436565049779300934693925938183415460792275981347122871322148183170843853299782459185390522709695133592628923912979653573313450679119054746286193009565269774894288416510194737513999402051586939745106744803143145962870026162701796980802087523932796322787192289532828027946970149619523331107916885023397981791618926415589540736035561888254541222060699696856314</span></span><br><span class="line"><span class="string">p = 159938356510922739007311592848401509267166900696359028060364191269434588150823128062554654793663223011556473183265872894887579647809204570681388595087731937155662030332723972658713288321275408537705376086753101569069606146533249314025914677902624686308192979454352019032737737659516168971489486159303628756323</span></span><br><span class="line"><span class="string">q = 96430824217229072069182669895140083481416631653486517954264036040832169030441397642841245167011632195729479683858486548460196751092827654037479770105468583618722386613888439003723062136646644840030371564874711263303175809941599945731077671059902934814813625011920226998576747817059406799637645523370079620639</span></span><br><span class="line"><span class="string">e = 61932465</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>这题代码<code>assert gmpy2.gcd(e,p-1) == 1</code>已经告诉我们是<code>e与p-1互素</code>，并且此题也断言了<code>m**t &gt; n</code>，这就导致我们并不能使用情况1的解法。就需要使用情况2推导的方法，exp如下：</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line">c = </span><br><span class="line">p = </span><br><span class="line">q = </span><br><span class="line">e = <span class="number">61932465</span></span><br><span class="line">c = c % p</span><br><span class="line">phi = p-<span class="number">1</span></span><br><span class="line">d = gmpy2.invert(e,phi)</span><br><span class="line">m = <span class="built_in">pow</span>(c,d,p)</span><br><span class="line"><span class="built_in">print</span>(libnum.n2s(<span class="built_in">int</span>(m)))</span><br><span class="line"><span class="comment"># b&#x27;flag&#123;1858c133-a706-4110-af96-9639b25a3d5f&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
-<h1 id="情况3p-1或q-1是e的倍数">情况3—(p-1)或(q-1)是e的倍数</h1>
-<ul>
-<li>
-<p>情况3的解法会比前俩种情况复杂的多，这种情况一般是<code>gcd(e,phi)=e</code>或者是<code>gcd(e,phi)=k*e</code>，在解决此情况的时候需要使用到一个算法，这个算法为<code>AMM</code>算法，也就是</p>
+<h1 id="情况3p-1或q-1是e的倍数"><a href="#情况3—-p-1-或-q-1-是e的倍数" class="headerlink" title="情况3—(p-1)或(q-1)是e的倍数"></a>情况3—(p-1)或(q-1)是e的倍数</h1><ul>
+<li><p>情况3的解法会比前俩种情况复杂的多，这种情况一般是<code>gcd(e,phi)=e</code>或者是<code>gcd(e,phi)=k*e</code>，在解决此情况的时候需要使用到一个算法，这个算法为<code>AMM</code>算法，也就是</p>
 </li>
-<li>
-<p>在学习<code>AMM</code>算法之前需要先掌握几个定理和概念：</p>
+<li><p>在学习<code>AMM</code>算法之前需要先掌握几个定理和概念：</p>
 <ul>
 <li>二次剩余与二次非剩余</li>
 <li>欧拉判别法</li>
@@ -273,22 +243,14 @@ $$</p>
 </ul>
 </li>
 </ul>
-<h2 id="amm算法">AMM算法</h2>
-<ul>
-<li>
-<p><code>AMM</code>算法全称是<strong>AMM(全称为Adleman-Mander-Miller Method)</strong>，<code>AMM</code>算法与<code>Tonelli-Shanks</code>算法本质上是一样的，只不过乘积的时候顺序不同。</p>
+<h2 id="amm算法"><a href="#AMM算法" class="headerlink" title="AMM算法"></a>AMM算法</h2><ul>
+<li><code>AMM</code>算法全称是<strong>AMM(全称为Adleman-Mander-Miller Method)</strong>，<code>AMM</code>算法与<code>Tonelli-Shanks</code>算法本质上是一样的，只不过乘积的时候顺序不同。</li>
+<li>首先提出<code>AMM</code>算法是在<code>1977</code>年，由<code>Adleman, Manders, Miller</code>发表于<code>IEEE FOCS</code>会议的一篇名为<code>On taking roots in finite fields</code></li>
+<li><p>但是真正让<code>AMM</code>算法被重视的其实是在<code>2011</code>年，由<code>Zhengjun Cao, Qian Sha, Xiao Fan</code>发表的名为<code>Adleman–Manders–Miller Root Extraction Method Revisited</code>这篇论文，所以学习AMM算法主要参考的就是这篇论文，论文地址：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1111.4877">1111.4877v1.pdf</a></p>
 </li>
-<li>
-<p>首先提出<code>AMM</code>算法是在<code>1977</code>年，由<code>Adleman, Manders, Miller</code>发表于<code>IEEE FOCS</code>会议的一篇名为<code>On taking roots in finite fields</code></p>
+<li><p>在论文中有介绍三种<code>AMM</code>算法：分别是<code>二次同余方程</code>的AMM算法，以及扩域后的<code>二次同余方程</code>的AMM算法，最后就是<code>r次同余方程</code>的AMM算法。这边我只学习<code>二次同余方程</code>的AMM算法和<code>r次同余方程</code>的AMM算法。</p>
 </li>
-<li>
-<p>但是真正让<code>AMM</code>算法被重视的其实是在<code>2011</code>年，由<code>Zhengjun Cao, Qian Sha, Xiao Fan</code>发表的名为<code>Adleman–Manders–Miller Root Extraction Method Revisited</code>这篇论文，所以学习AMM算法主要参考的就是这篇论文，论文地址：<a target="_blank" rel="noopener" href="https://arxiv.org/pdf/1111.4877">1111.4877v1.pdf</a></p>
-</li>
-<li>
-<p>在论文中有介绍三种<code>AMM</code>算法：分别是<code>二次同余方程</code>的AMM算法，以及扩域后的<code>二次同余方程</code>的AMM算法，最后就是<code>r次同余方程</code>的AMM算法。这边我只学习<code>二次同余方程</code>的AMM算法和<code>r次同余方程</code>的AMM算法。</p>
-</li>
-<li>
-<p><code>AMM</code>算法的作用其实是快速求解同余方程$x^2\equiv a~(~mod~p)$，其中<code>p</code>是素数。</p>
+<li><p><code>AMM</code>算法的作用其实是快速求解同余方程$x^2\equiv a~(~mod~p)$，其中<code>p</code>是素数。</p>
 </li>
 </ul>
 <p><strong>问题</strong>：</p>
@@ -297,45 +259,31 @@ $$</p>
 <ul>
 <li>首先我们先将<code>p-1</code>（也就是奇素数p的欧拉函数），写成$2^t*s$的形式，其中需要满足<code>s</code>是一个奇数。这样对于一个模p下的二次剩余$\delta$和模p下的二次非剩余$\rho$来说有如下的式子$(\delta^s)^{2^{t}}~mod(~p)$和式子$(\rho^{s})^{2^{t}}~mod~(p)$由欧拉判别可以得到：</li>
 </ul>
-<p>$$<br>
-(\delta^s)^{2^{t-1}}\equiv 1~mod(~p),(\rho^{s})^{2^{t-1}}\equiv -1~mod~(p)<br>
-$$</p>
-<ul>
+<script type="math/tex; mode=display">
+(\delta^s)^{2^{t-1}}\equiv 1~mod(~p),(\rho^{s})^{2^{t-1}}\equiv -1~mod~(p)</script><ul>
 <li>当$t=1$的时候其实就有下式，即由上式左边的同余式同余号两边同乘$\delta$即可得到：</li>
 </ul>
-<p>$$<br>
-(\delta^{\frac{s+1}{2}})^2 \equiv \delta~mod(~p)<br>
-$$</p>
-<ul>
+<script type="math/tex; mode=display">
+(\delta^{\frac{s+1}{2}})^2 \equiv \delta~mod(~p)</script><ul>
 <li>当$t≥2$的时候，就会有$(\delta^s)^{2^{t-2}}~mod(~p)\in{1,-1}$，此时就可以找到一个$k_1=0 ~or~1$使得：</li>
 </ul>
-<p>$$<br>
-(\delta^s)^{2^{t-2}}*(\rho^s)^{2^{t-1}*k_1}\equiv1~mod(~p)<br>
-$$</p>
-<ul>
+<script type="math/tex; mode=display">
+(\delta^s)^{2^{t-2}}*(\rho^s)^{2^{t-1}*k_1}\equiv1~mod(~p)</script><ul>
 <li>对于$(\delta^s)^{2^{t-3}}$也有$(\delta^s)^{2^{t-3}}~mod(~p)\in{1,-1}$，此时也可以找到一个$k_2=0~or~1$使得：</li>
 </ul>
-<p>$$<br>
-(\delta^s)^{2^{t-3}}*(\rho^s)^{2^{t-1}*k_2}\equiv1~mod(~p)<br>
-$$</p>
-<ul>
-<li>这样就可以找到$k_1,k_2,…,k_{t-1}\in{0,1}$，使得：</li>
+<script type="math/tex; mode=display">
+(\delta^s)^{2^{t-3}}*(\rho^s)^{2^{t-1}*k_2}\equiv1~mod(~p)</script><ul>
+<li>这样就可以找到$k<em>1,k_2,…,k</em>{t-1}\in{0,1}$，使得：</li>
 </ul>
-<p>$$<br>
-(\delta^s)(\rho^s)^{2<em>k_1+2^2</em>k_2+…+2^{t-1}*k_{t-1}}\equiv1~(mod~p)<br>
-$$</p>
-<ul>
+<script type="math/tex; mode=display">
+(\delta^s)(\rho^s)^{2*k_1+2^2*k_2+...+2^{t-1}*k_{t-1}}\equiv1~(mod~p)</script><ul>
 <li>最终我们就可以找到同余方程$x^2 \equiv \delta~(mod~p)$的根即：</li>
 </ul>
-<p>$$<br>
-(\delta^{\frac{s+1}{2}})^2((\rho^s)^{k_1+2*k_2+…+2^{t-2}*k_{t-1}})^2 \equiv \delta~(mod~p)<br>
-$$</p>
-<ul>
-<li>
-<p>而这个程序运行的时间复杂度为$O(log^3p+t^2log^2p)$。</p>
+<script type="math/tex; mode=display">
+(\delta^{\frac{s+1}{2}})^2((\rho^s)^{k_1+2*k_2+...+2^{t-2}*k_{t-1}})^2 \equiv \delta~(mod~p)</script><ul>
+<li><p>而这个程序运行的时间复杂度为$O(log^3p+t^2log^2p)$。</p>
 </li>
-<li>
-<p>下面这张图片就是<code>AMM</code>算法在有限域$F_p$下的求平方根的伪代码：</p>
+<li><p>下面这张图片就是<code>AMM</code>算法在有限域$F_p$下的求平方根的伪代码：</p>
 </li>
 </ul>
 <p><img src="/2025/08/08/CTFblog/CRYPTO%E7%B3%BB%E5%88%97blog/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/RSA/RSA%E5%8A%A0%E5%AF%86%E4%B9%8Be%E5%92%8Cphi%E4%B8%8D%E4%BA%92%E7%B4%A0/image-20250809180442472.png" alt="image-20250809180442472"></p>
@@ -343,16 +291,14 @@ $$</p>
 <ul>
 <li>使用<code>AMM</code>算法解二次同余方程，可以解出一个解<code>x1</code>，而二次同余方程是有俩个解的，而第二个解其实就可以用<code>(p-x1)%p</code>这样其实就可以解得二次同余方程的所有解了。可以做一题算法题尝试一下：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5491">P5491 【模板】二次剩余 - 洛谷</a></li>
 </ul>
-<h2 id="拓展amm算法">拓展AMM算法</h2>
-<ul>
+<h2 id="拓展amm算法"><a href="#拓展AMM算法" class="headerlink" title="拓展AMM算法"></a>拓展AMM算法</h2><ul>
 <li><code>AMM</code>算法是快速求解<code>二次同余方程</code>，而<code>拓展AMM</code>算法其实就是快速求解高次同余方程，即形如$x^r\equiv a~(mod~p)$，其中<code>p</code>是素数，对于这种形式的同余方程需要与离散对数这个同余方程的形式区别开来，离散对数的同余方程是这样的$a^x\equiv r~(mod~p)$。其实这俩式子容易混淆就和高一那时候<code>幂函数</code>与<code>指数函数</code>容易混淆是差不多的。</li>
 </ul>
 <p><strong>问题</strong>：</p>
 <p>求解高次同余方程$x^{r}\equiv \delta~(mod~p)$，其中p为奇素数。</p>
 <p><strong>算法推导</strong>：</p>
 <ul>
-<li>对于该高次同余方程，其实有两种情况：
-<ul>
+<li>对于该高次同余方程，其实有两种情况：<ul>
 <li>第一种其实就是RSA加密中求解私钥d的运算，也就是当$gcd(r,\phi(p))=1$的情况下，就直接开根$x \equiv \delta^{r^{-1}}$，这种情况已经算是相当的熟悉了</li>
 <li>第二种其实就是<code>AMM</code>算法的这种情况，也就是$r\mid p-1$这种情况</li>
 </ul>
@@ -361,70 +307,50 @@ $$</p>
 <li>此时已知的是一个n次剩余$\delta$，那么由r次剩余的判别就可以得到$(\delta^{s})^{r^{t-1}}\equiv \delta^{p-1} \equiv 1~(mod~p)$。（对于r次剩余的判别可以问AI了解一下）</li>
 <li>因为$(s,r)=1$，这样会很容易找到一个非负整数$\alpha$使得$s\mid r\alpha -1$，那其实就有$r\alpha-1=ks$，这样就有如下式子：</li>
 </ul>
-<p>$$<br>
-(\delta^{r\alpha-1})^{r^{t-1}}=(\delta^{ks})^{r^{t-1}}=((\delta^{s})^{r^{t-1}})^k\equiv1~mod(~p)<br>
-$$</p>
-<ul>
+<script type="math/tex; mode=display">
+(\delta^{r\alpha-1})^{r^{t-1}}=(\delta^{ks})^{r^{t-1}}=((\delta^{s})^{r^{t-1}})^k\equiv1~mod(~p)</script><ul>
 <li>当<code>t=1</code>的时候，$\delta^{\alpha}$其实就是该同余方程的一个根。</li>
 <li>当<code>t≥2</code>的时候，这时随机生成一个r次方非剩余，$\rho\in(0,p)$，这时就有如下式子：</li>
 </ul>
-<p>$$<br>
-(\rho^{s})^{i<em>r^{t-1}} \not= (\rho^{s})^{j</em>r^{t-1}},~i\not=j, i,j\in{0,1,…,r-1}<br>
-$$</p>
-<ul>
-<li>
-<p>由于取遍${0,1,…,r-1}$，$(\rho^{s})^{i<em>r^{t-1}}$的结果都没有相同的情况，这样就不妨设$K_i=(\rho^{s})^{i</em>r^{t-1}} and~K={K_0,K_1,…,K_{r-1}}$</p>
+<script type="math/tex; mode=display">
+(\rho^{s})^{i*r^{t-1}} \not= (\rho^{s})^{j*r^{t-1}},~i\not=j, i,j\in\{0,1,...,r-1\}</script><ul>
+<li><p>由于取遍${0,1,…,r-1}$，$(\rho^{s})^{i<em>r^{t-1}}$的结果都没有相同的情况，这样就不妨设$K_i=(\rho^{s})^{i</em>r^{t-1}} and~K={K<em>0,K_1,…,K</em>{r-1}}$</p>
 </li>
-<li>
-<p>这样其实就很容易找到一个$K_i$（任意取一个i好像都可以）满足式子$X^r\equiv1~mod(~p)$，该式子推导需要用上费马小定理：</p>
+<li><p>这样其实就很容易找到一个$K_i$（任意取一个i好像都可以）满足式子$X^r\equiv1~mod(~p)$，该式子推导需要用上费马小定理：</p>
 </li>
 </ul>
-<p>$$<br>
-K_i^r=(\rho^s)^{i<em>r^t}=(\rho^{s</em>r^{t}})^{i}=(\rho^{p-1})^{i}\equiv1~mod(~p)<br>
-$$</p>
-<ul>
+<script type="math/tex; mode=display">
+K_i^r=(\rho^s)^{i*r^t}=(\rho^{s*r^{t}})^{i}=(\rho^{p-1})^{i}\equiv1~mod(~p)</script><ul>
 <li>而根据r次剩余的判别就有：</li>
 </ul>
-<p>$$<br>
-((\delta^{r\alpha-1})^{r^{t-2}})^{r} \equiv 1~mod(~p)<br>
-$$</p>
-<ul>
+<script type="math/tex; mode=display">
+((\delta^{r\alpha-1})^{r^{t-2}})^{r} \equiv 1~mod(~p)</script><ul>
 <li>联立上面俩个式子其实，并且存在唯一的$j_1\in{0,1,…,r-1}$满足：</li>
 </ul>
-<p>$$<br>
-(\delta^{r\alpha-1})^{r^{t-2}}\equiv K_{i-j_1}~(mod~p)<br>
-$$</p>
-<ul>
+<script type="math/tex; mode=display">
+(\delta^{r\alpha-1})^{r^{t-2}}\equiv K_{i-j_1}~(mod~p)</script><ul>
 <li>此时取$K_i=K_0$就有，但是对于下面的这个式子，如果要求得$j_1$就逃不开解离散对数：</li>
 </ul>
-<p>$$<br>
-(\delta^{r\alpha-1})^{r^{t-2}}\equiv K_{-j_1}~(mod~p)\<br>
-\Rightarrow (\delta^{r\alpha-1})^{r^{t-2}}K_j \equiv 1~(mod~p)\<br>
-\Rightarrow (\delta^{r\alpha-1})^{r^{t-2}}(\rho^{s})^{j_1*r^{t-1}} \equiv 1~(mod~p)<br>
-$$</p>
-<ul>
+<script type="math/tex; mode=display">
+(\delta^{r\alpha-1})^{r^{t-2}}\equiv K_{-j_1}~(mod~p)\\
+\Rightarrow (\delta^{r\alpha-1})^{r^{t-2}}K_j \equiv 1~(mod~p)\\
+\Rightarrow (\delta^{r\alpha-1})^{r^{t-2}}(\rho^{s})^{j_1*r^{t-1}} \equiv 1~(mod~p)</script><ul>
 <li>以此类推，可以找到唯一的$j_2\in{0,1,…,r-1}$使得：</li>
 </ul>
-<p>$$<br>
-(\delta^{r\alpha-1})^{r^{t-3}}(\rho^{s})^{j_1<em>r^{t-1}}(\rho^{s})^{j_2</em>r^{t-2}}\equiv 1~(mod~p)<br>
-$$</p>
-<ul>
-<li>这样就可以得到$j_1,j_2,…,j_{t-1}$满足如下式子：</li>
+<script type="math/tex; mode=display">
+(\delta^{r\alpha-1})^{r^{t-3}}(\rho^{s})^{j_1*r^{t-1}}(\rho^{s})^{j_2*r^{t-2}}\equiv 1~(mod~p)</script><ul>
+<li>这样就可以得到$j<em>1,j_2,…,j</em>{t-1}$满足如下式子：</li>
 </ul>
-<p>$$<br>
-\begin{array}{l}<br>
-(\delta^{r\alpha-1})(\rho^{s})^{j_1<em>r}(\rho^{s})^{j_2</em>r^{2}}…(\rho^{s})^{j_{t-1}<em>r^{t-1}}\equiv 1~(mod~p)\<br>
-\Rightarrow (\delta^{r\alpha-1})(\rho^{s})^{j_1</em>r}(\rho^{s})^{j_2<em>r^{2}}…(\rho^{s})^{j_{t-1}<em>r^{t-1}}</em>\delta\equiv \delta~(mod~p)\<br>
-\Rightarrow(\delta^{r\alpha})((\rho^{s})^{j_1+j_2</em>r+…+j_{t-1}<em>r^{t-2}})^r\equiv \delta~(mod~p)\<br>
-\Rightarrow(\delta^{\alpha})^{r}((\rho^{s})^{j_1+j_2</em>r+…+j_{t-1}*r^{t-2}})^r\equiv \delta~(mod~p)<br>
-\end{array}<br>
-$$</p>
-<ul>
-<li>
-<p>这样就得到了一个解：$x\equiv(\delta^{\alpha})((\rho^{s})^{j_1+j_2*r+…+j_{t-1}*r^{t-2}})~(mod~p)$</p>
+<script type="math/tex; mode=display">
+\begin{array}{l}
+(\delta^{r\alpha-1})(\rho^{s})^{j_1*r}(\rho^{s})^{j_2*r^{2}}...(\rho^{s})^{j_{t-1}*r^{t-1}}\equiv 1~(mod~p)\\
+\Rightarrow (\delta^{r\alpha-1})(\rho^{s})^{j_1*r}(\rho^{s})^{j_2*r^{2}}...(\rho^{s})^{j_{t-1}*r^{t-1}}*\delta\equiv \delta~(mod~p)\\
+\Rightarrow(\delta^{r\alpha})((\rho^{s})^{j_1+j_2*r+...+j_{t-1}*r^{t-2}})^r\equiv \delta~(mod~p)\\
+\Rightarrow(\delta^{\alpha})^{r}((\rho^{s})^{j_1+j_2*r+...+j_{t-1}*r^{t-2}})^r\equiv \delta~(mod~p)
+\end{array}</script><ul>
+<li><p>这样就得到了一个解：$x\equiv(\delta^{\alpha})((\rho^{s})^{j<em>1+j_2*r+…+j</em>{t-1}*r^{t-2}})~(mod~p)$</p>
 </li>
-<li>
-<p>下面这张图片是描述拓展AMM算法的伪代码：</p>
+<li><p>下面这张图片是描述拓展AMM算法的伪代码：</p>
 </li>
 </ul>
 <p><img src="/2025/08/08/CTFblog/CRYPTO%E7%B3%BB%E5%88%97blog/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/RSA/RSA%E5%8A%A0%E5%AF%86%E4%B9%8Be%E5%92%8Cphi%E4%B8%8D%E4%BA%92%E7%B4%A0/image-20250809230550800.png" alt="image-20250809230550800"></p>
@@ -440,39 +366,32 @@ $$</p>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这种find_g的方式时间复杂度太高了</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">find_g</span>(<span class="params">p</span>):</span><br><span class="line">    <span class="keyword">for</span> g <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>,p):</span><br><span class="line">        flag = <span class="literal">True</span></span><br><span class="line">        <span class="keyword">for</span> d <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,p-<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> (p-<span class="number">1</span>) % d == <span class="number">0</span> <span class="keyword">and</span> <span class="built_in">pow</span>(g,d,p)==<span class="number">1</span>:</span><br><span class="line">                <span class="keyword">if</span> d != p-<span class="number">1</span>:</span><br><span class="line">                    flag = <span class="literal">False</span></span><br><span class="line">        <span class="keyword">if</span> flag:</span><br><span class="line">            <span class="keyword">return</span> g</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">find_all_root</span>(<span class="params">x0,r,p,g</span>):</span><br><span class="line">    roots = []</span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,r):</span><br><span class="line">        roots.append(x0 * <span class="built_in">pow</span>(g,k*((p-<span class="number">1</span>)//r),p) % p)</span><br><span class="line">    <span class="keyword">return</span> roots</span><br></pre></td></tr></table></figure>
 <ul>
-<li>这里参考博客：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/SevensNight/p/18766178%EF%BC%8C%E5%85%B6%E5%AE%9E%E5%B0%B1%E4%B8%8D%E7%9B%B4%E6%8E%A5%E5%8E%BB%E6%B1%82%60g%60%EF%BC%8C%E8%80%8C%E6%98%AF%E5%88%A9%E7%94%A8%E9%9A%8F%E6%9C%BA%E6%95%B0%E7%9B%B4%E6%8E%A5%E5%8E%BB%E6%B1%82$g%5E%7Bk*%5Cfrac%7Bp-1%7D%7Br%7D">https://www.cnblogs.com/SevensNight/p/18766178，其实就不直接去求`g`，而是利用随机数直接去求$g^{k*\frac{p-1}{r}</a>}$所构成的集合</li>
+<li>这里参考博客：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/SevensNight/p/18766178，其实就不直接去求`g`，而是利用随机数直接去求$g^{k*\frac{p-1}{r}}$所构成的集合">https://www.cnblogs.com/SevensNight/p/18766178，其实就不直接去求`g`，而是利用随机数直接去求$g^{k*\frac{p-1}{r}}$所构成的集合</a></li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 得到所有的ri，即(ri*mp)^e%p = 1</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">ALL_ROOT2</span>(<span class="params">r, q</span>):  <span class="comment"># use function set() and .add() ensure that the generated elements are not repeated</span></span><br><span class="line">    li = <span class="built_in">set</span>()</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">len</span>(li) &lt; r):</span><br><span class="line">        p = powmod(random.randint(<span class="number">1</span>, q-<span class="number">1</span>), (q-<span class="number">1</span>)//r, q)</span><br><span class="line">        li.add(p)</span><br><span class="line">    <span class="keyword">return</span> li</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">find_all_root</span>(<span class="params">x0,p,li</span>):</span><br><span class="line">    roots = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> li:</span><br><span class="line">        root = (x0*i) % p</span><br><span class="line">        roots.append(root)</span><br><span class="line">    <span class="keyword">return</span>  roots</span><br></pre></td></tr></table></figure>
-<h2 id="推导">推导</h2>
-<ul>
+<h2 id="推导"><a href="#推导-2" class="headerlink" title="推导"></a>推导</h2><ul>
 <li>对应这个类型的题目，本质上是求解如下形式的高次同余方程。因为此时的e、phi不互素指数找不到逆元，正常的RSA解密方法就失效了。</li>
 </ul>
 <p><img src="/2025/08/08/CTFblog/CRYPTO%E7%B3%BB%E5%88%97blog/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/RSA/RSA%E5%8A%A0%E5%AF%86%E4%B9%8Be%E5%92%8Cphi%E4%B8%8D%E4%BA%92%E7%B4%A0/image-20250810091234312.png" alt="image-20250810091234312"></p>
 <ul>
 <li>首先要先进行如下的转化：</li>
 </ul>
-<p>$$<br>
-\begin{array}{l}<br>
-n=p*q\m^e\equiv c~mod~(n)\<br>
-\Rightarrow m^e \equiv c ~mod(~p),m^e\equiv c~mod(~q)</p>
-<p>\end{array}<br>
-$$</p>
-<ul>
-<li>
-<p>然后使用AMM算法分别求得这俩个方程的一个解，求得一个解后再求生成元就很容易得到全部解，记$m^e \equiv c ~mod(~p)$的解为$m_{1i}$，记$m^e\equiv c~mod(~q)$的解为$m_{2j}$</p>
+<script type="math/tex; mode=display">
+\begin{array}{l}
+n=p*q\\m^e\equiv c~mod~(n)\\
+\Rightarrow m^e \equiv c ~mod(~p),m^e\equiv c~mod(~q)
+
+\end{array}</script><ul>
+<li><p>然后使用AMM算法分别求得这俩个方程的一个解，求得一个解后再求生成元就很容易得到全部解，记$m^e \equiv c ~mod(~p)$的解为$m<em>{1i}$，记$m^e\equiv c~mod(~q)$的解为$m</em>{2j}$</p>
 </li>
-<li>
-<p>最后再遍历$m_{1i}、m_{2j}$，对他们使用<code>CRT</code>求解，总能求得一个解为<code>m</code></p>
+<li><p>最后再遍历$m<em>{1i}、m</em>{2j}$，对他们使用<code>CRT</code>求解，总能求得一个解为<code>m</code></p>
 </li>
 </ul>
-<p>$$<br>
-\begin{cases}<br>
-x\equiv m_{1i} ~(mod~p)~i=1,2,…,e\<br>
-x\equiv m_{2j} ~(mod~q)~j=1,2,…,e\<br>
-\end{cases}<br>
-$$</p>
-<h2 id="例题">例题</h2>
-<ul>
+<script type="math/tex; mode=display">
+\begin{cases}
+x\equiv m_{1i} ~(mod~p)~i=1,2,...,e\\
+x\equiv m_{2j} ~(mod~q)~j=1,2,...,e\\
+\end{cases}</script><h2 id="例题"><a href="#例题-2" class="headerlink" title="例题"></a>例题</h2><ul>
 <li>题目来源：NSSCTF，不知道是哪题</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">getMyPrime</span>(<span class="params">nbits</span>):</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        n = <span class="number">2</span>*<span class="number">1009</span>*getPrime(nbits//<span class="number">2</span>)*getPrime(nbits//<span class="number">2</span>)</span><br><span class="line">        <span class="keyword">if</span> is_prime(n+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">return</span> n+<span class="number">1</span></span><br><span class="line"></span><br><span class="line">p = getMyPrime(<span class="number">700</span>)</span><br><span class="line">q = getMyPrime(<span class="number">700</span>)</span><br><span class="line">n = p*q</span><br><span class="line"></span><br><span class="line">e = <span class="number">1009</span></span><br><span class="line"></span><br><span class="line">flag = <span class="string">b&#x27;NSSCTF&#123;******&#125;&#x27;</span> + os.urandom(<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line">m = bytes_to_long(flag)</span><br><span class="line"><span class="keyword">assert</span> m.bit_length() &lt; n.bit_length()</span><br><span class="line">c = <span class="built_in">pow</span>(m, e, n)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;n = <span class="subst">&#123;n&#125;</span>&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;c = <span class="subst">&#123;c&#125;</span>&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;p = <span class="subst">&#123;p&#125;</span>&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;q = <span class="subst">&#123;q&#125;</span>&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">n = 38041020633815871156456469733983765765506895617311762629687651104582466286930269704125415948922860928755218376007606985275046819516740493733602776653724917044661666016759231716059415706703608364873041098478331738686843910748962386378250780017056206432910543374411668835255040201640020726710967482627384460424737495938659004753604600674521079949545966815918391090355556787926276553281009472950401599151788863393804355849499551329</span></span><br><span class="line"><span class="string">c = 2252456587771662978440183865248648532442503596913181525329434089345680311102588580009450289493044848004270703980243056178363045412903946651952904162045861994915982599488021388197891419171012611795147125799759947942753772847866647801312816514803861011346523945623870123406891646751226481676463538137263366023714001998348605629756519894600802504515051642140147685496526829541501501664072723281466792594858474882239889529245732945</span></span><br><span class="line"><span class="string">p = 5220649501756432310453173296020153841505609640978826669340282938895377093244978215488158231209243571089268416199675077647719021740691293187913372884975853901554910056350739745148711689601574920977808625399309470283   </span></span><br><span class="line"><span class="string">q = 7286645200183879820325990521698389973072307061827784645416472106180161656047009812712987400850001340478084529480635891468153462119149259083604029658605921695587836792877281924620444742434168448594010024363257554563</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
@@ -485,13 +404,11 @@ $$</p>
 <li>sagemath版本：</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> tqdm <span class="keyword">import</span> tqdm</span><br><span class="line">c = <span class="number">2252456587771662978440183865248648532442503596913181525329434089345680311102588580009450289493044848004270703980243056178363045412903946651952904162045861994915982599488021388197891419171012611795147125799759947942753772847866647801312816514803861011346523945623870123406891646751226481676463538137263366023714001998348605629756519894600802504515051642140147685496526829541501501664072723281466792594858474882239889529245732945</span></span><br><span class="line">p = <span class="number">5220649501756432310453173296020153841505609640978826669340282938895377093244978215488158231209243571089268416199675077647719021740691293187913372884975853901554910056350739745148711689601574920977808625399309470283</span>   </span><br><span class="line">q = <span class="number">7286645200183879820325990521698389973072307061827784645416472106180161656047009812712987400850001340478084529480635891468153462119149259083604029658605921695587836792877281924620444742434168448594010024363257554563</span></span><br><span class="line">r = <span class="number">1009</span></span><br><span class="line">c1 = c % p</span><br><span class="line">c2 = c % q</span><br><span class="line">Zmn = Zmod(p) <span class="comment"># 创建一个模p的整数环</span></span><br><span class="line">Zmn2 = Zmod(q)</span><br><span class="line"><span class="comment"># 在模p的整数环下求 x^r = c 的根，也就是x^p = c mod(p)满足该式子的未知数x</span></span><br><span class="line"><span class="comment"># all = True表示要求出所有解，而all = false则表示不需要求出所有解</span></span><br><span class="line">x_list = Zmn(c1).nth_root(r,<span class="built_in">all</span>=<span class="literal">True</span>)</span><br><span class="line">y_list = Zmn2(c2).nth_root(r,<span class="built_in">all</span>=<span class="literal">True</span>)</span><br><span class="line"><span class="comment">#print(y_list)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> tqdm(<span class="built_in">range</span>(<span class="built_in">len</span>(x_list)),leave = <span class="string">&#x27;True&#x27;</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(y_list)):</span><br><span class="line">        m_ = [x_list[i],y_list[j]]</span><br><span class="line">        p_ = [p,q]</span><br><span class="line">        result = CRT(m_,p_)</span><br><span class="line">        flag = long_to_bytes(result)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">b&#x27;NSSCTF&#x27;</span> <span class="keyword">in</span> flag:</span><br><span class="line">            <span class="built_in">print</span>(flag)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">if</span> <span class="string">b&#x27;NSSCTF&#x27;</span> <span class="keyword">in</span> flag:</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
-<h1 id="情况4p-1和q-1与e均不互素">情况4—(p-1)和(q-1)与e均不互素</h1>
-<ul>
+<h1 id="情况4p-1和q-1与e均不互素"><a href="#情况4—-p-1-和-q-1-与e均不互素" class="headerlink" title="情况4—(p-1)和(q-1)与e均不互素"></a>情况4—(p-1)和(q-1)与e均不互素</h1><ul>
 <li>对于<code>e</code>与<code>phi</code>不互素来说通解其实都是有限域开根，但是对于这种情况，<code>e</code>与<code>p-1和q-1</code>均不互素并且<code>p-1和q-1</code>都不是<code>r</code>的倍数，那AMM算法适用的条件就失效了。</li>
 <li>但是思路还是有限域开根，这里直接使用<code>sagemath</code>一把梭，对于sagemath有限元两种开根方式，看sagemath一把梭部分。</li>
 </ul>
-<h2 id="例题">例题</h2>
-<ul>
+<h2 id="例题"><a href="#例题-3" class="headerlink" title="例题"></a>例题</h2><ul>
 <li>题目来源：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/SevensNight/p/18764988">e与(p-1)或(q-1)均不互素 - sevensnight - 博客园</a></li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> bytes_to_long</span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> flag</span><br><span class="line"> </span><br><span class="line">e = <span class="number">0x14</span></span><br><span class="line">p = <span class="number">733089589724903586073820965792963746076789390539824437962807679954808310072656817423828613938510684864567664345751164944269489647964227519307980688068059059377123391499328155025962198363435968318689113750910755244276996554328840879221120846257832190569086861774466785101694608744384540722995426474322431441</span></span><br><span class="line">q = <span class="number">771182695213910447650732428220054698293987458796864628535794956332865106301119308051373568460701145677164052375651484670636989109023957702790185901445649197004100341656188532246838220216919835415376078688888076677350412398198442910825884505318258393640994788407100699355386681624118606588957344077387058721</span></span><br><span class="line">n = p*q</span><br><span class="line"> </span><br><span class="line">m = bytes_to_long(flag)</span><br><span class="line">c = <span class="built_in">pow</span>(m,e,n)</span><br><span class="line"><span class="built_in">print</span>(c)</span><br><span class="line"> </span><br><span class="line"><span class="comment">#406314720119562590605554101860453913891646775958515375190169046313074168423687276987576196367702523895650602252851191274766072774312855212771035294337840170341052016067631007495713764510925931612800335613551752201920460877432379214684677593342046715833439574705829048358675771542989832566579493199671622475225225451781214904100440695928239014046619329247750637911015313431804069312072581674845078940868349474663382442540424342613429896445329365750444298236684237769335405534090013035238333534521759502103604033307768304224154383880727399879024077733935062478113298538634071453067782212909271392163928445051705642</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -499,18 +416,14 @@ $$</p>
 <li>exp如下：</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tqdm <span class="keyword">import</span> tqdm</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line">p = <span class="number">733089589724903586073820965792963746076789390539824437962807679954808310072656817423828613938510684864567664345751164944269489647964227519307980688068059059377123391499328155025962198363435968318689113750910755244276996554328840879221120846257832190569086861774466785101694608744384540722995426474322431441</span></span><br><span class="line">q = <span class="number">771182695213910447650732428220054698293987458796864628535794956332865106301119308051373568460701145677164052375651484670636989109023957702790185901445649197004100341656188532246838220216919835415376078688888076677350412398198442910825884505318258393640994788407100699355386681624118606588957344077387058721</span></span><br><span class="line">n = p*q</span><br><span class="line">c = <span class="number">406314720119562590605554101860453913891646775958515375190169046313074168423687276987576196367702523895650602252851191274766072774312855212771035294337840170341052016067631007495713764510925931612800335613551752201920460877432379214684677593342046715833439574705829048358675771542989832566579493199671622475225225451781214904100440695928239014046619329247750637911015313431804069312072581674845078940868349474663382442540424342613429896445329365750444298236684237769335405534090013035238333534521759502103604033307768304224154383880727399879024077733935062478113298538634071453067782212909271392163928445051705642</span></span><br><span class="line">e = <span class="number">0x14</span></span><br><span class="line">Zmn = Zmod(p) <span class="comment"># 创建一个模p的整数环</span></span><br><span class="line">Zmn2 = Zmod(q)</span><br><span class="line"><span class="comment"># 在模p的整数环下求 x^r = c 的根，也就是x^p = c mod(p)满足该式子的未知数x</span></span><br><span class="line"><span class="comment"># all = True表示要求出所有解，而all = false则表示不需要求出所有解</span></span><br><span class="line">x_list = Zmn(c).nth_root(e,<span class="built_in">all</span> = <span class="literal">True</span>)</span><br><span class="line">y_list = Zmn2(c).nth_root(e,<span class="built_in">all</span> = <span class="literal">True</span>)</span><br><span class="line"><span class="comment">#print(x_list)</span></span><br><span class="line"><span class="comment">#print(y_list)</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> tqdm(<span class="built_in">range</span>(<span class="built_in">len</span>(x_list)),leave=<span class="literal">True</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(y_list)):</span><br><span class="line">        c_ = [<span class="built_in">int</span>(x_list[i]),<span class="built_in">int</span>(y_list[j])]</span><br><span class="line">        m = [p,q]</span><br><span class="line">        x = CRT(c_,m)</span><br><span class="line">        f = long_to_bytes(x)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">b&#x27;flag&#x27;</span> <span class="keyword">in</span> f:</span><br><span class="line">            <span class="built_in">print</span>(f)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">if</span> <span class="string">b&#x27;flag&#x27;</span> <span class="keyword">in</span> f:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"><span class="comment"># b&#x27;flag&#123;r54__d34l1n6_w17h_3v3n_3 _&amp;_f1nd1n6_n-7h_r0075~~&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
-<h1 id="情况5nprq的情况">情况5—n=p^r*q的情况</h1>
-<ul>
+<h1 id="情况5nprq的情况"><a href="#情况5—n-p-r-q的情况" class="headerlink" title="情况5—n=p^r*q的情况"></a>情况5—n=p^r*q的情况</h1><ul>
 <li>对于这种情况来说处理方式还是一样的去求根。</li>
 </ul>
-<h2 id="例题">例题</h2>
-<ul>
+<h2 id="例题"><a href="#例题-4" class="headerlink" title="例题"></a>例题</h2><ul>
 <li>题目来源：<code>2023年香山杯-list</code></li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> secrets <span class="keyword">import</span> flag</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">pad</span>(<span class="params">s,l</span>):</span><br><span class="line">    <span class="keyword">return</span> s + os.urandom(l - <span class="built_in">len</span>(s))</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">gen</span>():</span><br><span class="line">    g = getPrime(<span class="number">8</span>)</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        p = g * random.getrandbits(<span class="number">138</span>) + <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> isPrime(p):</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        q = g * random.getrandbits(<span class="number">138</span>) + <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> isPrime(q):</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    N = p ** <span class="number">5</span> * q</span><br><span class="line">    phi = p ** <span class="number">4</span> * (p - <span class="number">1</span>) * (q - <span class="number">1</span>)</span><br><span class="line">    d = random.getrandbits(<span class="number">256</span>)</span><br><span class="line">    e = inverse(d, phi)</span><br><span class="line">    E = e * g</span><br><span class="line">    hint = gmpy2.gcd(E, phi)</span><br><span class="line">    <span class="keyword">return</span> N, E, hint</span><br><span class="line"></span><br><span class="line">flag = pad(flag,<span class="number">64</span>)</span><br><span class="line">m = bytes_to_long(flag)</span><br><span class="line">n,e,hint = gen()</span><br><span class="line">c = <span class="built_in">pow</span>(m,e,n)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;hint = <span class="subst">&#123;hint&#125;</span>&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;n = <span class="subst">&#123;n&#125;</span>&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;e = <span class="subst">&#123;e&#125;</span>&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;c = <span class="subst">&#123;c&#125;</span>&#x27;</span>)</span><br><span class="line"><span class="comment"># hint = 251</span></span><br><span class="line"><span class="comment"># n = 108960799213330048807537253155955524262938083957673388027650083719597357215238547761557943499634403020900601643719960988288543702833581456488410418793239589934165142850195998163833962875355916819854378922306890883033496525502067124670576471251882548376530637034077</span></span><br><span class="line"><span class="comment"># e = 3359917755894163258174451768521610910491402727660720673898848239095553816126131162471035843306464197912997253011899806560624938869918893182751614520610693643690087988363775343761651198776860913310798127832036941524620284804884136983215497742441302140070096928109039</span></span><br><span class="line"><span class="comment"># c = 72201537621260682675988549650349973570539366370497258107694937619698999052787116039080427209958662949131892284799148484018421298241124372816425123784602508705232247879799611203283114123802597553853842227351228626180079209388772101105198454904371772564490263034162</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h1 id="总结">总结</h1>
-<h2 id="通解">通解</h2>
-<ul>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><h2 id="通解"><a href="#通解" class="headerlink" title="通解"></a>通解</h2><ul>
 <li>对于情况1和情况2，这两种情况太特殊不具有一般性。在很多情况下不能使用情况1和情况2的方法。</li>
 <li>对于<code>e</code>和<code>phi</code>不互素的情形以及以后遇到的各种变形情况，需要牢牢抓住有限域开根与CRT配合这条思路，基本上这类题型换汤不换药。</li>
 <li>还有就是这类问题本质上就是使用<strong>算法的方式</strong>求第一类的高次同余式，如下图所示：</li>
@@ -519,13 +432,9 @@ $$</p>
 <ul>
 <li>转化到<code>RSA</code>加密中其实就是去解如下高次同余方程：</li>
 </ul>
-<p>$$<br>
-x^r\equiv \delta~mod(~p) \Rightarrow m^e\equiv c~(mod~p)<br>
-$$</p>
-<h2 id="amm板子">AMM板子</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">choose_one</span>(<span class="params">r,p</span>):</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        rho = random.randint(<span class="number">1</span>,p)</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">pow</span>(rho,(p-<span class="number">1</span>)//r,p) != <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span>  rho</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">exAMM</span>(<span class="params">delta,r,p</span>):</span><br><span class="line">    <span class="keyword">if</span> (p-<span class="number">1</span>) % r != <span class="number">0</span>: <span class="comment"># 检测整除</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">pow</span>(delta,(p-<span class="number">1</span>)//r,p) != <span class="number">1</span>: <span class="comment"># 检测N次剩余</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 第一步、第二步: 先生成一个r次非剩余</span></span><br><span class="line">    rho = choose_one(r,p)</span><br><span class="line">    <span class="comment"># 第三步(1): 求t,s</span></span><br><span class="line">    t = <span class="number">0</span></span><br><span class="line">    phi = p-<span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> phi % r == <span class="number">0</span>:</span><br><span class="line">        t += <span class="number">1</span></span><br><span class="line">        phi = (phi-<span class="number">1</span>)//r</span><br><span class="line">    s = (p-<span class="number">1</span>)//(r**t)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 第三步(2): 计算最小的alpha,使得满足 s|r*alpha - 1</span></span><br><span class="line">    <span class="keyword">if</span> math.gcd(s,r) != <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    k = <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> (s*k+<span class="number">1</span>) % r != <span class="number">0</span>:</span><br><span class="line">        k+=<span class="number">1</span></span><br><span class="line">    alpha = (s*k+<span class="number">1</span>)//r</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 第三步(3): 初始化一些值,为循环做准备</span></span><br><span class="line">    a = <span class="built_in">pow</span>(rho,<span class="built_in">pow</span>(r,t-<span class="number">1</span>)*s,p)</span><br><span class="line">    b = <span class="built_in">pow</span>(delta,r*alpha-<span class="number">1</span>,p)</span><br><span class="line">    c = <span class="built_in">pow</span>(rho,s,p)</span><br><span class="line">    h = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,t):</span><br><span class="line">        d = <span class="built_in">pow</span>(b,<span class="built_in">pow</span>(r,t-<span class="number">1</span>-i),p)</span><br><span class="line">        <span class="keyword">if</span> d == <span class="number">1</span>:</span><br><span class="line">            j = <span class="number">0</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            j = -math.log(d,a) % r</span><br><span class="line">        b = b*<span class="built_in">pow</span>(c,r*j,p) % p</span><br><span class="line">        h = h*<span class="built_in">pow</span>(c,j) % p</span><br><span class="line">        c = <span class="built_in">pow</span>(c,r,p)</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">pow</span>(delta,alpha,p) * h % p</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">ALL_ROOT2</span>(<span class="params">r, q</span>):  <span class="comment"># use function set() and .add() ensure that the generated elements are not repeated</span></span><br><span class="line">    li = <span class="built_in">set</span>()</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">len</span>(li) &lt; r):</span><br><span class="line">        p = powmod(random.randint(<span class="number">1</span>, q-<span class="number">1</span>), (q-<span class="number">1</span>)//r, q)</span><br><span class="line">        li.add(p)</span><br><span class="line">    <span class="keyword">return</span> li</span><br><span class="line">    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">find_all_root</span>(<span class="params">x0,p,li</span>):</span><br><span class="line">    roots = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> li:</span><br><span class="line">        root = (x0*i) % p</span><br><span class="line">        roots.append(root)</span><br><span class="line">    <span class="keyword">return</span>  roots</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">solve_nth_root</span>(<span class="params">c,e,p</span>):</span><br><span class="line">    x0 = exAMM(c,e,p)</span><br><span class="line">    li = ALL_ROOT2(e,p)</span><br><span class="line">    roots = find_all_root(x0,p,li)</span><br><span class="line">    <span class="keyword">return</span> roots</span><br></pre></td></tr></table></figure>
-<h2 id="sagemath一把梭">sagemath一把梭</h2>
-<ul>
+<script type="math/tex; mode=display">
+x^r\equiv \delta~mod(~p) \Rightarrow m^e\equiv c~(mod~p)</script><h2 id="amm板子"><a href="#AMM板子" class="headerlink" title="AMM板子"></a>AMM板子</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">choose_one</span>(<span class="params">r,p</span>):</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        rho = random.randint(<span class="number">1</span>,p)</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">pow</span>(rho,(p-<span class="number">1</span>)//r,p) != <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span>  rho</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">exAMM</span>(<span class="params">delta,r,p</span>):</span><br><span class="line">    <span class="keyword">if</span> (p-<span class="number">1</span>) % r != <span class="number">0</span>: <span class="comment"># 检测整除</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">pow</span>(delta,(p-<span class="number">1</span>)//r,p) != <span class="number">1</span>: <span class="comment"># 检测N次剩余</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 第一步、第二步: 先生成一个r次非剩余</span></span><br><span class="line">    rho = choose_one(r,p)</span><br><span class="line">    <span class="comment"># 第三步(1): 求t,s</span></span><br><span class="line">    t = <span class="number">0</span></span><br><span class="line">    phi = p-<span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> phi % r == <span class="number">0</span>:</span><br><span class="line">        t += <span class="number">1</span></span><br><span class="line">        phi = (phi-<span class="number">1</span>)//r</span><br><span class="line">    s = (p-<span class="number">1</span>)//(r**t)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 第三步(2): 计算最小的alpha,使得满足 s|r*alpha - 1</span></span><br><span class="line">    <span class="keyword">if</span> math.gcd(s,r) != <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    k = <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> (s*k+<span class="number">1</span>) % r != <span class="number">0</span>:</span><br><span class="line">        k+=<span class="number">1</span></span><br><span class="line">    alpha = (s*k+<span class="number">1</span>)//r</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 第三步(3): 初始化一些值,为循环做准备</span></span><br><span class="line">    a = <span class="built_in">pow</span>(rho,<span class="built_in">pow</span>(r,t-<span class="number">1</span>)*s,p)</span><br><span class="line">    b = <span class="built_in">pow</span>(delta,r*alpha-<span class="number">1</span>,p)</span><br><span class="line">    c = <span class="built_in">pow</span>(rho,s,p)</span><br><span class="line">    h = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,t):</span><br><span class="line">        d = <span class="built_in">pow</span>(b,<span class="built_in">pow</span>(r,t-<span class="number">1</span>-i),p)</span><br><span class="line">        <span class="keyword">if</span> d == <span class="number">1</span>:</span><br><span class="line">            j = <span class="number">0</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            j = -math.log(d,a) % r</span><br><span class="line">        b = b*<span class="built_in">pow</span>(c,r*j,p) % p</span><br><span class="line">        h = h*<span class="built_in">pow</span>(c,j) % p</span><br><span class="line">        c = <span class="built_in">pow</span>(c,r,p)</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">pow</span>(delta,alpha,p) * h % p</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">ALL_ROOT2</span>(<span class="params">r, q</span>):  <span class="comment"># use function set() and .add() ensure that the generated elements are not repeated</span></span><br><span class="line">    li = <span class="built_in">set</span>()</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">len</span>(li) &lt; r):</span><br><span class="line">        p = powmod(random.randint(<span class="number">1</span>, q-<span class="number">1</span>), (q-<span class="number">1</span>)//r, q)</span><br><span class="line">        li.add(p)</span><br><span class="line">    <span class="keyword">return</span> li</span><br><span class="line">    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">find_all_root</span>(<span class="params">x0,p,li</span>):</span><br><span class="line">    roots = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> li:</span><br><span class="line">        root = (x0*i) % p</span><br><span class="line">        roots.append(root)</span><br><span class="line">    <span class="keyword">return</span>  roots</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">solve_nth_root</span>(<span class="params">c,e,p</span>):</span><br><span class="line">    x0 = exAMM(c,e,p)</span><br><span class="line">    li = ALL_ROOT2(e,p)</span><br><span class="line">    roots = find_all_root(x0,p,li)</span><br><span class="line">    <span class="keyword">return</span> roots</span><br></pre></td></tr></table></figure>
+<h2 id="sagemath一把梭"><a href="#sagemath一把梭" class="headerlink" title="sagemath一把梭"></a>sagemath一把梭</h2><ul>
 <li>对于有限域开根，其实sagemath已经有对应的函数与方法了，其实还不止一种。接下来主要介绍sagemath中有限域开根的两中方式。所谓有限域开根其实在数论中就是求高次同余式$x^r= a~(mod~p)$的根，而在其他代数结构可能就不是指模意义下的求根了。</li>
 <li>有了sagemath一把梭之后就不用<code>AMM</code>算法了，可以纯脚本小子哈哈哈，但是建议还是学一下AMM算法，都牢密码了，如果不是比赛的话认真学还是不错的。</li>
 <li>方式一：</li>
@@ -536,20 +445,12 @@ $$</p>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">p = <span class="number">41</span></span><br><span class="line">r = <span class="number">8</span></span><br><span class="line">c = <span class="number">10</span></span><br><span class="line">F = GF(p) <span class="comment"># 创建一个有限域F_p</span></span><br><span class="line">R.&lt;x&gt; = PolynomialRing(F) <span class="comment"># 在F上定义一个多项式环,其变量为x </span></span><br><span class="line">f = x^r - c <span class="comment"># 构造同余方程多项式</span></span><br><span class="line">f = f.monic() <span class="comment"># 转化为首一多项式</span></span><br><span class="line">x_list = f.roots() <span class="comment"># 有限域开方</span></span><br><span class="line"><span class="built_in">print</span>(x_list)</span><br></pre></td></tr></table></figure>
 <p>注意：实际上求根其实只需要求一个根，之后使用如下定理在模方程下有：$X^r\equiv a~(mod~p)$，其中$x_0$是该方程的一个解，那么所有解的形式是：$x=x_0<em>g^{k</em>\frac{p-1}{r}}~mod(~p),k=0,1,…,r-1$，而这个<code>g</code>其实是一个生成元，满足$g^r\equiv1~(mod~p)$即可快速求出。这个其实在拓展<code>AMM</code>算法中有详细讲解。</p>
-<h1 id="rabin加密算法">Rabin加密算法</h1>
-<h2 id="加密算法">加密算法</h2>
-<ul>
-<li>
-<p>参考博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/vivid117/article/details/124784493">密码学之公钥密码体系（4）：Rabin公钥密码方案_rabin密码体制-CSDN博客</a></p>
+<h1 id="rabin加密算法"><a href="#Rabin加密算法" class="headerlink" title="Rabin加密算法"></a>Rabin加密算法</h1><h2 id="加密算法"><a href="#加密算法" class="headerlink" title="加密算法"></a>加密算法</h2><ul>
+<li>参考博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/vivid117/article/details/124784493">密码学之公钥密码体系（4）：Rabin公钥密码方案_rabin密码体制-CSDN博客</a></li>
+<li><code>RSA</code>加密算法在<code>1977</code>年就已经出现了，但是<code>Rabin</code>加密算法其实是在<code>1979</code>年被提出。该加密算法是基于平方根计算难度的公钥密码体系，而<code>RSA</code>是基于大整数分解的公钥密码体系，这俩点需要区别开来。</li>
+<li><p>但是为什么会在<code>RSA</code>加密中讲解<code>Rabin</code>加密算法呢？这是因为<code>Rabin</code>加密算法其实可以被看做是一个特殊的RSA加密算法，正常来说RSA加密的<code>e</code>一般都是选取<code>65537</code>，而<code>Rabin</code>加密算法基于平方根计算难度的公钥密码体系，所以<code>e</code>一般是选取<code>2</code>。</p>
 </li>
-<li>
-<p><code>RSA</code>加密算法在<code>1977</code>年就已经出现了，但是<code>Rabin</code>加密算法其实是在<code>1979</code>年被提出。该加密算法是基于平方根计算难度的公钥密码体系，而<code>RSA</code>是基于大整数分解的公钥密码体系，这俩点需要区别开来。</p>
-</li>
-<li>
-<p>但是为什么会在<code>RSA</code>加密中讲解<code>Rabin</code>加密算法呢？这是因为<code>Rabin</code>加密算法其实可以被看做是一个特殊的RSA加密算法，正常来说RSA加密的<code>e</code>一般都是选取<code>65537</code>，而<code>Rabin</code>加密算法基于平方根计算难度的公钥密码体系，所以<code>e</code>一般是选取<code>2</code>。</p>
-</li>
-<li>
-<p>接下来就介绍一下<code>Rabin</code>加密算法：</p>
+<li><p>接下来就介绍一下<code>Rabin</code>加密算法：</p>
 <ul>
 <li>首先先生成两个大素数<code>p</code>、<code>q</code>，这俩个大素数最好都满足$p\equiv3~mod(~4),q\equiv3~(mod~4)$，这样会简化求平方根的计算（后面会提到）</li>
 <li>然后计算模数<code>n=p*q</code></li>
@@ -557,11 +458,9 @@ $$</p>
 <li>选取私钥<code>sk=(p,q)</code></li>
 </ul>
 </li>
-<li>
-<p>加密过程：对消息<code>m</code>进行模平方运算，也就是$c\equiv m^2~(mod~n)$</p>
+<li><p>加密过程：对消息<code>m</code>进行模平方运算，也就是$c\equiv m^2~(mod~n)$</p>
 </li>
-<li>
-<p>解密过程如下（其实解密过程就是上面求解高次同余式方程的过程）：</p>
+<li><p>解密过程如下（其实解密过程就是上面求解高次同余式方程的过程）：</p>
 <ul>
 <li>将$c\equiv m^2~(mod~n)$拆分成$m^2\equiv c~mod(~p),m^2\equiv c~(mod~q)$</li>
 <li>求解同余方程的根$x^2\equiv c~mod(~p),x^2\equiv c~(mod~q)$，这里有一个问题<code>p、q</code>越大二次同余方程的这个根就越难找到。</li>
@@ -571,13 +470,10 @@ $$</p>
 <li>分别求得俩组解后，使用<code>CRT</code>最终求得密文。</li>
 </ul>
 </li>
-<li>
-<p>接下来使用代码演示一下：</p>
-</li>
+<li>接下来使用代码演示一下：</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">my_p_q</span>(<span class="params">p_bit,q_bit</span>):</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        p = getPrime(p_bit)</span><br><span class="line">        q = getPrime(q_bit)</span><br><span class="line">        <span class="keyword">if</span> p % <span class="number">4</span> == <span class="number">3</span> <span class="keyword">and</span> q % <span class="number">4</span> == <span class="number">3</span>:</span><br><span class="line">            <span class="keyword">return</span> p,q</span><br><span class="line">message = <span class="string">b&#x27;this_is_message&#x27;</span></span><br><span class="line">m = bytes_to_long(message)</span><br><span class="line">e = <span class="number">2</span></span><br><span class="line">p,q = my_p_q(<span class="number">512</span>,<span class="number">512</span>)</span><br><span class="line">n = p*q</span><br><span class="line">c = <span class="built_in">pow</span>(m,e,n)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;加密参数如下:&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;n =&quot;</span>,n)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;p =&quot;</span>,p)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;q =&quot;</span>,q)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;e =&quot;</span>,e)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;m =&quot;</span>,m)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;c =&quot;</span>,c)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 接下来是解密过程,先解二次同余方程,再求解令一个根,最后使用CRT</span></span><br><span class="line">x1 = <span class="built_in">pow</span>(c,(p+<span class="number">1</span>)//<span class="number">4</span>,p)</span><br><span class="line">y1 = <span class="built_in">pow</span>(c,(q+<span class="number">1</span>)//<span class="number">4</span>,q)</span><br><span class="line"></span><br><span class="line">x2 = (p-x1) % p</span><br><span class="line">y2 = (q-y1) % q</span><br><span class="line"></span><br><span class="line">c1 = [x1,x2]</span><br><span class="line">c2 = [y1,y2]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> c1:</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> c2:</span><br><span class="line">        M = p*q</span><br><span class="line">        m1 = q</span><br><span class="line">        m2 = p</span><br><span class="line">        m1_ = gmpy2.invert(m1,p)</span><br><span class="line">        m2_ = gmpy2.invert(m2,q)</span><br><span class="line">        x = (m1*m1_*i + m2*m2_*j) % M</span><br><span class="line">        <span class="built_in">print</span>(long_to_bytes(x))</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">b&#x27;this_is_message&#x27;</span></span><br><span class="line"><span class="string">b&quot;?\xbb\xfc&lt;\x89/*`x\xc7V&#x27;y\xa7?\xf3#.T\x06R\xf2\x8b\x90\x16\xe5L\xc3\x82\x8a\xdfSS\x1e\x89-F\x8b\x1b\\\x12\t\xa3\xc79\xe9\x04\xe4\xe3\xa78E\x80A\xc8\xdf\xc7\xfc\xb84;P\xb8\x9b\xb6\xde^v\xd4&amp;\xe3i\x91\xf6\x86\xdch\xf3\xd5\xb1\x93\xd7\xe8&gt;0\x17\xf8Z\xfb\xc0\xe7\xb5-%\xaf\xa0t\xa6\xa9\x80\xfe\xa0*u\x96\xa0\xe2\x89\xf0&amp;=\xb9\x88\xb6\x06\x07\x85,\x07\xb8\xa6\xba\xb3\xd7$M\xb0\xd6&quot;</span></span><br><span class="line"><span class="string">b&#x27;V\x85\x1cR\xd1\xc5\xb8r\xcenk\xba\x91\x17\xcdQ\xbd\xdc\x96\xc5MJ\x16\xa23|\xe0&lt;=PZ\xec\xd8\x9d\x14*51f\x97\x19\x87/\x91&amp;\xae\xee&#125;\x1b\x1c\x9e\xa8\xb6VC,S\xfb\xfd\x8eh\xc5\x88\xea\xcb\xac\xcf \x85!\xdc\x04\xec\xdfz\x82\x0b\xa4\xe8\x97\xa9\x84\x9d\xea\xbb\xadF*\x89f8\xcc\xb9\xd2\xeb\xae&quot;\x0b\x01\xb1\xbe\xd0K\xf2yC\x15+\xd4Z;\xe3\xa1y\x1e&lt;\x019&#123;\x13\xcc\x8c2\xe4\x9awfk&#x27;</span></span><br><span class="line"><span class="string">b&quot;\x96A\x18\x8fZ\xf4\xe2\xd3G5\xc1\xe2\n\xbf\rD\xe1\n\xea\xcb\xa0&lt;\xa22Jb,\xff\xbf\xdb:@+\xbb\x9dW&#123;\xbc\x81\xf3+\x90\xd3X`\x97\xf3a\xfe\xc3\xd6\xee6\x98\x0c\x0c\x1b\xf8\xb5\xc2\xa4\x16A\x86\x82\x8b-\x97YH\xbfn~\xd6\x01^t\x98\xbeI=\\\x86(\xeb\xc5&gt;\x85\x85&#x27; \x81\xe6\xf8\x9bN\x96\xb1\xab2\xbdpvh\x0f\xe3\xf7\xb5\xc4\x80y\x9d)\xba\xbb\xda\x13\x06\x19Y\x13\xd9\x81HKc\xaf\xdc&quot;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
-<h2 id="例题">例题</h2>
-<ul>
+<h2 id="例题"><a href="#例题-5" class="headerlink" title="例题"></a>例题</h2><ul>
 <li>题目来源：<code>VNCTF2025</code></li>
 <li>题目附件如下：</li>
 </ul>
