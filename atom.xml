@@ -6,7 +6,7 @@
   <link href="http://iyheart.github.io/atom.xml" rel="self"/>
   
   <link href="http://iyheart.github.io/"/>
-  <updated>2025-10-08T07:05:27.302Z</updated>
+  <updated>2025-10-10T01:54:51.222Z</updated>
   <id>http://iyheart.github.io/</id>
   
   <author>
@@ -21,10 +21,12 @@
     <link href="http://iyheart.github.io/2025/10/08/protobuf/protobuf%E5%AD%A6%E4%B9%A01/"/>
     <id>http://iyheart.github.io/2025/10/08/protobuf/protobuf%E5%AD%A6%E4%B9%A01/</id>
     <published>2025-10-08T06:13:43.000Z</published>
-    <updated>2025-10-08T07:05:27.302Z</updated>
+    <updated>2025-10-10T01:54:51.222Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>参考文章：<a href="https://blog.csdn.net/t5y22/article/details/142169446">ProtoBuf详解_proto buf-CSDN博客</a></li><li>参考文章：<a href="https://protobuf.com.cn/installation/">Protocol Buffer 编译器安装 | Protocol Buffers 文档 - ProtoBuf 文档</a></li></ul><h1 id="基础知识"><a class="markdownIt-Anchor" href="#基础知识"></a> 基础知识</h1><p><code>protobuf</code>英文全称为Protocol Buffers，是Google的一种语言中立、平台中立、可扩展的结构化数据序列化机制。它类似于 JSON，但更小更快，并且能生成原生语言绑定。你只需一次性定义好你想要的数据结构，然后就可以使用专门生成的源代码，轻松地从各种数据流中读写你的结构化数据，并支持多种语言。</p><h2 id="序列化和反序列化"><a class="markdownIt-Anchor" href="#序列化和反序列化"></a> 序列化和反序列化</h2><ul><li><p>序列化和反序列化对于学web的可能比较熟悉，但我不是学web的，所以简单介绍一下：</p><ul><li><p>序列化：就是将一个对象转换为字节序的过程;</p></li><li><p>反序列化：就是将一个字节序转换为一个完整对象的过程;</p></li><li><p>使用序列化的情况：</p><ol><li>存储数据：当你想把的内存中的对象状态保存到⼀个⽂件中或者存到数据库中时。</li><li>网络传输：网络直接传输数据，但是无法直接传输对象，所以要在传输前序列化，传输完成后反 序列化成对象。例如我们之前学习过socket编程中发送与接收数据。</li></ol></li><li><p>主流的序列化和反序列化工具有：XML、JSON、ProtoBuf;</p></li></ul></li></ul><h2 id="protobuf版本"><a class="markdownIt-Anchor" href="#protobuf版本"></a> protobuf版本</h2><ul><li>目前<code>protobuf</code>的大版本只有<code>protobuf2</code>、<code>protobuf3</code>，这两个大版本。<code>protobuf</code>是开源的，其源代码和发行版都被放置在github仓库中，对应的网址：<a href="https://github.com/protocolbuffers/protobuf">protocolbuffers/protobuf: Protocol Buffers - Google’s data interchange format</a></li><li>通过翻找github上protobuf的发行版，会发现protobuf的版本号有<code>V x.y.z</code>以及下图所示的<code>V x.y</code>这种。<ul><li>其中<code>V x.y.z</code>，<code>x</code>表示主版本号，<code>y</code>表示次版本号，<code>z</code>表示补丁版本号。而通过翻阅后面会发现主版本号只出现<code>2、3</code></li><li>由于主版本号只出现<code>2、3</code>，所以更新到后面主版本号意义确实不太大了，所以就更换了版本号的命名方案，将版本号<code>3</code>给省略了，变成<code>x.y</code>的形式。这种形式默认是<code>protobuf3</code>。（图中<code>V 21.0</code>其实就是这种形式）</li><li></li></ul></li><li>为了能用上新版本的一些功能以及向下兼容，所以在安装<code>protobuf</code>的时候最好还是安装最新版本，<code>protobuf3</code>是兼容<code>protobuf2</code>的。</li></ul><p><img src="/2025/10/08/protobuf/protobuf%E5%AD%A6%E4%B9%A01/image-20251010025324870.png" alt="image-20251010025324870"></p><h2 id="protobuf工作原理"><a class="markdownIt-Anchor" href="#protobuf工作原理"></a> protobuf工作原理</h2>]]></content>
     
     
-    <summary type="html">前言：最近会写完，先定个截止日期，10月15日之前</summary>
+    <summary type="html">前言：已经开始写了，先定个截止日期，10月15日之前</summary>
     
     
     
