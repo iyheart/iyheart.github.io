@@ -1,0 +1,1252 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
+    
+    
+      
+        <title>C++入门 - 编程语言知识库</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4af4bdda.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/pygments.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#c" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="编程语言知识库" class="md-header__button md-logo" aria-label="编程语言知识库" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            编程语言知识库
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              C++入门
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="编程语言知识库" class="md-nav__button md-logo" aria-label="编程语言知识库" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    编程语言知识库
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    首页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    C++
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            C++
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cpp入门/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C++入门
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cpp练习题/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CPP练习题
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Java
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Java
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Java/Java入门/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Java入门
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Java/Java面向对象/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Java面向对象
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#c_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      C++简介
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#c_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      C++源码
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#c_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      C++入门
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="C++入门">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#c_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      第一个C++程序
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      注释
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-" class="md-nav__link">
+    <span class="md-ellipsis">
+      预处理--头文件和名称空间
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      输出
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      C++源代码风格
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      C++语句
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      输入、连续输出
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#c_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      C++基本语法和数据类型
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="C++基本语法和数据类型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      变量
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      整型
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="整型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      无符号整型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      整数进制表示
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#char" class="md-nav__link">
+    <span class="md-ellipsis">
+      特殊的整型char
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bool" class="md-nav__link">
+    <span class="md-ellipsis">
+      bool类型
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      常量
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      浮点数
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="c">C++入门</h1>
+<h2 id="c_1">C++简介</h2>
+<ul>
+<li>C++是在C语言的基础上添加了面向对象编程和泛型编程的支持。</li>
+<li>C++继承了C语言高效、简洁、快速和可移植性的传统</li>
+<li>C++是C语言的超集，名称C++来自C语言中的递增运算符<code>++</code>，所以它是C的扩充版本</li>
+<li>接下来先简单介绍一下C++中对象的概念。说到面向对象我们先需要了解面向对象的三个基础概念，<code>类</code>、<code>属性</code>、<code>方法</code></li>
+<li><code>类</code>：主要就是一种规范，我们就拿<code>字符串</code>来举例。我们对字符串进行一种规范，把字符串划分为字符串类。这样我们就可以将<code>字符串</code>中相同点可以进行抽象。</li>
+<li><code>属性</code>：我们将类中的相同部分抽象出来就是作为属性。比如：<code>字符串</code>中共同部分有<code>长度</code>、<code>地址</code>等；</li>
+<li><code>方法</code>：对相同类中的操作或者对一个类中的相同操作，我们就可以称为方法，方法可以理解为一个函数。例如：我们要合并两个字符串，我们就可以在这个类中定义一个专门进行这个操作的方法，对这两个对象进行操作</li>
+<li>总结：讲这一类东西进行规范，规范共同点、规范专门的操作，这就是面向对象的思想</li>
+</ul>
+<h2 id="c_2">C++源码</h2>
+<ul>
+<li>不同的操作系统，源代码文件的扩展名稍微有点不同，接下来介绍一下</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>C++实现</th>
+<th>源代码文件的扩展名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UNIX</td>
+<td>C、cc、cxx、c</td>
+</tr>
+<tr>
+<td>GNU C++</td>
+<td>C、cc、cxx，Cpp、c++</td>
+</tr>
+<tr>
+<td>Digital Mars</td>
+<td>cpp、cxx</td>
+</tr>
+<tr>
+<td>Watcom</td>
+<td>cpp</td>
+</tr>
+<tr>
+<td>Microsoft Visual C++</td>
+<td>cpp、cxx、cc</td>
+</tr>
+<tr>
+<td>Freestyle Code Warrior</td>
+<td>cp、cpp、cc、cxx、c++</td>
+</tr>
+<tr>
+<td>Borland C++</td>
+<td>cp、cpp、cc、cxx、c++</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>编译和链接：</li>
+<li>一开始利用一个C语言的前端，先会将C++源代码翻译成C语言源代码，然后再使用C语言编译器进行编译</li>
+<li>后来随着C++的发展，才出现了专门的编译器可以将C++直接编译成二进制的机器码。</li>
+</ul>
+<h2 id="c_3">C++入门</h2>
+<ul>
+<li>接下来给出一个C++编写的两个模板，这个是第一个模板。</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+
+
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<ul>
+<li>接下来介绍第二个模板：</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="c_4">第一个C++程序</h3>
+<ul>
+<li>我们利用上面的第一个模板来编写第一个C++程序。并且我们会逐步详细介绍该C++程序的内容</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="c1">// myfirst.cpp -- displays a message</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="c1">                                 // a PREPROCESSOR directive</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w">                                          </span><span class="c1">// function header</span>
+<span class="p">{</span><span class="w">                                                   </span><span class="c1">// start of function body</span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span><span class="w">                            </span><span class="c1">// make definitions visible</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Come up and C++ me some time.&quot;</span><span class="p">;</span><span class="w">        </span><span class="c1">// message</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w">                                   </span><span class="c1">// start a-new line</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;You won&#39;t regret it!&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w">         </span><span class="c1">// more output</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">                                       </span><span class="c1">// terminate main()</span>
+<span class="p">}</span><span class="w">                                                   </span><span class="c1">// end of function body</span>
+</code></pre></div>
+
+<h3 id="_1">注释</h3>
+<ul>
+<li>
+<p><code>C++</code>的注释是以<code>双斜杠</code>(//)打头，这种注释只能写在一行中，例如程序中的注释，在编写程序的过程中，写注释还是很有必要的，程序越复杂，注释的价值越大。</p>
+</li>
+<li>
+<ul>
+<li>注释可以帮助他人理解代码</li>
+</ul>
+</li>
+<li>注释也可以帮助我们自己理解代码</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="c1">// myfirst.cpp -- displays a message</span>
+</code></pre></div>
+
+<ul>
+<li><code>C++</code>也能识别C的注释，C的注释一般都是<code>/*</code>和<code>*/</code>之间，而这样的注释可以写多行。之后的版本中，不论是C++还是C语言，都支持使用<code>/**/</code>和<code>//</code>这两个符号进行注释</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="c1"> /* a C-style comment*/</span>
+</code></pre></div>
+
+<h3 id="-">预处理--头文件和名称空间</h3>
+<p><strong>头文件</strong></p>
+<ul>
+<li>在<code>C++</code>程序中的开头部分有如下代码，这样做的目的就是简化程序。</li>
+<li>和C语言一样，C++也使用一个预处理器，该程序在进行主编译之前会对源文件进行处理。</li>
+<li>对于<code>#include &lt;iostream&gt;</code>，在预处理的时候就会将文件名为<code>iostream</code>添加到程序中，这个文件是人们已经写好的输入输出的基本功能，我们刚开始学习一般都会用上这个文件之后的<code>cin</code>和<code>cout</code>也就是<code>输入输出流</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+</code></pre></div>
+
+<ul>
+<li>像<code>iostream</code>这样的文件， 因为他们被包含在其他文件中，所以也叫做包含文件；还因为它们被包含在文件起始处，所以它们也被称为头文件。头文件可以是<code>.h</code>结尾，也可以是无扩展名等，这里列出一张表来介绍</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>头文件类型</th>
+<th>约定</th>
+<th>示例</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C++旧式风格</td>
+<td>以.h结尾</td>
+<td>iostream.h</td>
+<td>C++程序可以使用</td>
+</tr>
+<tr>
+<td>C旧式风格</td>
+<td>以.h结尾</td>
+<td>math.h</td>
+<td>C、C++程序可以使用</td>
+</tr>
+<tr>
+<td>C++新式风格</td>
+<td>没有扩展名</td>
+<td>iostream</td>
+<td>C++程序可以使用，使用namespace std</td>
+</tr>
+<tr>
+<td>转换后的C</td>
+<td>加上前缀c,没有扩展名</td>
+<td>cmath</td>
+<td>C++程序可以使用，可以使用不是C的特性，如namespace std</td>
+</tr>
+</tbody>
+</table>
+<p><strong>名称空间</strong></p>
+<ul>
+<li>如果使用<code>iostream</code>,而不是使用<code>iostream.h</code>，则应该使用厦门的名称空间编译指令来使<code>iostream</code>中的定义对程序可用：<code>using</code>是编译指令，刚开始学就先记住这个指令</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+</code></pre></div>
+
+<ul>
+<li>名称空间是一个C++的特性，如果我们使用别人编写好的头文件，如果其中两个头文件<code>Compace1</code>和<code>Compace2</code>中都有一个叫<code>func</code>函数，如果没有使用<code>func</code>编译器就不知道使用哪个头文件的<code>func</code>函数。</li>
+<li>这时我们就可以用这样的命名空间去使用对应库文件的函数</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="c1">// 使用Compace1的func函数</span>
+<span class="n">Compace1</span><span class="o">::</span><span class="n">func</span><span class="p">();</span>
+<span class="c1">// 使用Compace2的func函数</span>
+<span class="n">Compace2</span><span class="o">::</span><span class="n">func</span><span class="p">()</span>
+</code></pre></div>
+
+<ul>
+<li>如果我们只需要使用<code>Compace1</code>的func函数，我们可以这么做：</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">Compace1</span>
+<span class="nn">func</span><span class="p">();</span><span class="w">     </span><span class="c1">//调用的是Compace1头文件的函数</span>
+</code></pre></div>
+
+<ul>
+<li>所以我们使用的<code>iostream</code>这个头文件没有使用<code>using</code>定义名称空间时，我们就需要这么写</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Come up and C++ me some time&quot;</span><span class="p">;</span>
+</code></pre></div>
+
+<ul>
+<li>当我们只需要使用一个库文件中的一些函数时，我们可以这样做：</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="k">using</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="p">;</span>
+
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Welocme C++&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+</code></pre></div>
+
+<h3 id="_2">输出</h3>
+<ul>
+<li>
+<p>我们使用这个函数进行输出操作：</p>
+</li>
+<li>
+<ul>
+<li><code>cout</code>是一个输出操作，而<code>&lt;&lt;</code>是一个插入运算符，就是将字符串插入到相应的输入输出流</li>
+</ul>
+</li>
+<li>而<code>&lt;&lt;</code>符合其实还可以用做左移运算符，这个就是一个符号能在不同情况有不同功能，这就是重载</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Come up and C++ me some time.&quot;</span><span class="p">;</span>
+</code></pre></div>
+
+<p><img alt="img" src="1740062648106-9ea6bf79-79c0-48c6-849c-9d848b480e87.jpeg" /></p>
+<ul>
+<li>在cout之后还有一个特殊符号<code>endl</code>，这个符号的作用就是对该输出流进行终止。会将屏幕光标移动到下一行开头。</li>
+<li><code>cout</code>不会自动下一行，所以<code>endl</code>和<code>\n</code>的效果是一样的。但是有些时候使用<code>\n</code>会更方便</li>
+</ul>
+<h3 id="c_5">C++源代码风格</h3>
+<ul>
+<li>每条语句占一行。</li>
+<li>每个函数都有一个开始花括号和一个结束花括号，这两个花括号各占一行。</li>
+<li>函数之后的语句都相对于花括号进行缩进。</li>
+<li>与函数名称相关的圆括号周围没有空白。</li>
+</ul>
+<h3 id="c_6">C++语句</h3>
+<ul>
+<li>这里再给出一个源代码：</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="c1">// carrots.cpp -- food processing program</span>
+<span class="c1">// uses and display a variable</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">carrots</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">carrots</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">25</span><span class="p">;</span>
+<span class="w">  </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;I have &quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">carrots</span><span class="p">;</span>
+<span class="w">  </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; carrots.&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">  </span><span class="n">carrtos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">carrots</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">  </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Crunch, crunch. Now I have &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">carrots</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; carrots.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span><span class="w">  </span>
+</code></pre></div>
+
+<ul>
+<li>
+<p>接下来就详细介绍一下<code>C++</code>中的语句，语句一般都是以分号结尾的，这个程序中出现了两个语句</p>
+</li>
+<li>
+<ul>
+<li>声明语句：<code>int carrots;</code></li>
+</ul>
+</li>
+<li>赋值语句：<code>carrots = 25;</code></li>
+<li>
+<p>在对变量进行赋值的时候必须先声明该变量</p>
+</li>
+<li>
+<p>还有一点就是<code>cout</code>会根据数据类型，进行对应的输出。像这边<code>cout</code>就会输出字符串和输出整型。</p>
+</li>
+</ul>
+<h3 id="_3">输入、连续输出</h3>
+<ul>
+<li>再看看这个示例程序：</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="c1">// getinfo.cpp -- input and output</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">carrots</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;How many carrots do you have?&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">  </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">carrots</span><span class="p">;</span>
+<span class="w">  </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Here are two more. &quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="n">carrots</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">carrots</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="w">  </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Now you have &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">carrots</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; carrots.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="p">}</span>
+</code></pre></div>
+
+<ul>
+<li>这个程序中使用了<code>cin</code>这个输入函数，并且使用<code>&gt;&gt;</code>这个运算符，显然这个函数的意思就是将输入的内容流向变量<code>carrots</code></li>
+<li><code>cin</code>也是一个智能对象，它可以将输入的数据转换为相应的数据类型进行存储。</li>
+<li>在这里我们还出现了<code>cout</code>的拼接的情况：</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="c1">//可以这样输出</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Welcome Come!&quot;</span><span class="p">;</span>
+<span class="c1">//还可以这样输出</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Welcome &quot;</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Come&quot;</span><span class="p">;</span>
+<span class="c1">// 还允许这样输出</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Welcome &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Come&quot;</span><span class="p">;</span>
+</code></pre></div>
+
+<h2 id="c_7">C++基本语法和数据类型</h2>
+<h3 id="_4">变量</h3>
+<ul>
+<li><strong>变量的声明和赋值</strong>及其<strong>内存中的具体操作</strong>，以及<strong>变量名的命名规则</strong>，还有<strong>初始化</strong>操作</li>
+<li>变量就是一个存储在内存空间中的一个数据。变量有三个比较重要的点分别是：<code>变量名</code>、<code>变量的地址</code>、<code>变量的值</code></li>
+<li>我们使用如下语句对变量进行声明和赋值,并且在内存中变量按照下图被操作。</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">braincount</span><span class="p">;</span>
+<span class="n">braincount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+</code></pre></div>
+
+<ul>
+<li>
+<p>接下来就介绍一下变量的命名规则：</p>
+</li>
+<li>
+<ul>
+<li>在名称中只能使用字母字符、数字和下划线<code>_</code></li>
+</ul>
+</li>
+<li>变量名不能以数字开头</li>
+<li>区分大写字符与小写字符</li>
+<li>不能将C++关键字用作名称。</li>
+<li>以两个下划线或下划线和大写字母打头的名称被保留给实现使用。以一个下划线开头的名称被保留给实现，用作<strong>全局标识符</strong></li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="c1">// 接下来就是一些C++变量名称的示例</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">poodle</span><span class="p">;</span><span class="w">         </span><span class="c1">//有效的变量名</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">Poodle</span><span class="p">;</span><span class="w">         </span><span class="c1">//有效的变量名并且和poodle有区别</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">POODLE</span><span class="p">;</span><span class="w">         </span><span class="c1">//有效的变量名,与前两个变量名有区别</span>
+<span class="n">Int</span><span class="w"> </span><span class="n">terrier</span><span class="p">;</span><span class="w">        </span><span class="c1">//无效声明,int才是关键字,Int不是</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">my_stars3</span><span class="p">;</span><span class="w">  </span><span class="c1">//有效的变量名</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">_Mystars3</span><span class="p">;</span><span class="w">  </span><span class="c1">//有效的变量名</span>
+<span class="kt">int</span><span class="w"> </span><span class="mi">4</span><span class="n">ever</span><span class="p">;</span><span class="w">          </span><span class="c1">//无效的变量名,变量名不能以数字开头</span>
+<span class="kt">int</span><span class="w"> </span><span class="kt">double</span><span class="p">;</span><span class="w">         </span><span class="c1">//无效的变量名,double是关键字</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">begin</span><span class="p">;</span><span class="w">          </span><span class="c1">//有效的变量名</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">__fools</span><span class="p">;</span><span class="w">        </span><span class="c1">//有效的变量名</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">the_very_best_variable_i_can_be_version_112</span><span class="p">;</span><span class="w">    </span><span class="c1">//有效的变量名</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">honky</span><span class="o">-</span><span class="n">tonk</span><span class="p">;</span><span class="w"> </span><span class="c1">//无效的变量名&#39;-&#39;不能作为变量名</span>
+</code></pre></div>
+
+<ul>
+<li>注意：函数命名规则与变量名命名规则一样</li>
+<li>一个变量需要先声明再赋值，其实也可以在声明变量的同时为变量赋值。后者的操作就被称为：<strong>初始化</strong>。例如：</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="c1">// C语言中的初始化</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">uncles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="c1">//声明的同时进行赋值</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">aunts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uncles</span><span class="p">;</span><span class="w"> </span><span class="c1">// 这样也能赋值，前提是uncles已知</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">chairs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aunts</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">uncles</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="c1">//还可以这样赋值,右边是一个表达式,但是右边要已知</span>
+
+<span class="c1">// C++的新增的初始化语法</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">wrens</span><span class="p">{</span><span class="mi">432</span><span class="p">};</span><span class="w"> </span><span class="c1">//C++新增的初始化方法</span>
+
+<span class="c1">// 还有一种初始化方法,一般是处理数组和结果,在C++98也支持单值变量</span>
+<span class="c1">// 所以在处理单值变量的初始化,使用花括号{}初始化,可以使用等号也可以不使用等号</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">hamburgers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">24</span><span class="p">};</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">rocs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span><span class="w"> </span><span class="c1">//这种情况是被允许的,rocs的值将被初始化为0</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">psychics</span><span class="p">{};</span><span class="c1">//这种情况也是被允许的,psychics也将被初始化为0</span>
+</code></pre></div>
+
+<h3 id="_5">整型</h3>
+<ul>
+<li>像这样<code>1</code>、<code>-1</code>、<code>123</code>，没有小数只有整数的，这些数就被称为整数。</li>
+<li>而整数又被划分为：<code>有符号整数</code>和<code>无符号整数</code>。无符号整数可以简单理解为没有负数的整数</li>
+<li>整型的宽度：描述存储整数时使用的内存量，使用的内存越多，则宽度越宽。</li>
+<li>在<code>C++</code>的基本类型中按宽度递增的顺序排列分别是：<code>char</code>、<code>short</code>、<code>int</code>、<code>long</code>，在<code>C++</code>之后又新增了<code>long long</code>(long和long long类型其实是long int 和long long int的缩写)</li>
+<li>注意：某些整型的宽度在不同的系统中宽度会不一致的，比如：<code>int</code>类型中，在有些系统是宽度为<code>16</code>位，而在另一些系统中<code>int</code>类型是<code>32</code>位</li>
+</ul>
+<h4 id="_6">无符号整型</h4>
+<ul>
+<li>这个整数类型不能存储负数值，但是相比与有符号整型，它能存储的正数范围更大。例如：<code>short</code>表示范围为<code>-32768</code>到<code>+32767</code>，而<code>unsigned short</code>的表示范围为<code>0-65535</code>。在编程中，我们可以根据实际情况选择使用无符号整型和有符号整型。</li>
+<li>无符号整型的具体类型如下：</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="kt">unsigned</span><span class="w"> </span><span class="kt">short</span><span class="w"> </span><span class="n">change</span><span class="p">;</span><span class="w"> </span><span class="c1">// unsigned short 类型</span>
+<span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">rovert</span><span class="p">;</span><span class="w">     </span><span class="c1">// unsigned int 类型</span>
+<span class="kt">unsigned</span><span class="w"> </span><span class="n">quarterback</span><span class="p">;</span><span class="w">    </span><span class="c1">// unsigned int 类型</span>
+<span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">gone</span><span class="p">;</span><span class="w">      </span><span class="c1">// unsigned long 类型</span>
+<span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">lang_lang</span><span class="p">;</span><span class="w">   </span><span class="c1">// unsigned long long 类型</span>
+</code></pre></div>
+
+<ul>
+<li>而无符号整数的溢出，会像时钟一样由最大的<code>60</code>到最小的<code>0</code>,而short类型会从最大的<code>65535</code>回到<code>0</code>。接下来给出一个例子表示整数溢出：</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="c1">// exceed.cpp -- exceeding some integer limits</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#define ZERO 0    </span><span class="c1">// makes ZERO symbol for 0 value</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;climits&gt;</span><span class="c1">// defines INT_MAX as largest int value</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">short</span><span class="w"> </span><span class="n">sam</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SHRT_MAX</span><span class="p">;</span><span class="w"> </span><span class="c1">// initialize a variable to max value</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">short</span><span class="w"> </span><span class="n">sue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sam</span><span class="p">;</span><span class="w"> </span><span class="c1">// okay if variable sam already defined</span>
+
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Sam has &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">sam</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; dollars and Sue has &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">sue</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; dollars deposited.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span>
+<span class="w">         </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Add $1 to each accout.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Now &quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">sam</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sam</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">sue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sue</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Sam has &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">sam</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; dollars and Sue has &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">sue</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; dollars deposited.</span><span class="se">\n</span><span class="s">Poor Sam!&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Take $1 from each accout.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Now &quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">sam</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sam</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">sue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sue</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Sam has &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">sam</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; dollars and Sue has &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">sue</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; dollars deposited.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Lucky Sue.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h4 id="_7">整数进制表示</h4>
+<ul>
+<li>对于整型的存储，通常在内存值中都是以二进制的形式进行存储的。但是我们输出的变量值都是将这个二进制的字符串转化数字的<code>ASCII</code>码值输出出来的（这个在C语言中就叫格式化输出）</li>
+<li>在<code>C++</code>的<code>cout</code>也一样，也是默认将整型的变量，转换为十进制形式的<code>ASCII</code>值，进行输出。例如下面程序：</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="c1">// hexoct1.cpp -- shows hex and octal literals</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">chest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span><span class="w">    </span><span class="c1">// decimal integer literal</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">waist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x42</span><span class="p">;</span><span class="w">  </span><span class="c1">// hexadecimal integer literal</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">inseam</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mo">042</span><span class="p">;</span><span class="w">  </span><span class="c1">// octal integer literal</span>
+
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Monsieur cuts a striking figure!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;chest = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">chest</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; (42 indecimal)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;waist = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">waist</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; (0x42 in hex)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;inseam = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">inseam</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; (042 in octal)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<ul>
+<li>在有些情况下，使用二进制输出或者八进制输出、十六进制形式输出变量的值会更方便。</li>
+<li>
+<p><code>C++</code>的<code>cout</code>也提供了一些关键字，使得<code>cout</code>在输出的时候就会以八进制、十六进制形式输出整数的值</p>
+</li>
+<li>
+<ul>
+<li>例如这样的形式：<code>cout &lt;&lt; hex&lt;&lt; 变量1&lt;&lt; 变量2 &lt;&lt; 字符串&lt;&lt;endl</code></li>
+</ul>
+</li>
+<li>在输出变量之前使用关键字<code>hex</code>就可以将<code>变量1</code>和<code>变量2</code>以<code>十六进制</code>的形式输出。（hex、oct这个命名空间都在std这个空间中）</li>
+<li>这时候需要<code>endl</code>结束该输出流，该段输出流结束后，<code>hex</code>关键字就在之后的<code>cout</code>就不起作用了</li>
+<li>接下来给出一个例子：</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="c1">// hexoct2.cpp -- display vaolues in hex and octal</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">chest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">waist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">inseam</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">chock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">123</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">uct</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">130</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Monsieur cuts a striking figure!&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;chest = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">chest</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; (decimal for 42)&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">hex</span><span class="p">;</span><span class="w"> </span><span class="c1">// manipulator for changing number base</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;waist = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">waist</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; (hexadecimal for 42)&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">oct</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;inseam = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">inseam</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; (octal for 42)&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">hex</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;chock = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">chock</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; uct = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">uct</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<ul>
+<li>对于整型变量的输出我们已经了解了，现在来了解初始化。接下来我们介绍一下整型的字面量输出，像这样：<code>cout &lt;&lt; 1111</code>，直接就是纯数字<code>1111</code>而不是用变量代替，这样的就被称为字面量。</li>
+<li>
+<p>字面量如果不是太大，也没有指定存储类型，那么就是默认为<code>int</code>类型，对于字面量的存储类型，我们可以通过后缀来表示：</p>
+</li>
+<li>
+<ul>
+<li><code>111L</code>：L后缀表示该数是<code>long</code>类型的常量（L一般使用大写）</li>
+</ul>
+</li>
+<li><code>111LL</code>：LL后缀表示该数是<code>long long</code>类型的常量</li>
+<li><code>111UL</code>：UL后缀表示该数是<code>unsigned long</code>类型的常量</li>
+<li>
+<p><code>111ULL</code>：ULL后缀表示该数是<code>unsigned long long</code>类型的常量</p>
+</li>
+<li>
+<p><code>C++</code>的字面量还提供了一个前缀，用来描述这个字面量的进制：</p>
+</li>
+<li>
+<ul>
+<li><code>0x42</code>：0x前缀表示十六进制</li>
+</ul>
+</li>
+<li><code>042</code>：0前缀表示八进制</li>
+</ul>
+<h4 id="char">特殊的整型char</h4>
+<ul>
+<li><code>char</code>类型也是一个整型，但是这个类型是一个特殊的整型。因为存储数字，对于计算机来说比较方便，但是存储字母对计算机来说就比较困难，所以就出现了编码，例如<code>ASCII</code>编码，对于<code>A</code>被编码为65，字母M被编码为77</li>
+<li>并且在使用<code>cout</code>输出一个字符类型的变量时，<code>cout</code>并不会输出整型，而是会输出其ASCII编码后的值，比如<code>A</code>被编码为65，初始化一个变量<code>char ch = 65</code>，<code>cout</code>并不会输出<code>65</code>，而是会输出<code>A</code>。（出现这样的结果是因为cout的作用）</li>
+<li>对于<code>cin</code>向一个<code>char</code>类型的变量输入值可以是<code>字符</code>，他们可以被<code>cin</code>转换为整数存储在变量对应的内存中</li>
+<li>注意：<code>C++</code>与<code>C</code>语言一样，字符都是使用单引号表示，而字符串使用的是双引号表示</li>
+<li>之前我们都是使用<code>cout</code>输出，而<code>C++</code>这边还提供了<code>cout.put(char ch)</code>来输出单个字符串。</li>
+<li>接下来就是这两个程序对应的例子：</li>
+<li>例子1：</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="c1">// chartype.cc -- the char type</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">ch</span><span class="p">;</span><span class="w"> </span><span class="c1">// declare a char variable</span>
+
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Enter a character: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">ch</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hola&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Thank you for the &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ch</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; character.&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<ul>
+<li>例子2：</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="c1">// morechar.cpp -- the char type and int type contrasted</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">ch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;M&#39;</span><span class="p">;</span><span class="w">  </span><span class="c1">// assign ASCII code for M to ch</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ch</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;The ASCII code for &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ch</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; is &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">ch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ch</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ch</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;The ASCIi code for &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ch</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; is &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// using the cout.put() member function to display  a char</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Displaying char ch using cout.put(ch) &quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">ch</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// using cout.put() to display a char constant </span>
+<span class="w">    </span><span class="n">cout</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="sc">&#39;!&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Done&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h4 id="bool">bool类型</h4>
+<ul>
+<li>
+<p>过去的时候在<code>C++</code>和<code>C</code>中是没有<code>bool</code>类型，而之后的<code>C++</code>和<code>C</code>标准新添加了<code>bool</code>类型，<code>C++</code>将非零值解释为<code>true</code>，将零值解释为<code>false</code>。它们分别用预定义的字面值<code>true</code>和<code>false</code>表示。所以我们可以对<code>bool</code>类型进行如下初始化。</p>
+</li>
+<li>
+<ul>
+<li>将<code>bool</code>类型转换为整型的时候，默认会将<code>true</code>转换为<code>1</code>，将<code>flase</code>就会转换为<code>0</code>。</li>
+</ul>
+</li>
+<li>而其他值可以被隐式转换为<code>bool</code>类型，默认会将非零值转换为<code>true</code>，将零值转换为<code>false</code>。</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="kt">bool</span><span class="w"> </span><span class="n">is_ready</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">ans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"> </span><span class="c1">// ans的值会被赋值为1</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">promise</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"> </span><span class="c1">// promise的值会被赋值为0</span>
+
+<span class="kt">bool</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-100</span><span class="p">;</span><span class="w"> </span><span class="c1">//start将被赋值为true</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">stop</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">     </span><span class="c1">// stop将被赋值为false</span>
+</code></pre></div>
+
+<h3 id="_8">常量</h3>
+<h3 id="_9">浮点数</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

