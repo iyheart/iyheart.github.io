@@ -1,0 +1,703 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>2023NSSCTF2nd-wp | iyheart的博客</title><meta name="author" content="iyheart"><meta name="copyright" content="iyheart"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言：直接跟着鸡块师傅的博客刷题吧。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2023NSSCTF2nd-wp">
+<meta property="og:url" content="http://iyheart.github.io/2025/12/17/CTFblog/write_up%E7%B3%BB%E5%88%97blog/2023%E5%B9%B4/2023NSSCTF2nd-wp/index.html">
+<meta property="og:site_name" content="iyheart的博客">
+<meta property="og:description" content="前言：直接跟着鸡块师傅的博客刷题吧。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover232.png">
+<meta property="article:published_time" content="2025-12-17T14:16:47.000Z">
+<meta property="article:modified_time" content="2025-12-22T04:35:50.180Z">
+<meta property="article:author" content="iyheart">
+<meta property="article:tag" content="博客, 笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover232.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://iyheart.github.io/2025/12/17/CTFblog/write_up%E7%B3%BB%E5%88%97blog/2023%E5%B9%B4/2023NSSCTF2nd-wp/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '2023NSSCTF2nd-wp',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-12-22 12:35:50'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/styles.css"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="iyheart的博客" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="http://pic.5tu.cn/uploads/allimg/1910/pic_5tu_big_2019010211653346247.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">190</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">58</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 历史</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-music"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-tasks"></i><span> 知识库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/docs/"><i class="fa-fw fas fa-book"></i><span> 编程语言知识库</span></a></li><li><a class="site-page child" href="/practice/"><i class="fa-fw fas fa-book"></i><span> PWN刷题记录</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/update/"><i class="fa-fw fas fa-bell"></i><span> 更新</span></a></div><div class="menus_item"><a class="site-page" href="javascript:toRandomPost()"><i class="fa-fw fas fa-bus"></i><span> 随机文章</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover232.png')"><nav id="nav"><span id="blog-info"><a href="/" title="iyheart的博客"><img class="site-icon" src="http://img95.699pic.com/photo/40151/9175.gif_wh860.gif"/><span class="site-name">iyheart的博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 历史</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-music"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-tasks"></i><span> 知识库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/docs/"><i class="fa-fw fas fa-book"></i><span> 编程语言知识库</span></a></li><li><a class="site-page child" href="/practice/"><i class="fa-fw fas fa-book"></i><span> PWN刷题记录</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/update/"><i class="fa-fw fas fa-bell"></i><span> 更新</span></a></div><div class="menus_item"><a class="site-page" href="javascript:toRandomPost()"><i class="fa-fw fas fa-bus"></i><span> 随机文章</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">2023NSSCTF2nd-wp</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-12-17T14:16:47.000Z" title="发表于 2025-12-17 22:16:47">2025-12-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-12-22T04:35:50.180Z" title="更新于 2025-12-22 12:35:50">2025-12-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/CTF/">CTF</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/CTF/write-up/">write-up</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="2023NSSCTF2nd-wp"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h1><h2 id="funnyencrypt未完成"><a href="#FunnyEncrypt-未完成" class="headerlink" title="FunnyEncrypt(未完成)"></a>FunnyEncrypt(未完成)</h2><ul>
+<li><p>偏misc的密码一点都不好玩QAQ。</p>
+</li>
+<li><p>题目附件如下：</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">✧✡✭</span><br><span class="line">✡✮ ✣✴✯ ✤✶✬✬✱ ✬✤ ✱✦✢✥✮✯✧✧, ✴✬✷✯ ✡✧ ✣✴✯ ✶✡✰✴✣. ✡✣ ❂✢✡✮✰✧ ✩✬✸✤✬✢✣, ✤✦✡✣✴, ✦✮✱ ✩✬✮✤✡✱✯✮✩✯. ✡✣ ✰✡✲✯✧ ✳✧ ✰✳✡✱✦✮✩✯ ★✴✯✮ ★✯ ✦✢✯ ✶✬✧✣, ✦✮✱ ✰✡✲✯✧ ✧✳✷✷✬✢✣ ★✴✯✮ ★✯ ✦✢✯ ✦✤✢✦✡✱. ✦✮✱ ✣✴✯ ✸✬✸✯✮✣ ★✯ ✰✡✲✯ ✳✷ ✴✬✷✯, ★✯ ✰✡✲✯ ✳✷ ✬✳✢ ✶✡✲✯✧. ✣✴✯ ★✬✢✶✱ ★✯ ✶✡✲✯ ✡✮ ✡✧ ✱✡✧✡✮✣✯✰✢✦✣✡✮✰ ✡✮✣✬ ✦ ✷✶✦✩✯ ✬✤ ✸✦✶✡✩✯ ✦✮✱ ✴✦✣✢✯✱, ★✴✯✢✯ ★✯ ✮✯✯✱ ✴✬✷✯ ✦✮✱ ✤✡✮✱ ✡✣ ✴✦✢✱✯✢. ✡✮ ✣✴✡✧ ★✬✢✶✱ ✬✤ ✤✯✦✢, ✴✬✷✯ ✣✬ ✤✡✮✱ ❂✯✣✣✯✢, ❂✳✣ ✯✦✧✡✯✢ ✧✦✡✱ ✣✴✦✮ ✱✬✮✯, ✣✴✯ ✸✬✢✯ ✸✯✦✮✡✮✰✤✳✶ ✶✡✤✯ ✬✤ ✤✦✡✣✴ ★✡✶✶ ✸✦✥✯ ✶✡✤✯ ✸✯✦✮✡✮✰✤✳✶.</span><br><span class="line">✧✬✸✯✣✡✸✯✧ ★✯ ✣✴✡✮✥ ✬✤ ✱✢✯✦✸✧ ✦✧ ✤✦✮✣✦✧✡✯✧ - ✡✣<span class="string">&#x27;✧ ✯✦✧✵ ✣✬ ✱✬ ★✴✯✮ ✵✬✳ ✴✦✲✯ ✸✬✮✯✵, ✢✯✮✣, ✦✮✱ ★✬✢✥. ❂✳✣ ✵✬✳ ✩✦✮&#x27;</span>✣ ✷✢✯✷✦✢✯ ✵✬✳✢✧✯✶✤ ✦✮✱ ✫✳✸✷ ✬✤✤ ✣✴✯ ✩✶✡✤✤: ✵✬✳ ✧✴✬✳✶✱ ✰✢✬★ ✵✬✳✢ ★✡✮✰✧ ✤✡✢✧✣. ✦ ✶✡✣✣✶✯ ❂✡✣ ✣✬★✦✢✱ ✣✴✯ ✱✢✯✦✸. ✧✣✯✷ ❂✵ ✧✣✯✷. ✣✦✥✯ ✦ ✧✣✯✷ ✤✬✢★✦✢✱. ✦✤✣✯✢ ✦✶✶, ✡✣<span class="string">&#x27;✧ ✵✬✳✢ ✸✡✧✧✡✬✮.</span></span><br><span class="line"><span class="string">✥✯✯✷ ✤✦✡✣✴ ✦✮✱ ✴✬✷✯ ✤✬✢ ✣✴✯ ✤✳✣✳✢✯. ✸✦✥✯ ✵✬✳✢ ✸✬✧✣ ✧✡✮✩✯✢✯ ✱✢✯✦✸✧, ✦✮✱ ★✴✯✮ ✣✴✯ ✬✷✷✬✢✣✳✮✡✣✡✯✧ ✩✬✸✯, ✣✴✯✵ ★✡✶✶ ✤✡✰✴✣ ✤✬✢ ✣✴✯✸. ✡✣ ✸✦✵ ✣✦✥✯ ✦ ✧✯✦✧✬✮ ✬✢ ✸✬✢✯, ❂✳✣ ✣✴✯ ✯✮✱✡✮✰ ★✡✶✶ ✮✬✣ ✩✴✦✮✰✯. ✦✸❂✡✣✡✬✮, ❂✯✧✣, ❂✯✩✬✸✯ ✦ ✢✯✦✶✡✣✵. ✦✮ ✳✮✩✯✢✣✦✡✮ ✤✳✣✳✢✯, ✬✮✶✵ ✬✮✯ ✧✣✯✷ ✦✣ ✦ ✣✡✸✯, ✣✴✯ ✴✬✷✯ ✩✦✮ ✢✯✦✶✡✪✯ ✣✴✯ ✱✢✯✦✸ ✬✤ ✣✴✯ ✴✡✰✴✯✧✣. ★✯ ✸✳✧✣ ✣✢✯✦✧✳✢✯ ✣✴✯ ✱✢✯✦✸, ✣✬ ✷✢✬✣✯✩✣ ✡✣ ✦ ✧✯✦✧✬✮, ✶✯✣ ✡✣ ✡✮ ✣✴✯ ✴✯✦✢✣ ❋✳✡✯✣✶✵ ✰✯✢✸✡✮✦✶.</span></span><br><span class="line"><span class="string">✬✮✶✵ ★✴✯✮ ✵✬✳ ✳✮✱✯✢✧✣✦✮✱ ✣✴✯ ✣✢✳✯ ✸✯✦✮✡✮✰ ✬✤ ✶✡✤✯ ✩✦✮ ✵✬✳ ✶✡✲✯ ✣✢✳✶✵. ❂✡✣✣✯✢✧★✯✯✣ ✦✧ ✶✡✤✯ ✡✧, ✡✣&#x27;</span>✧ ✧✣✡✶✶ ★✬✮✱✯✢✤✳✶, ✦✮✱ ✡✣<span class="string">&#x27;✧ ✤✦✧✩✡✮✦✣✡✮✰ ✯✲✯✮ ✡✮ ✣✢✦✰✯✱✵. ✡✤ ✵✬✳&#x27;</span>✢✯ ✫✳✧✣ ✦✶✡✲✯, ✣✢✵ ✴✦✢✱✯✢ ✦✮✱ ✣✢✵ ✣✬ ✶✡✲✯ ★✬✮✱✯✢✤✳✶✶✵.</span><br><span class="line">✡ ❂✯✶✡✯✲✯ ✣✴✯✢✯ ✡✧ ✦ ✷✯✢✧✬✮ ★✴✬ ❂✢✡✮✰✧ ✧✳✮✧✴✡✮✯ ✡✮✣✬ ✵✬✳✢ ✶✡✤✯. ✣✴✦✣ ✷✯✢✧✬✮ ✸✦✵ ✴✦✲✯ ✯✮✬✳✰✴ ✣✬ ✧✷✢✯✦✱ ✦✢✬✳✮✱. ❂✳✣ ✡✤ ✵✬✳ ✢✯✦✶✶✵ ✴✦✲✯ ✣✬ ★✦✡✣ ✤✬✢ ✧✬✸✯✬✮✯ ✣✬ ❂✢✡✮✰ ✵✬✳ ✣✴✯ ✧✳✮ ✦✮✱ ✰✡✲✯ ✵✬✳ ✦ ✰✬✬✱ ✤✯✯✶✡✮✰, ✣✴✯✮ ✵✬✳ ✸✦✵ ✴✦✲✯ ✣✬ ★✦✡✣ ✦ ✶✬✮✰ ✣✡✸✯.</span><br><span class="line">✡✮ ✦ ★✬✢✱,✡ ✴✬✷✯ ✵✬✳ ★✡✶✶ ✶✡✥✯ ✩✢✵✷✣✬✰✢✦✷✴✵.✣✴✡✧ ✡✧ ✵✬✳✢ ✤✶✦✰:✮✧✧✩✣✤&#123;✩✢✵✷✣✬_✡✧_✧✬_✡✮✣✯✢✯✧✣✡✮✰_★✴✵_✱✬✮<span class="string">&#x27;✣_✵✬✳_✫✬✡✮_✳✧&#125;</span></span><br><span class="line"><span class="string"></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>通过分析发现最后一行应该就是flag，并且可以知道这个就是单纯的替换，可以从以下猜测几个符号对应的字母：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">flag:NSSCTF&#123;&#125;</span><br><span class="line">✤✶✦✰:✮✧✧✩✣✤&#123;✩✢✵✷✣✬_✡✧_✧✬_✡✮✣✯✢✯✧✣✡✮✰_★✴✵_✱✬✮<span class="string">&#x27;✣_✵✬✳_✫✬✡✮_✳✧&#125;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>首先找到一张英文字母频率表，统计密文符号出现的频率，从而得到符号与字母的映射。</li>
+</ul>
+<p><img src="/2025/12/17/CTFblog/write_up%E7%B3%BB%E5%88%97blog/2023%E5%B9%B4/2023NSSCTF2nd-wp/image-20251217225512795.png" alt="image-20251217225512795"></p>
+<ul>
+<li>exp如下：</li>
+</ul>
+<h2 id="ezrsa"><a href="#EzRSA" class="headerlink" title="EzRSA"></a>EzRSA</h2><ul>
+<li>题目附件如下：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> flag</span><br><span class="line">m = bytes_to_long(flag)</span><br><span class="line"><span class="keyword">assert</span> m.bit_length()&lt;<span class="number">200</span></span><br><span class="line">p = getPrime(<span class="number">512</span>)</span><br><span class="line">q = getPrime(<span class="number">512</span>)</span><br><span class="line">n = p*q</span><br><span class="line">e = <span class="number">3</span></span><br><span class="line">c = <span class="built_in">pow</span>(m, e, n)</span><br><span class="line">kbits = <span class="number">103</span></span><br><span class="line">m = (m &gt;&gt; kbits) &lt;&lt; kbits <span class="comment"># 遮盖低103位</span></span><br><span class="line">Mod = getPrime(<span class="number">1024</span>) <span class="comment"># 生成1024位素数</span></span><br><span class="line">hint1 = (<span class="number">2021</span>-<span class="number">2023</span>*m) % Mod <span class="comment"># 计算一个同余式,没模之前计算结果是负数,模之后是正数其实就是(Mod+2021-2023*m)</span></span><br><span class="line">hint2 = <span class="built_in">pow</span>(<span class="number">2</span>, <span class="number">2023</span>, Mod) <span class="comment"># 计算2^2023 % Mod</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;n =&#x27;</span>,n)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;c =&#x27;</span>,c)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;hint1 =&#x27;</span>,hint1)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;hint2 =&#x27;</span>,hint2)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">n = 115383855234466224643769657979808398804254899116842846340552518876890834212233960206021018541117724144757264778086129841154749234706140951832603640953383528482125663673926452745186670807057426128028379664506531814550204605131476026038420737951652389070818761739123318769460392218629003518050621137961009397857</span></span><br><span class="line"><span class="string">c = 5329266956476837379347536739209778690886367516092584944314921220156032648621405214333809779485753073093853063734538746101929825083615077</span></span><br><span class="line"><span class="string">hint1 = 153580531261794088318480897414037573794615852052189508424770502825730438732573547598712417272036492121110446656514226232815820756435437665617271385368704576530324067841094570337328191161458300549179813432377043779779861066187597784486306748688798924645894867137996446960685210314180286437706545416961668988800</span></span><br><span class="line"><span class="string">hint2 = 130939024886341321687705945538053996302793777331032277314813607352533647251650781154105954418698306293933779129141987945896277615656019480762879716136830059777341204876905094451068416223212748354774066124134473710638395595420261557771680485834288346221266495706392714094862310009374032975169649227238004805982</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><ul>
+<li>明文<code>m</code>的位数还是比较小的，本题就是小指数加密，直接开方即可。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line">n = <span class="number">115383855234466224643769657979808398804254899116842846340552518876890834212233960206021018541117724144757264778086129841154749234706140951832603640953383528482125663673926452745186670807057426128028379664506531814550204605131476026038420737951652389070818761739123318769460392218629003518050621137961009397857</span></span><br><span class="line">c = <span class="number">5329266956476837379347536739209778690886367516092584944314921220156032648621405214333809779485753073093853063734538746101929825083615077</span></span><br><span class="line"></span><br><span class="line">m = gmpy2.iroot(c,<span class="number">3</span>)[<span class="number">0</span>]</span><br><span class="line">flag = long_to_bytes(m)</span><br><span class="line"><span class="built_in">print</span>(flag)</span><br><span class="line"><span class="comment"># b&#x27;NSSCTF&#123;Rea1_Si9n3n&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><ul>
+<li>本题还有一个Coppersmith的做法，该题的可以比较深入的理解Coppersmith攻击，首先我们先来看看两个提示：</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{array}{l}
+h_1\equiv(2021-2023*m)~mod(~r)\\
+h_2\equiv2^{2023}~mod(~r)
+\end{array}</script><ul>
+<li>使用Coppersmith攻击的话需要两个必要的东西：其中一个就是方程，另一个是模数$N$，这个模数要满足$r|N$。根据$h_2$，我们可以得到模数$N$，如下所示：</li>
+</ul>
+<script type="math/tex; mode=display">
+2^{2023}-h_2\equiv 0~mod(~r)</script><ul>
+<li>现在我们就需要通过$h_1$去构造方程，所构造的方程就可以得到如下所示的方程：</li>
+</ul>
+<script type="math/tex; mode=display">
+2023*m+h_1-2021\equiv0~mod(~r)</script><ul>
+<li>接下来我们就可以构造如下的方程使用Coppersmith攻击去求得$m$：</li>
+</ul>
+<script type="math/tex; mode=display">
+2023*m+h_1-2021\equiv0~mod(~2^{2023}-h_2)</script><ul>
+<li>接下来就是比较常见的低加密指数使用Coppersmith攻击求解明文<code>m</code>的低位，构造方程：</li>
+</ul>
+<script type="math/tex; mode=display">
+c-(m+x)^{3}\equiv 0~mod(~n)</script><ul>
+<li>最后exp如下：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">n = </span><br><span class="line">c = </span><br><span class="line">hint1 = </span><br><span class="line">hint2 = </span><br><span class="line"></span><br><span class="line">kp = <span class="built_in">pow</span>(<span class="number">2</span>,<span class="number">2023</span>) - hint2</span><br><span class="line">PR.&lt;x&gt; = PolynomialRing(Zmod(kp))</span><br><span class="line">f = hint1 - <span class="number">2021</span> + <span class="number">2023</span> * x</span><br><span class="line">f = f.monic()</span><br><span class="line">result = f.small_roots(X=<span class="number">2</span>^<span class="number">200</span>,beta=<span class="number">0.5</span>)</span><br><span class="line"><span class="built_in">print</span>(result)</span><br><span class="line">m = <span class="number">1746716778150027565782467891299010283212636160</span></span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(m))</span><br><span class="line">P.&lt;y&gt; = PolynomialRing(Zmod(n))</span><br><span class="line">g = c - (m+y)^<span class="number">3</span> </span><br><span class="line">g = g.monic()</span><br><span class="line">result2 = g.small_roots(X=<span class="number">2</span>^<span class="number">200</span>,beta=<span class="number">0.5</span>)</span><br><span class="line"><span class="built_in">print</span>(result2)</span><br><span class="line">flag = m+<span class="number">9770564320547953144707390074493</span></span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(flag))</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">[1746716778150027565782467891299010283212636160]</span></span><br><span class="line"><span class="string">b&#x27;NSSCTF\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00&#x27;</span></span><br><span class="line"><span class="string">[9770564320547953144707390074493]</span></span><br><span class="line"><span class="string">b&#x27;NSSCTF&#123;Rea1_Si9n3n&#125;&#x27;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="math"><a href="#Math" class="headerlink" title="Math"></a>Math</h2><ul>
+<li>题目附件如下：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> flag</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"></span><br><span class="line">length = <span class="built_in">len</span>(flag)</span><br><span class="line">flag1 = flag[:length//<span class="number">2</span>]</span><br><span class="line">flag2 = flag[length//<span class="number">2</span>:]</span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line"></span><br><span class="line">m1 = bytes_to_long(flag1)</span><br><span class="line">p = getPrime(<span class="number">512</span>)</span><br><span class="line">q = getPrime(<span class="number">512</span>)</span><br><span class="line">n = p*q</span><br><span class="line">phi = (p-<span class="number">1</span>)*(q-<span class="number">1</span>)</span><br><span class="line">d = gmpy2.invert(e,phi)</span><br><span class="line"></span><br><span class="line">p1 = gmpy2.invert(p,q)</span><br><span class="line">q1 = gmpy2.invert(q,p)</span><br><span class="line">c = <span class="built_in">pow</span>(m1,e,n)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;p1=&quot;</span>,p1)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;q1=&quot;</span>,q1)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;c=&quot;</span>,c)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;phi=&quot;</span>,phi)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">p1= 3020925936342826638134751865559091272992166887636010673949262570355319420768006254977586056820075450411872960532347149926398408063119965574618417289548987</span></span><br><span class="line"><span class="string">q1= 4671408431692232396906683283409818749720996872112784059065890300436550189441120696235427299344866325968178729053396743472242000658751114391777274910146291</span></span><br><span class="line"><span class="string">c= 25112054943247897935419483097872905208058812866572413543619256987820739973912338143408907736140292730221716259826494247791605665059462509978370784276523708331832947651238752021415405546380682507724076832547566130498713598421615793975775973104012856974241202142929158494480919115138145558312814378701754511483</span></span><br><span class="line"><span class="string">phi= 57503658815924732796927268512359220093654065782651166474086873213897562591669139461637657743218269483127368502067086834142943722633173824328770582751298229218384634668803018140064093913557812104300156596305487698041934061627496715082394633864043543838906900101637618600513874001567624343801197495058260716932</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">m2 = bytes_to_long(flag2)</span><br><span class="line">p = getPrime(<span class="number">1024</span>)</span><br><span class="line">q = getPrime(<span class="number">1024</span>)</span><br><span class="line">n = p * q</span><br><span class="line">c = <span class="built_in">pow</span>(m2, e, n)</span><br><span class="line">hint = <span class="built_in">pow</span>(<span class="number">2023</span> * p + <span class="number">114514</span>, q, n)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;n=&quot;</span>,n)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;c=&quot;</span>,c)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;hint=&quot;</span>,hint)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">n= 12775720506835890504634034278254395430943267336816473660983646973423280986156683988190224391394224069040565587173690009193979401332176772774003070053150665425296356891182224095151626957780349726980433545162004592720236315207871365869074491602494662741551613634958123374477023452496165047922053316939727488269523121920612595228860205356006298829652664878874947173274376497334009997867175453728857230796230189708744624237537460795795419731996104364946593492505600336294206922224497794285687308908233911851722675754289376914626682400586422368439122244417279745706732355332295177737063024381192630487607768783465981451061</span></span><br><span class="line"><span class="string">c= 11915755246503584850391275332434803210208427722294114071001100308626307947436200730224125480063437044802693983505018296915205479746420176594816835977233647903359581826758195341201097246092133133080060014734506394659931221663322724002898147351352947871411658624516142945817233952310735792476179959957816923241946083918670905682025431311942375276709386415064702578261223172000098847340935816693603778431506315238612938066215726795441606532661443096921685386088202968978123769780506210313106183173960388498229061590976260661410212374609180449458118176113016257713595435899800372393071369403114116302366178240855961673903</span></span><br><span class="line"><span class="string">hint= 3780943720055765163478806027243965253559007912583544143299490993337790800685861348603846579733509246734554644847248999634328337059584874553568080801619380770056010428956589779410205977076728450941189508972291059502282197067064652703679207594494311426932070873126291964667101759741689303119878339091991064473009603015444698156763131697516348762529243379294719509271792197450290763350043267150173332933064667716343268081089911389405010661267902446894363575630871542572200564687271311946580866369204751787686029541644463829030926902617740142434884740791338666415524172057644794094577876577760376741447161098006698524808</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="math第一部分"><a href="#Math第一部分" class="headerlink" title="Math第一部分"></a>Math第一部分</h3><ul>
+<li>题目附件将flag分成了两份，分别进行了RSA加密，并且这两个次加密都会泄露出一些数据从而使得。首先来分析第一次加密泄露出的数据</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 根据输出的数据就可以知道,phi已知现在其实就是要根据p1和q1求出n就可以将第一部分解密了</span></span><br><span class="line"><span class="comment"># 这里其实e和phi都知道,也就是说d也是已知的</span></span><br><span class="line">p1 = gmpy2.invert(p,q)</span><br><span class="line">q1 = gmpy2.invert(q,p)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;p1=&quot;</span>,p1)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;q1=&quot;</span>,q1)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;c=&quot;</span>,c)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;phi=&quot;</span>,phi)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>第一个方程：</p>
+<ul>
+<li>本题的解法其实就是构造方程，首先利用$k、d$构造方程：</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{array}{l}
+ed\equiv1~mod(\phi(n))\\
+ed-1\equiv0~mod(\phi(n))\\
+ed-1=k*\phi(n)\\
+k=\frac{ed-1}{\phi(n)}
+
+\end{array}</script><ul>
+<li>所以我们可以构造一个关于$p、q$的一个方程：</li>
+</ul>
+<script type="math/tex; mode=display">
+ed-1=k*[p*q-(p+q)+1]</script></li>
+<li><p>第二个方程：</p>
+<ul>
+<li>对于$p_1、q_1$来说满足如下式子：</li>
+</ul>
+<script type="math/tex; mode=display">
+p_1\equiv p^{-1}~mod(~q)\\
+q_1\equiv q^{-1}~mod(~p)\\</script><ul>
+<li>由逆元的性质就有如下的结论：</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{array}{l}
+p_1p-1\equiv0~mod(~q)\\
+q_1q-1\equiv0~mod(~p)
+\end{array}</script><ul>
+<li>将同余方程转换成等式：</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{array}{l}
+p_1p-1=w_1q\\
+q_1q-1=w_2p
+\end{array}</script><ul>
+<li>将上面两个等式相乘可以得到一个式子：</li>
+</ul>
+<script type="math/tex; mode=display">
+(p_1q_1-w_1w_2)pq=p_1p+q_1q-1</script><ul>
+<li>对于相乘得到的左边式子，存在一个条件$p_1<p,q_1<q$，并且通过等式可以得到$p_1q_1-w_1w_2>0$则通过放缩就有：</p,q_1<q$，并且通过等式可以得到$p_1q_1-w_1w_2></li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{array}{l}
+0<(p_1q_1-w_1w_2)pq<2pq\\
+\Rightarrow 0<p_1q_1-w_1w_2<2\\
+\Rightarrow p_1q_1-w_1w_2=1
+\end{array}</script><ul>
+<li>那么就可以得到另外的一个等式：</li>
+</ul>
+<script type="math/tex; mode=display">
+pq=p_1p+q_1q-1</script></li>
+<li><p>联立两个方程求解即可：</p>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{align}
+ed-1=&k*[p*q-(p+q)+1]\\
+pq=&p_1p+q_1q-1
+\end{align}</script><ul>
+<li>第一部分exp如下：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">p1 = </span><br><span class="line">q1 = </span><br><span class="line">c = </span><br><span class="line">phi = </span><br><span class="line">e = </span><br><span class="line"></span><br><span class="line">d = gmpy2.invert(e,phi)</span><br><span class="line">y = e*d - <span class="number">1</span></span><br><span class="line">k = y//phi</span><br><span class="line">t = (e*d-<span class="number">1</span>)//k</span><br><span class="line">p,q = var(<span class="string">&quot;p q&quot;</span>)</span><br><span class="line">eq1 = p*q-(p+q)+<span class="number">1</span> == t</span><br><span class="line">eq2 = p1*p+q1*q-<span class="number">1</span> == p*q</span><br><span class="line">solve([eq1,eq2],p,q)</span><br><span class="line">p = <span class="number">8227949876362113267072144961846048393056849759669796156924553779939503433107338055396756296154009288972625791697380742839785942158298397801412484034859067</span></span><br><span class="line">q = <span class="number">6988819776494465902198750769464437883348561721022295748041612490557734149835801503912448144263306897001345088119505767812048846266490345642125677660981803</span></span><br><span class="line">n = p*q</span><br><span class="line">m = <span class="built_in">pow</span>(c,d,n)</span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(m))</span><br><span class="line"><span class="string">b&#x27;NSSCTF&#123;e713afa4-fcd8-4&#x27;</span></span><br></pre></td></tr></table></figure>
+<h3 id="math第二部分"><a href="#Math第二部分" class="headerlink" title="Math第二部分"></a>Math第二部分</h3><ul>
+<li>第二部分的泄露如下：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">m2 = bytes_to_long(flag2)</span><br><span class="line">p = getPrime(<span class="number">1024</span>)</span><br><span class="line">q = getPrime(<span class="number">1024</span>)</span><br><span class="line">n = p * q</span><br><span class="line">c = <span class="built_in">pow</span>(m2, e, n)</span><br><span class="line">hint = <span class="built_in">pow</span>(<span class="number">2023</span> * p + <span class="number">114514</span>, q, n)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;n=&quot;</span>,n)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;c=&quot;</span>,c)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;hint=&quot;</span>,hint)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>接下来直接进行推导：</p>
+<ul>
+<li>首先我们从<code>hint</code>进行推导：</li>
+</ul>
+<script type="math/tex; mode=display">
+hint=(2023*p+114514)^{q}~mod(~n)</script><ul>
+<li>已知$n=p*q$由同余的性质我们可以得到下面两条路，接下来两条路我们：</li>
+</ul>
+<script type="math/tex; mode=display">
+hint=(2023*p+114514)^{q}~mod(~q)\\
+hint=(2023*p+114514)^{q}~mod(~p)</script></li>
+<li><p>首先们看看上面的这一条路：</p>
+<ul>
+<li>首先列出已知：</li>
+</ul>
+<script type="math/tex; mode=display">
+hint=(2023*p+114514)^{q}~mod(~q)</script><ul>
+<li>由费马定理可以得到：</li>
+</ul>
+<script type="math/tex; mode=display">
+hint=(2023*p+114514)~mod(~q)</script><ul>
+<li>可以得到关于q的同余关系：</li>
+</ul>
+<script type="math/tex; mode=display">
+hint-2023*p-114514=0~mod(~q)</script><ul>
+<li>但是通过分析发现如果能得到左边，那么我们就可以使用gcd的方法分解n，而此时我们的p是未知的，所以这条路是走不通的。</li>
+</ul>
+</li>
+<li><p>接下来看看下面的这一条路：</p>
+<ul>
+<li>首先列出已知：</li>
+</ul>
+<script type="math/tex; mode=display">
+hint=(2023*p+114514)^{q}~mod(~p)</script><ul>
+<li>通过二项式定理展开，再利用同余的性质就有如下同余式：</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{array}{l}
+hint\equiv114514^{q}~mod(~p)\\
+\Rightarrow hint-114514^{q}\equiv0~mod(p)
+\end{array}</script><ul>
+<li>但是此时我们是并不知道$q$，而这个是指数运算，我们就会想到费马小定理：</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{array}{l}
+114514\equiv114514^{p}~mod(p)\\
+\Rightarrow 114514^{q} \equiv 114514^{n}~mod(~p)
+\end{array}</script><ul>
+<li>那么我们就可以通过代换得到下面这样一个只有模数<code>p</code>未知的式子：</li>
+</ul>
+<script type="math/tex; mode=display">
+hint-114514^{n}\equiv0~mod(p)</script><ul>
+<li>这样就可以直接通过gcd分解n。</li>
+</ul>
+</li>
+<li><p>该部分exp如下：</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line">n= </span><br><span class="line">c= </span><br><span class="line">hint= </span><br><span class="line">p = gcd(hint-<span class="built_in">pow</span>(<span class="number">114514</span>,n,n),n)</span><br><span class="line">q = n//p</span><br><span class="line">phi = (p-<span class="number">1</span>)*(q-<span class="number">1</span>)</span><br><span class="line">d = gmpy2.invert(e,phi)</span><br><span class="line">m2 = <span class="built_in">pow</span>(c,d,n)</span><br><span class="line">flag2 = long_to_bytes(m2)</span><br><span class="line"><span class="built_in">print</span>(flag2)</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">b&#x27;19f-a1a6-959449b4df5a&#125;&#x27;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="math完整exp"><a href="#Math完整exp" class="headerlink" title="Math完整exp"></a>Math完整exp</h3><ul>
+<li>完整exp如下：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"></span><br><span class="line">p1= </span><br><span class="line">q1= </span><br><span class="line">c= </span><br><span class="line">phi= </span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line"></span><br><span class="line">d = gmpy2.invert(e,phi)</span><br><span class="line">y = e*d - <span class="number">1</span></span><br><span class="line">k = y//phi</span><br><span class="line">t = (e*d-<span class="number">1</span>)//k</span><br><span class="line">p,q = var(<span class="string">&quot;p q&quot;</span>)</span><br><span class="line">eq1 = p*q-(p+q)+<span class="number">1</span> == t</span><br><span class="line">eq2 = p1*p+q1*q-<span class="number">1</span> == p*q</span><br><span class="line">solve([eq1,eq2],p,q)</span><br><span class="line">p = <span class="number">8227949876362113267072144961846048393056849759669796156924553779939503433107338055396756296154009288972625791697380742839785942158298397801412484034859067</span></span><br><span class="line">q = <span class="number">6988819776494465902198750769464437883348561721022295748041612490557734149835801503912448144263306897001345088119505767812048846266490345642125677660981803</span></span><br><span class="line">n = p*q</span><br><span class="line">m1 = <span class="built_in">pow</span>(c,d,n)</span><br><span class="line">flag1 = long_to_bytes(m1)</span><br><span class="line"></span><br><span class="line">n= </span><br><span class="line">c= </span><br><span class="line">hint= </span><br><span class="line">p = gcd(hint-<span class="built_in">pow</span>(<span class="number">114514</span>,n,n),n)</span><br><span class="line">q = n//p</span><br><span class="line">phi = (p-<span class="number">1</span>)*(q-<span class="number">1</span>)</span><br><span class="line">d = gmpy2.invert(e,phi)</span><br><span class="line">m2 = <span class="built_in">pow</span>(c,d,n)</span><br><span class="line">flag2 = long_to_bytes(m2)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(flag1+flag2)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">b&#x27;NSSCTF&#123;e713afa4-fcd8-419f-a1a6-959449b4df5a&#125;&#x27;</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="latticelcg"><a href="#LatticeLCG" class="headerlink" title="LatticeLCG"></a>LatticeLCG</h2><ul>
+<li>题目附件如下：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">flag = <span class="string">b&#x27;NSSCTF&#123;******************************&#125;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成LCG的相关线性参数:a、seed、b, 生成LCG的模数:n</span></span><br><span class="line">a = getPrime(<span class="number">512</span>)</span><br><span class="line">seed = getPrime(<span class="number">512</span>)</span><br><span class="line">b = bytes_to_long(flag)</span><br><span class="line">n = getPrime(<span class="number">1024</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 第一部分对参数a进行破解,实际上是RSA的共模攻击,但是这个共模攻击没有给n</span></span><br><span class="line">e1 = <span class="number">2333</span></span><br><span class="line">e2 = <span class="number">23333</span></span><br><span class="line"></span><br><span class="line">c1 = <span class="built_in">pow</span>(a,e1,n)</span><br><span class="line">c2 = <span class="built_in">pow</span>(a,e2,n)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第二部分就是生成连续的10个LCG结果</span></span><br><span class="line">output = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">    seed = (a*seed+b)%n</span><br><span class="line">    output.append(seed)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;c1 = &quot;</span>,c1)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;c2 = &quot;</span>,c2)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;output1 = &quot;</span>,output[<span class="number">0</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;output2 = &quot;</span>,output[<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 第三部分就是用于求解n的</span></span><br><span class="line">e = [getPrime(<span class="number">128</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">20</span>)]</span><br><span class="line">out = []</span><br><span class="line">m = getPrime(<span class="number">64</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> e:</span><br><span class="line">    out.append(<span class="built_in">pow</span>(m,i,n))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;e=&quot;</span>,e)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;out=&quot;</span>,out)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">c1 =  132894829064255831243210470637067717685821770359549730768366345840525257033166172926149293454192143005551270166547902269036843756318967855047301751521125394803373953151753927497701242767032542708689455184991906629946511295108898559666019232955132938245031352553261823905498810285940911315433144300083027795647</span></span><br><span class="line"><span class="string">c2 =  24086830909813702968855830967174364278115647345064163689290457852025690324300607354444884288995399344650789235347773145941872226843099538451759854505842021844881825309790171852845467221751852440178862638893185965125776165397575087879479327323737686652198357863042305078811580074617322063509435591981140533310</span></span><br><span class="line"><span class="string">output1 =  54997286032365904331111467760366122947903752273328087460831713533712307510311367648330090376100815622160705007873798883153287827481112070182047111994066594911019010222064952859306742931009422376955635523160546531204043294436812066746785938062292942759004837173423765427628610568097898331237064396308950601636</span></span><br><span class="line"><span class="string">output2 =  115015764780168428067411132384122324817310808727138440691727747976276050930701648349452842302609389394467134068064132550313721128807222231505312226682756817617177620169804112319332815872107656884931985435898097063491690413460967856530075292289784649593915313885813931026280791070577034075346669028068003251024</span></span><br><span class="line"><span class="string">e= [297332330847212015073434001239859795661, 247136911662054641479463124065475615181, 269964458627145370722389742095701827701, 270745917671094194052444327351021588037, 254010082507930275771798119457499420531, 219178601856077385518322602059961601013, 226562702503988968288128483964146379529, 236756812424464516919183114495913408541, 330800121752029915693039296018980956519, 244800084005240595691424199440981715431, 171753849214889522920105847094773384191, 175843874533972361422410968920873382741, 326554577162848075059517044795930784993, 181842368629269753698222635712342485771, 221634122983362091660188171985742369561, 314244561819808202322467576330355199409, 286703236198397527318161582654787197007, 298101543059628501506668748374542117409, 304158884506393754601331945634109778837, 227577031261920314010408499530794497453]</span></span><br><span class="line"><span class="string">out= [100163998802948218573427220530909801629443946118807841130458771881611961921044413091457977957530737347507311468578174294420439883266450142918647561103714976340598499984679873518770686239019753272419975426555435266764099822607336645955391865380657632176223122712125661464370522088500110746571354290680063421912, 123528268396018633078964378145622645321836134964966941909300627704018826667414656614011250938241127521627117348901416042868382174504514240509791471909819407751786633761392047187057200130450960708049681366686147337178110669163142189940397343388837018627392202704211693014162963133958078984558400205296509955066, 50364974727218716170137342348825758682286710377257708196467656986986475658591351848251278364177715325447140300281348027787487944839878770556527568407280736570303345044999352851718908253510696083227344179177110348363623815158409862985684687329665113210373028159714648637297476014803935686233984711925346269925, 9159042298258514259206302054907530984498816597282237786310355131965025367180505822032135021520906576471052417629425493533222088036674196397387325202128095476044308794426593565419139845832998557280786358482011226957053125314152322427131984411160984485669030286331376124575677908877399942011661647598763754231, 83466948172962290899792524342204996697711370224947233607865306692546824512672969402433314856742908546253967225963904395036102408684746619744412073888614033881366518452878344698289278946024167788789718690655953517892282374396760436658422838909903123439370164929347147855359470889455753772857233516742991766128, 72028057477369331020972407277180913909557985390590548305094935208898254733240351763155769013959589016793318772858662702447133499307826143247356049051993727167694036585280387890126287679890730586145740176250715386149857291210207281073772478229355625725300592003798974298248102432508449566953296818450441875311, 63397152736399466888877444377156185012692670493456346196278062009641363047685720620967313379507212944658351683022480839941265221126018392433078546696140135677499181555082643172378488800458657825640013090182171355299282023794908520172571785687147143015581400891531296496177973817400317905868361800342940667657, 45427004823510815929685208038284324980662968275105063862891077759131069014314933978878667052450145039482242546093735499108826130367476890384431317243013990394189191560941678120985717370542332803012619694821129395559214706968432476548145608291516176910849698455496733056096163035964057523545705356926187216133, 85046100612081858546755294340770681541320509587396377967875404950325314121709046137842413744740490231945105758075761946555179595664901813127463402854440384657046429776033129391138370272524736543471909307910018577738207910417672603889922445435939876023878220177983424547612635006926243055642166274730894301704, 5833380233103086014860892228744764647016585478949686583145531659689295506666493518453642500086277427538189091865461553097914845680665917702500908205558454036911757659426809969367680394533585635383007758339917554453268182491874683638880986360065633842854622244953985055815937671635222264056071882344388307409, 83587615309194701727032548415548847571046191382552371312058083137102227325098839286526833147951063338204327145093831238962818333112251936853329663907079943414231588222256242520221314528944937229985997926851198158564313703719031124442094987245466116488897263358510493905440842917634723859176839440753120904481, 108651960334634726889543063749359050688114025706494125848785084643330096858725917513596985853593252388835207675036982640195609499739937405655156895161071906340785173459426867946058638393154997931747445494284445204735492709747637173698383609764016673932827648159152658645291248613736662020472251048171789274368, 118612010487916657134965416492319303083994743753602531817008130269546146141506819718265549648441671373744766173780682168587021797626910931105508317440664521595783406848956221465897709761805869130021172013000282497881581247777388315282629463546261696169893882772397797722134711444928443061384985458691749569847, 106808406616890955924408992591724627593882118490933791849624747503316110669154243209826761617940864170830792705070618439466645580274835929100331418955890808763286193770831205511071440703609240364726061677822134370309018443508205980554831705850988319397384130044484586798585896460152167042282847992593429629533, 88091869606421350393441194783722851111189272445506506936925797213395319937783082680078622732926273935980894566775394134783157488360516905477700601820480975112122167589887641130656305741351643175495552454293030309247254533571254198691204714097846510872592569447050033289483493274672346210063885124570695832880, 94400859500860667431780782962782396345261822402898708716634581228428633704975879685572548692997007974004673676539496590659276952154740096463133011458100387006276325192223993452314873089466451613079029429327880672384210802191677586975844471189127835578979108767548290181668434770385199468588493042256788539610, 76177813724283720012398394789596589415486093955132688784865364048503447246391866424200071522136707581280434193680972230914105236504028522288780213089260160776489804587209115330412067560802680789338779056583047491942817016437672075192528508677997165703606520158178725128251694801612417667440677124932361973397, 17188209523466762369281362386525396145127294763502094183797065621821932913685690176344514910405677170931795652509426794846131051983826422536084073462084935517166603832542862106287058675490933197600813710203114108790043880150305327523679949543592622443904084453387396870899883324751789625806819506542619123964, 120007173989070249117019147454557020213723707722383599019972471016186584968096445904023372671513462965078400715365736756710078805039115601609874780421117795585342458478316236202328120583456334489780231976628584606042971207759763658961365139429661536955996519512283283500790612975034779837647053750631763512799, 18797057418663411295612229938999282286746920748194349166509084258061650142260043277698907538088835210620841171754186980908772147495732980563542600139935202965632319542217264685208215907551992891370166006725534397313373079841419662622936316343820775075897977228084528246337988431658221881343556854053475137330]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>通过分析上面的代码我们其实可以得到最终目标是通过LCG泄露出来连续的2个数据恢复出参数<code>b</code>，参数<code>b</code>其实就是flag。<ul>
+<li>如果要恢复b的话，我们其实需要恢复<code>a</code>、<code>n</code></li>
+<li>如果我们需要恢复<code>a</code>的话我们就先要恢复<code>n</code></li>
+<li>所以本题的分析顺序应该是先恢复<code>n</code>，再恢复<code>a</code>，最后再恢复<code>b</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="latticelcg第一部分"><a href="#LatticeLCG第一部分" class="headerlink" title="LatticeLCG第一部分"></a>LatticeLCG第一部分</h3><ul>
+<li><p>QAQ这部分不会，想了很久，但是没有动手写攻击代码去仔细研究（鸡块师傅把思考过程给写出来了确实太棒了）</p>
+</li>
+<li><p>该部分我们要先来恢复<code>n</code>，对于恢复<code>n</code>来说，我们要利用这段代码对n进行恢复。</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">e = [getPrime(<span class="number">128</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">20</span>)]</span><br><span class="line">out = []</span><br><span class="line">m = getPrime(<span class="number">64</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> e:</span><br><span class="line">    out.append(<span class="built_in">pow</span>(m,i,n))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;e=&quot;</span>,e)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;out=&quot;</span>,out)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>对于<code>out</code>和<code>e</code>有如下的关系式子（多列几个）：</li>
+</ul>
+<script type="math/tex; mode=display">
+out_1\equiv m^{e_1}~mod(~n)\\
+out_2\equiv m^{e_2}~mod(~n)\\
+out_3\equiv m^{e_3}~mod(~n)\\
+out_4\equiv m^{e_4}~mod(~n)\\
+...\\
+out_{20}\equiv m^{e_{20}}~mod(~n)</script><ul>
+<li>对于这个式子的分析有以下两种说法：<ul>
+<li>第一种说法就是某个米奇妙妙的共模攻击方式， 共模攻击中模数需要已知，但是该问题显然是模数未知的情况。</li>
+<li>第二种说法就是根据题目的提示是某个格攻击，但是如何造格需要我们自己去探究一下。</li>
+</ul>
+</li>
+<li><p>首先看到这种结构肯定都是往共模攻击去探索，下面就是一个探索的过程，我们就取前三个式子来研究，这边$e<em>1,…,e</em>{20}$是两两互素的，满足共模攻击的条件：</p>
+<script type="math/tex; mode=display">
+out_1\equiv m^{e_1}~mod(~n)\\
+out_2\equiv m^{e_2}~mod(~n)\\
+out_3\equiv m^{e_3}~mod(~n)\\</script><ul>
+<li>对于第一个式子和第二个式子，通过共模攻击其实就有：</li>
+</ul>
+<script type="math/tex; mode=display">
+out_1^{s_1}*out_2^{t_1}\equiv m^{s_1e_1+t_1e_2}\equiv m ~mod(~n)</script><ul>
+<li>对于第二个式子和第三个式子，通过共模攻击其实就有：</li>
+</ul>
+<script type="math/tex; mode=display">
+out_2^{s_2}*out_3^{t_2}\equiv m^{s_2e_2+t_2e_3}\equiv m ~mod(~n)</script><ul>
+<li>那么将这两个共模攻击所得到的新式子相减，那么就有如下的式子：</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{array}{l}
+out_1^{s_1}*out_2^{t_1}-out_2^{s_2}*out_3^{t_2}\equiv0~mod(~n)
+\\\Rightarrow n|out_1^{s_1}*out_2^{t_1}-out_2^{s_2}*out_3^{t_2}
+\end{array}</script><ul>
+<li>同理再使用一组$out_2、out_3、out_4$，就会有如下的一个式子：</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{array}{l}
+out_2^{s_3}*out_3^{t_3}-out_3^{s_4}*out_4^{t_4}\equiv0~mod(~n)
+\\\Rightarrow n|out_2^{s_3}*out_3^{t_3}-out_3^{s_4}*out_4^{t_4}
+\end{array}</script><ul>
+<li>那么$gcd(out_1^{s_1}<em>out_2^{t_1}-out_2^{s_2}</em>out_3^{t_2},out_2^{s_3}<em>out_3^{t_3}-out_3^{s_4}</em>out_4^{t_4})=kn$，并且$k$是比较小的。</li>
+</ul>
+</li>
+<li><p>从上面可以得到一个思路，思路有了那就赶紧实践起来。但是在实践的过程中会出现一个问题，由于$n$未知，我们无法使用模幂运算，只能单纯的进行幂运算，这样就会导致运算量很大，不能在有限的时间内计算出来幂运算的结果。如下图所示：</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = gmpy2.gcdext(e[0],e[1])</span><br><span class="line">print(x)</span><br><span class="line">x1 = x[1]</span><br><span class="line">out_1 = pow(out[0],int(x1))</span><br></pre></td></tr></table></figure>
+<p><img src="/2025/12/17/CTFblog/write_up%E7%B3%BB%E5%88%97blog/2023%E5%B9%B4/2023NSSCTF2nd-wp/image-20251221012654192.png" alt="image-20251221012654192"></p>
+<ul>
+<li>但是在尝试的过程中，我们发现了共模攻击指数上的运算其实是裴蜀定理，而这个裴蜀定理实际上就是解二元一次整数方程。对于上面的方程组有：</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{array}{l}
+e_1x_1+e_2x_2=1
+\Rightarrow 
+\begin{bmatrix}
+e_1&e_2
+\end{bmatrix}
+\begin{bmatrix}
+x_1\\
+x_2
+\end{bmatrix}=\begin{bmatrix}
+1
+\end{bmatrix}\\
+
+e_2x_3+e_3x_4=1
+\Rightarrow
+\begin{bmatrix}
+e_2&e_3
+\end{bmatrix}
+\begin{bmatrix}
+x_2\\
+x_3
+\end{bmatrix}=\begin{bmatrix}
+1
+\end{bmatrix}
+\end{array}</script><ul>
+<li>并且其实不难想到（初学者很难想到）格基规约最终得到的结果是尽量短、尽量正交的两个向量，那么这个就很可能比<code>gcdext()</code>求得的值小很多，接下来就是探究造格的过程。对于造格以及对所造的格进行LLL算法，我有以下疑问（如果想通这两点，那么之后对格密码的学习可能速度就会变得起飞）：</li>
+</ul>
+<blockquote>
+<ol>
+<li>怎么造格，如果构造一个矩阵或者说如何寻找一个格基确定这个格。</li>
+<li>为什么所造的格使用LLL算法规约后得到的最短向量（或者近似最短向量）就是该方程的解，如何证明它。</li>
+</ol>
+</blockquote>
+<ul>
+<li>这边就先给出一个正确的造格（先从结果论），下面这个式子从矩阵乘法来说是没错的。但是我们是使用规约求最短向量，而不是去求解这个方程。但是这个规约出来是这样的。（剩下部分思路有点卡住了，要等后续再来看看了，目前来说一些造格的敏感度是有了，但是为什么能造出这个格，为什么能规约出来还是不太明白，2025年12月21日留）</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+x_1&x_2
+\end{bmatrix}
+\begin{bmatrix}
+e_1&1&0\\
+e_2&0&1
+\end{bmatrix}=
+\begin{bmatrix}
+e_1x_1+e_2x_2&x_1&x_2
+\end{bmatrix}</script><p><img src="/2025/12/17/CTFblog/write_up%E7%B3%BB%E5%88%97blog/2023%E5%B9%B4/2023NSSCTF2nd-wp/image-20251221144418957.png" alt="image-20251221144418957"></p>
+<ul>
+<li>接下来我们来从两种角度来理解这个格构成的矩阵，第一个视角就是从列向量的角度去理解这个格。目前我对这个列向量组视角理解的格是这样的（这种理解角度不一定对，我也是初学者QAQ）：<ul>
+<li>列向量$\beta_1$是约束条件，使得规约的时候能规约的符合条件的最短向量。</li>
+<li>列向量$\beta_2、\beta_3$其实能组合成一个单位正交向量，这两个向量的作用是，规约后的2个行向量中第一个元素如果能规约出来<code>1</code>，那么这个行向量的第二、第三个元素其实就是我们要求解的最短向量之一，这样就可以解出答案。</li>
+<li><strong>总结</strong>：这样造格，从列向量角度来说其实就是一个关键点<strong>约束</strong></li>
+</ul>
+</li>
+</ul>
+<script type="math/tex; mode=display">
+\beta_1 = \begin{bmatrix}
+e_1\\
+e_2
+\end{bmatrix},
+\beta_2 = 
+\begin{bmatrix}
+1\\
+0
+\end{bmatrix},
+\beta_3 = 
+\begin{bmatrix}
+0\\
+1
+\end{bmatrix}</script><ul>
+<li>接下来看看从行向量的角度上来看，其实就是两个具有三个分量的向量，那其实就是在（把向量空间用几何空间来理解）几何空间的一个平面上，如下图所示，这里以$e_1=33，e_2=24$为例子：</li>
+</ul>
+<script type="math/tex; mode=display">
+\alpha_1 = \begin{bmatrix}
+e_1&1&0
+\end{bmatrix}\\
+\alpha_2 = \begin{bmatrix}
+e_1&0&1
+\end{bmatrix}</script><blockquote>
+<ol>
+<li>这个向量构成的格在几何空间中其实就是一个平面上离散有规律的点（仅仅就是在一个平面上离散有规律的点，紫色的那条线是$33x+24y-1=0$这个二维平面$xoy$中的直线，在三维空间$xoyoz$中平移到这个地方的样子）。<ul>
+<li>如果我们用列向量组的视角看格点，我们会把其放入到平面空间中去研究（但是二维平面两个向量就足够了，所以怎么想都想不通LLL应该如何规约他）。</li>
+<li>但是如果是从行向量组的视角看这个我们就会把格放在三维的几何空间中的某个平面去研究，这就很快能想到格点位于三维空间中的某个二维平面，并且规约的时候是正常规约的。</li>
+</ul>
+</li>
+</ol>
+<p><img src="/2025/12/17/CTFblog/write_up%E7%B3%BB%E5%88%97blog/2023%E5%B9%B4/2023NSSCTF2nd-wp/image-20251222005123217.png" alt="image-20251222005123217"><br><img src="/2025/12/17/CTFblog/write_up%E7%B3%BB%E5%88%97blog/2023%E5%B9%B4/2023NSSCTF2nd-wp/image-20251222010146644.png" alt="image-20251222010146644"></p>
+<ol>
+<li>接下来看看规约后的向量<ul>
+<li>可以很直观的看出来规约后生成整个三维空间都比较方正的。</li>
+<li>并且规约后得到的两个向量也是正交向量</li>
+</ul>
+</li>
+</ol>
+<p><img src="/2025/12/17/CTFblog/write_up%E7%B3%BB%E5%88%97blog/2023%E5%B9%B4/2023NSSCTF2nd-wp/image-20251222010240095.png" alt="image-20251222010240095"></p>
+<p><img src="/2025/12/17/CTFblog/write_up%E7%B3%BB%E5%88%97blog/2023%E5%B9%B4/2023NSSCTF2nd-wp/image-20251222010359193.png" alt="image-20251222010359193"><br><img src="/2025/12/17/CTFblog/write_up%E7%B3%BB%E5%88%97blog/2023%E5%B9%B4/2023NSSCTF2nd-wp/image-20251222010413033.png" alt="image-20251222010413033"></p>
+</blockquote>
+<ul>
+<li>现在回到本题，通过造格后进行规约操作，发现第一个元素规约不出来是<code>1</code>，那么可能就猜想格的维数太小了，规约不准确。</li>
+</ul>
+<p><img src="/2025/12/17/CTFblog/write_up%E7%B3%BB%E5%88%97blog/2023%E5%B9%B4/2023NSSCTF2nd-wp/image-20251222011217147.png" alt="image-20251222011217147"></p>
+<ul>
+<li>因为裴蜀定理n个元也是成立的，那么共模攻击$e<em>1,…,e</em>{20}$互素，其实就有一定存在这个式子，那就可以由此造一个<code>20×21</code>的格</li>
+</ul>
+<script type="math/tex; mode=display">
+s_1e_1+...+s_{20}e_{20}=1</script><script type="math/tex; mode=display">
+\begin{bmatrix}
+s_1&...&s_{20}
+\end{bmatrix}_{1×20}
+\begin{bmatrix}
+e_1&1&0&\dots&0\\
+e_2&0&1&\dots&0\\
+\vdots&\vdots&\vdots&\ddots&0\\
+e_{19}&0&0&\dots&0\\
+e_{20}&0&0&\dots&1
+\end{bmatrix}_{20×21}=
+\begin{bmatrix}
+1&s_1&...&s_{20}
+\end{bmatrix}_{1×21}</script><ul>
+<li>但是这个有一个疑问，规约出来的矩阵是$20×21$，而不是$1×21$。其实是这样的规约出来的矩阵，以行向量组的形式看，规约出来的<code>20</code>个行向量中，每一个行向量都有可能是我正确的结果。</li>
+</ul>
+<p><img src="/2025/12/17/CTFblog/write_up%E7%B3%BB%E5%88%97blog/2023%E5%B9%B4/2023NSSCTF2nd-wp/image-20251222013123175.png" alt="image-20251222013123175"></p>
+<ul>
+<li>但是如何判断那一行到底是才是真正的我们想要结果的，这个就要从我们约束的式子来看，我们造格约束的每个行向量的第一个元素应该需要是<code>1</code>，而规约后的矩阵看结果都不是<code>1</code>，蛋糕了。</li>
+</ul>
+<blockquote>
+<p>注意：这里以我目前的理解是只要第一列某行元素是1，那么行的元素就是我们要得到的答案。而鸡块师傅的理解是<strong>短向量的第一列相同</strong></p>
+</blockquote>
+<p><img src="/2025/12/17/CTFblog/write_up%E7%B3%BB%E5%88%97blog/2023%E5%B9%B4/2023NSSCTF2nd-wp/image-20251222013802966.png" alt="image-20251222013802966"></p>
+<ul>
+<li>这时就需要配平一下了，配平这里简单讲一下作用：<code>让“正确解对应的向量在几何上变短”</code>，剩下的后面体会。这里就给格配个平，规约出来后就像下图这样：</li>
+</ul>
+<p><img src="/2025/12/17/CTFblog/write_up%E7%B3%BB%E5%88%97blog/2023%E5%B9%B4/2023NSSCTF2nd-wp/image-20251222020254027.png" alt="image-20251222020254027"></p>
+<ul>
+<li>之后取两行就行了，然后再用共模攻击的方式求出，但是这里还要注意一点就是，在模下的负数幂是在分数上的。但是其实我们先</li>
+</ul>
+<script type="math/tex; mode=display">
+out_1^{s_1}*out_2^{s_2}...out_{20}^{s_{20}}-out</script><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="latticelcg第二部分"><a href="#LatticeLCG第二部分" class="headerlink" title="LatticeLCG第二部分"></a>LatticeLCG第二部分</h3><h3 id="体会"><a href="#体会" class="headerlink" title="体会"></a>体会</h3><blockquote>
+<p>通过LatticeLCG这题，对格攻击的认识有了进一步了解，先写下我的这几个理解：</p>
+<ol>
+<li>需要使用格攻击的题目，都要去寻找题目中的线性关系或者具有线性空间的代数结构。有时候用到数学的转化与化归的思想，构造出一些米奇妙妙小结构，这个结构一般都是满足线性关系或者是线性空间，或者把式子约束线性空间中去研究。而学到的具有线性空间的代数结构有：<code>线性方程组</code>、<code>矩阵</code>、<code>多项式</code>、<code>向量空间</code>等。接下来我们举一个例子（例子不一定准确）：<ul>
+<li>本题中指数是没有线性关系的，但是我们通过共模攻击的思路可以得到一个线性方程（虽然不是线性空间，但是出现了线性关系！）。</li>
+</ul>
+</li>
+<li><p>对于找到关键线性关系的式子后，我们想的并不是解方程（组），而是找到一个小整数解。找到之后才能干别的事情</p>
+</li>
+<li><p>通过上面的题目，以及平时接触到的一些造格思路，都是类似于下面这样的，未知量放在左边，格放在又右边，将它们进行乘法运算。其中有如下规律（从结果上看，采用列向量组的形式表示格向量），对于造格我们一般需要构造的是$n×(n+1)$矩阵，也就是有$(n+1)$个列向量：</p>
+<ul>
+<li>第1个列向量总是取所找到的线性关系的参数，用于约束规约的结果。</li>
+<li>第2个到第n+1个列向量总是单位正交向量（可能不是单位向量，但是一般都是正交向量），这样如果能在$a_{i1}$中规约出正确的结果方程结果，那么该行的剩下元素很可能就是符合该约束方程的其中一个解集。</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<h1 id="pwn"><a href="#PWN" class="headerlink" title="PWN"></a>PWN</h1><h2 id="newbottleoldwine"><a href="#NewBottleOldWine" class="headerlink" title="NewBottleOldWine"></a>NewBottleOldWine</h2><h2 id="xenny的诱惑"><a href="#xenny的诱惑" class="headerlink" title="xenny的诱惑"></a>xenny的诱惑</h2><p>​</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://iyheart.github.io">iyheart</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://iyheart.github.io/2025/12/17/CTFblog/write_up%E7%B3%BB%E5%88%97blog/2023%E5%B9%B4/2023NSSCTF2nd-wp/">http://iyheart.github.io/2025/12/17/CTFblog/write_up系列blog/2023年/2023NSSCTF2nd-wp/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://iyheart.github.io" target="_blank">iyheart的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover232.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/ea2e5fb6fbb4c236fbabd387ef83339.jpg" target="_blank"><img class="post-qr-code-img" src="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/ea2e5fb6fbb4c236fbabd387ef83339.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2025/12/29/CTFblog/write_up%E7%B3%BB%E5%88%97blog/2026%E5%B9%B4/ciscn2026%E5%A4%8D%E7%8E%B0/" title="ciscn2026复现"><img class="cover" src="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover233.png" onerror="onerror=null;src='https://raw.githubusercontent.com/iyheart/tuchuang/main/img/f3c2605738aabdeedbc687356fa0e4e5.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">ciscn2026复现</div></div></a></div><div class="next-post pull-right"><a href="/2025/12/08/%E5%BC%80%E5%8F%91%E7%B3%BB%E5%88%97/UEFI%E5%BC%80%E5%8F%91/UEFI-%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91C%E8%AF%AD%E8%A8%802-%E7%A3%81%E7%9B%98%E6%A0%BC%E5%BC%8F/" title="UEFI-编程开发C语言2-磁盘分区与文件系统"><img class="cover" src="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover231.png" onerror="onerror=null;src='https://raw.githubusercontent.com/iyheart/tuchuang/main/img/f3c2605738aabdeedbc687356fa0e4e5.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">UEFI-编程开发C语言2-磁盘分区与文件系统</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="http://pic.5tu.cn/uploads/allimg/1910/pic_5tu_big_2019010211653346247.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">iyheart</div><div class="author-info__description">悟已往之不谏，知来者之可追</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">190</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">58</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#crypto"><span class="toc-number">1.</span> <span class="toc-text">Crypto</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#funnyencrypt%E6%9C%AA%E5%AE%8C%E6%88%90"><span class="toc-number">1.1.</span> <span class="toc-text">FunnyEncrypt(未完成)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ezrsa"><span class="toc-number">1.2.</span> <span class="toc-text">EzRSA</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80"><span class="toc-number">1.2.1.</span> <span class="toc-text">方法一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C"><span class="toc-number">1.2.2.</span> <span class="toc-text">方法二</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#math"><span class="toc-number">1.3.</span> <span class="toc-text">Math</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#math%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86"><span class="toc-number">1.3.1.</span> <span class="toc-text">Math第一部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#math%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86"><span class="toc-number">1.3.2.</span> <span class="toc-text">Math第二部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#math%E5%AE%8C%E6%95%B4exp"><span class="toc-number">1.3.3.</span> <span class="toc-text">Math完整exp</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#latticelcg"><span class="toc-number">1.4.</span> <span class="toc-text">LatticeLCG</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#latticelcg%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86"><span class="toc-number">1.4.1.</span> <span class="toc-text">LatticeLCG第一部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#latticelcg%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86"><span class="toc-number">1.4.2.</span> <span class="toc-text">LatticeLCG第二部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%93%E4%BC%9A"><span class="toc-number">1.4.3.</span> <span class="toc-text">体会</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pwn"><span class="toc-number">2.</span> <span class="toc-text">PWN</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#newbottleoldwine"><span class="toc-number">2.1.</span> <span class="toc-text">NewBottleOldWine</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xenny%E7%9A%84%E8%AF%B1%E6%83%91"><span class="toc-number">2.2.</span> <span class="toc-text">xenny的诱惑</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/29/CTFblog/write_up%E7%B3%BB%E5%88%97blog/2026%E5%B9%B4/ciscn2026%E5%A4%8D%E7%8E%B0/" title="ciscn2026复现">ciscn2026复现</a><time datetime="2025-12-29T01:10:19.000Z" title="发表于 2025-12-29 09:10:19">2025-12-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/17/CTFblog/write_up%E7%B3%BB%E5%88%97blog/2023%E5%B9%B4/2023NSSCTF2nd-wp/" title="2023NSSCTF2nd-wp">2023NSSCTF2nd-wp</a><time datetime="2025-12-17T14:16:47.000Z" title="发表于 2025-12-17 22:16:47">2025-12-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/08/%E5%BC%80%E5%8F%91%E7%B3%BB%E5%88%97/UEFI%E5%BC%80%E5%8F%91/UEFI-%E7%BC%96%E7%A8%8B%E5%BC%80%E5%8F%91C%E8%AF%AD%E8%A8%802-%E7%A3%81%E7%9B%98%E6%A0%BC%E5%BC%8F/" title="UEFI-编程开发C语言2-磁盘分区与文件系统">UEFI-编程开发C语言2-磁盘分区与文件系统</a><time datetime="2025-12-08T08:49:56.000Z" title="发表于 2025-12-08 16:49:56">2025-12-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/04/%E6%95%B0%E5%AD%A6blog/%E5%88%9D%E7%AD%89%E6%95%B0%E8%AE%BA/%E6%95%B0%E8%AE%BA%E5%9F%BA%E7%A1%80-%E8%BF%9E%E5%88%86%E6%95%B0/" title="数论基础-连分数">数论基础-连分数</a><time datetime="2025-12-04T13:30:03.000Z" title="发表于 2025-12-04 21:30:03">2025-12-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2025/12/04/CTFblog/CRYPTO%E7%B3%BB%E5%88%97blog/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/RSA/RSA%E4%B8%93%E9%A2%98%E4%B9%8Bfactor/" title="RSA专题之factor">RSA专题之factor</a><time datetime="2025-12-04T12:10:33.000Z" title="发表于 2025-12-04 20:10:33">2025-12-04</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By iyheart</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat-btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script></div><script src="/zhheo/random.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
