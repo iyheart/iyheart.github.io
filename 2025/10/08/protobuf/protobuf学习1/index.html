@@ -163,55 +163,42 @@
 <li>参考文章：<a target="_blank" rel="noopener" href="https://protobuf.com.cn/installation/">Protocol Buffer 编译器安装 | Protocol Buffers 文档 - ProtoBuf 文档</a></li>
 <li>参考博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_74531333/article/details/140469169">【ProtoBuf】在 Windows / Linux 安装 ProtoBuf 编译器（超详细教程）-CSDN博客</a></li>
 </ul>
-<h1 id="基础知识">基础知识</h1>
-<p><code>protobuf</code>英文全称为Protocol Buffers，是Google的一种语言中立、平台中立、可扩展的结构化数据序列化机制。它类似于 JSON，但更小更快，并且能生成原生语言绑定。你只需一次性定义好你想要的数据结构，然后就可以使用专门生成的源代码，轻松地从各种数据流中读写你的结构化数据，并支持多种语言。</p>
-<h2 id="序列化和反序列化">序列化和反序列化</h2>
+<h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><p><code>protobuf</code>英文全称为Protocol Buffers，是Google的一种语言中立、平台中立、可扩展的结构化数据序列化机制。它类似于 JSON，但更小更快，并且能生成原生语言绑定。你只需一次性定义好你想要的数据结构，然后就可以使用专门生成的源代码，轻松地从各种数据流中读写你的结构化数据，并支持多种语言。</p>
+<h2 id="序列化和反序列化"><a href="#序列化和反序列化" class="headerlink" title="序列化和反序列化"></a>序列化和反序列化</h2><ul>
+<li><p>序列化和反序列化对于学web的可能比较熟悉，但我不是学web的，所以简单介绍一下：</p>
 <ul>
-<li>
-<p>序列化和反序列化对于学web的可能比较熟悉，但我不是学web的，所以简单介绍一下：</p>
-<ul>
-<li>
-<p>序列化：就是将一个对象转换为字节序的过程;</p>
+<li><p>序列化：就是将一个对象转换为字节序的过程;</p>
 </li>
-<li>
-<p>反序列化：就是将一个字节序转换为一个完整对象的过程;</p>
+<li><p>反序列化：就是将一个字节序转换为一个完整对象的过程;</p>
 </li>
-<li>
-<p>使用序列化的情况：</p>
-<ol>
+<li>使用序列化的情况：<ol>
 <li>存储数据：当你想把的内存中的对象状态保存到⼀个⽂件中或者存到数据库中时。</li>
 <li>网络传输：网络直接传输数据，但是无法直接传输对象，所以要在传输前序列化，传输完成后反 序列化成对象。例如我们之前学习过socket编程中发送与接收数据。</li>
 </ol>
 </li>
-<li>
-<p>主流的序列化和反序列化工具有：XML、JSON、ProtoBuf;</p>
-</li>
+<li>主流的序列化和反序列化工具有：XML、JSON、ProtoBuf;</li>
 </ul>
 </li>
 </ul>
-<h2 id="protobuf版本">protobuf版本</h2>
-<ul>
+<h2 id="protobuf版本"><a href="#protobuf版本" class="headerlink" title="protobuf版本"></a>protobuf版本</h2><ul>
 <li>目前<code>protobuf</code>的大版本只有<code>protobuf2</code>、<code>protobuf3</code>，这两个大版本。<code>protobuf</code>是开源的，其源代码和发行版都被放置在github仓库中，对应的网址：<a target="_blank" rel="noopener" href="https://github.com/protocolbuffers/protobuf">protocolbuffers/protobuf: Protocol Buffers - Google’s data interchange format</a></li>
-<li>通过翻找github上protobuf的发行版，会发现protobuf的版本号有<code>V x.y.z</code>以及下图所示的<code>V x.y</code>这种。
-<ul>
+<li>通过翻找github上protobuf的发行版，会发现protobuf的版本号有<code>V x.y.z</code>以及下图所示的<code>V x.y</code>这种。<ul>
 <li>其中<code>V x.y.z</code>，<code>x</code>表示主版本号，<code>y</code>表示次版本号，<code>z</code>表示补丁版本号。而通过翻阅后面会发现主版本号只出现<code>2、3</code></li>
 <li>由于主版本号只出现<code>2、3</code>，所以更新到后面主版本号意义确实不太大了，所以就更换了版本号的命名方案，将版本号<code>3</code>给省略了，变成<code>x.y</code>的形式。这种形式默认是<code>protobuf3</code>。（图中<code>V 21.0</code>其实就是这种形式）</li>
-<li>通过观察github仓库的版本，protobuf2的版本范围为：<code>v2.4.1</code>到<code>v2.6.1</code>，而protobuf3的版本范围为：<code>v3.0.0</code>到<code>v3.20.1</code>。而版本命名后的目前截止至<code>2025年10月11日</code>，protobuf的版本已经是从<code>v21.0 </code>到<code>v33.0</code></li>
+<li>通过观察github仓库的版本，protobuf2的版本范围为：<code>v2.4.1</code>到<code>v2.6.1</code>，而protobuf3的版本范围为：<code>v3.0.0</code>到<code>v3.20.1</code>。而版本命名后的目前截止至<code>2025年10月11日</code>，protobuf的版本已经是从<code>v21.0</code>到<code>v33.0</code></li>
 </ul>
 </li>
 <li>为了能用上新版本的一些功能以及向下兼容，所以在安装<code>protobuf</code>的时候最好还是安装最新版本，<code>protobuf3</code>是兼容<code>protobuf2</code>的。</li>
 </ul>
 <p><img src="/2025/10/08/protobuf/protobuf%E5%AD%A6%E4%B9%A01/image-20251010025324870.png" alt="image-20251010025324870"></p>
-<h2 id="protobuf工作原理">protobuf工作原理</h2>
-<p>使用步骤如下：</p>
+<h2 id="protobuf工作原理"><a href="#protobuf工作原理" class="headerlink" title="protobuf工作原理"></a>protobuf工作原理</h2><p>使用步骤如下：</p>
 <ol>
 <li>编写.proto⽂件，⽬的是为了定义结构对象（message）及属性内容。</li>
-<li>使⽤ protoc 编译器编译 .proto ⽂件，⽣成⼀系列接口代码，存放在新⽣成头⽂件和源⽂件中。</li>
+<li>使⽤ protoc 编译器编译 .proto ⽂件，⽣成⼀系列接口代码，存放在新⽣成头⽂件和源⽂件中。 </li>
 <li>依赖⽣成的接口。将编译⽣成的头⽂件包含进我们的代码中，使用编译器为我们生成的序列化，反序列化方法以及一些对消息字段进行读写的方法。</li>
 </ol>
 <p><img src="/2025/10/08/protobuf/protobuf%E5%AD%A6%E4%B9%A01/image-20251011082338701.png" alt="image-20251011082338701"></p>
-<h2 id="protobuf环境搭建">protobuf环境搭建</h2>
-<p>所谓搭建protobuf环境，其实就是安装<code>protoc</code>编译器，以及Python相关的库，这样基本就可以在C语言中以及Python中使用protobuf结构体。</p>
+<h2 id="protobuf环境搭建"><a href="#protobuf环境搭建" class="headerlink" title="protobuf环境搭建"></a>protobuf环境搭建</h2><p>所谓搭建protobuf环境，其实就是安装<code>protoc</code>编译器，以及Python相关的库，这样基本就可以在C语言中以及Python中使用protobuf结构体。</p>
 <ul>
 <li>下载ProtoBuf前一定要安装依赖库：<code>autoconf automake libtool curl make g++ unzip</code>，否则安装会出现问题。安装命令如下：</li>
 </ul>
@@ -241,8 +228,7 @@
 <li>移动完之后执行<code>protoc --version</code>就会出现如下信息，这就代表着protoc成功安装完成了。</li>
 </ul>
 <p><img src="/2025/10/08/protobuf/protobuf%E5%AD%A6%E4%B9%A01/image-20251011083522423.png" alt="image-20251011083522423"></p>
-<h2 id="protobuf编译">protobuf编译</h2>
-<ul>
+<h2 id="protobuf编译"><a href="#protobuf编译" class="headerlink" title="protobuf编译"></a>protobuf编译</h2><ul>
 <li>给出如下的<code>protobuf</code>代码，看看如何编译它，编译它后什么文件会输出出来，先不用理解代码中的内容。创建一个<code>.proto</code>文件。</li>
 </ul>
 <figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">syntax = <span class="string">&quot;proto3&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">message </span><span class="title class_">Test</span>&#123;</span><br><span class="line">    <span class="type">int32</span> id = <span class="number">1</span>;</span><br><span class="line">    <span class="type">string</span> name = <span class="number">2</span>;</span><br><span class="line">    <span class="type">string</span> email = <span class="number">3</span>;</span><br><span class="line">&#125;      </span><br></pre></td></tr></table></figure>
@@ -257,6 +243,7 @@
 </ul>
 <p><img src="/2025/10/08/protobuf/protobuf%E5%AD%A6%E4%B9%A01/image-20251011091044219.png" alt="image-20251011091044219"></p>
 <p><img src="/2025/10/08/protobuf/protobuf%E5%AD%A6%E4%B9%A01/image-20251011091336142.png" alt="image-20251011091336142"></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -279,15 +266,14 @@
 </tr>
 </tbody>
 </table>
-<h2 id="protobuf使用">protobuf使用</h2>
-<ul>
+</div>
+<h2 id="protobuf使用"><a href="#protobuf使用" class="headerlink" title="protobuf使用"></a>protobuf使用</h2><ul>
 <li>现在已经将<code>protobuf</code>进行编译，编译成了其他语言的文件，那如何在编写其他语言的情况下使用这个<code>protobuf</code>文件。接下来的例子就是做一个实例了解一下如何使用。</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 注意如果第一次编写的时候应该需要下载protobuf1_pb2.py文件所包含的库文件</span></span><br><span class="line"><span class="keyword">import</span> protobuf1_pb2</span><br><span class="line">msg = protobuf1_pb2.Test()</span><br><span class="line">msg.<span class="built_in">id</span> = <span class="number">123</span></span><br><span class="line">msg.name = <span class="string">&quot;张三&quot;</span></span><br><span class="line">msg.email = <span class="string">&quot;111@qq.com&quot;</span></span><br><span class="line"><span class="built_in">print</span>(msg) <span class="comment"># 结构化输出msg</span></span><br><span class="line"><span class="built_in">print</span>(msg.SerializeToString()) <span class="comment"># 序列化转成二进制字节形式</span></span><br></pre></td></tr></table></figure>
 <p><img src="/2025/10/08/protobuf/protobuf%E5%AD%A6%E4%B9%A01/image-20251011093240496.png" alt="image-20251011093240496"></p>
-<h1 id="数据类型">数据类型</h1>
-<h2 id="标量类型">标量类型</h2>
-<p><code>Protobuf</code>支持多种标量类型，具体如下表：</p>
+<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><h2 id="标量类型"><a href="#标量类型" class="headerlink" title="标量类型"></a>标量类型</h2><p><code>Protobuf</code>支持多种标量类型，具体如下表：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -325,7 +311,7 @@
 <tr>
 <td><code>string</code></td>
 <td>字符串</td>
-<td><code>string name=6; </code></td>
+<td><code>string name=6;</code></td>
 </tr>
 <tr>
 <td><code>bytes</code></td>
@@ -334,8 +320,8 @@
 </tr>
 </tbody>
 </table>
-<h2 id="复合类型">复合类型</h2>
-<ul>
+</div>
+<h2 id="复合类型"><a href="#复合类型" class="headerlink" title="复合类型"></a>复合类型</h2><ul>
 <li>枚举类型：用于定义一组命名常量。使用关键字<code>enum</code>进行定义。</li>
 <li>消息类型：类似于结构体，用于定义复杂的数据结构。使用<code>message</code>关键字进行定义。</li>
 </ul>
@@ -343,26 +329,21 @@
 <figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 下面创建一个包含枚举类型的消息</span></span><br><span class="line">syntax = <span class="string">&quot;proto3&quot;</span>;</span><br><span class="line"><span class="keyword">package</span> my_package;</span><br><span class="line"></span><br><span class="line"><span class="keyword">message </span><span class="title class_">Person</span>&#123;</span><br><span class="line">	<span class="comment">// 声明一个枚举类型,注意等号</span></span><br><span class="line">	<span class="keyword">enum </span><span class="title class_">Gender</span> &#123; </span><br><span class="line">		GENDER_UNKNOWN = <span class="number">0</span>;</span><br><span class="line">        MALE = <span class="number">1</span>;</span><br><span class="line">        FEMALE = <span class="number">2</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 消息类型开始定义</span></span><br><span class="line">	<span class="type">string</span> name = <span class="number">1</span>;</span><br><span class="line">	<span class="comment">// 定义一个Gender变量</span></span><br><span class="line">	Gender gender = <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>例子2：</p>
 <figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">syntax = <span class="string">&quot;proto3&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//枚举类型也能定义在消息类型的外面,可以作为多个消息类型中的一个枚举类型</span></span><br><span class="line"><span class="comment">// 系统角色的定义</span></span><br><span class="line"><span class="keyword">enum </span><span class="title class_">UserRole</span>&#123;</span><br><span class="line">	USER_ROLE_UNKNOWN = <span class="number">0</span>; <span class="comment">// 默认值,未知角色</span></span><br><span class="line">	USER_ROLE_ADMIN = <span class="number">1</span>;   <span class="comment">// 管理员</span></span><br><span class="line">	USER_ROLE_EDITOR = <span class="number">2</span>;  <span class="comment">// 编辑者</span></span><br><span class="line">	USER_ROLE_VIEWER = <span class="number">3</span>;  <span class="comment">// 仅查看者</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义消息结构</span></span><br><span class="line"><span class="keyword">message </span><span class="title class_">User</span>&#123;</span><br><span class="line">	<span class="type">string</span> name = <span class="number">1</span>;</span><br><span class="line">	UserRole role = <span class="number">2</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="基本语法">基本语法</h1>
-<ul>
+<h1 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h1><ul>
 <li>参考博客：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/niumachen/p/18630131">Protobuf 文件语法 - 牛马chen - 博客园</a></li>
 </ul>
-<h2 id="语法版本">语法版本</h2>
-<p>使用<code>syntax</code>指定<code>protobuf</code>的版本（<code>proto2</code>或<code>proto3</code>），目前推荐使用<code>proto3</code>。例子如下：</p>
+<h2 id="语法版本"><a href="#语法版本" class="headerlink" title="语法版本"></a>语法版本</h2><p>使用<code>syntax</code>指定<code>protobuf</code>的版本（<code>proto2</code>或<code>proto3</code>），目前推荐使用<code>proto3</code>。例子如下：</p>
 <figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">syntax = <span class="string">&quot;proto3&quot;</span>; <span class="comment">// 使用protobuf3的版本</span></span><br><span class="line">syntax = <span class="string">&quot;proto2&quot;</span>; <span class="comment">// 使用protobuf2的版本</span></span><br></pre></td></tr></table></figure>
-<h2 id="包声明">包声明</h2>
-<p>使用<code>package</code>定义命名空间，避免不同模块间的命名冲突。例子如下：</p>
+<h2 id="包声明"><a href="#包声明" class="headerlink" title="包声明"></a>包声明</h2><p>使用<code>package</code>定义命名空间，避免不同模块间的命名冲突。例子如下：</p>
 <figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> my_package;</span><br></pre></td></tr></table></figure>
-<h2 id="导入其他文件">导入其他文件</h2>
-<p>使用<code>import</code> 导入其他的<code>.proto</code>文件中的定义。例子如下：</p>
+<h2 id="导入其他文件"><a href="#导入其他文件" class="headerlink" title="导入其他文件"></a>导入其他文件</h2><p>使用<code>import</code> 导入其他的<code>.proto</code>文件中的定义。例子如下：</p>
 <figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&quot;common.proto&quot;</span>;</span><br></pre></td></tr></table></figure>
-<h2 id="注释">注释</h2>
-<p>对于<code>protobuf</code>的注释和<code>C</code>语言是一样的，都是通过<code>//</code> 进行单行注释。以及通过<code>/**/</code>进行多行注释。</p>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>对于<code>protobuf</code>的注释和<code>C</code>语言是一样的，都是通过<code>//</code> 进行单行注释。以及通过<code>/**/</code>进行多行注释。</p>
 <figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这是protobuf的单行注释</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	这是protobuf的多行注释</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-<h2 id="定义与声明数据">定义与声明数据</h2>
-<p>对于<code>proto3</code>，可以使用<code>数据类型 变量名 = 字段编号</code>来定义和声明数据类型。例子如下：</p>
+<h2 id="定义与声明数据"><a href="#定义与声明数据" class="headerlink" title="定义与声明数据"></a>定义与声明数据</h2><p>对于<code>proto3</code>，可以使用<code>数据类型 变量名 = 字段编号</code>来定义和声明数据类型。例子如下：</p>
 <figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">syntax = <span class="string">&quot;proto3&quot;</span>;</span><br><span class="line"><span class="keyword">package</span> my_package;</span><br><span class="line"><span class="comment">//  数据类型 变量名 = 字段编号;</span></span><br><span class="line"><span class="comment">//  定义一个age变量,字段编号;</span></span><br><span class="line"><span class="comment">//  字段编号必须是1~2^31-1</span></span><br><span class="line"><span class="comment">// 	19000 ~ 19999(系统保留)</span></span><br><span class="line"><span class="type">uint32</span> age = <span class="number">1</span>; </span><br></pre></td></tr></table></figure>
 <p>注意：字段编号是字段编号，而不是这些变量的默认值，在<code>protbuf</code>中会自动给变量赋予一个默认值。各种类型的默认值如下：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -393,12 +374,13 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>对于<code>proto2</code>来说，可以使用<code>标记词 变量名 = 字段编号;</code>来定义和声明数据类型。例子如下：</p>
 <figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">syntax = <span class="string">&quot;proto2&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> tutorial;</span><br><span class="line"></span><br><span class="line"><span class="comment">//下面需要使用标记词来,定义消息里面的变量</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">message </span><span class="title class_">Person</span>&#123;</span><br><span class="line">	<span class="keyword">required</span> <span class="type">string</span> name = <span class="number">1</span>; <span class="comment">// 必须字段</span></span><br><span class="line">	<span class="keyword">optional</span> <span class="type">int32</span> id = <span class="number">2</span>;	  <span class="comment">// 可选字段</span></span><br><span class="line">	<span class="keyword">optional</span> <span class="type">string</span> email = <span class="number">3</span>; <span class="comment">// 可选字段</span></span><br><span class="line">	<span class="keyword">repeated</span> <span class="type">string</span> phone_number = <span class="number">4</span>; <span class="comment">//重复字段(数组)</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="标记词">标记词</h2>
-<ul>
+<h2 id="标记词"><a href="#标记词" class="headerlink" title="标记词"></a>标记词</h2><ul>
 <li>标记词在<code>proto2</code>中定义变量是必须要修饰的，而<code>proto3</code>在定义变量的时候默认使用<code>optional</code>修饰，不必要求用户显式的定义声明。接下来介绍一下这些标记词。</li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -425,25 +407,21 @@
 </tr>
 </tbody>
 </table>
+</div>
 <ul>
-<li>对于<code>repeated </code>字段，表示重复字段，可以出现多次，等价于数组或者列表</li>
+<li>对于<code>repeated</code>字段，表示重复字段，可以出现多次，等价于数组或者列表</li>
 </ul>
 <figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">message </span><span class="title class_">Student</span> &#123;</span><br><span class="line">	<span class="keyword">repeated</span> <span class="type">string</span> courses = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 序列化后的course字段可能是</span></span><br><span class="line">courser = [<span class="string">&quot;Math&quot;</span>,<span class="string">&quot;Englist&quot;</span>,<span class="string">&quot;Physics&quot;</span>]</span><br></pre></td></tr></table></figure>
-<h1 id="proto3语法详解">proto3语法详解</h1>
-<h2 id="消息基本结构">消息——基本结构</h2>
-<ul>
+<h1 id="proto3语法详解"><a href="#proto3语法详解" class="headerlink" title="proto3语法详解"></a>proto3语法详解</h1><h2 id="消息基本结构"><a href="#消息——基本结构" class="headerlink" title="消息——基本结构"></a>消息——基本结构</h2><ul>
 <li>消息，也就是类似于C语言结构体的东西，是<code>protobuf</code>的核心，用于定义数据结构。</li>
 </ul>
 <figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">syntax = <span class="string">&quot;proto3&quot;</span>; </span><br><span class="line"><span class="keyword">package</span> my_package;</span><br><span class="line"></span><br><span class="line"><span class="keyword">message </span><span class="title class_">User</span>&#123;</span><br><span class="line">    <span class="type">int32</span> id = <span class="number">1</span>;   <span class="comment">// 用户ID</span></span><br><span class="line">    <span class="type">string</span> name = <span class="number">2</span>;<span class="comment">// 用户名</span></span><br><span class="line">    <span class="type">bool</span> is_active = <span class="number">3</span>; <span class="comment">// 是否活跃</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="嵌套消息">嵌套消息</h2>
-<ul>
+<h2 id="嵌套消息"><a href="#嵌套消息" class="headerlink" title="嵌套消息"></a>嵌套消息</h2><ul>
 <li>一个消息结构中可以嵌套另一个消息结构。</li>
 </ul>
 <figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">syntax = <span class="string">&quot;proto3&quot;</span>;</span><br><span class="line"><span class="keyword">package</span> my_package;</span><br><span class="line"></span><br><span class="line"><span class="keyword">message </span><span class="title class_">Address</span>&#123;</span><br><span class="line">    <span class="type">string</span> street = <span class="number">1</span>;</span><br><span class="line">    <span class="type">string</span> city = <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">message </span><span class="title class_">User</span>&#123;</span><br><span class="line">    <span class="type">int32</span> id = <span class="number">1</span>;</span><br><span class="line">    <span class="type">string</span> name = <span class="number">2</span>;</span><br><span class="line">    Address address = <span class="number">3</span>; <span class="comment">// 嵌套消息</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="枚举类型">枚举类型</h2>
-<figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">syntax = <span class="string">&quot;proto3&quot;</span>;</span><br><span class="line"><span class="keyword">package</span> my_package;</span><br><span class="line"></span><br><span class="line"><span class="keyword">enum </span><span class="title class_">UserType</span> &#123;</span><br><span class="line">    UNKNOWN = <span class="number">0</span>;</span><br><span class="line">    ADMIN = <span class="number">1</span>;</span><br><span class="line">    USER = <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">message </span><span class="title class_">User</span> &#123;</span><br><span class="line">    <span class="type">int32</span> id = <span class="number">1</span>;</span><br><span class="line">    <span class="type">string</span> name = <span class="number">2</span>;</span><br><span class="line">    UserType type =<span class="number">3</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="服务定义">服务定义</h2>
-<ul>
+<h2 id="枚举类型"><a href="#枚举类型" class="headerlink" title="枚举类型"></a>枚举类型</h2><figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">syntax = <span class="string">&quot;proto3&quot;</span>;</span><br><span class="line"><span class="keyword">package</span> my_package;</span><br><span class="line"></span><br><span class="line"><span class="keyword">enum </span><span class="title class_">UserType</span> &#123;</span><br><span class="line">    UNKNOWN = <span class="number">0</span>;</span><br><span class="line">    ADMIN = <span class="number">1</span>;</span><br><span class="line">    USER = <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">message </span><span class="title class_">User</span> &#123;</span><br><span class="line">    <span class="type">int32</span> id = <span class="number">1</span>;</span><br><span class="line">    <span class="type">string</span> name = <span class="number">2</span>;</span><br><span class="line">    UserType type =<span class="number">3</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="服务定义"><a href="#服务定义" class="headerlink" title="服务定义"></a>服务定义</h2><ul>
 <li>用于定义<code>RPC</code>服务的接口。</li>
 </ul>
 <figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">service </span><span class="title class_">UserSerice</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">rpc</span> GetUser (UserRequest) return (UserResponse)</span>;</span><br><span class="line">    <span class="function"><span class="keyword">rpc</span> ListUsers (Empty) <span class="keyword">returns</span> (stream User)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
