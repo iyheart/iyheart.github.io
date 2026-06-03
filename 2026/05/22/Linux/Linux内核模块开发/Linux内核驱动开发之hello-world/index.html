@@ -1,0 +1,832 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Linux内核模块开发之hello-world | iyheart的博客</title><meta name="author" content="iyheart"><meta name="copyright" content="iyheart"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言：无">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux内核模块开发之hello-world">
+<meta property="og:url" content="http://iyheart.github.io/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/index.html">
+<meta property="og:site_name" content="iyheart的博客">
+<meta property="og:description" content="前言：无">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover252.png">
+<meta property="article:published_time" content="2026-05-22T13:36:33.000Z">
+<meta property="article:modified_time" content="2026-06-03T15:56:37.346Z">
+<meta property="article:author" content="iyheart">
+<meta property="article:tag" content="博客, 笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover252.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://iyheart.github.io/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Linux内核模块开发之hello-world',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-06-03 23:56:37'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/styles.css"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="iyheart的博客" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="http://pic.5tu.cn/uploads/allimg/1910/pic_5tu_big_2019010211653346247.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">210</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">60</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 历史</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-music"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-tasks"></i><span> 知识库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/docs/"><i class="fa-fw fas fa-book"></i><span> 编程语言知识库</span></a></li><li><a class="site-page child" href="/practice/"><i class="fa-fw fas fa-book"></i><span> PWN刷题记录</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/update/"><i class="fa-fw fas fa-bell"></i><span> 更新</span></a></div><div class="menus_item"><a class="site-page" href="javascript:toRandomPost()"><i class="fa-fw fas fa-bus"></i><span> 随机文章</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover252.png')"><nav id="nav"><span id="blog-info"><a href="/" title="iyheart的博客"><img class="site-icon" src="http://img95.699pic.com/photo/40151/9175.gif_wh860.gif"/><span class="site-name">iyheart的博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 历史</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-music"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-tasks"></i><span> 知识库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/docs/"><i class="fa-fw fas fa-book"></i><span> 编程语言知识库</span></a></li><li><a class="site-page child" href="/practice/"><i class="fa-fw fas fa-book"></i><span> PWN刷题记录</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/update/"><i class="fa-fw fas fa-bell"></i><span> 更新</span></a></div><div class="menus_item"><a class="site-page" href="javascript:toRandomPost()"><i class="fa-fw fas fa-bus"></i><span> 随机文章</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Linux内核模块开发之hello-world</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-05-22T13:36:33.000Z" title="发表于 2026-05-22 21:36:33">2026-05-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-03T15:56:37.346Z" title="更新于 2026-06-03 23:56:37">2026-06-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97/">Linux内核模块</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">8.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>32分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Linux内核模块开发之hello-world"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><ul>
+<li>
+<p>还是得接触一下<code>Linux</code>内核驱动开发，这样才更了解<code>Linux内核pwn</code>。</p>
+</li>
+<li>
+<p>首先我们给一个<code>C语言</code>编写的内核驱动版本的<code>Hello world</code>，逐行理解这个代码，并配置环境。</p>
+</li>
+<li>
+<p>网站：<a target="_blank" rel="noopener" href="https://tldp.org/LDP/lkmpg/2.6/html/">The Linux Kernel Module Programming Guide</a></p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*  </span></span><br><span class="line"><span class="comment"> *  hello-1.c - The simplest kernel module.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;linux/module.h&gt;</span>       <span class="comment">/* Needed by all modules */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;linux/kernel.h&gt;</span>       <span class="comment">/* Needed for KERN_INFO */</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">init_module</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">        printk(KERN_INFO <span class="string">&quot;Hello world 1.\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* </span></span><br><span class="line"><span class="comment">         * A non 0 return means init_module failed; module can&#x27;t be loaded. </span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">cleanup_module</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">        printk(KERN_INFO <span class="string">&quot;Goodbye world 1.\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MODULE_LICENSE(<span class="string">&quot;GPL&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h1 id="内核模块基础">内核模块基础</h1>
+<h2 id="内核模块相关概念">内核模块相关概念</h2>
+<ul>
+<li>内核模块，英文名称为<code>Kernel Module</code>，内核模块的可执行文件后缀通常是<code>.ko</code>，如<code>hello.ko</code>：
+<ul>
+<li>内核模块是一段可以根据需要加载和卸载内核中的代码。</li>
+<li>内核模块可以在不重启系统的情况下扩展内核的功能。</li>
+<li>最常见的内核模块其实就是设备驱动程序，它使得内核能够访问连接到系统上的硬件。例如，鼠标其实就是一个硬件，鼠标连接到电脑上，就是由某个内核模块使得内核能与鼠标相互交互，进而操作电脑。</li>
+<li>如果没有内核模块，在添加一个新的内核功能，我们就必须修改内核文件，并重新编译内核，这不仅会使得内核变得很大，而且编译内核之后还需要重启电脑，非常不方便。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>注意</strong>：在具体了解内核模块之前，我将设备驱动等同于内核模块了，这是不对的，设备驱动是内核模块的其中一种。</p>
+<p><strong>拓展</strong>：内核模块除了有设备驱动程序，还包括了<strong>文件系统模块</strong>，<strong>网络协议模块</strong>，<strong>非硬件驱动类型的模块</strong>，<strong>内核功能拓展模块</strong>，<strong>安全模块</strong>，<strong>虚拟化或容器相关模块</strong>，<strong>伪文件系统、接口模块</strong>，其实任何可以<code>动态插入内核</code>的功能单元都可以是模块。</p>
+</blockquote>
+<h2 id="内核模块操作">内核模块操作</h2>
+<ul>
+<li>
+<p>在<code>Linux</code>中我们将介绍几个对内核模块的操作，注意在执行这些操作一般都需要<code>root</code>权限：</p>
+<ul>
+<li>查看已经载入到内核正在运行的内核模块</li>
+<li>将未被载入的内核模块载入到内核中。</li>
+<li>将被载入的内核模块从内核中移除。</li>
+</ul>
+</li>
+<li>
+<p>要查看已经载入内核的内核模块，在<code>Linux</code>中可以使用<code>lsmod</code>命令来查看。</p>
+<ul>
+<li>运行<code>lsmod</code>就会显示出已经载入内核的<code>内核模块</code></li>
+</ul>
+<p><img src="/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/image-20260521232109954.png" alt="image-20260521232109954"></p>
+<ul>
+<li>运行<code>lsmod</code>命令本质上是读取<code>/proc/modules</code>这个文件，并输出到终端上。</li>
+</ul>
+<p><img src="/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/image-20260521232216580.png" alt="image-20260521232216580"></p>
+</li>
+<li>
+<p>要将内核模块载入到内核中(其实就是运行内核模块，与运行用户程序是不一样的。)<code>insmod</code>和<code>modprobe</code>这两个命令都可以使用。而这两个命令稍微会有区别：</p>
+<ul>
+<li><code>modprobe</code>：最后是调用<code>insmod</code>命令将内核模块载入内核，该命令会自动寻找模块的默认位置，懂得如何找出依赖关系并按正确的顺序加载模块。相对来说更灵活。</li>
+<li><code>insmod</code>：这个就是直接将内核模块载入内核，在载入内核模块的时候需要输入内核模块完整的路径，相对来说比较死板。</li>
+<li>注意：对于初学来说，就使用<code>insmod</code>进行内核模块的载入即可，<code>modprobe</code>等之后再说。</li>
+<li>假设我们这边有一个内核模块，使用<code>insmod</code>载入内核模块就需要输入如下命令，如下图所示，当然图中还是没有<code>hello.ko</code>模块的：</li>
+</ul>
+<p><img src="/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/image-20260521233139705.png" alt="image-20260521233139705"></p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">insmod /home/myheart/program/my_module/hello.ko</span><br><span class="line">modprobe hello</span><br></pre></td></tr></table></figure>
+<ul>
+<li>要将已经载入到内核的内核模块移除，可以使用<code>rmmod</code>命令，也可以使用<code>modprobe -r</code>命令。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rmmod 模块名</span><br><span class="line">rmmod /home/myheart/program/my_module/hello.ko</span><br><span class="line">modprobe -r 模块名</span><br><span class="line">modprobe -r hello</span><br></pre></td></tr></table></figure>
+<h1 id="环境准备">环境准备</h1>
+<p>在编写一个内核程序之前，还需要解决几个问题，也就是环境问题：</p>
+<ul>
+<li>内核版本问题：选择内核版本，有些魔改后的内核，或者打了补丁这就会导致一些问题，并且有些<code>Linux</code>发行版<code>/usr/src/</code>是缺少头文件的，就导致无法编译，所以我们尽量下载、编译并启动一个全新的、纯净的<code>Linux</code>内核。</li>
+<li>模块版本管理问题：当一个内核模块编译是给<code>linux kernel 5.8.1</code>使用的，那如果在<code>linux kernel 5.8.2</code>载入该模块基本上会报错，因为大部分<code>Linux</code>发行版的<code>stock</code> 内核都默认开启了<code>modversioning</code>选项。最好是编译一个关闭<code>modversioning</code>的内核。</li>
+<li>编译问题：注意到前面的内核模块的<code>hello world</code>程序，引入了与用户态的<code>C语言</code>不同的头文件<code>&lt;linux/module.h&gt;</code>和<code>&lt;linux/kernel.h&gt;</code>。而<code>gcc</code>默认引用在<code>/usr/src/</code>这个文件夹中的这两个头文件。如果<code>/usr/src/</code>文件夹中没有这两个头文件，<code>gcc</code>编译就会报错。</li>
+<li>调试问题：内核模块不能像<code>printf()</code>那样打印到屏幕上，它会记录一些信息和警告，这些信息最终只会打印到控制台中<code>这个控制台指的是tty终端，而不是xterm等图形终端</code>，如果使用<code>xterm</code>载入内核模块，只会有日志、信息和警告会被记录，而不会被输出到控制台中。我们可以输入<code>tty</code>命令，如果输出的是<code>/dev/pts/tty0</code>那么就是伪终端信息不会打印，如果是<code>/dev/tty1</code>那么就是真实的控制台。</li>
+</ul>
+<blockquote>
+<p><strong>我的环境</strong>：</p>
+<ol>
+<li>使用重新编译内核后的<code>WSL2</code>这样支持使用<code>qemu</code>，再下载一个干净的内核源码和与之对应的头文件。</li>
+<li>编译干净的内核源码，并关闭<code>modversioning</code>，并使用<code>busybox</code>文件系统，配合<code>qemu</code>模拟出一个简单的系统，而<code>qemu</code>模拟出来的系统终端是<code>/dev/tty</code></li>
+<li>在<code>WSL2</code>中修改<code>gcc</code>编译的一些设置，使得编译时能正确引用头文件，这样实现在<code>WSL2</code>使用<code>gcc</code>编译好的内核模块，可以与内核打包成<code>cpio</code>文件格式，使用<code>qemu</code>模拟的时候放入所模拟的操作系统中，从而对内核进行调试与操作。</li>
+</ol>
+</blockquote>
+<h2 id="wsl2内核重新编译">WSL2内核重新编译</h2>
+<ul>
+<li>重新编译<code>WSL2</code>内核是为了能够使用<code>qemu</code>，这一步在我博客上已经写过了，这里不多说了。</li>
+</ul>
+<h2 id="编译纯净内核源码">编译纯净内核源码</h2>
+<ul>
+<li>由于<code>WSL2</code>版本对应的是<code>5.15.153.1-microsoft-standard-WSL2</code>，为了兼容，同时也算是省事吧，我就选择与<code>5.15.153.1-microsoft-standard-WSL2</code>相近的<code>Linux kernel 5.15</code>版本。</li>
+<li>使用<code>wget</code>命令从<code>linux kernel</code>网站上下载对应版本的内核源码，这里选择下载的是<code>linux kernel 5.15.1</code>版本的：</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://www.kernel.org/pub/linux/kernel/v5.x/linux-5.15.1.tar.gz</span><br></pre></td></tr></table></figure>
+<p><img src="/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/image-20260522025139966.png" alt="image-20260522025139966"></p>
+<ul>
+<li>下载完整后使用命令将源码的压缩包进行解压操作：</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf linux-5.15.1.tar.gz</span><br></pre></td></tr></table></figure>
+<ul>
+<li>接着下载编译<code>linux kernel</code>所需要的工具</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt upgrade</span><br><span class="line">sudo apt install -y build-essential libncurses-dev bison flex libssl-dev libelf-dev bc git</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这里为了不多事，就直接将<code>WSL2</code>的内核配置文件作为该内核编译的配置文件(不太建议这样，因为不能保证WSL2的编译配置有没很大改动)</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> linux-5.15.1/</span><br><span class="line">zcat /proc/config.gz &gt; .config</span><br></pre></td></tr></table></figure>
+<ul>
+<li>接着关闭内核模块版本管理：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scripts/config --<span class="built_in">disable</span> MODVERSIONS</span><br></pre></td></tr></table></figure>
+<ul>
+<li>接着使用<code>make menuconfig</code>命令，进入配置界面，把虚拟化部分给关了，可以减少一点编译时间，然后保存配置。</li>
+</ul>
+<p><img src="/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/image-20260522032334678.png" alt="image-20260522032334678"></p>
+<ul>
+<li>接着给编译所要运行的脚本文件添加可执行权限：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> +x scripts/*.sh</span><br><span class="line"><span class="built_in">chmod</span> +x scripts/remove-stale-files</span><br></pre></td></tr></table></figure>
+<ul>
+<li>接着直接使用全部<code>cpu</code>核心开始编译内核</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make -j$(<span class="built_in">nproc</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/image-20260522032754919.png" alt="image-20260522032754919"></p>
+<ul>
+<li>在编译的时候还是遇到报错了，处理方案在这里</li>
+</ul>
+<p><img src="/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/image-20260522033243885.png" alt="image-20260522033243885"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scripts/config --<span class="built_in">disable</span> DEBUG_INFO_BTF --<span class="built_in">disable</span> DEBUG_INFO_BTF_MODULES</span><br><span class="line">scripts/config --<span class="built_in">disable</span> MODVERSIONS</span><br><span class="line">make -j$(<span class="built_in">nproc</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>编译完成</li>
+</ul>
+<p><img src="/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/image-20260522034201387.png" alt="image-20260522034201387"></p>
+<ul>
+<li>将内核复制一份过来，这样就有编译好的内核了。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> ./arch/x86/boot/bzImage ../</span><br></pre></td></tr></table></figure>
+<p><img src="/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/image-20260522034256460.png" alt="image-20260522034256460"></p>
+<h2 id="使用qemu启动内核">使用qemu启动内核</h2>
+<ul>
+<li>接着使用<code>busybox</code>作为文件系统，配合<code>qemu</code>进行模拟从而启动内核。编译<code>busybox</code>这里也不多说了。这里先使用命令创建文件</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p initramfs/&#123;bin,sbin,proc,sys,dev,etc&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>接下来复制<code>busybox</code>并创建符号链接，先将<code>busybox</code>复制到该文件夹的<code>/bin</code>目录下，并进入<code>initramfs/bin</code>目录中</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> /home/myheart/busybox-1.36.1/busybox initramfs/bin/busybox</span><br><span class="line"><span class="built_in">cd</span> initramfs/bin</span><br></pre></td></tr></table></figure>
+<ul>
+<li>接着将进行创建符号链接操作，并回到<code>initramfs</code>的父目录中</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> cmd <span class="keyword">in</span> $(./busybox --list); <span class="keyword">do</span> <span class="built_in">ln</span> -sf busybox <span class="variable">$cmd</span>; <span class="keyword">done</span></span><br><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line"><span class="built_in">cd</span> ..</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在内核启动之后，会执行一个<code>init</code>文件，这个了解一下即可，具体是在<code>linux</code>启动流程中会具体介绍，在<code>initramfs</code>这个目录下创建<code>init</code>文件</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> &gt; initramfs/init &lt;&lt; <span class="string">&#x27;EOF&#x27;</span></span><br><span class="line"><span class="comment">#!/bin/busybox sh</span></span><br><span class="line">mount -t proc proc /proc</span><br><span class="line">mount -t sysfs sysfs /sys</span><br><span class="line">mount -t devtmpfs devtmpfs /dev</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;Welcome to BusyBox Linux!&quot;</span></span><br><span class="line"><span class="built_in">exec</span> setsid cttyhack sh</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+<ul>
+<li>接着给这个文件赋予可执行权限：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> +x initramfs/init</span><br></pre></td></tr></table></figure>
+<ul>
+<li>接着就是将文件打包为<code>cpio</code>文件</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> initramfs</span><br><span class="line">find . -print0 | cpio --null -ov --format=newc | gzip -9 &gt; ../initramfs.cpio.gz</span><br><span class="line"><span class="built_in">cd</span> ..</span><br></pre></td></tr></table></figure>
+<ul>
+<li>然后使用<code>qemu</code>命令直接启动即可，这里我直接创建一个<code>sh</code>文件，就免得总是要输入这么一大串命令：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vim qemu.sh</span></span><br><span class="line">qemu-system-x86_64 \</span><br><span class="line">  -kernel /home/myheart/program/my_module/bzImage \</span><br><span class="line">  -initrd /home/myheart/program/my_module/initramfs.cpio.gz \</span><br><span class="line">  -append <span class="string">&quot;console=ttyS0&quot;</span> \</span><br><span class="line">  -nographic</span><br><span class="line"><span class="comment"># chmod +x ./qemu.sh</span></span><br><span class="line"><span class="comment"># ./qemu.sh</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>运行之后查看<code>tty</code>，发现是<code>ttyS0</code>，而不是<code>/dev/pts/tty0</code>，所以控制台的环境也解决了。</li>
+</ul>
+<p><img src="/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/image-20260523025346163.png" alt="image-20260523025346163"></p>
+<p><img src="/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/image-20260523025502549.png" alt="image-20260523025502549"></p>
+<h2 id="编译hello_worldko文件">编译hello_world.ko文件</h2>
+<ul>
+<li>对于编译内核的时候，<code>gcc</code>编译在引用内核头文件的时候会稍微有点问题，所以我们直接采用写<code>Makefile</code>来构建。</li>
+<li>我们直接将上面<code>hello world</code>的代码复制到<code>hello_world.c</code>文件中。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*  </span></span><br><span class="line"><span class="comment"> *  hello-1.c - The simplest kernel module.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;linux/module.h&gt;</span>       <span class="comment">/* Needed by all modules */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;linux/kernel.h&gt;</span>       <span class="comment">/* Needed for KERN_INFO */</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">init_module</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">        printk(KERN_INFO <span class="string">&quot;Hello world 1.\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* </span></span><br><span class="line"><span class="comment">         * A non 0 return means init_module failed; module can&#x27;t be loaded. </span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">cleanup_module</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">        printk(KERN_INFO <span class="string">&quot;Goodbye world 1.\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MODULE_LICENSE(<span class="string">&quot;GPL&quot;</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>接下来我们要编译该文件，编译内核的时候通常不用<code>gcc</code>命令，而是使用<code>make</code>文件，所以我们要写一个简单的<code>make</code>文件，先确保有<code>make</code>这个程序。</li>
+</ul>
+<p><img src="/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/image-20260523030755701.png" alt="image-20260523030755701"></p>
+<ul>
+<li>接着创建<code>Makefile</code>文件，并写入这些编译信息：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">obj-m += hello_world.o</span><br><span class="line"></span><br><span class="line">all:</span><br><span class="line">        make -C /home/myheart/program/my_module/linux-5.15.1 M=$(PWD) modules</span><br><span class="line"></span><br><span class="line">clean:</span><br><span class="line">        make -C /home/myheart/program/my_module/linux-5.15.1 M=$(PWD) clean</span><br></pre></td></tr></table></figure>
+<ul>
+<li>接着输入<code>make</code>命令即可进行编译操作，运行之后就会看到编译好的内核模块文件<code>.ko</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make</span><br></pre></td></tr></table></figure>
+<p><img src="/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/image-20260523031504337.png" alt="image-20260523031504337"></p>
+<ul>
+<li>此时我们就可以将编译好的内核模块文件复制一份到<code>initramfs</code>中，然后再重新打包<code>cpio</code>文件。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> ./hello_world.ko ./initramfs/hello_world.ko</span><br></pre></td></tr></table></figure>
+<ul>
+<li>重新打包<code>cpio</code>：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find . -print0 | cpio --null -ov --format=newc | gzip -9 &gt; ../initramfs.cpio.gz</span><br></pre></td></tr></table></figure>
+<ul>
+<li>接着再运行<code>qemu.sh</code>脚本，尝试挂载<code>hello_world.ko</code>这个内核模块，可以成功挂载。</li>
+</ul>
+<p><img src="/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/image-20260523032415085.png" alt="image-20260523032415085"></p>
+<p><img src="/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/image-20260523032512485.png" alt="image-20260523032512485"></p>
+<ul>
+<li>在内核模块中<code>printk</code>，并不会将字符串输出到控制台终端，而是写入内核日志缓冲区。我们可以使用<code>dmesg | tail</code>查看内核日志缓冲区。</li>
+</ul>
+<p><img src="/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/image-20260523033032634.png" alt="image-20260523033032634"></p>
+<ul>
+<li>至此，内核模块的环境就已经搭建好了。如果我们想要在控制台中显示<code>Hello world 1.</code>我们需要将<code>printk(KERN_INFO &quot;Hello world 1.\n&quot;);</code>替换成<code>printk(KERN_EMERG &quot;Hello world 1.\n&quot;);</code>，并重新编译内核文件打包cpio文件，挂载即可。</li>
+</ul>
+<p><img src="/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/image-20260523034141518.png" alt="image-20260523034141518"></p>
+<h1 id="内核模块基础知识">内核模块基础知识</h1>
+<h2 id="内核模块基础知识1">内核模块基础知识1</h2>
+<ul>
+<li>首先我们将详细学习一下，上面遇到的一些内容，大致如下内容：
+<ul>
+<li><code>hello_world.c</code>中的每一行代码。
+<ul>
+<li>包括引入的头文件。</li>
+<li><code>init_module()</code>函数、<code>cleanup_module()</code>函数、<code>printk()</code>函数、<code>MODULE_LICENSE()</code>宏。</li>
+</ul>
+</li>
+<li><code>makefile</code>的语法</li>
+</ul>
+</li>
+<li>首先回顾一下上面的<code>hello_world.c</code>的代码：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*  </span></span><br><span class="line"><span class="comment"> *  hello-1.c - The simplest kernel module.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;linux/module.h&gt;</span>       <span class="comment">/* Needed by all modules */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;linux/kernel.h&gt;</span>       <span class="comment">/* Needed for KERN_INFO */</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">init_module</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">        printk(KERN_INFO <span class="string">&quot;Hello world 1.\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* </span></span><br><span class="line"><span class="comment">         * A non 0 return means init_module failed; module can&#x27;t be loaded. </span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">cleanup_module</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">        printk(KERN_INFO <span class="string">&quot;Goodbye world 1.\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MODULE_LICENSE(<span class="string">&quot;GPL&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="内核头文件">内核头文件</h3>
+<ul>
+<li>在使用<code>Windows</code>进行系统编程的时候，一般我们有这么一个头文件引入，该头文件就是<code>Windows</code>开发提供的系统级的<code>API</code>：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;windows.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>在开发<code>Linux</code>内核模块的时候，我们一般是引入下面两个头文件，也为开发者提供了一些与内核交互的规范接口，允许用户空间程序或内核模块通过这些接口与内核交互：
+<ul>
+<li>位置1：如果使用的是当前<code>Linux</code>系统自带的内核头文件，那么该头文件一般就会放在<code>/usr/src/linux-headers-&lt;内核版本&gt;/</code>这个目录下，在安装第三方库或软件时，其头文件会被放置在<code>/usr/local/include</code>目录下，与系统的头文件区分开，避免发生冲突</li>
+<li>位置2：如果使用的是通过下载内核源码编译过的内核，一般是位于源码的<code>linux_kernel/include/linux/</code>这个目录下。</li>
+<li>与用户空间头文件的区别：内核头文件专注于内核内部接口，而进程头文件主要用于标准库函数的调用。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;linux/module.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;linux/kernel.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="三函数-一宏">三函数、一宏</h3>
+<ul>
+<li>在源码中有编写两个函数，首先是<code>int init_module(void)</code>函数，以及<code>int  cleanup_module(void)</code>函数。这两个的功能如下：
+<ul>
+<li>对于<code>int init_module(void)</code>函数：在使用挂载内核模块的命令时会自动调用这个函数</li>
+<li>对于<code>int cleanup_module(void)</code>函数：在使用移除内核模块的命令时会自动调用这个函数。</li>
+<li><strong>注1</strong>：这两个函数的功能就像进程程序中的<code>main</code>函数一样，运行进程程序的时候程序会自动从<code>main</code>函数开始执行用户编写的程序。</li>
+<li><strong>注2</strong>：除了固定编写这两个函数的名称，后续还可以使用<code>module_init()</code>和<code>module_exit()</code>这两个宏，将自己编写的函数绑定为挂载内核时执行和移除内核时执行。</li>
+</ul>
+</li>
+<li>在学习进程程序的编写，一开始学习的是<code>printf()</code>，而对于内核模块开发的学习一开始也从打印函数开始，内核模块的打印函数为<code>printk</code>。</li>
+<li><code>printk</code>函数的用法与<code>printf</code>函数的用法差不多，只不过<code>printk</code>多了一个日志级别，关于日志级别的宏定义如下所示，在内核源码<code>linux_kernel/include/linux</code>中：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> KERN_EMERG	KERN_SOH <span class="string">&quot;0&quot;</span>	<span class="comment">/* system is unusable */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> KERN_ALERT	KERN_SOH <span class="string">&quot;1&quot;</span>	<span class="comment">/* action must be taken immediately */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> KERN_CRIT	KERN_SOH <span class="string">&quot;2&quot;</span>	<span class="comment">/* critical conditions */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> KERN_ERR	KERN_SOH <span class="string">&quot;3&quot;</span>	<span class="comment">/* error conditions */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> KERN_WARNING	KERN_SOH <span class="string">&quot;4&quot;</span>	<span class="comment">/* warning conditions */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> KERN_NOTICE	KERN_SOH <span class="string">&quot;5&quot;</span>	<span class="comment">/* normal but significant condition */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> KERN_INFO	KERN_SOH <span class="string">&quot;6&quot;</span>	<span class="comment">/* informational */</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> KERN_DEBUG	KERN_SOH <span class="string">&quot;7&quot;</span>	<span class="comment">/* debug-level messages */</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>所以<code>printk</code>函数的大致用法就和示例程序差不多：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">init_module</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> a = <span class="number">5</span>;</span><br><span class="line">    <span class="comment">// 注意宏定义KERN_EMERG与日志的输出内容之间是没有逗号的。</span></span><br><span class="line">	printk(KERN_EMERG <span class="string">&quot;hello world&quot;</span>); </span><br><span class="line">    printk(KERN_EMERG <span class="string">&quot;the count is %d&quot;</span>,a);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;	</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>在内核<code>2.4</code>以及更高版本中加载专有模块的时候出现了一些警告，该警告是<code>关于使用无许可证</code>代码污染内核的提示。
+<ul>
+<li>从内核<code>2.4</code>开始引入了一套系统<code>标识基于 GPL（及同类许可证）授权的代码，以便在代码为非开源时向用户发出警告。</code></li>
+<li>这个警告可以通过<code>MODULE_LICENSE()</code>宏来实现，如果要消除警告，则可以将许可证设置为<code>GPL</code>，就和上面的示例代码所示：<code>MODULE_LICENSE(&quot;GPL&quot;);</code></li>
+<li>下面是可接受的自由软件许可证标识符：
+<ul>
+<li><code>GPL</code>：GNU通用公共许可证<code>v2</code>或更高版本</li>
+<li><code>GPL v2</code>：GNU 通用公共许可证 v2</li>
+<li><code>Dual BSD/GPL</code>：GPL v2 或 BSD 许可证选择</li>
+<li><code>Dual MIT/GPL</code> ：GPL v2 或 MIT 许可证选择</li>
+<li><code>Dual MPL/GPL</code> ：GPL v2 或 Mozilla 许可证选择</li>
+<li><code>Proprietary</code>：非自由产品</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>其他文档宏如下：
+<ul>
+<li><code>MODULE_DESCRIPTION()</code>：描述模块的功能</li>
+<li><code>MODULE_AUTHOR()</code>：声明模块的作者</li>
+<li><code>MODULE_SUPPORTED_DEVICE()</code>：声明模块支持的设备类型（这个宏在更后面的内核版本好像被移除了。）</li>
+<li>注意：这些宏定义可以在<code>linux_kernel/module.h</code>中</li>
+</ul>
+</li>
+</ul>
+<h3 id="makefile">makefile</h3>
+<ul>
+<li>首先回顾一下<code>makefile</code>这个文件里面的内容：</li>
+</ul>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">obj-m += hello_world.o</span><br><span class="line"></span><br><span class="line"><span class="section">all:</span></span><br><span class="line">        make -C /home/myheart/program/my_module/linux-5.15.1 M=<span class="variable">$(PWD)</span> modules</span><br><span class="line"></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">        make -C /home/myheart/program/my_module/linux-5.15.1 M=<span class="variable">$(PWD)</span> clean</span><br></pre></td></tr></table></figure>
+<ul>
+<li>接下来逐句介绍一下这个语法：
+<ul>
+<li><code>obj-m</code>：是内核构建系统里面的一个变量，表示要编译成内核模块，所以<code>obj-m += hello_world.o</code>也就是要将<code>hello_world.c</code>编译成<code>hello_world.ko</code></li>
+<li><code>all</code>表示目标：
+<ul>
+<li><code>make -C</code>：其中<code>-C</code>的意思是切换到<code>Linux</code>内核源码目录去执行<code>Make</code>。</li>
+<li><code>M=$(PWD)</code>：<code>M</code>表示模块文件所在的目录，<code>$(PWD)</code>当前目录，你执行<code>Make</code>命令所在的目录。</li>
+<li><code>modules</code>：表示编译模块</li>
+<li>其中<code>make -C /home/myheart/program/my_module/linux-5.15.1 M=$(PWD) modules</code>表示的是我要编译<code>$(PWD)</code>目录下的模块。</li>
+</ul>
+</li>
+<li><code>clean</code>也是调用内核构建系统：清理当前模块目录生成的文件</li>
+</ul>
+</li>
+<li>基本过程如下：
+<ul>
+<li>当输入<code>make</code>命令，首先会执行<code>all</code>中的命令
+<ul>
+<li><code>cd</code>到<code>/home/myheart/program/my_module/linux-5.15.1</code>这个目录中</li>
+<li>然后再读取<code>obj-m += hello_world.o</code></li>
+<li>接着会自动进行<code>gcc -c hello_world.c</code>，以及对编译好的<code>hello_world.ko</code>进行链接操作。（具体过程还是比较复杂，之后再了解）</li>
+</ul>
+</li>
+<li>接着编译好之后执行<code>clean</code>命令。</li>
+</ul>
+</li>
+<li>使用<code>make</code>命令就会输出如下编译的内容：</li>
+</ul>
+<p><img src="/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/image-20260603161621757.png" alt="image-20260603161621757"></p>
+<ul>
+<li>内核 2.6 为内核模块引入了 <code>.ko</code> 扩展名（取代了旧的 <code>.o</code> 扩展名），以区别于常规的目标文件。这些 <code>.ko</code> 文件包含一个额外的 <code>.modinfo</code> 段，用于存放模块的附加元数据。我们可以使用<code>modinfo</code>查看<code>.modinfo</code>段：</li>
+</ul>
+<p><img src="/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/image-20260603161750029.png" alt="image-20260603161750029"></p>
+<h3 id="补充知识">补充知识</h3>
+<ul>
+<li>对于所有已经加载的模块，都会出现在 <code>/proc/modules</code> 文件中。如下图所示，我们可以看到这个模块运行的起始地址。</li>
+</ul>
+<p><img src="/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/image-20260603162149042.png" alt="image-20260603162149042"></p>
+<ul>
+<li>查看该文件即可确认你的模块已作为内核的一部分加载。使用 <code>rmmod hello_world.ko</code> 移除模块，然后查看 <code>/var/log/messages</code> 来观察系统中记录的模块日志。</li>
+</ul>
+<h3 id="内核模块练习1">内核模块练习1</h3>
+<ul>
+<li>
+<p>将 <code>init_module()</code> 中的返回值改为负数，重新编译并加载模块。观察会发生什么。</p>
+</li>
+<li>
+<p>首先我们打开上面的<code>hello_world.c</code>文件，并定位到<code>init_module</code>的返回值中。</p>
+</li>
+</ul>
+<p><img src="/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/image-20260603151354304.png" alt="image-20260603151354304"></p>
+<ul>
+<li>修改返回值为<code>-1</code>：</li>
+</ul>
+<p><img src="/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/image-20260603151408395.png" alt="image-20260603151408395"></p>
+<ul>
+<li>重新编译该文件、复制该文件到文件系统、重新打包文件系统，最后使用<code>qemu</code>进行模拟。</li>
+</ul>
+<p><img src="/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/image-20260603151652024.png" alt="image-20260603151652024"></p>
+<ul>
+<li>接下来进行挂载操作，<strong>输入挂载命令之后会发现操作无法挂载该模块，提示操作不许可</strong>。</li>
+</ul>
+<p><img src="/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/image-20260603151828675.png" alt="image-20260603151828675"></p>
+<h3 id="内核模块练习2">内核模块练习2</h3>
+<ul>
+<li>编写一个简单的内核模块要求如下：
+<ul>
+<li>只要写<code>init_module</code>函数和<code>cleanup_module</code>函数即可</li>
+<li>使用许可证宏，添加上许可证<code>GPL</code></li>
+<li>使用描述模块宏，简单描述一下这个模块。</li>
+<li>使用声明模块作者宏，指定作者为<code>&quot;aaa&quot;</code></li>
+</ul>
+</li>
+<li>编写的代码如下：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    内核模块练习2</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;linux/module.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;linux/kernel.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;linux/init.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">init_module</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    printk(KERN_EMERG <span class="string">&quot;Hello world 4.\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">cleanup_module</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    printk(KERN_INFO <span class="string">&quot;Goodbye world 4.\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">MODULE_LICENSE(<span class="string">&quot;GPL&quot;</span>);</span><br><span class="line"></span><br><span class="line">MODULE_DESCRIPTION(<span class="string">&quot;This is a simple hello world module.&quot;</span>);</span><br><span class="line">MODULE_AUTHOR(<span class="string">&quot;aaa&quot;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="内核模块基础知识2">内核模块基础知识2</h2>
+<ul>
+<li>主要学习以下内容：
+<ul>
+<li>使用宏绑定的方法编写模块。</li>
+<li>使用<code>Makefile</code>包含两个模块的编译。</li>
+</ul>
+</li>
+</ul>
+<h3 id="宏绑定编写模块">宏绑定编写模块</h3>
+<ul>
+<li>从<code>Linux2.4</code>开始，模块的初始化和清理函数不再必须命名为<code>init_module()</code>和<code>cleanup_module()</code>。</li>
+<li>开发者可以使用<code>module_init()</code>和<code>module_exit()</code>这两个宏<code>linux/init.h</code>中，允许使用自定义的函数名。</li>
+<li>但一个关键的要求是：初始化和清理函数必须在宏调用之前定义，否则会导致编译错误。下面给出一个示例：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *  hello-2.c - 演示 module_init() 和 module_exit() 宏的使用。</span></span><br><span class="line"><span class="comment"> *  推荐使用这种方式，而非直接使用 init_module() 和 cleanup_module()。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;linux/module.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;linux/kernel.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;linux/init.h&gt;</span> <span class="comment">// 包含 module_init 和 module_exit 的宏定义</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">int</span> __init <span class="title function_">hello_2_init</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    printk(KERN_EMERG <span class="string">&quot;Hello world 2.\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> __exit <span class="title function_">hello_2_exit</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    printk(KERN_INFO <span class="string">&quot;Goodbye world 2.\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在初始化和清理函数定义之后，使用宏来指定它们,否则会编译错误</span></span><br><span class="line">module_init(hello_2_init);</span><br><span class="line">module_exit(hello_2_exit);</span><br><span class="line"></span><br><span class="line">MODULE_LICENSE(<span class="string">&quot;GPL&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="makefile两个模块">Makefile两个模块</h3>
+<ul>
+<li>通过上面的编写，已经有了两个文件<code>hello_world.c</code>和<code>hello_world2.c</code>。使用<code>Makefile</code>可以编译独立编译这两个文件为两个<code>ko</code>文件。</li>
+<li>可以通过<code>obj-m +=***.o</code>这样的形式添加要编译的文件，这样就可以实现一次<code>make</code>编译两个独立文件成为两个<code>ko</code>文件。</li>
+<li>回顾一下<code>obj-m</code>：<code>obj-m</code>：是内核构建系统里面的一个变量，表示要编译成内核模块，所以<code>obj-m += hello_world.o</code>也就是要将<code>hello_world.c</code>编译成<code>hello_world.ko</code></li>
+</ul>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">obj-m += hello_world.o</span><br><span class="line">obj-m += hello_world2.o</span><br><span class="line"></span><br><span class="line"><span class="section">all:</span></span><br><span class="line">	make -C /home/myheart/program/my_module/linux-5.15.1 M=<span class="variable">$(PWD)</span> modules</span><br><span class="line"></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">	make -C /home/myheart/program/my_module/linux-5.15.1 M=<span class="variable">$(PWD)</span> clean</span><br></pre></td></tr></table></figure>
+<ul>
+<li>将<code>hello_world.c</code>和<code>hello_world2.c</code>放入到相同文件夹下面，使用<code>make</code>命令就可以进行独立的编译操作了。</li>
+</ul>
+<p><img src="/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/image-20260603182107732.png" alt="image-20260603182107732"></p>
+<p><img src="/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/image-20260603182126040.png" alt="image-20260603182126040"></p>
+<h2 id="内核模块基础知识3">内核模块基础知识3</h2>
+<ul>
+<li>主要学习：<code>__init</code>和<code>__exit</code>等几个宏</li>
+<li>在内核<code>2.2</code>以及后续版本引入了一项新特性，对<code>初始化</code>和<code>清理函数</code>的定义进行了改进。多出了几个宏：
+<ul>
+<li><code>__init</code>宏：使得初始化函数在执行后被丢弃并释放其内存。<strong>仅适用于内置驱动程序</strong>，对可加载模块则无效。</li>
+<li><code>__initdata</code>宏：其作用于<code>__init</code>类似，但它用于变量而非函数。</li>
+<li><code>__exit</code>宏：使函数在模块被编译进内核时被忽略，与<code>__init</code>类似，对可加载模块没有影响。因为<code>内置驱动不需要清理函数</code>，而<code>可加载模块则需要</code>。<strong>注意：编译进内核的时候是直接编译成内核<code>vmlinux</code>中，而不是编译成独立<code>ko</code>模块</strong></li>
+<li>在一些书上说：当启动系统可能就会看的<code>Freeing unused kernel memory: 236k freed</code>，这就是上面几个宏的作用，内核正在释放相关内存。</li>
+<li>对于上面<code>__init</code>宏和<code>__initdat</code>宏的具体行为，在<code>gdb</code>调试<code>linux</code>内核模块中会详细调试。</li>
+</ul>
+</li>
+<li>对于这几个宏详细的说明和定义，在<code>linux/init.h</code>中有比较详细的说明：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* These macros are used to mark some functions or </span></span><br><span class="line"><span class="comment"> * initialized data (doesn&#x27;t apply to uninitialized data)</span></span><br><span class="line"><span class="comment"> * as `initialization&#x27; functions. The kernel can take this</span></span><br><span class="line"><span class="comment"> * as hint that the function is used only during the initialization</span></span><br><span class="line"><span class="comment"> * phase and free up used memory resources after</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Usage:</span></span><br><span class="line"><span class="comment"> * For functions:</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * You should add __init immediately before the function name, like:</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * static void __init initme(int x, int y)</span></span><br><span class="line"><span class="comment"> * &#123;</span></span><br><span class="line"><span class="comment"> *    extern int z; z = x * y;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * If the function has a prototype somewhere, you can also add</span></span><br><span class="line"><span class="comment"> * __init between closing brace of the prototype and semicolon:</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * extern int initialize_foobar_device(int, int, int) __init;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * For initialized data:</span></span><br><span class="line"><span class="comment"> * You should insert __initdata or __initconst between the variable name</span></span><br><span class="line"><span class="comment"> * and equal sign followed by value, e.g.:</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * static int init_variable __initdata = 0;</span></span><br><span class="line"><span class="comment"> * static const char linux_logo[] __initconst = &#123; 0x32, 0x36, ... &#125;;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Don&#x27;t forget to initialize data not at file scope, i.e. within a function,</span></span><br><span class="line"><span class="comment"> * as gcc otherwise puts the data into the bss section and not into the init</span></span><br><span class="line"><span class="comment"> * section.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* These are for everybody (although not all archs will actually</span></span><br><span class="line"><span class="comment">   discard it in modules) */</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> __init		__section(<span class="string">&quot;.init.text&quot;</span>) __cold  __latent_entropy __noinitretpoline __nocfi</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> __initdata	__section(<span class="string">&quot;.init.data&quot;</span>)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> __initconst	__section(<span class="string">&quot;.init.rodata&quot;</span>)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> __exitdata	__section(<span class="string">&quot;.exit.data&quot;</span>)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> __exit_call	__used __section(<span class="string">&quot;.exitcall.exit&quot;</span>)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>接下来给出一个示例：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *  hello-3.c - 演示 __init、__initdata 和 __exit 宏的使用。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;linux/module.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;linux/kernel.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;linux/init.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 __initdata通常放在变量名之后赋值符号之前对变量进行修饰,表示该变量仅在初始化阶段使用，之后可以被丢弃以节省内存。</span></span><br><span class="line"><span class="type">static</span> <span class="type">int</span> hello3_data __initdata = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 __init修饰函数,在声明返回值类型之后,函数名之前,表示该函数仅在初始化阶段使用，之后可以被丢弃以节省内存。</span></span><br><span class="line"><span class="type">static</span> <span class="type">int</span> __init <span class="title function_">hello_3_init</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    printk(KERN_EMERG <span class="string">&quot;Hello world 3. Data: %d\n&quot;</span>, hello3_data);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用 __exit修饰函数,在声明返回值类型之后,函数名之前,表示该函数在编译的时候会被忽略</span></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> __exit <span class="title function_">hello_3_exit</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    printk(KERN_INFO <span class="string">&quot;Goodbye world 3.\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">module_init(hello_3_init);</span><br><span class="line">module_exit(hello_3_exit);</span><br><span class="line"></span><br><span class="line">MODULE_LICENSE(<span class="string">&quot;GPL&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="内核模块基础知识4">内核模块基础知识4</h2>
+<ul>
+<li>内核模块是支持命令行参数的，但不是像用户态程序那样使用<code>main</code>函数的<code>argc/argv</code>机制。
+<ul>
+<li>实现方式是声明全局变量，然后使用<code>module_param()</code>宏进行绑定，该宏定义在<code>linux/moduleparam.h</code>中。</li>
+<li>通过使用<code>insmod</code>加载模块时，可以通过类似<code>./insmod mymodule.ko my_variable=5</code>这样的语法进行参数值的传递。</li>
+<li><strong>规范</strong>：变量声明和宏的调用应放在模块文件的顶部附近，以保持代码清晰。</li>
+</ul>
+</li>
+<li>接下来先介绍一下<code>module_param()</code>宏如何使用：
+<ul>
+<li>首先该宏接收三个参数：变量名、变量类型以及<code>sysfs</code>文件权限。</li>
+<li>其中整数类型支持有符号和无符号两种变体</li>
+<li>其中整数数组或字符串，需要使用<code>module_param_array()</code>宏定义和<code>module_param_string()</code>宏定义。</li>
+<li>基本用法示例：</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> myint = <span class="number">3</span>; <span class="comment">// 声明一个变量</span></span><br><span class="line">module_param(myint, <span class="type">int</span> ,<span class="number">0</span>); <span class="comment">// 变量名称,变量类型,文件权限。</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>对于数字的使用，旧版本内核<code>2.4内核</code>和新版本内核不太一样。需要传入一个指向计数变量的指针作为第三个参数（如果不需要计数，则可以传NULL）</li>
+<li>示例如下：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 不传入计数</span></span><br><span class="line"><span class="type">int</span> myintarray[<span class="number">2</span>];</span><br><span class="line"><span class="comment">/* 不关心计数 */</span></span><br><span class="line">module_param_array(myintarray, <span class="type">int</span>, <span class="literal">NULL</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> myshortarray[<span class="number">4</span>];</span><br><span class="line"><span class="type">int</span> count;</span><br><span class="line"><span class="comment">/* 将计数存入count变量 */</span></span><br><span class="line"><span class="comment">/* 当使用命令insmod mymodule.ko myshortarray=1,2,3 该数组被传递了3个参数 这样count就会被赋值成3 */</span></span><br><span class="line">module_param_array(myshortarray, <span class="type">int</span>, &amp;count,<span class="number">0</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>拓展1：一个实际使用场景：为端口或 IO 地址等变量设置默认值。如果默认值保持不变，则执行自动检测；否则保留用户提供的值。</p>
+<p>拓展2：文件权限一般会设置为<code>0444</code>只读，或者说是<code>0644</code>root可写。而参数<code>0</code>不导出到<code>sysfs</code>，并且权限位也有相关的宏定义。</p>
+</blockquote>
+<ul>
+<li>内核模块设置好参数之后还需要写记录参数的文档，这个时候就需要使用<code>MODULE_PARM_DESC()</code>宏用于描述模块接收的参数。它接受变量名和一段自由格式的描述字符串。</li>
+<li>一个简单的示例如下：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">hello_world5.c 演示想模块传递命令行参数</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;linux/module.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;linux/moduleparam.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;linux/kernel.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;linux/init.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;linux/stat.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 写入GPL协议和示例程序的作者</span></span><br><span class="line">MODULE_LICENSE(<span class="string">&quot;GPL&quot;</span>);</span><br><span class="line">MODULE_AUTHOR(<span class="string">&quot;Peter Jay Salzman&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义一些变量</span></span><br><span class="line"><span class="type">static</span> <span class="type">short</span> <span class="type">int</span> myshort = <span class="number">1</span>;</span><br><span class="line"><span class="type">static</span> <span class="type">int</span> myint = <span class="number">420</span>;</span><br><span class="line"><span class="type">static</span> <span class="type">long</span> <span class="type">int</span> mylong = <span class="number">9999</span>;</span><br><span class="line"><span class="type">static</span> <span class="type">char</span> *mystring = <span class="string">&quot;blah&quot;</span>;</span><br><span class="line"><span class="type">static</span> <span class="type">int</span> myintArray[<span class="number">2</span>] = &#123; <span class="number">-1</span>, <span class="number">-1</span> &#125;;</span><br><span class="line"><span class="type">static</span> <span class="type">int</span> arr_argc = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    module_param(foo, int, 0000);</span></span><br><span class="line"><span class="comment">    第一个参数是参数名称</span></span><br><span class="line"><span class="comment">    第二个参数是数据类型</span></span><br><span class="line"><span class="comment">    第三个参数是权限位: 用于在后续阶段将参数暴露在 sysfs 中</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加参数,并描述参数的使用</span></span><br><span class="line">module_param(myshort, <span class="type">short</span>, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP);</span><br><span class="line">MODULE_PARM_DESC(myshort, <span class="string">&quot;A short integer&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 继续添加参数,并描述参数的使用</span></span><br><span class="line">module_param(myint, <span class="type">int</span>, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);</span><br><span class="line">MODULE_PARM_DESC(myint, <span class="string">&quot;An integer&quot;</span>);</span><br><span class="line"><span class="comment">// 继续添加参数,并描述参数的使用</span></span><br><span class="line">module_param(mylong, <span class="type">long</span>, S_IRUSR);</span><br><span class="line">MODULE_PARM_DESC(mylong, <span class="string">&quot;A long integer&quot;</span>);</span><br><span class="line"><span class="comment">// 继续添加参数,并描述参数的使用,并且这个参数是一个字符串</span></span><br><span class="line">module_param(mystring, charp, <span class="number">0000</span>);</span><br><span class="line">MODULE_PARM_DESC(mystring, <span class="string">&quot;A character string&quot;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    module_param_array(name, type, num, perm);</span></span><br><span class="line"><span class="comment">    第一个参数是参数名称</span></span><br><span class="line"><span class="comment">    第二个参数是数组元素的数据类型</span></span><br><span class="line"><span class="comment">    第三个参数是一个指针,指向将存储用户在模块加载时初始化的数组元素数量的变量</span></span><br><span class="line"><span class="comment">    第四个参数是权限位: 用于在后续阶段将参数暴露在 sysfs 中</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加一个数组参数,并描述参数的使用</span></span><br><span class="line">module_param_array(myintArray, <span class="type">int</span>, &amp;arr_argc, <span class="number">0000</span>);</span><br><span class="line">MODULE_PARM_DESC(myintArray, <span class="string">&quot;An array of integers&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">int</span> __init <span class="title function_">hello_5_init</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line">    printk(KERN_INFO <span class="string">&quot;Hello, world 5\n=============\n&quot;</span>);</span><br><span class="line">    printk(KERN_INFO <span class="string">&quot;myshort is a short integer: %hd\n&quot;</span>, myshort);</span><br><span class="line">    printk(KERN_INFO <span class="string">&quot;myint is an integer: %d\n&quot;</span>, myint);</span><br><span class="line">    printk(KERN_INFO <span class="string">&quot;mylong is a long integer: %ld\n&quot;</span>, mylong);</span><br><span class="line">    printk(KERN_INFO <span class="string">&quot;mystring is a string: %s\n&quot;</span>, mystring);</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; (<span class="keyword">sizeof</span> myintArray / <span class="keyword">sizeof</span> (<span class="type">int</span>)); i++)</span><br><span class="line">    &#123;</span><br><span class="line">        printk(KERN_INFO <span class="string">&quot;myintArray[%d] = %d\n&quot;</span>, i, myintArray[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    printk(KERN_INFO <span class="string">&quot;got %d arguments for myintArray.\n&quot;</span>, arr_argc);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> __exit <span class="title function_">hello_5_exit</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    printk(KERN_INFO <span class="string">&quot;Goodbye, world 5\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">module_init(hello_5_init);</span><br><span class="line">module_exit(hello_5_exit);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>编写好后直接挂载看看：</li>
+</ul>
+<p><img src="/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/image-20260603220803617.png" alt="image-20260603220803617"></p>
+<ul>
+<li>接下来移除该模块，重新挂载并赋予参数：<code>insmod hello_world5.ko myintArray=1,2 mylong=1234 myshort=1  </code></li>
+</ul>
+<p><img src="/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/image-20260603221050811.png" alt="image-20260603221050811"></p>
+<ul>
+<li>接下来继续移除，并将程序继续挂载，并在整数参数变量输入非数字看看系统如何处理，发现是这样的。</li>
+</ul>
+<p><img src="/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/image-20260603221411286.png" alt="image-20260603221411286"></p>
+<h2 id="内核模块基础知识5">内核模块基础知识5</h2>
+<ul>
+<li>
+<p>该部分主要是学习如何将多个<code>c</code>文件编写成一个内核模块文件<code>.ko</code>。这个部分要与前面使用<code>Makefile</code>编译独立的多个文件区别开来。</p>
+</li>
+<li>
+<p>首先创建一个<code>start.c</code>，用于编写<code>init_module</code>函数：</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    start.c 演示多文件内核模块</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 每个源文件都要引入头文件</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;linux/module.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;linux/kernel.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">init_module</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    printk(KERN_EMERG <span class="string">&quot;Hello world 6.\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">MODULE_LICENSE(<span class="string">&quot;GPL&quot;</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>接着编写一个<code>stop.c</code>，用于编写<code>cleanup_module()</code>函数：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    stop.c 演示多个文件内核模块</span></span><br><span class="line"><span class="comment">*/</span> </span><br><span class="line"></span><br><span class="line"><span class="comment">// 每个源文件都需要引入头文件</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;linux/module.h&gt;</span> </span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;linux/kernel.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">cleanup_module</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    printk(KERN_INFO <span class="string">&quot;Short is the life of a kernel module.\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>接着编写<code>Makefile</code>：
+<ul>
+<li>其中<code>obj-m += startstop.o</code>表示要构建的内核模块文件，最终文件为<code>startstop.ko</code>文件</li>
+<li>其中<code>startstop-objs := start.o stop.o</code>表示<code>startstop.ko</code>这个文件是由<code>start.o</code>和<code>stop.o</code>链接起来的。大致流程如下：
+<ul>
+<li>首先使用<code>gcc</code>编译器<code>gcc -c start.c -&gt; start.o、gcc -c stop.c  -&gt; stop.o</code>，得到<code>start.o和stop.o</code></li>
+<li>再使用链接器<code>ld</code>将<code>start.o</code>和<code>stop.o</code>链接成<code>startstop.o</code></li>
+<li>最后再利用链接器将<code>startstop.o </code>转换为内核模块<code>startstop.ko </code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">obj-m += startstop.o</span><br><span class="line">startstop-objs := start.o stop.o</span><br><span class="line"></span><br><span class="line"><span class="section">all:</span></span><br><span class="line">	make -C /home/myheart/program/my_module/linux-5.15.1 M=<span class="variable">$(PWD)</span> modules</span><br><span class="line"></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">	make -C /home/myheart/program/my_module/linux-5.15.1 M=<span class="variable">$(PWD)</span> clean</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用<code>make</code>命令之前：</li>
+</ul>
+<p><img src="/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/image-20260603231504521.png" alt="image-20260603231504521"></p>
+<ul>
+<li>使用<code>make</code>命令之后：</li>
+</ul>
+<p><img src="/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/image-20260603231642804.png" alt="image-20260603231642804"></p>
+<h2 id="内核模块基础知识6">内核模块基础知识6</h2>
+<ul>
+<li>本部分主要说明一下如何为<code>预编译内核构建模块</code>，首先来理解一下两个名词：
+<ul>
+<li>自行编译内核：从源码中编译完整的内核，可以开启特定功能。</li>
+<li>预编译内核：别人已经编译好的内核，比如<code>Linux</code>发行版自带的内核。</li>
+<li>为预编译内核构建模块：在别人已经编译好的内核中添加新的模块功能。</li>
+</ul>
+</li>
+<li>首先第一个要考虑的就是内核模块在加载时，预编译的内核会检查<code>其版本魔数</code>。<code>版本魔数</code>是一个字符串，记录了如下内容：
+<ul>
+<li>编译内核模块时的内核版本</li>
+<li>编译内核模块的编译器版本</li>
+<li>编译内核模块支持的CPU架构，等其他的关键信息</li>
+<li><strong>注</strong>：只有当内核模块的<code>版本魔数</code>与<code>当前内核</code>的版本魔术完全一致的模块才能被内核加载进去。</li>
+<li><strong>注</strong>：这就出现了一个问题，当内核添加新模块，但是条件不允许重新编译内核（如服务器在给用户提供服务，编译重新编译内核会使得服务器宕机，造成经济损失）</li>
+<li><strong>核心问题</strong>：虽然我们有内核源码，并且使用它编译了模块；但系统所运行的内核是由别人编译的，两者的编译环境不完全相同，这就导致版本魔数不匹配，无法成功加载内核模块。</li>
+<li>一个经典场景就是使用<code>insmod ***..ko</code>，会出现如下报错，并且<code>/var/log/messages</code>会显示版本魔数不匹配的信息</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 命令行报错</span><br><span class="line">insmod: error inserting <span class="string">&#x27;poet_atkm.ko&#x27;</span>: -1 Invalid module format</span><br><span class="line"></span><br><span class="line">// /var/log/messages报错</span><br><span class="line">Jun  4 22:07:54 localhost kernel: poet_atkm: version magic <span class="string">&#x27;2.6.5-1.358custom 686 </span></span><br><span class="line"><span class="string">REGPARM 4KSTACKS gcc-3.3&#x27;</span> should be <span class="string">&#x27;2.6.5-1.358 686 REGPARM 4KSTACKS gcc-3.3&#x27;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>解决这个问题的方法有两种：</p>
+<ul>
+<li>
+<p>第一种就是直接使用<code>--force-vermagic</code>选项，但是这个选项是有风险的。</p>
+</li>
+<li>
+<p>第二种就是正常的安全的方法：</p>
+<ul>
+<li>首选确保有一个与当前内核版本匹配的内核源码</li>
+<li>找到用于构建预编译内核的配置文件，一般位于<code>/boot</code>目录下面，文件名类似于<code>config-2.6.x</code>，将其复制到内核源码文件中。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /boot/config-`uname -r` /usr/src/linux-`uname -r`/.config</span><br></pre></td></tr></table></figure>
+<ul>
+<li>接着仔细审查版本魔数，对比还有哪些不同，有的时候即使配置文件完全相同，版本魔数上的微小差异也会阻止模块插入。</li>
+<li>有的时候模块模数出现<code>custom</code>字符串(内核魔数没有)，这个原因是发行版对<code>Makefile</code>的修改，这个时候就需要检查<code>/usr/src/linux/Makefile</code>确认版本信息与当前内核匹配例如其开头可能是这样：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">VERSION = <span class="number">2</span></span><br><span class="line">PATCHLEVEL = <span class="number">6</span></span><br><span class="line">SUBLEVEL = <span class="number">5</span></span><br><span class="line">EXTRAVERSION = <span class="number">-1.358</span>custom</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<ul>
+<li>将<code>EXTRAVERSION</code>恢复为<code>-1.538</code>。保留保留 <code>/lib/modules/2.6.5-1.358/build</code> 中原始 Makefile 的备份。可以使用以下简单的复制命令：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /lib/modules/`uname -r`/build/Makefile /usr/src/linux-`uname -r`</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果你已经使用了错误的 Makefile 启动了内核构建，可以重新运行 <strong>make</strong>，或者直接修改 <code>/usr/src/linux-2.6.x/include/linux/version.h</code> 中的 <code>UTS_RELEASE</code>，使其与 <code>/lib/modules/2.6.x/build/include/linux/version.h</code> 中的内容一致。然后运行 <strong>make</strong> 来更新配置、版本头文件和目标文件：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@pcsenonsrv linux<span class="number">-2.6</span>.x]<span class="meta"># make</span></span><br><span class="line">CHK     include/linux/version.h</span><br><span class="line">UPD     include/linux/version.h</span><br><span class="line">SYMLINK include/<span class="keyword">asm</span> -&gt; include/<span class="keyword">asm</span>-i386</span><br><span class="line">SPLIT   include/linux/autoconf.h -&gt; include/config<span class="comment">/*</span></span><br><span class="line"><span class="comment">HOSTCC  scripts/basic/fixdep</span></span><br><span class="line"><span class="comment">HOSTCC  scripts/basic/split-include</span></span><br><span class="line"><span class="comment">HOSTCC  scripts/basic/docproc</span></span><br><span class="line"><span class="comment">HOSTCC  scripts/conmakehash</span></span><br><span class="line"><span class="comment">HOSTCC  scripts/kallsyms</span></span><br><span class="line"><span class="comment">CC      scripts/empty.o</span></span><br><span class="line"><span class="comment">...</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>还可以试着重新编译内核以启用调试功能，例如：<code>MODULE_FORCE_UNLOAD</code>，该选项允许通过<code>rmmod -f module</code>强制卸载模块，但这样做不安全。</p>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://iyheart.github.io">iyheart</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://iyheart.github.io/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/">http://iyheart.github.io/2026/05/22/Linux/Linux内核模块开发/Linux内核驱动开发之hello-world/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://iyheart.github.io" target="_blank">iyheart的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover252.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/ea2e5fb6fbb4c236fbabd387ef83339.jpg" target="_blank"><img class="post-qr-code-img" src="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/ea2e5fb6fbb4c236fbabd387ef83339.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2026/05/04/CTFblog/REVERSE%E7%B3%BB%E5%88%97blog/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E4%B9%8B%E5%8B%92%E7%B4%A2%E5%9E%8B%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/" title="恶意代码之勒索型恶意代码"><img class="cover" src="https://i0.hdslb.com/bfs/article/296da5370e6f915d1826ff20916e7aec16f21482.jpg" onerror="onerror=null;src='https://raw.githubusercontent.com/iyheart/tuchuang/main/img/f3c2605738aabdeedbc687356fa0e4e5.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">恶意代码之勒索型恶意代码</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="http://pic.5tu.cn/uploads/allimg/1910/pic_5tu_big_2019010211653346247.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">iyheart</div><div class="author-info__description">悟已往之不谏，知来者之可追</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">210</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">60</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%9F%BA%E7%A1%80"><span class="toc-number">1.</span> <span class="toc-text">内核模块基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.</span> <span class="toc-text">内核模块相关概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E6%93%8D%E4%BD%9C"><span class="toc-number">1.2.</span> <span class="toc-text">内核模块操作</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87"><span class="toc-number">2.</span> <span class="toc-text">环境准备</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#wsl2%E5%86%85%E6%A0%B8%E9%87%8D%E6%96%B0%E7%BC%96%E8%AF%91"><span class="toc-number">2.1.</span> <span class="toc-text">WSL2内核重新编译</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E7%BA%AF%E5%87%80%E5%86%85%E6%A0%B8%E6%BA%90%E7%A0%81"><span class="toc-number">2.2.</span> <span class="toc-text">编译纯净内核源码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8qemu%E5%90%AF%E5%8A%A8%E5%86%85%E6%A0%B8"><span class="toc-number">2.3.</span> <span class="toc-text">使用qemu启动内核</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91hello_worldko%E6%96%87%E4%BB%B6"><span class="toc-number">2.4.</span> <span class="toc-text">编译hello_world.ko文件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-number">3.</span> <span class="toc-text">内核模块基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861"><span class="toc-number">3.1.</span> <span class="toc-text">内核模块基础知识1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E6%A0%B8%E5%A4%B4%E6%96%87%E4%BB%B6"><span class="toc-number">3.1.1.</span> <span class="toc-text">内核头文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E5%87%BD%E6%95%B0-%E4%B8%80%E5%AE%8F"><span class="toc-number">3.1.2.</span> <span class="toc-text">三函数、一宏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#makefile"><span class="toc-number">3.1.3.</span> <span class="toc-text">makefile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86"><span class="toc-number">3.1.4.</span> <span class="toc-text">补充知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E7%BB%83%E4%B9%A01"><span class="toc-number">3.1.5.</span> <span class="toc-text">内核模块练习1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E7%BB%83%E4%B9%A02"><span class="toc-number">3.1.6.</span> <span class="toc-text">内核模块练习2</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%862"><span class="toc-number">3.2.</span> <span class="toc-text">内核模块基础知识2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%8F%E7%BB%91%E5%AE%9A%E7%BC%96%E5%86%99%E6%A8%A1%E5%9D%97"><span class="toc-number">3.2.1.</span> <span class="toc-text">宏绑定编写模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#makefile%E4%B8%A4%E4%B8%AA%E6%A8%A1%E5%9D%97"><span class="toc-number">3.2.2.</span> <span class="toc-text">Makefile两个模块</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%863"><span class="toc-number">3.3.</span> <span class="toc-text">内核模块基础知识3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%864"><span class="toc-number">3.4.</span> <span class="toc-text">内核模块基础知识4</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%865"><span class="toc-number">3.5.</span> <span class="toc-text">内核模块基础知识5</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%866"><span class="toc-number">3.6.</span> <span class="toc-text">内核模块基础知识6</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/" title="Linux内核模块开发之hello-world">Linux内核模块开发之hello-world</a><time datetime="2026-05-22T13:36:33.000Z" title="发表于 2026-05-22 21:36:33">2026-05-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/04/CTFblog/REVERSE%E7%B3%BB%E5%88%97blog/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E4%B9%8B%E5%8B%92%E7%B4%A2%E5%9E%8B%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/" title="恶意代码之勒索型恶意代码">恶意代码之勒索型恶意代码</a><time datetime="2026-05-04T07:34:05.000Z" title="发表于 2026-05-04 15:34:05">2026-05-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/08/AI/Agent/Agent%E5%BC%80%E5%8F%91%E4%B9%8B%E5%AD%A6%E4%B9%A0/" title="Agent开发之学习">Agent开发之学习</a><time datetime="2026-04-08T15:02:21.000Z" title="发表于 2026-04-08 23:02:21">2026-04-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/04/02/%E6%95%B0%E5%AD%A6blog/%E9%AB%98%E7%AD%89%E4%BB%A3%E6%95%B0/%E9%AB%98%E7%AD%89%E4%BB%A3%E6%95%B0-%E7%BA%BF%E6%80%A7%E6%98%A0%E5%B0%84/" title="高等代数-线性映射">高等代数-线性映射</a><time datetime="2026-04-02T06:16:34.000Z" title="发表于 2026-04-02 14:16:34">2026-04-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/03/28/CTFblog/write_up%E7%B3%BB%E5%88%97blog/2026%E5%B9%B4/KalmarCTF2026/" title="KalmarCTF2026">KalmarCTF2026</a><time datetime="2026-03-28T05:01:49.000Z" title="发表于 2026-03-28 13:01:49">2026-03-28</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By iyheart</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat-btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script></div><script src="/zhheo/random.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
