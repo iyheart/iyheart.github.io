@@ -1,0 +1,513 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>LLVM编译器 | iyheart的博客</title><meta name="author" content="iyheart"><meta name="copyright" content="iyheart"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言：Agent新起，这次尝试使用Skills+Agent学LLVM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LLVM编译器">
+<meta property="og:url" content="http://iyheart.github.io/2026/09/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82blog/%E7%BC%96%E8%AF%91%E4%B8%8E%E8%A7%A3%E9%87%8Ablog/LLVM%E7%BC%96%E8%AF%91%E5%99%A8/index.html">
+<meta property="og:site_name" content="iyheart的博客">
+<meta property="og:description" content="前言：Agent新起，这次尝试使用Skills+Agent学LLVM">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover255.png">
+<meta property="article:published_time" content="2026-09-11T11:03:13.000Z">
+<meta property="article:modified_time" content="2026-09-23T05:24:33.158Z">
+<meta property="article:author" content="iyheart">
+<meta property="article:tag" content="博客, 笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover255.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://iyheart.github.io/2026/09/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82blog/%E7%BC%96%E8%AF%91%E4%B8%8E%E8%A7%A3%E9%87%8Ablog/LLVM%E7%BC%96%E8%AF%91%E5%99%A8/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'LLVM编译器',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-09-23 13:24:33'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/styles.css"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="iyheart的博客" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover51_1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">214</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">64</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 历史</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-music"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-tasks"></i><span> 知识库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/docs/"><i class="fa-fw fas fa-book"></i><span> 编程语言知识库</span></a></li><li><a class="site-page child" href="/practice/"><i class="fa-fw fas fa-book"></i><span> PWN刷题记录</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/update/"><i class="fa-fw fas fa-bell"></i><span> 更新</span></a></div><div class="menus_item"><a class="site-page" href="javascript:toRandomPost()"><i class="fa-fw fas fa-bus"></i><span> 随机文章</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover255.png')"><nav id="nav"><span id="blog-info"><a href="/" title="iyheart的博客"><img class="site-icon" src="http://img95.699pic.com/photo/40151/9175.gif_wh860.gif"/><span class="site-name">iyheart的博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 历史</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-music"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-tasks"></i><span> 知识库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/docs/"><i class="fa-fw fas fa-book"></i><span> 编程语言知识库</span></a></li><li><a class="site-page child" href="/practice/"><i class="fa-fw fas fa-book"></i><span> PWN刷题记录</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/update/"><i class="fa-fw fas fa-bell"></i><span> 更新</span></a></div><div class="menus_item"><a class="site-page" href="javascript:toRandomPost()"><i class="fa-fw fas fa-bus"></i><span> 随机文章</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">LLVM编译器</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-09-11T11:03:13.000Z" title="发表于 2026-09-11 19:03:13">2026-09-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-09-23T05:24:33.158Z" title="更新于 2026-09-23 13:24:33">2026-09-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">编译原理</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/%E7%BC%96%E8%AF%91%E5%99%A8/">编译器</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>9分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="LLVM编译器"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><ul>
+<li>参考博客1：<a target="_blank" rel="noopener" href="https://parallel101.github.io/cppguidebook/llvm_intro/">小彭老师带你学 LLVM - ✝️小彭大典✝️</a></li>
+<li>参考博客2：<a target="_blank" rel="noopener" href="https://zsc.github.io/llvm_history/">LLVM 编译器基础设施：从起源到现代的深度解析 | llvm_history</a></li>
+</ul>
+<h1 id="llvm介绍"><a class="markdownIt-Anchor" href="#llvm介绍"></a> LLVM介绍</h1>
+<ul>
+<li>LLVM是一个跨平台的<strong>编译器基础设施</strong>，它不是一个单一的编译器，而是一系列工具和库的集合，其提供了丰富的数据结构和中间表示层，是实现编译原理的最佳框架。</li>
+<li>LLVM的架构和GCC编译器的架构一样，都是前端、中端、后端三层架构，但是LLVM的编译器的三层架构之间是相互独立的，而不是互相关联的。这就大大减少了编译器的开发工作。具体的LLVM三层架构如下图所示：
+<ul>
+<li>LLVM前端：LLVM前端的编译器，一般是由语言的开发者或者开发团队进行编写的，而不是LLVM自带的，就好比<code>Clang</code>就是配套<code>LLVM</code>的<code>C语言编译器</code>。这些前端的编译器，主要就是将高级语言编译成<code>LLVM IR</code>，这个中间语言。</li>
+<li>LLVM中端：从LLVM中端开始才是LLVM的一些工具集，并且LLVM中端的主要作用就是将<code>LLVM IR</code>进行优化，使得后端编译和执行的时候变得更高效。</li>
+<li>LLVM后端：LLVM后端的只要作用就是将<code>LLVM IR</code>，编译成不同架构的机器语言。后端的编译器也是LLVM的工具集。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2026/09/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82blog/%E7%BC%96%E8%AF%91%E4%B8%8E%E8%A7%A3%E9%87%8Ablog/LLVM%E7%BC%96%E8%AF%91%E5%99%A8/llvm-front-mid-back.png" alt="img"></p>
+<ul>
+<li>补充1：常见的LLVM前端编译器</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>语言类型</th>
+<th>适配LLVM的编译器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C/C++/Object-C/Object-C++</td>
+<td>Clang</td>
+</tr>
+<tr>
+<td>Fortran</td>
+<td>llvm-gcc Frotran</td>
+</tr>
+<tr>
+<td>Rust</td>
+<td>rustc</td>
+</tr>
+<tr>
+<td>Swift</td>
+<td>Swift Compiler</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p>补充2：加入<code>LLVM IR</code>使得编译器编写的工作量减少很多。假设有<code>M</code>种语言，<code>N</code>种硬件：</p>
+<ul>
+<li>如果按照<code>gcc</code>三层架构比较紧凑的编译器设计，那么一共就需要开发<code>M×N</code>个编译器。（不讨论交叉编译的情况）</li>
+<li>如果按照<code>LLVM</code>三层架构相互独立的编译器设计，那么一共就需要开发<code>M+N</code>个编译器，其中<code>M</code>个是开发的是编译器的前端数量，<code>N</code>个是开发编译器的后端数量。</li>
+</ul>
+</li>
+<li>
+<p>补充3：LLVM版本介绍与对应版本的一些比较大的改动对比。</p>
+<ul>
+<li>先贴两个链接，一个就是LLVM的组织官网，另一个是LLVM的github仓库。要初步了解LLVM版本号，其实翻阅一下GitHub仓库就可以了。
+<ul>
+<li><a target="_blank" rel="noopener" href="https://llvm.org.cn/">LLVM 编译器基础设施项目 - LLVM 项目</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/llvm/llvm-project">llvm/llvm-project: The LLVM Project is a collection of modular and reusable compiler and toolchain technologies.</a></li>
+</ul>
+</li>
+<li>LLVM版本号大致说明如下：
+<ul>
+<li>在GitHub的<code>Relaease</code>页面中最早的只有<code>7.1.0</code>版本，</li>
+<li>翻阅LLVM组织网站会发现，最早的<code>1.0</code>版本是在<code>2003年10月24日</code>发布的。</li>
+<li>截至目前<code>2026年9月20日</code>，LLVM的版本号已经更新到了<code>23.1.1</code>版本了。</li>
+</ul>
+</li>
+<li>LLVM在版本更新中比较重要的几个版本更新阶段，如下图所示：</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>版本范围</th>
+<th>重大更新内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LLVM2.0版本</td>
+<td>引入了bitcode format</td>
+</tr>
+<tr>
+<td>LLVM3.0版本</td>
+<td>进行了tpye system rewrite</td>
+</tr>
+<tr>
+<td>LLVM4.0版本</td>
+<td>版本号体系发生变化</td>
+</tr>
+<tr>
+<td>LLVM9.0到LLVM13.0</td>
+<td>现代LLVM逐渐成熟</td>
+</tr>
+<tr>
+<td>LLVM15.0版本之后</td>
+<td>Opaque Pointer默认启用</td>
+</tr>
+<tr>
+<td>LLVM17.0版本之后</td>
+<td>Typed Pointer正式消失</td>
+</tr>
+</tbody>
+</table>
+<h1 id="llvm环境搭建"><a class="markdownIt-Anchor" href="#llvm环境搭建"></a> LLVM环境搭建</h1>
+<ul>
+<li>通过对LLVM的初步了解，以及对LLVM版本的更新内容的一些了解，现在来搭建LLVM的环境。这里推荐搭建<code>LLVM 17.0</code>以及之后的版本，因为该版本以及后续版本的<code>LLVM IR</code>中的<code>Typed Pointer</code>不会再出现。在<code>LLVM IR</code>中举个例子：
+<ul>
+<li><code>LLVM 17.0</code>版本之前，这样的<code>IR</code>语法是被支持的：<code> i32* %1</code>。</li>
+<li><code>LLVM 17.0</code>版本之后，上面的<code>IR</code>语法统一替换成：<code>ptr %1</code>。</li>
+<li>其实也就是不显示标明具体的指针指针类型。</li>
+</ul>
+</li>
+</ul>
+<h2 id="linux下llvm环境安装"><a class="markdownIt-Anchor" href="#linux下llvm环境安装"></a> Linux下LLVM环境安装</h2>
+<ul>
+<li>本人只在Linux下安装LLVM，安装过程如下。</li>
+<li>首先，先使用一下命令，更新一下软件包：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt update</span><br></pre></td></tr></table></figure>
+<ul>
+<li>接着使用<code>apt search</code>命令搜索<code>LLVM</code>的软件包，发现软件包里面最高只有到<code>llvm 15</code>版本的软件包：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt search llvm</span><br></pre></td></tr></table></figure>
+<p><img src="/2026/09/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82blog/%E7%BC%96%E8%AF%91%E4%B8%8E%E8%A7%A3%E9%87%8Ablog/LLVM%E7%BC%96%E8%AF%91%E5%99%A8/image-20260920175212392.png" alt="image-20260920175212392"></p>
+<ul>
+<li>那就直接从<code>github</code>上，下载已经编译号的<code>LLVM</code>最新版本</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/llvm/llvm-project/releases/download/llvmorg-23.1.1/LLVM-23.1.1-Linux-X64.tar.xz</span><br></pre></td></tr></table></figure>
+<h1 id="llvm-ir"><a class="markdownIt-Anchor" href="#llvm-ir"></a> LLVM IR</h1>
+<ul>
+<li>本人使用<code>Claude Code</code>配合<code>教师skills</code>，它了解了本人的实际情况后，推荐我从<code>LLVM IR</code>开始学习。</li>
+<li>中间表示码是一种抽象的机器指令，它不针对具体的硬件，而是一种通用的指令集。它是一种中间表达，可以被进一步编译为目标代码。</li>
+<li><code>LLVM IR</code>是一种中间语言表示，作为编译器前端和后端的分水岭，<code>LLVM</code>编译器的前端<code>Clang</code>负责产生<code>IR</code>，而其<code>LLVM</code>后端负责消费<code>IR</code>。</li>
+<li><code>IR</code>介于高级语言与汇编语言之间(更偏向汇编语言一些)，发明<code>IR</code>是为了统一来自不同源码语言，去往不同目标硬件的一层抽象层。优点如下：
+<ul>
+<li>第一个优点是：便于前端统一实现，<code>Clang</code>这样的前端只需要生成抽象的数学运算，控制流这些<code>IR</code>预先定义号的指令就可以了，不用去专门为每个硬件设计一套生成汇编的引擎。</li>
+<li>第二个优点是：<code>LLVM IR</code>采用了对优化更友好的<code>SSA</code>格式，而不是糟糕的寄存器格式，大大方便了优化，等送到后端的末尾才开始将<code>IR</code>翻译为汇编代码，最终变成可执行的机器码。</li>
+</ul>
+</li>
+<li>在正式了解<code>LLVM IR</code>之前，先来了解一下要使用到的关于<code>LLVM</code>中的组件和工具。
+<ul>
+<li><code>Clang</code>：<code>C/C++</code>的前端编译器</li>
+<li><code>llc </code>：<code>LLVM</code>静态编译器</li>
+<li><code>llvm-as</code>：<code>LLVM IR</code>汇编器</li>
+<li><code>llvm-dis</code>：<code>LLVM IR</code>反汇编器</li>
+<li><code>opt</code>：LLVM中的<code>LLVM IR</code>优化器</li>
+</ul>
+</li>
+</ul>
+<h2 id="llvm-ir文件"><a class="markdownIt-Anchor" href="#llvm-ir文件"></a> LLVM IR文件</h2>
+<ul>
+<li>
+<p>先来看看<code>LLVM</code>实体文件具体是怎么样的，以及文件里面具体的内容。</p>
+</li>
+<li>
+<p><code>LLVM IR</code>有多种表现形式：</p>
+<ul>
+<li>内存中的<code>LLVM IR</code>：内存中的<code>IR</code>是一组由<code>C++</code>对象构成的<code>IR</code>对象图，位于<code>clang</code>和<code>libcLLVM.so</code>进程的内存中，都是一个个<code>C++</code>类，通过指针相互连接。由于内存中<code>LLVM IR</code>对象存在虚表指针，以及其复杂的树状或图状数结构，无法直接存入磁盘以及人无法阅读，所以提供了下面两种磁盘中的存储形式。</li>
+<li>磁盘中的<code>LLVM IR</code>汇编：该形式通常是以文件<code>.ll</code>形式存储的，以人类可读的文本形式存储在磁盘中，方便人类观察、修改和调试。</li>
+<li>磁盘中的<code>LLVM IR</code>字节码：该形式通常是以文件<code>.bc</code>形式存储的，本质上和<code>LLVM IR</code>汇编相同，只是以更高效的二进制字节存储。虽然人类看不懂，但是节约磁盘空间，以及方便程序快速解析。</li>
+</ul>
+</li>
+<li>
+<p>接下来我们就具体来查看一下这三种形式，下面有一个<code>C</code>语言的函数代码：</p>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> &#123;</span><br><span class="line">    <span class="type">int</span> c = a + b;</span><br><span class="line">    <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// exp.c</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用<code>clang</code>前端将该<code>.c</code>文件编译成两种不同形式的<code>LLVM IR</code>文件：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 编译成LLVM IR汇编</span></span><br><span class="line">clang-17 -emit-llvm -S -o0 sum.c -o my_sum.ll</span><br><span class="line"><span class="comment"># 编译成LLVM IR字节码</span></span><br><span class="line">clang-17 -emit-llvm -c -o0 <span class="built_in">sum</span>,c -o my_sum.bc</span><br></pre></td></tr></table></figure>
+<p><img src="/2026/09/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82blog/%E7%BC%96%E8%AF%91%E4%B8%8E%E8%A7%A3%E9%87%8Ablog/LLVM%E7%BC%96%E8%AF%91%E5%99%A8/image-20260921160134172.png" alt="image-20260921160134172"></p>
+<p><img src="/2026/09/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82blog/%E7%BC%96%E8%AF%91%E4%B8%8E%E8%A7%A3%E9%87%8Ablog/LLVM%E7%BC%96%E8%AF%91%E5%99%A8/image-20260921160257958.png" alt="image-20260921160257958"></p>
+<ul>
+<li>使用<code>LLVM</code>工具集中的汇编器<code>llvm-as</code>和<code>LLVM</code>工具集中的反汇编器<code>llvm-dis</code>可以使<code>.ll</code>和<code>.bc</code>这两个形式的文件进行互相转换。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># .bc文件反汇编成.ll文件</span></span><br><span class="line">llvm-dis-17 my_sum.bc -o my_from_bc.ll </span><br><span class="line"><span class="comment"># .ll文件汇编成.bc文件</span></span><br><span class="line">llvm-as-17  my_sum.ll -o my_from_ll.bc  </span><br></pre></td></tr></table></figure>
+<p><img src="/2026/09/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82blog/%E7%BC%96%E8%AF%91%E4%B8%8E%E8%A7%A3%E9%87%8Ablog/LLVM%E7%BC%96%E8%AF%91%E5%99%A8/image-20260921160602465.png" alt="image-20260921160602465"></p>
+<p><img src="/2026/09/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82blog/%E7%BC%96%E8%AF%91%E4%B8%8E%E8%A7%A3%E9%87%8Ablog/LLVM%E7%BC%96%E8%AF%91%E5%99%A8/image-20260921160643785.png" alt="image-20260921160643785"></p>
+<blockquote>
+<p>当需要长期储存 IR 的中间结果时会用到 IR 字节码，当需要人类观察分析中间结果时就需要 IR 汇编。</p>
+</blockquote>
+<h2 id="llvm-ir特点"><a class="markdownIt-Anchor" href="#llvm-ir特点"></a> LLVM IR特点</h2>
+<ul>
+<li><code>LLVM IR</code>的四层结构：模块、函数、基本块、指令。
+<ul>
+<li>整个LLVM文件的内容会被视为一个LLVM模块模块是<code>LLVM IR</code>顶层数据结构。</li>
+<li>每个模块包含一系列函数，每个函数由一系列基本块组成。模块还包含用于支持该模型的外围实体，如全局变量、目标数据布局、外部函数原型以及数据结构声明。</li>
+</ul>
+</li>
+<li><code>LLVM IR</code>具有无限寄存器：<br>
++</li>
+</ul>
+<h2 id="llvm-ir类型"><a class="markdownIt-Anchor" href="#llvm-ir类型"></a> LLVM IR类型</h2>
+<h2 id="llvm-ir指令"><a class="markdownIt-Anchor" href="#llvm-ir指令"></a> LLVM IR指令</h2>
+<h3 id="内存指令"><a class="markdownIt-Anchor" href="#内存指令"></a> 内存指令</h3>
+<h3 id="控制流指令"><a class="markdownIt-Anchor" href="#控制流指令"></a> 控制流指令</h3>
+<h3 id="终结指令"><a class="markdownIt-Anchor" href="#终结指令"></a> 终结指令</h3>
+<h1 id="补充"><a class="markdownIt-Anchor" href="#补充"></a> 补充</h1>
+<h2 id="llvm项目的起源"><a class="markdownIt-Anchor" href="#llvm项目的起源"></a> LLVM项目的起源</h2>
+<h2 id="llvm项目总览"><a class="markdownIt-Anchor" href="#llvm项目总览"></a> LLVM项目总览</h2>
+<ul>
+<li>在LLVM项目的GitHub仓库中，其实有很多个子项目，我们在补充这里逐一介绍一下。直接从LLVM对应的GitHub仓库中拉取项目。仓库链接如下：<a target="_blank" rel="noopener" href="https://github.com/llvm/llvm-project.git">https://github.com/llvm/llvm-project.git</a></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/llvm/llvm-project.git</span><br></pre></td></tr></table></figure>
+<ul>
+<li>接着在终端中使用命令，将该项目的文件以目录树的形式在终端中输出出来。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tree -L 1</span><br></pre></td></tr></table></figure>
+<ul>
+<li>会输出如下树状形式的文件：
+<ul>
+<li><strong>我们主要学习</strong>：这些文件都是LLVM的子项目，其中我们主要学习的是<code>llvm</code>文件夹，他是LLVM的本体。<code>llvm</code>文件夹不仅包含了<code>LLVM</code>库，也包含一些处理<code>LLVM IR</code>和字节码的实用工具。</li>
+<li><code>clang</code>文件夹：这个子项目就是大名鼎鼎的<code>Clang</code>编译器，他也是基于<code>LLVM</code>本体实现的，本身只是个前端，并不做优化和后端汇编的生成。</li>
+<li><code>clang-tools-extra</code>：这个子项目是<code>clangd、clang-tidy、clang-format</code>等<code>C/C++</code>代码质量工具，可以选择不构建。</li>
+<li><code>cmake</code>文件夹：该文件夹并不是子项目，而是装着和LLVM相关的一些<code>CMake</code>脚本文件。</li>
+<li><code>compiler-rt</code>：是<code>AddressSantizer</code>(内存溢出检测工具)、<code>MSAN</code>（内存泄漏检测）、<code>TSAN</code>（线程安全检测）、<code>UBSAN</code>（未定义行为检测）等工具的实现。</li>
+<li><code>flang</code>文件夹：是LLVM的<code>Fortan</code>前端，编程界的活化石。</li>
+<li><code>libc</code>文件夹：是<code>Clang</code>官配的<code>C</code>标准库</li>
+<li><code>libcxx</code>文件夹：是<code>Clang</code>官配的<code>C++</code>标准库</li>
+<li><code>lldb</code>文件夹：是LLVM官方的调试器，对标GCC的<code>gdb</code>调试器，VScode的调试默认就是基于<code>lldb</code></li>
+<li><code>libclc</code>文件夹：是LLVM对<code>OpenCL</code>的实现</li>
+<li><code>mlir</code>文件夹：是LLVM对MLIR的编译器实现(MLIR是一种为机器学习定制，允许用户自定义新的IR节点，例如矩阵乘法等高阶操作，方便特定硬件识别奥并优化成自研硬件专门的矩阵乘法指令)</li>
+<li><code>openmp</code>：是LLVM对OpenMP的实现，一种用于傻瓜式CPU单机并行的框架。</li>
+<li><code>pstl</code>：是LLVM对<code>C++17</code>Parallel STL的实现。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">myheart@aaa /m/e/c/llvm-project-main&gt; tree -L 1</span><br><span class="line">.</span><br><span class="line">├── CODE_OF_CONDUCT.md</span><br><span class="line">├── CONTRIBUTING.md</span><br><span class="line">├── LICENSE.TXT</span><br><span class="line">├── README.md</span><br><span class="line">├── SECURITY.md</span><br><span class="line">├── bolt</span><br><span class="line">├── clang</span><br><span class="line">├── clang-tools-extra</span><br><span class="line">├── cmake</span><br><span class="line">├── compiler-rt</span><br><span class="line">├── cross-project-tests</span><br><span class="line">├── flang</span><br><span class="line">├── flang-rt</span><br><span class="line">├── libc</span><br><span class="line">├── libclc</span><br><span class="line">├── libcxx</span><br><span class="line">├── libcxxabi</span><br><span class="line">├── libsycl</span><br><span class="line">├── libunwind</span><br><span class="line">├── lld</span><br><span class="line">├── lldb</span><br><span class="line">├── llvm</span><br><span class="line">├── llvm-libgcc</span><br><span class="line">├── mlir</span><br><span class="line">├── offload</span><br><span class="line">├── openmp</span><br><span class="line">├── orc-rt</span><br><span class="line">├── polly</span><br><span class="line">├── pyproject.toml</span><br><span class="line">├── runtimes</span><br><span class="line">├── third-party</span><br><span class="line">└── utils</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://iyheart.github.io">iyheart</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://iyheart.github.io/2026/09/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82blog/%E7%BC%96%E8%AF%91%E4%B8%8E%E8%A7%A3%E9%87%8Ablog/LLVM%E7%BC%96%E8%AF%91%E5%99%A8/">http://iyheart.github.io/2026/09/11/计算机底层blog/编译与解释blog/LLVM编译器/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://iyheart.github.io" target="_blank">iyheart的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover255.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/ea2e5fb6fbb4c236fbabd387ef83339.jpg" target="_blank"><img class="post-qr-code-img" src="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/ea2e5fb6fbb4c236fbabd387ef83339.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2026/07/26/%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/" title="形式语言与自动机"><img class="cover" src="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover254.png" onerror="onerror=null;src='https://raw.githubusercontent.com/iyheart/tuchuang/main/img/f3c2605738aabdeedbc687356fa0e4e5.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">形式语言与自动机</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover51_1.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">iyheart</div><div class="author-info__description">悟已往之不谏，知来者之可追</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">214</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">64</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#llvm%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text"> LLVM介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#llvm%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-number">2.</span> <span class="toc-text"> LLVM环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#linux%E4%B8%8Bllvm%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85"><span class="toc-number">2.1.</span> <span class="toc-text"> Linux下LLVM环境安装</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#llvm-ir"><span class="toc-number">3.</span> <span class="toc-text"> LLVM IR</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#llvm-ir%E6%96%87%E4%BB%B6"><span class="toc-number">3.1.</span> <span class="toc-text"> LLVM IR文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#llvm-ir%E7%89%B9%E7%82%B9"><span class="toc-number">3.2.</span> <span class="toc-text"> LLVM IR特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#llvm-ir%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.3.</span> <span class="toc-text"> LLVM IR类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#llvm-ir%E6%8C%87%E4%BB%A4"><span class="toc-number">3.4.</span> <span class="toc-text"> LLVM IR指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E6%8C%87%E4%BB%A4"><span class="toc-number">3.4.1.</span> <span class="toc-text"> 内存指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E6%B5%81%E6%8C%87%E4%BB%A4"><span class="toc-number">3.4.2.</span> <span class="toc-text"> 控制流指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%88%E7%BB%93%E6%8C%87%E4%BB%A4"><span class="toc-number">3.4.3.</span> <span class="toc-text"> 终结指令</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A1%A5%E5%85%85"><span class="toc-number">4.</span> <span class="toc-text"> 补充</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#llvm%E9%A1%B9%E7%9B%AE%E7%9A%84%E8%B5%B7%E6%BA%90"><span class="toc-number">4.1.</span> <span class="toc-text"> LLVM项目的起源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#llvm%E9%A1%B9%E7%9B%AE%E6%80%BB%E8%A7%88"><span class="toc-number">4.2.</span> <span class="toc-text"> LLVM项目总览</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82blog/%E7%BC%96%E8%AF%91%E4%B8%8E%E8%A7%A3%E9%87%8Ablog/LLVM%E7%BC%96%E8%AF%91%E5%99%A8/" title="LLVM编译器">LLVM编译器</a><time datetime="2026-09-11T11:03:13.000Z" title="发表于 2026-09-11 19:03:13">2026-09-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/07/26/%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/" title="形式语言与自动机">形式语言与自动机</a><time datetime="2026-07-26T00:02:13.000Z" title="发表于 2026-07-26 08:02:13">2026-07-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/06/04/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%912/" title="Linux内核模块开发2">Linux内核模块开发2</a><time datetime="2026-06-04T08:25:09.000Z" title="发表于 2026-06-04 16:25:09">2026-06-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/" title="Linux内核模块开发之hello-world">Linux内核模块开发之hello-world</a><time datetime="2026-05-22T13:36:33.000Z" title="发表于 2026-05-22 21:36:33">2026-05-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/04/CTFblog/REVERSE%E7%B3%BB%E5%88%97blog/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81%E4%B9%8B%E5%8B%92%E7%B4%A2%E5%9E%8B%E6%81%B6%E6%84%8F%E4%BB%A3%E7%A0%81/" title="恶意代码之勒索型恶意代码">恶意代码之勒索型恶意代码</a><time datetime="2026-05-04T07:34:05.000Z" title="发表于 2026-05-04 15:34:05">2026-05-04</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By iyheart</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat-btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script></div><script src="/zhheo/random.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
