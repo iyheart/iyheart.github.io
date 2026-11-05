@@ -1,0 +1,633 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>密码学知识体系概述 | iyheart的博客</title><meta name="author" content="iyheart"><meta name="copyright" content="iyheart"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言：出于对密码学的兴趣，我前面花了几天看了一些密码学的历史。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="密码学知识体系概述">
+<meta property="og:url" content="http://iyheart.github.io/2026/10/30/%E5%AF%86%E7%A0%81%E5%AD%A6/%E5%AF%86%E7%A0%81%E5%AD%A6%E6%80%BB%E4%BD%93%E6%A6%82%E8%BF%B0/index.html">
+<meta property="og:site_name" content="iyheart的博客">
+<meta property="og:description" content="前言：出于对密码学的兴趣，我前面花了几天看了一些密码学的历史。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i0.hdslb.com/bfs/article/296da5370e6f915d1826ff20916e7aec16f21482.jpg">
+<meta property="article:published_time" content="2026-10-30T04:44:35.000Z">
+<meta property="article:modified_time" content="2026-11-05T07:44:47.713Z">
+<meta property="article:author" content="iyheart">
+<meta property="article:tag" content="博客, 笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i0.hdslb.com/bfs/article/296da5370e6f915d1826ff20916e7aec16f21482.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://iyheart.github.io/2026/10/30/%E5%AF%86%E7%A0%81%E5%AD%A6/%E5%AF%86%E7%A0%81%E5%AD%A6%E6%80%BB%E4%BD%93%E6%A6%82%E8%BF%B0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '密码学知识体系概述',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-11-05 15:44:47'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/styles.css"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="iyheart的博客" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover51_1.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">214</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">64</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 历史</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-music"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-tasks"></i><span> 知识库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/docs/"><i class="fa-fw fas fa-book"></i><span> 编程语言知识库</span></a></li><li><a class="site-page child" href="/practice/"><i class="fa-fw fas fa-book"></i><span> PWN刷题记录</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/update/"><i class="fa-fw fas fa-bell"></i><span> 更新</span></a></div><div class="menus_item"><a class="site-page" href="javascript:toRandomPost()"><i class="fa-fw fas fa-bus"></i><span> 随机文章</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i0.hdslb.com/bfs/article/296da5370e6f915d1826ff20916e7aec16f21482.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="iyheart的博客"><img class="site-icon" src="http://img95.699pic.com/photo/40151/9175.gif_wh860.gif"/><span class="site-name">iyheart的博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 历史</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-music"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-tasks"></i><span> 知识库</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/docs/"><i class="fa-fw fas fa-book"></i><span> 编程语言知识库</span></a></li><li><a class="site-page child" href="/practice/"><i class="fa-fw fas fa-book"></i><span> PWN刷题记录</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/update/"><i class="fa-fw fas fa-bell"></i><span> 更新</span></a></div><div class="menus_item"><a class="site-page" href="javascript:toRandomPost()"><i class="fa-fw fas fa-bus"></i><span> 随机文章</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">密码学知识体系概述</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-10-30T04:44:35.000Z" title="发表于 2026-10-30 12:44:35">2026-10-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-11-05T07:44:47.713Z" title="更新于 2026-11-05 15:44:47">2026-11-05</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">5.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>15分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="密码学知识体系概述"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><ul>
+<li>在写这篇文章之前，我大部分接触的都是<code>CTF密码学方向</code>，很大一部分都在学习<code>密码分析学</code>，这就导致我最先入门的不是<code>密码编码学</code>，而是<code>密码分析学</code>。</li>
+<li>而且<code>CTF密码学方向</code>，其实是密码学理论、密码分析技术和工程实践在竞赛场景中的综合应用。但是<code>CTF密码学方向</code>与实际的密码学工程应用还是稍微有差别的。</li>
+<li>我写这篇文章，是为了构建属于自己的密码学知识体系，因为这几年来打<code>CTF</code>都是以<code>做赛题、复现赛题</code>为切入点，从而学习密码学知识，这使得我脑子里面的密码学知识还是很零散，做不到成体系学到后期明显感到基础不足，所以打算以CTF题目为主继续学习新的密码学知识，同时以学习密码学基础知识和数学知识为辅，夯实我的密码学基础。（纯热爱，无功利）</li>
+</ul>
+<h1 id="密码学总体介绍"><a class="markdownIt-Anchor" href="#密码学总体介绍"></a> 密码学总体介绍</h1>
+<h2 id="密码学的定义"><a class="markdownIt-Anchor" href="#密码学的定义"></a> 密码学的定义</h2>
+<ul>
+<li>密码学<code>Cryptology</code>：是一门研究信息安全保护及其相关理论与技术的学科。它主要通过数学理论、计算方法和密码算法，实现对信息的机密性、完整性、真实性以及不可否认性等安全属性的保护。</li>
+<li>从发展历程来看，密码学最初主要研究如何通过特定的编码和变换方式隐藏信息，使未经授权的人无法理解通信内容。随着计算机科学、舒徐和信息技术的发展，密码学逐渐从传统的加密技术发展成为一门综合性的学科，研究范围从单纯的信息加密扩展道了身份认证、数字签名、密钥交换、零知识证明、多方安全计算以及后量子密码等领域。</li>
+<li>现代密码学不仅研究如何设计安全的密码算法，还研究如何证明密码系统的安全性、如何分析和攻击密码系统，以及如何将密码算法安全地应用于实际计算机系统。</li>
+<li>因此，密码学并不只是研究某种加密算法，而是包含数学理论、密码构造、安全分析和工程实现等多个方面的完整知识体系。</li>
+</ul>
+<h2 id="密码学的总体分类"><a class="markdownIt-Anchor" href="#密码学的总体分类"></a> 密码学的总体分类</h2>
+<ul>
+<li>密码学，英文名词为<code>Cryptology</code>是这个学科的总称，但是从传统的密码学的学科划分来看，密码学通常还划分为两个主要部分：
+<ul>
+<li>密码编码学<code>Cryptography</code>：研究密码算法、密码原语和密码协议的设计与构造。</li>
+<li>密码分析学<code>Cryptanalysis</code>：研究密码算法和密码协议的安全性，寻找其中的弱点和漏洞。</li>
+</ul>
+</li>
+<li>随着现代密码学的发展，密码学涉及的理论和工程内容越来越丰富，为了更加系统地组织知识，我对密码学划分为四个主要部分（不是很严谨的划分，会有交叉关系），下面一张思维导图是密码学总体的概览包括四个主要部分中更细的划分：
+<ul>
+<li>密码学理论与数学基础</li>
+<li>密码编码学</li>
+<li>密码分析学</li>
+<li>密码工程与实现</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2026/10/30/%E5%AF%86%E7%A0%81%E5%AD%A6/%E5%AF%86%E7%A0%81%E5%AD%A6%E6%80%BB%E4%BD%93%E6%A6%82%E8%BF%B0/%E5%AF%86%E7%A0%81%E5%AD%A6(Cryptology)v2.0.png" alt="密码学(Cryptology)v2.0"></p>
+<h2 id="密码学各分支之间的关系"><a class="markdownIt-Anchor" href="#密码学各分支之间的关系"></a> 密码学各分支之间的关系</h2>
+<ul>
+<li>密码学的四个主要部分并不是相互独立，它们之间存在紧密的联系：
+<ul>
+<li>密码学理论与数学基础提供构造和分析密码系统所需要的数学工具与理论依据。</li>
+<li>密码编码学利用这些数学理论设计密码算法、密码原语和密码协议。</li>
+<li>密码分析学研究这些密码构造的安全性，寻找其中的弱点和潜在漏洞。</li>
+<li>密码工程与实现将密码算法和协议应用到真实计算机系统中，并解决实际运行中的安全性和效率问题。</li>
+<li>上面的四个部分共同构成一个完整的密码学研究体系。</li>
+</ul>
+</li>
+<li>举例1：<code>RSA</code>加密</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>对应知识</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>理论与数学基础</td>
+<td>初等数论、模运算、欧拉函数、欧几里得算法等</td>
+</tr>
+<tr>
+<td>密码编码学</td>
+<td>RSA密钥生成、加密、解密、数字签名</td>
+</tr>
+<tr>
+<td>密码分析学</td>
+<td><code>Wiener</code>攻击、<code>Boneh-Durfee</code>攻击、<code>Coppersmith</code>攻击</td>
+</tr>
+<tr>
+<td>密码工程与实现</td>
+<td>RSA软件实现、密钥管理、填充方案、常数时间实现</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>举例2：格密码</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>对应知识</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>理论与数学基础</td>
+<td>格理论、线性代数、概率论</td>
+</tr>
+<tr>
+<td>密码编码学</td>
+<td>LWE、NTRU、ML-KEM</td>
+</tr>
+<tr>
+<td>密码分析学</td>
+<td>LLL、BKZ、SVP、CVP、LWE求解</td>
+</tr>
+<tr>
+<td>密码工程与实现</td>
+<td>格密码算法优化、后量子密码库实现</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>所以，我们在学习某一个具体的密码体系，往往需要同时涉及这四个方面。</li>
+</ul>
+<h2 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h2>
+<ul>
+<li>密码学是一门以数学理论和计算方法为基础，研究信息安全保护、密码系统构造、安全性分析及工程实现的综合性学科。</li>
+<li>从整体上看，可以将密码学划分为四个主要部分：
+<ul>
+<li><strong>密码学理论与数学基础</strong>：研究密码学所依赖的数学理论、计算理论和安全模型。</li>
+<li><strong>密码编码学</strong>：研究密码算法、密码原语和密码协议的设计与构造。</li>
+<li><strong>密码分析学</strong>：研究密码算法和协议的安全性，分析其中的弱点和漏洞。</li>
+<li><strong>密码工程与实现</strong>：研究密码算法和协议在真实计算机系统中的实现、优化和部署。</li>
+</ul>
+</li>
+<li>这四个部分共同构成密码学的知识体系。</li>
+</ul>
+<h1 id="密码学历史"><a class="markdownIt-Anchor" href="#密码学历史"></a> 密码学历史</h1>
+<ul>
+<li>在具体了解密码学历史之前，先要了解几个英文单词：
+<ul>
+<li>代码<code>code</code>：现在基本上就是指编程语言的这种代码，而在过去<code>code</code>即代码的意思，这个字本来是指秘密通讯的方法，所谓代码就是用一个字，或数字、符号，来取代某个字或词组。
+<ul>
+<li>例如：情报人员都有一个代号<code>codename</code>，用来代替真实姓名以隐藏身份的名称。</li>
+<li>例如：要传达<code>拂晓攻击</code>这个命令给战场指挥官时，使用<code>Jupiter</code>朱庇特这个代码<code>codeword</code>来替代，这样约定好后拦截到消息的敌人则会一头雾水。</li>
+</ul>
+</li>
+<li>密码<code>cipher</code>：是比<code>code</code>作用面更基层的方法，更替一个个字母，而不是一整个词。
+<ul>
+<li>例如：使用<code>B代替A</code>，<code>C代替B</code>以此类推的规律，<code>拂晓攻击</code>英文为<code>Attack at dawn</code>，使用密码作用到每一个字母就变成<code>Buubdl bu ebxo</code>了。</li>
+</ul>
+</li>
+<li>代码破解者<code>codebreaker</code>，密码破解者<code>cipherbreaker</code>。</li>
+<li>明文<code>plaintext</code>：加密前的信息。</li>
+<li>密文<code>ciphertext</code>：加密后的信息。</li>
+</ul>
+</li>
+</ul>
+<h2 id="隐写术"><a class="markdownIt-Anchor" href="#隐写术"></a> 隐写术</h2>
+<ul>
+<li>
+<p>在人类历史上，经常会出现<strong>掩饰信息存在性的保密通讯法</strong>，该方法称为隐匿法<code>steganography</code>。<code>steganography</code>这个单词源自希腊文<code>steganos</code>和<code>graphein</code>两个单词，前者意为<code>掩蔽的</code>，后者则是<code>书写</code>。自希罗多德时代起，两千年来隐匿法的应用以千奇白怪的形式遍及世界各地。</p>
+</li>
+<li>
+<p>隐匿法发展的时间这门长，表示它显然是相当的安全，不过隐匿法有一个致命的弱点，万一敌人搜查到隐匿文字的载体，并发现信息，那么秘密通讯的内容马上就要曝光，也就是说一旦信息被拦截到，所有安全措施都会前功尽弃。</p>
+</li>
+<li>
+<p>接下来介绍一些隐写术使用的历史，以及现在科技时代的隐写术。</p>
+</li>
+<li>
+<p><strong>秘密书信</strong>：希罗多德讲过一些最早的秘密书信的故事，主要是<code>希腊</code>和<code>波斯</code>在公元前5世纪时的冲突。</p>
+<ul>
+<li><code>波斯国</code>因为某些事情与<code>希腊和斯巴达</code>两国积怨，波斯打算派人攻打两国。</li>
+<li><code>波斯国</code>军队的集结行动被一名为<code>狄马拉图斯</code>的<code>希腊人</code>所瞧见，他是被<code>希腊</code>流放到<code>波斯国</code>的一个城市<code>苏萨</code>。</li>
+<li><code>狄马拉图斯</code>虽被流放，但是还心系<code>希腊</code>，于是就将一副可对折的木制写字板上的蜡瓜下来，把<code>波斯要攻打希腊和斯巴达</code>这件事写在木头上，再用一层蜡把这则信息盖住。这样以来，这些木板看似一片空白，沿路上的士兵就不会找它们的麻烦。</li>
+<li>不过这个木板到达目的地时没人猜到其中的奥秘，是<code>克利欧明斯</code>的女儿<code>戈尔戈</code>瞧出端倪，之后把蜡刮了发现消息，并转告给希腊人。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2026/10/30/%E5%AF%86%E7%A0%81%E5%AD%A6/%E5%AF%86%E7%A0%81%E5%AD%A6%E6%80%BB%E4%BD%93%E6%A6%82%E8%BF%B0/image-20261030194135072.png" alt="image-20261030194135072"></p>
+<ul>
+<li><strong>剃发传信</strong>：希罗多德还讲述了一个发生在波斯战争背景下的故事。
+<ul>
+<li><code>希斯泰尤斯</code>为了鼓动<code>米里图斯</code>的<code>亚里斯达哥拉斯</code>反叛波斯国王，决定送一封信。</li>
+<li><code>希斯泰尤斯</code>把信差的头发剃光，在信差头皮上刺写秘密信息。</li>
+<li>等到信差头发重新长出来后，<code>希斯泰尤斯</code>便将信拆派往目的地。</li>
+<li>接收者再次剃掉信差头发，获得信中的内容。</li>
+</ul>
+</li>
+<li><strong>其他隐写</strong>：
+<ul>
+<li>古代中国人把信息写在柔细的丝布上，揉成小球，覆上蜡，再让信差吞进这粒蜡球。</li>
+<li>16世纪的意大利科学家<code>乔凡泥·波塔</code>解说了再煮熟的鸡蛋里藏匿信息的方法：用一盎司明矾和一品脱醋所混成的液体当作墨水写在蛋壳上。这种溶剂会穿透富含气孔的蛋壳，而在硬化的蛋白表层上留下信息，你得剥掉蛋壳才看得到。</li>
+<li>使用隐形墨水写信也是隐匿法的一种，早在公元1世纪，老普林尼就解释道：<code>thithymallus</code>植物的汁液可以用作隐形墨水。它的汁液干掉就会变透明，但稍微加热就会焦掉而变成棕色。</li>
+</ul>
+</li>
+<li><strong>现代数字隐写</strong>：
+<ul>
+<li>将秘密信息隐藏在 JPEG 图片中、将秘密信息隐藏在 WAV 音频中、将秘密信息隐藏在 MP4 视频中、将秘密信息隐藏在普通文本中。</li>
+<li>网络协议隐写，网络协议本身也作为隐写载体。</li>
+<li>人工智能与生成式隐写，利用语言模型生成文本，让文本在满足语义和语言自然性的同时携带秘密信息。</li>
+</ul>
+</li>
+</ul>
+<h2 id="置换与代换"><a class="markdownIt-Anchor" href="#置换与代换"></a> 置换与代换</h2>
+<ul>
+<li>由于隐匿法的局限性和容错低，所以在隐匿法发展的同时还出现了<code>密码法</code>。密码法这一词源于希腊文<code>kryptos</code>，隐藏的意思。密码法的目标不是将信息本身隐藏起来，而是隐藏信息的意义。它的过程就是：加密<code>encryption</code>，把信息转译成无法理解的文字或符号。</li>
+<li>密码法和隐匿法虽然没什么关联，但是却可以合并使用，以强化安全性。不过密码法是秘密通讯两门技术中较强的一个，因为它有防止信息落入敌手的能力。</li>
+<li>事实上密码法本身又可以分为两种类型：
+<ul>
+<li>位移法<code>数学上称之为置换</code>：将信息里的字母调动顺序，这个方法不适用于非常简短的信息，因为可以很容易穷举出来。</li>
+<li>替代法<code>数学上称之为代换</code>：将信息里的字母用别的字母代替，更或者用其他符号代替。</li>
+</ul>
+</li>
+</ul>
+<h3 id="置换法"><a class="markdownIt-Anchor" href="#置换法"></a> 置换法</h3>
+<ul>
+<li>对于置换法而言，加密信息时若将字母随意搬家，它的安全度一定非常高，因为即使是短短的句子，拦截道它的敌人也没办法解译出来。</li>
+<li>置换法本质就是在制造回文谜，可以制造困难度非常高的回文谜，但是这样字母重组毫无章法，那么不仅是敌人，就连原收信人也没办法解读。</li>
+<li>所以字母的重组必须遵循发信人与收信人预先约定好的规则，这样置换法才有实际效用。</li>
+<li><strong>栅栏密码</strong>：是一种通过置换法，对字母进行重新排列的一个密码法。
+<ul>
+<li>最常见的就是栅栏数为<code>2</code>的栅栏密码，也就是将信息内容的奇数位字母排成一排，偶数位字母写在另一排，再把偶数位字母接道奇数位字母后面。收信人只需要执行逆过程就可以恢复原信息。</li>
+<li>例如：<code>THY SECRET IS THY PRISONER;IF THO</code>。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">T*Y *E*R*T *S *H* P*I*O*E*;I* T*O</span><br><span class="line">*H* S*C*E* I* T*Y *R*S*N*R;*F *H*</span><br><span class="line">TYERTSHPIOEITO </span><br><span class="line">HSCEITYRSNRFH</span><br><span class="line">TYERTSHPIOEITOHSCEITYRSNRFH</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p><strong>调换密码</strong>：将字母两两对调顺序，也就是将第一个字母和第二个字母互调，第三个字母和第四个字母互调，以此类推。</p>
+</li>
+<li>
+<p><strong>密码棒</strong>：历史上第一件军用密码装置，公元前5世纪的斯巴达密码棒。密码棒就是采用了另一种形式的置换法。</p>
+<ul>
+<li>密码棒是一根木棒，缠绕上一条皮革或羊皮纸，发信人在密码棒上横向写下信息，再解下这条皮带。</li>
+<li>展开皮带后，皮带上的长串字母没有任何意义，借此方法即可搅乱信息的内容。</li>
+<li>有时候信差会把它当作腰带，有字母的那一面向内藏，系在腰上，也就算是隐匿法的一种。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2026/10/30/%E5%AF%86%E7%A0%81%E5%AD%A6/%E5%AF%86%E7%A0%81%E5%AD%A6%E6%80%BB%E4%BD%93%E6%A6%82%E8%BF%B0/image-20261030204641168.png" alt="image-20261030204641168"></p>
+<h3 id="代换法"><a class="markdownIt-Anchor" href="#代换法"></a> 代换法</h3>
+<ul>
+<li>
+<p>代换法：原始信息的每个字母都用另一个字母取代，可以说是跟置换法互补的一种方法。</p>
+</li>
+<li>
+<p>历史上代换法的使用：</p>
+<ul>
+<li>
+<p>在公元<code>4世纪</code>，婆罗门学者跋舍耶那所写的<code>《爱欲经》</code>就曾提到用代换法加密信息：</p>
+<ul>
+<li>
+<p>此书是鼓励妇女学习<code>64</code>种技艺，其中第45项则是秘密书信，帮助妇女隐瞒她们的暧昧关系。</p>
+</li>
+<li>
+<p>其中一项建议的方法是：先将字母随意配对，再用配对字母取代信息里面的原始字母。如果将这套用道罗马字母，我们可以为字母进行如下的配对：<code>A&lt;-&gt;V</code>、<code>D&lt;-&gt;X</code>、<code>H&lt;-&gt;B</code>、<code>I&lt;-&gt;G</code>、<code>K&lt;-&gt;J</code>、<code>M&lt;-&gt;C</code>、<code>O&lt;-&gt;Q</code>、<code>S&lt;-&gt;N</code>、<code>U&lt;-&gt;E</code>、<code>W&lt;-&gt;F</code>、<code>Y&lt;-&gt;P</code>、<code>Z&lt;-&gt;T</code></p>
+</li>
+<li>
+<p>这样一来，发信人可以把<code>meet at midnight</code>，改写成<code>CUUZ VZ CGXSGIBZ</code>。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>凯撒加密</strong>：代换法在军事上的首次运用就是凯撒大帝，就是将当前字母改写成它后面几位的字母，这个代换规则是有规律的，凯撒常用的是移位3位的代换规则，这种称为凯撒密码法。</p>
+</li>
+<li>
+<p><strong>代码代换</strong>：不论是<code>《爱欲经》</code>还是凯撒加密，都算是密码代换，而代码代换其实就是将某个单词用字母或者符号代替，比如<code>assassinate行刺</code>使用<code>D</code>代替等。</p>
+</li>
+<li>
+<p><strong>单表代换</strong>：上面介绍的凯撒加密，其实都是用单个密码表对字母进行代换操作，但是随着时代的发展很容易被破解，于是就有了用虚元(没有意义的符号)，或者说用<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>σ</mi></mrow><annotation encoding="application/x-tex">\sigma</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">σ</span></span></span></span>符号表示下一个符号代表两个字母，这样一个复杂但是有规律的代换。</p>
+</li>
+<li>
+<p><strong>同音代换法</strong>：</p>
+</li>
+<li>
+<p><strong>纳瓦霍密码</strong></p>
+</li>
+<li>
+<p><strong>多表代换</strong>：下面要介绍的维吉尼亚密码就是多表代换，多表代换其实就是使用多个密码表对字母进行代换，这个代换比较复杂，但是也是有一定规律的。</p>
+</li>
+<li>
+<p><strong>维吉尼亚加密</strong>：</p>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>置换和代换的区分：置换法是字母的内涵不变，位置变了；代换法是字母的内涵变了，位置不变。</p>
+<p>区别一个密码是代换还是置换，主要判断它是不是置换，置换其实就是把字母打乱顺序。主要就是假设如果穷举出全部的字母排列，是不是有其中一个排列是原文，如果是就是置换，如果不是就是代换。例如：凯撒密码（举这个例子是因为我之前把凯撒密码当作置换，其实是代换只不过代换规则是有规律的），凯撒密码<code>apple</code>，将位移<code>1</code>，这样就替换成<code>bqqmf</code>，这样在穷举出所有字母的排列没有一个是正确答案<code>apple</code>，所以这个其实就是代换，而不是置换。</p>
+</blockquote>
+<p>注意：上面介绍的密码都是用这类符号或字母、或两者混用，以一个密码字母代替一个明文的方法，通称为单套字母替代式密码。</p>
+<h3 id="两者综合"><a class="markdownIt-Anchor" href="#两者综合"></a> 两者综合</h3>
+<ul>
+<li><code>ADFGVX</code>加密：</li>
+</ul>
+<h2 id="密码分析学"><a class="markdownIt-Anchor" href="#密码分析学"></a> 密码分析学</h2>
+<ul>
+<li>密码分析学的起源主要就是阿拉伯人，当时阿拉伯那边的国家社会问题，对于一些官员的消息通信，都会进行加密通讯。</li>
+<li>密码分析学：在无从得知密钥的情况下解译信息的科学。密码分析学的催生需要一个高度文明，即<code>数学、统计学和语言学科</code>，都必须具备高度水平。</li>
+<li><strong>词频分析法</strong>的历史：
+<ul>
+<li>词频分析法这个技术最早见于公元9世纪科学家<code>肯迪</code>，词频分析主要就是根据一般使用的英文字母，字母的出现频率从高到底的排序，一般文章出现频率最高的单词是<code>e</code>，接着就是<code>t</code>，以此下去。这样再分析被加密后的文章字母出现的频率，这样就很可能分析出代换的关系。</li>
+<li>当时的阿拉伯有很多神学校，神学家在研究神学中<code>《古兰经》</code>所载穆罕默德的天启，想按照编年史进行编排就是统计每篇天启中字母的频率。有些字母出现的早，有些字母更晚才被创造。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2026/10/30/%E5%AF%86%E7%A0%81%E5%AD%A6/%E5%AF%86%E7%A0%81%E5%AD%A6%E6%80%BB%E4%BD%93%E6%A6%82%E8%BF%B0/image-20261030231223266.png" alt="image-20261030231223266"></p>
+<ul>
+<li>卡希斯基测试</li>
+<li>暴风雨攻击<code>tempest attack</code>：</li>
+<li>量子计算机破解RSA加密</li>
+</ul>
+<h2 id="柯克霍夫原则"><a class="markdownIt-Anchor" href="#柯克霍夫原则"></a> 柯克霍夫原则</h2>
+<ul>
+<li>每种密码法都可视为一般加密法，称为算法，再加上钥匙的组合结果。钥匙是用来指定特定加密程序的演算细节。</li>
+<li>对于置换和代换的算法其实大家都知道，但是就是具体如何置换和代换是不太清楚的，所以置换和代换规则其实就相当于一个密钥。</li>
+<li>敌人研究拦截下来的加密信息时，也许可以八九不离十的猜对它的算法，却很难推测出它的钥匙。</li>
+</ul>
+<blockquote>
+<p>荷兰语言学家，奥古斯特·柯克霍夫提出了一个密码学的原则，即柯克霍夫原则：</p>
+<p>即使密码系统的任何细节已为人悉知，只要密钥未泄漏，它也应是安全的。</p>
+<p>其为军用保密器所设计的这六个原则是：</p>
+<ol>
+<li>即使如果做不到数学上的不可破解，系统也应该在实质程度上无法破解</li>
+<li>系统内不应含任何机密无，即使落入敌人手中也不会造成困扰</li>
+<li>密钥必须易于沟通和记忆，而不须写下；且双方可以容易改变密钥。</li>
+<li>系统应可以用于电讯</li>
+<li>系统应可以携带，不应需要两个人或以上才能使用</li>
+<li>系统应容易使用，不应让用户的脑力过分操劳，也无需记得长串的规则。</li>
+</ol>
+</blockquote>
+<ul>
+<li>补充：密钥的空间还需要足够大，像凯撒密码中密钥只有25种可能就不行，密钥需要空间需要足够大，才能使得系统无法在有限的世纪枚举出所有密钥。这样就不会被爆破。</li>
+</ul>
+<h2 id="密码机械"><a class="markdownIt-Anchor" href="#密码机械"></a> 密码机械</h2>
+<ul>
+<li>最早的密码机械是<strong>密码盘</strong>：p138</li>
+<li><code>Enigma</code>密码机：</li>
+<li><code>Type X</code>密码机：第五章</li>
+<li><code>SIGABA</code>密码机：第五章</li>
+</ul>
+<h2 id="计算机加密"><a class="markdownIt-Anchor" href="#计算机加密"></a> 计算机加密</h2>
+<ul>
+<li><code>Diff-Hemen</code>密钥交换：</li>
+<li><code>RSA</code>非对称加密：</li>
+<li><code>PGP</code>最佳隐私：<code>IDEA+RSA</code>与数字签名</li>
+<li><code>PGPfone</code>：加密通话</li>
+<li>认证机构：</li>
+<li><code>TTP</code>：受托的第三者</li>
+</ul>
+<h2 id="量子密码"><a class="markdownIt-Anchor" href="#量子密码"></a> 量子密码</h2>
+<h2 id="后量子密码"><a class="markdownIt-Anchor" href="#后量子密码"></a> 后量子密码</h2>
+<h2 id="其他概念的引进"><a class="markdownIt-Anchor" href="#其他概念的引进"></a> 其他概念的引进</h2>
+<ul>
+<li>
+<p>随机密钥：p132</p>
+</li>
+<li>
+<p>一次一密：</p>
+</li>
+<li>
+<p>放射线测定器随机生成密钥：</p>
+</li>
+<li>
+<p>密钥交换协议：p165</p>
+</li>
+</ul>
+<h1 id="密码编码学历史"><a class="markdownIt-Anchor" href="#密码编码学历史"></a> 密码编码学历史</h1>
+<div class="timeline blue"><div class="timeline-item headline"><div class="timeline-item-title"><div class="item-circle"><p>密码编码学</p>
+</div></div></div></div>
+<h1 id="密码分析学历史"><a class="markdownIt-Anchor" href="#密码分析学历史"></a> 密码分析学历史</h1>
+<div class="timeline red"><div class="timeline-item headline"><div class="timeline-item-title"><div class="item-circle"><p>密码编码学历史</p>
+</div></div></div></div>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://iyheart.github.io">iyheart</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://iyheart.github.io/2026/10/30/%E5%AF%86%E7%A0%81%E5%AD%A6/%E5%AF%86%E7%A0%81%E5%AD%A6%E6%80%BB%E4%BD%93%E6%A6%82%E8%BF%B0/">http://iyheart.github.io/2026/10/30/密码学/密码学总体概述/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://iyheart.github.io" target="_blank">iyheart的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i0.hdslb.com/bfs/article/296da5370e6f915d1826ff20916e7aec16f21482.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>赞助</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/ea2e5fb6fbb4c236fbabd387ef83339.jpg" target="_blank"><img class="post-qr-code-img" src="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/ea2e5fb6fbb4c236fbabd387ef83339.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2026/09/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82blog/%E7%BC%96%E8%AF%91%E4%B8%8E%E8%A7%A3%E9%87%8Ablog/LLVM%E7%BC%96%E8%AF%91%E5%99%A8/" title="LLVM编译器"><img class="cover" src="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover255.png" onerror="onerror=null;src='https://raw.githubusercontent.com/iyheart/tuchuang/main/img/f3c2605738aabdeedbc687356fa0e4e5.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">LLVM编译器</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://raw.githubusercontent.com/iyheart/tuchuang/main/img/cover51_1.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">iyheart</div><div class="author-info__description">悟已往之不谏，知来者之可追</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">214</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">64</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E5%AD%A6%E6%80%BB%E4%BD%93%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text"> 密码学总体介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E5%AD%A6%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text"> 密码学的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E5%AD%A6%E7%9A%84%E6%80%BB%E4%BD%93%E5%88%86%E7%B1%BB"><span class="toc-number">1.2.</span> <span class="toc-text"> 密码学的总体分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E5%AD%A6%E5%90%84%E5%88%86%E6%94%AF%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">1.3.</span> <span class="toc-text"> 密码学各分支之间的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.4.</span> <span class="toc-text"> 总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E5%AD%A6%E5%8E%86%E5%8F%B2"><span class="toc-number">2.</span> <span class="toc-text"> 密码学历史</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9A%90%E5%86%99%E6%9C%AF"><span class="toc-number">2.1.</span> <span class="toc-text"> 隐写术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%AE%E6%8D%A2%E4%B8%8E%E4%BB%A3%E6%8D%A2"><span class="toc-number">2.2.</span> <span class="toc-text"> 置换与代换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%AE%E6%8D%A2%E6%B3%95"><span class="toc-number">2.2.1.</span> <span class="toc-text"> 置换法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E6%8D%A2%E6%B3%95"><span class="toc-number">2.2.2.</span> <span class="toc-text"> 代换法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%A4%E8%80%85%E7%BB%BC%E5%90%88"><span class="toc-number">2.2.3.</span> <span class="toc-text"> 两者综合</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E5%88%86%E6%9E%90%E5%AD%A6"><span class="toc-number">2.3.</span> <span class="toc-text"> 密码分析学</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%AF%E5%85%8B%E9%9C%8D%E5%A4%AB%E5%8E%9F%E5%88%99"><span class="toc-number">2.4.</span> <span class="toc-text"> 柯克霍夫原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E6%9C%BA%E6%A2%B0"><span class="toc-number">2.5.</span> <span class="toc-text"> 密码机械</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8A%A0%E5%AF%86"><span class="toc-number">2.6.</span> <span class="toc-text"> 计算机加密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8F%E5%AD%90%E5%AF%86%E7%A0%81"><span class="toc-number">2.7.</span> <span class="toc-text"> 量子密码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E9%87%8F%E5%AD%90%E5%AF%86%E7%A0%81"><span class="toc-number">2.8.</span> <span class="toc-text"> 后量子密码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%A6%82%E5%BF%B5%E7%9A%84%E5%BC%95%E8%BF%9B"><span class="toc-number">2.9.</span> <span class="toc-text"> 其他概念的引进</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E7%BC%96%E7%A0%81%E5%AD%A6%E5%8E%86%E5%8F%B2"><span class="toc-number">3.</span> <span class="toc-text"> 密码编码学历史</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E5%88%86%E6%9E%90%E5%AD%A6%E5%8E%86%E5%8F%B2"><span class="toc-number">4.</span> <span class="toc-text"> 密码分析学历史</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/10/30/%E5%AF%86%E7%A0%81%E5%AD%A6/%E5%AF%86%E7%A0%81%E5%AD%A6%E6%80%BB%E4%BD%93%E6%A6%82%E8%BF%B0/" title="密码学知识体系概述">密码学知识体系概述</a><time datetime="2026-10-30T04:44:35.000Z" title="发表于 2026-10-30 12:44:35">2026-10-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/11/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%BA%95%E5%B1%82blog/%E7%BC%96%E8%AF%91%E4%B8%8E%E8%A7%A3%E9%87%8Ablog/LLVM%E7%BC%96%E8%AF%91%E5%99%A8/" title="LLVM编译器">LLVM编译器</a><time datetime="2026-09-11T11:03:13.000Z" title="发表于 2026-09-11 19:03:13">2026-09-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/07/26/%E8%AE%A1%E7%AE%97%E7%90%86%E8%AE%BA/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA/" title="形式语言与自动机">形式语言与自动机</a><time datetime="2026-07-26T00:02:13.000Z" title="发表于 2026-07-26 08:02:13">2026-07-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/06/04/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%912/" title="Linux内核模块开发2">Linux内核模块开发2</a><time datetime="2026-06-04T08:25:09.000Z" title="发表于 2026-06-04 16:25:09">2026-06-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/05/22/Linux/Linux%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%E5%BC%80%E5%8F%91/Linux%E5%86%85%E6%A0%B8%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E4%B9%8Bhello-world/" title="Linux内核模块开发之hello-world">Linux内核模块开发之hello-world</a><time datetime="2026-05-22T13:36:33.000Z" title="发表于 2026-05-22 21:36:33">2026-05-22</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By iyheart</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat-btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.1
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, '']
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typesetPromise()
+}</script></div><script src="/zhheo/random.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener
+  btf.removeGlobalFnEvent('pjax')
+  btf.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
